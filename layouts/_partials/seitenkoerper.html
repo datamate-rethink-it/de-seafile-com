@@ -1,5 +1,11 @@
 {{- /* Der Rumpf einer gewoehnlichen Seite.
 
+	data-pagefind-body grenzt ein, was die Suche indiziert: ohne das
+	landen Kopfband, Seitenmenue und Fusszeile im Index, und jede der 47
+	Anleitungsseiten heisst im Treffer "Seafile Anleitung" - das ist die
+	Bandueberschrift, und Pagefind nimmt ohne weitere Angabe das erste
+	<h1> der Seite als Titel. Der echte Titel steht in der <h2>.
+
 	Anleitungsseiten (handbuch: true in der Frontmatter) bekommen das
 	Geruest aus template-parts/content-manual-page.php: Kopfband,
 	Seitenmenue links, Text rechts, Aenderungsdatum darunter. Alle
@@ -23,7 +29,7 @@
 				<div class="col-md-4">
 					{{ partial "anleitungsmenue.html" . }}
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-8" data-pagefind-body data-pagefind-meta="title:{{ .Title }}">
 					<h2>{{ .Title }}</h2>
 {{ .Content }}
 					<hr/>
@@ -33,5 +39,7 @@
 		</div>
 	</section>
 {{ else }}
+<div data-pagefind-body data-pagefind-meta="title:{{ .Title }}">
 {{ .Content }}
+</div>
 {{ end }}
