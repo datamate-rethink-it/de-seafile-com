@@ -1,0 +1,33 @@
+---
+title: "Schnittstellen"
+seo_title: "Schnittstellen | Seafile"
+description: ""
+date: "2020-10-18T17:17:15"
+lastmod: "2021-01-12T13:38:43"
+og_image: "/wp-content/uploads/2020/10/WebDAV_Verbindung_WindowsExplorer.png"
+lesezeit: "2 Minuten"
+handbuch: true
+wp_id: 4127
+---
+<p>Neben den in dieser Anleitung ausführlich beschriebenen Clients und dem <a href="/support/benutzer/anleitung/seahub">Webinterface Seahub</a> bietet Seafile weitere Schnittstellen, über die Zugriff auf die Seafile Bibliotheken möglich ist. Dies ist zum einen die <a href="https://de.wikipedia.org/wiki/WebDAV">WebDAV</a>-Schnittstelle und zum anderen Seafiles <a href="https://de.wikipedia.org/wiki/Programmierschnittstelle">API</a>.</p>
+
+<h2>WebDAV</h2>
+<p>WebDAV ist ein HTTP-basiertes Netzwerkprotokoll, mit dem sich Dateien und Verzeichnisse über ein Netzwerk übertragen lassen. Dank seiner weiten Verbreitung bietet WebDAV eine quasi plattformunabhängige Zugriffsoption. Andererseits ist der Zugriff über WebDAV weniger leistungsfähig als der Zugriff über die Seafile Clients. Aus diesem Grund sollten, wann immer möglich, die Clients verwendet werden.</p>
+
+<p>Die Desktop-Betriebssysteme Windows und macOS unterstützen WebDAV nativ. Die WebDAV-Unterstützung erlaubt es, Seafile als Netzwerkressource (z.B. Netzlaufwerk) in den Datei-Manager einzubinden. Der Zugriff auf verschlüsselte Bibliotheken ist über WebDAV nicht möglich.</p>
+
+<a href="/wp-content/uploads/2020/10/WebDAV_Verbindung_WindowsExplorer.png" data-slb-active="1" data-slb-asset="285046911" data-slb-internal="0" data-slb-group="4127"><img decoding="async" src="/wp-content/uploads/2020/10/WebDAV_Verbindung_WindowsExplorer.png" alt="WebDAV für die Einbindung von Seafile als Netzlaufwerk" width="1367" /></a>
+
+<p>In einigen Anwendungsfällen macht die Nutzung dedizierter WebDAV-Clients Sinn. Bekannte WebDAV-Clients für Windows und macOS sind Filezilla und CyberDuck. WinSCP ist in der Windows Welt weit verbreitet.</p>
+<a href="/wp-content/uploads/2020/10/WebDAV_Verbindung_WinSCP_1367x853.png" data-slb-active="1" data-slb-asset="257473579" data-slb-internal="0" data-slb-group="4127"><img decoding="async" src="/wp-content/uploads/2020/10/WebDAV_Verbindung_WinSCP_1367x853.png" alt="WebDAV-Zugriff auf Seafile Server über eine Beispiel-URL mit WinSCP" width="1367"  /></a>
+
+<p>Die mobilen Betriebssysteme Android und iOS unterstützen WebDAV nicht nativ, können mit einer App aber WebDAV-Unterstützung erhalten. WebDAVNavigator ist eine solche App, die es im Google Play Store wie im App Store gibt.</p>
+
+<p>Der Zugriff via WebDAV erfolgt standardmäßig über den Ordner /seafdav. Ist das Seafile Webinterface beispielweise unter https://seafile.beispiel.de zu erreichen, dann sprechen Sie die WebDAV-Schnittstelle über https://seafile.beispiel.de/seafdav an. Um zu prüfen, ob Seafile per WebDAV angesprochen werden kann, können Sie den Befehl in die Adresszeile des Browsers eingeben. Wenn Sie aufgefordert werden, einen Benutzername und Passwort einzugeben, dann können Sie über diese Adresse per WebDAV auf Ihren Seafile Server zugreifen.</p>
+
+<p class="alert alert-warning">Die WebDAV-Schnittstelle ist standardmäßig deaktiviert. Sie muss vom Administrator <a href="https://manual.seafile.com/extension/webdav/">konfiguriert und aktiviert</a> werden. Über eine vom hier beschriebenen Standard abweichende Konfiguration muß Sie Ihr Seafile Administrator informieren.</p>
+
+<h2>API</h2>
+<p>Seafiles API ist eine REST API, die die Integration von Seafiles Funktionen in andere Anwendungen und Webseiten möglich macht. Mit der API ist es z.B. möglich, aus einem CRM-System direkt in einen Ordner abzuspringen, in dem Kundendokumente und -verträge gespeichert sind. </p>
+
+<p>Die API ist ausführlich im <a href="https://manual.seafile.com">Administrator Handbuch</a> dokumentiert.</p>

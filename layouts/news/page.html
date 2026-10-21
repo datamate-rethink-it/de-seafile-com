@@ -1,0 +1,23 @@
+{{ define "main" }}
+{{- /* Ein Beitrag. Aufbau aus single.php und template-parts/content.php.
+	Das Beitragsbild liegt als vollflaechiger Hintergrund hinter dem
+	Kopfbereich - die Stilangaben standen so im Template. */ -}}
+<section id="intro-teaser">
+	<div class="block small animatedParent">
+		{{- with (or .Params.beitragsbild .Params.og_image) }}
+		<img src="{{ . }}" alt="" style="width: 100vmax;z-index: -1;position: absolute;top: 0;left: 50%;transform: translate(-50%,-42%);pointer-events: none;">
+		{{- end }}
+		<div class="container animated fadeInLeftShort delay-500">
+			<div class="row">
+				<div class="col-md-12"></div>
+			</div>
+		</div>
+	</div>
+</section>
+<div class="container">
+	<div class="col-md-9 col-sm-12 m-auto">
+		<h1 class="entry-title">{{ .Title }}</h1>
+		{{ .Content }}
+	</div>
+</div>
+{{ end }}

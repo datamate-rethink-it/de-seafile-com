@@ -1,0 +1,106 @@
+# Caddy im Container de-seafile-com. Kein TLS, kein Hostname: davor steht
+# das native nginx des Servers (siehe deploy/nginx-vhost.conf).
+#
+# Die Ausliefer-Regeln stecken mit Absicht hier im Image und nicht im
+# vhost des Servers: so sind sie mit dem Inhalt zusammen versioniert, und
+# ein Rueckschritt auf eine aeltere Fassung nimmt die Regeln mit.
+#
+# Pruefen:
+#   docker run --rm \
+#     -v ./deploy/Caddyfile.container:/etc/caddy/Caddyfile:ro \
+#     -v ./deploy/redirects.caddy:/etc/caddy/redirects.caddy:ro \
+#     caddy:2.11.7-alpine caddy validate --adapter caddyfile \
+#     --config /etc/caddy/Caddyfile
+
+{
+	admin off
+	servers {
+		# nginx setzt X-Forwarded-For; ohne diese Zeile stuende in jeder
+		# Logzeile 127.0.0.1.
+		trusted_proxies static 127.0.0.1/32 ::1
+	}
+}
+
+:80 {
+	root * /srv
+	encode zstd gzip
+
+	# --- Trial ------------------------------------------------------
+	# Die einzige Stelle, an der etwas gerechnet wird. Angelegt wird der
+	# Mandant auf dem Trial-Server selbst, wo Seafile-API und Datenbank
+	# oertlich liegen; auf diesem Rechner bleibt kein Zugangsdatum.
+	#
+	# Weitergereicht statt direkt angesprochen, damit der Browser bei
+	# gleicher Herkunft bleibt - kein CORS, kein Preflight, keine
+	# Drittanbieter-Diskussion auf einer Seite, die mit Kontrolle ueber
+	# die eigenen Daten wirbt.
+	handle /api/trial {
+		reverse_proxy https://trial.seafile-demo.de {
+			header_up Host trial.seafile-demo.de
+			transport http {
+				tls
+			}
+		}
+	}
+
+	# --- Weiterleitungen und entfallene Adressen --------------------
+	# Erzeugt von _build/gen_redirects.py: die 19 Regeln des Plugins
+	# Redirection, die Weiterleitungen, die WordPress selbst gemacht hat
+	# (Endstuecke von Pfaden, /news/<slug>/, Anhangseiten, alte Slugs),
+	# und 410 Gone fuer die gestrichenen Seiten.
+	import redirects.caddy
+
+	# --- Feeds ------------------------------------------------------
+	# Hugo legt den Feed der Startseite als /feed/index.xml ab. /feed
+	# ohne Schraegstrich war im WordPress ebenfalls erreichbar, und
+	# /news/feed/ lieferte denselben Feed aus - /news/ ist die
+	# Beitragsseite, und WordPress haengt an jede Seite ein /feed/.
+	@startfeed path /feed /feed/ /feed/* /news/feed /news/feed/
+	handle @startfeed {
+		header Content-Type "application/rss+xml; charset=utf-8"
+		rewrite * /feed/index.xml
+		file_server
+	}
+
+	# Die Kategorie-Feeds liegen als /category/<slug>/index.xml - ein
+	# Ausgabeformat mit path waere absolut geworden und haette sie unter
+	# /feed/category/<slug>/ abgelegt. Ausgeliefert werden sie dort, wo
+	# sie bisher standen.
+	@kategoriefeed path_regexp kat ^/category/([^/]+)/feed/?$
+	handle @kategoriefeed {
+		header Content-Type "application/rss+xml; charset=utf-8"
+		rewrite * /category/{http.regexp.kat.1}/index.xml
+		file_server
+	}
+
+	# --- statische Auslieferung -------------------------------------
+	# try_files bedient /impressum und /impressum/ gleich, ohne
+	# Weiterleitung - genau wie WordPress.
+	handle {
+		try_files {path} {path}/index.html
+		file_server
+	}
+
+	handle_errors 404 {
+		rewrite * /404.html
+		file_server
+	}
+
+	# 410 behaelt seinen Code und bekommt einen kurzen Text statt der
+	# Fehlerseite - eine Fehlerseite mit 410 verwirrt Suchmaschinen.
+	handle_errors 410 {
+		header Content-Type "text/plain; charset=utf-8"
+		respond "410 Gone - diese Seite gibt es nicht mehr." 410
+	}
+
+	# Lange Cache-Zeiten fuer Medien, kurze fuer die Seiten selbst.
+	@medien path /wp-content/* /eigen/* /pagefind/*
+	@seiten not path /wp-content/* /eigen/* /pagefind/*
+	header @medien Cache-Control "public, max-age=2592000"
+	header @seiten Cache-Control "public, max-age=300"
+
+	log {
+		output stdout
+		format console
+	}
+}

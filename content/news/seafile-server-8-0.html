@@ -1,0 +1,71 @@
+---
+title: "Seafile Server 8.0: File Sharing noch einfacher"
+slug: "seafile-server-8-0"
+seo_title: "Seafile Server 8.0: File Sharing noch einfacher | Seafile"
+description: ""
+date: "2021-07-29T13:03:56"
+lastmod: "2025-02-21T09:07:13"
+og_image: "/wp-content/uploads/2021/07/Seafile_8.0_featured-scaled.jpg"
+beitragsbild: "/wp-content/uploads/2021/07/Seafile_8.0_featured-scaled.jpg"
+lesezeit: "5 Minuten"
+category:
+  - "release-notes"
+autor: "Ralf D."
+wp_id: 4334
+---
+<p>Seafile Server 8.0 macht die Zusammenarbeit an Dateien noch einfacher: Dateien und Ordner können nun dank Server-Föderation an Benutzer anderer Seafile Server freigegeben werden. Der neue kombinierte Freigabe-Link ermöglicht den bidirektionalen Dateiaustausch mit Dritten. Freigabe-Links als QR-Codes und eine überarbeitete Upload-Seite sorgen für schnellere und bequemere Arbeitsabläufe.</p>
+<!--more-->
+
+
+
+<p>Das Webinterface der Seafile Server Community Edition erhält mit Seafile 8.0 außerdem eine Dateisuche. Damit kommen die Entwickler einem vielgeäußerten Wunsch der Community nach.</p>
+
+<p>Die wichtigsten Änderungen stellen wir in diesen Release Notes vor; eine vollständige Liste der Änderungen findet sich im <a href="https://manual.seafile.com/changelog/changelog-for-seafile-professional-server/">Seafile Manual</a> (nur auf Englisch). Der Seafile Server Professional Edition kann aus dem <a href="https://customer.seafile.com/">Seafile Customer Center</a> runtergeladen werden. Die Community Edition, deren Quellcode auf GitHub offen liegt, ist direkt über die Seafile Webseite verfügbar.</p>
+
+
+<h2>Föderation von Seafile Servern</h2>
+<p>Das einfache Teilen von Daten mit anderen Benutzern eines Seafile Servers ist seit jeher ein Markenzeichen von Seafile. Eine Freigabe gibt den berechtigten Benutzern Zugriff auf die freigegebene Ressource. Mit Seafile 8.0 sind nun auch Freigaben an Benutzer anderer Seafile Server ganz einfach möglich. Die Notwendigkeit mehrerer Benutzerkonto ist damit ein Ding der Vergangenheit.</p>
+
+<p>Eine serverübergreifende Freigabe ist ebenso einfach erstellt wie eine lokale Freigabe: Über den Freigaben-Dialog wird eine solche Freigabe mit wenigen Klicks erstellt. Über den neuen Eintrag  &#8222;Von anderen Servern&#8220; in der Navigation des Seafile Webinterfaces greift man auf eine so geteilte Ressource zu. Einzig die <a href="https://manual.seafile.com/deploy/ocm/">Föderation der beteiligten Seafile Server</a> muss von einem Seafile Administrator vorab eingerichtet werden.</p>
+
+<a href="/wp-content/uploads/2021/07/Seafile8.0_OpenCloudMesh.png" data-slb-active="1" data-slb-asset="1618506027" data-slb-internal="0" data-slb-group="4334"><img decoding="async" src="/wp-content/uploads/2021/07/Seafile8.0_OpenCloudMesh.png" alt="Dateifreigabe an Benutzer anderer Seafile Server" width="950" /></a>
+<br /><br />
+<p>Für die Serververnetzung wird das Föderationsprotokoll von Open Cloud Mesh (OCM) genutzt. OCM ist eine Initiative europäischer, asiatischer und australischer Forschungsinstitutionen unter der Leitung der pan-europäischen Forschungsnetzgesellschaft GÉANT. Auf deutscher Seite sind die Gesellschaft für wissenschaftliche Datenverarbeitung (GWDG) sowie die Technische Universität Berlin und die Universität Münster als Projektpartner involviert. Das Ziel von OCM ist die Schaffung eines weltweiten Netzes miteinander verbundener Forschungs-Clouds. Das Federated Cloud Sharing Application Programming Interface (API), das eine herstellerunabhängige Dateizugriffschicht bietet, ist dafür die Basis.</p>
+
+<p>Seafile Server Professional Edition und Community Edition unterstützen in der Version 8.0 die Föderation von Seafile Servern. Die vollständige Implementierung der OCM API wird mit Version 9.0 erfolgen. Das nächste Major Release wird dann auch die Föderation mit File Clouds auf Basis Nextcloud und ownCloud unterstützen.</p>
+
+
+<h2>Ein neuer und verbesserte öffentliche Links</h2>
+<p>Der Austausch von Dateien mit Partnern, die kein Seafile Benutzerkonto haben, erfolgt über Freigabe-Links: Ein Download-Link stellt Dateien für den Download zur Verfügung; ein Upload-Link ermöglicht Dritten das Hochladen von Dateien zum Seafile Server. Ein neuer dritter Linktyp bietet Seafile Professional Benutzern nun noch mehr Flexibilität.</p>
+
+<p>Der neue Linktyp vereint die Funktionen der beiden bestehenden Links: Dateien und Ordner lassen sich an Partner übertragen, über den gleichen Link könnendie aber auch Dateien an Sie zurücksenden. Waren bisher zwei Links für den  Dateiaustausch mit Partnern notwendig, so reicht nun einer.</p>
+
+<a href="/wp-content/uploads/2021/07/Seafile8.0_ComboLink_QRcode.png" data-slb-active="1" data-slb-asset="164718466" data-slb-internal="0" data-slb-group="4334"><img decoding="async" src="/wp-content/uploads/2021/07/Seafile8.0_ComboLink_QRcode.png" alt="Seahub erstellt einen QR-Code für jeden Freigabe-Link" width="760" /></a>
+<br /><br />
+<p>Eine weitere Neuerung sind die im Webinterface für jeden Freigabe-Link automatisch erzeugten QR-Codes. Ein solcher grafischer Code ist dann eine praktische Alternative zur textuellen URL, wenn der Freigabe-Link mit einem mobilen Gerät aufgerufen werden soll. Kameras von Smartphones und Tablets können die Freigabe-URL aus einem QR-Code auslesen und die Seite direkt ohne manuelle Eingabe aufrufen.</p>
+
+<p>Alle guten Dinge sind drei: Die Seite des Datei-Uploads erscheint nun nach einem Recoding in React in einem gefälligeren Design und mit verbesserter Funktion. Drag and Drop von Dateien funktioniert nun mit allen wichtigen Browsern.</p>
+
+<a href="/wp-content/uploads/2021/07/Seafile8.0_UploadPage.png" data-slb-active="1" data-slb-asset="1053760991" data-slb-internal="0" data-slb-group="4334"><img decoding="async" src="/wp-content/uploads/2021/07/Seafile8.0_UploadPage.png" alt="Neue Upload-Page" width="1275" /></a>
+
+
+<h2>LaTex Formeln im Markdown Editor</h2>
+<p>Markdown (MD) als einfache Auszeichnungssprache eignet sich hervorragend für die unkomplizierte und plattformunabhängige Speicherung textbasierter Dokumente. Dank der neuen Formelfunktion in Seafile Markdown Editor können nun auch mathematische Formeln professionell und ansprechend dargestellt werden. Damit wird das MD-Format in Seafile noch vielseitiger verwendbar &#8211; insbesondere in veröffentlichten Bibliotheken.</p>
+
+<p>Die Eingabe der Formeln erfolgt im LaTex Format und wird durch einen kleinen, grafischen Assistenten unterstützt. Er interpretiert die Eingabe in Echtzeit und zeigt die resultierende Formel im Vorschaufenster an. Die Eingabe lässt sich so bei Bedarf unmittelbar korrigieren. Eine gute Übersicht über die Möglichkeiten von Latex Formeln findet sich bei <a href="https://en.wikibooks.org/wiki/LaTeX/Mathematics">Wikibooks.org</a>.</p>
+
+
+<h2>Vereinfachung der Programmarchitektur</h2>
+<p>Die Version 8.0 von Seafile verzichtet auf die Komponente ccnet-server und verschlankt damit die Programmarchitektur. Der RPC Service Daemon, der bisher die interne Kommunikation zwischen Data Service Daemon (seaf-server) und Webinterface (seahub) steuerte, wurde in den seaf-server gemergt. Die beiden Komponenten kommunizieren nun direkt miteinander. Die Abbildung unten stellt alte und neue Architektur gegenüber. (Die Konfigurationsdatei ccnet.conf und auch die Datenbank ccnet-db sind bis auf weiteres nötig.)</p>
+
+
+<a href="/wp-content/uploads/2021/07/Seafile8.0_Architekturveränderung.png" data-slb-active="1" data-slb-asset="973002568" data-slb-internal="0" data-slb-group="4334"><img decoding="async" src="/wp-content/uploads/2021/07/Seafile8.0_Architekturveränderung.png" alt="Vereinfachte Programmarchitektur von Seafile Server 8.0" width="1775" /></a>
+<small>Aus Gründen der Vereinfachung wurden weitere Voraussetzungen (z.B. Datenbank) und Seafile Serverkomponenten (z.B. seafdav-server) weggelassen.</small>
+
+
+<h2>Codeaktualisierung und -optimierung</h2>
+<p>Mit dem Wechsel des Webinterfaces von Django auf React im letzten Jahr wurden die meisten Elemente von Seahub in JavaScript neu geschrieben. Einige wenige Seiten nutzen aber weiterhin das Python Webframework Django. Dieses wurde in Seafile 8.0 von der Version 1.11 auf Version 2.2 aktualisiert. Das Update auf die neuste Version, Django 3.2, wird mit der Seafile 9.0 folgen.</p>
+
+<p>Besondere Aufmerksamkeit haben die Entwickler in der Entwicklung von Seafile 8.0 auch dem Garbage Collector gewidmet. Durch eine Codeoptimierung konnte die Dauer der Datenbankzugriffe für große Bibliotheken deutlich reduziert werden. Im &#8222;Garbage Collection&#8220; (deutsch: Müllabholung bzw. Müllabfuhr) genannten Prozess werden Datenblöcke, die zu gelöschten Dateien und Bibliotheken gehören, beseitigt und so Speicherplatz freigegeben.</p>
+
+<p>Der Code für die Sperrung von Office Dateien hat ebenfalls eine gründliche Überarbeitung erfahren. Das Ergebnis: In Seafile 8.0 wird eine Office Datei in dem Moment entsperrt, in dem der letzte Benutzer den Browser-Tab des Editors schließt.  Nutzer von ONLYOFFICE  und MS Office Online Server Editoren werden die Verbesserung sofort merken. Erzielt werden konnte diese Verbesserung durch die Implementierung direkter Server-zu-Server Kommunikation. In der Vergangenheit nutzte Seafile Signale der Browser der bearbeitenden Benutzer für die Ermittlung des Bearbeitungsstands.</p>

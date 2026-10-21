@@ -1,0 +1,31 @@
+---
+title: "Bibliotheken und Ordner synchronisieren"
+seo_title: "Bibliotheken und Ordner synchronisieren | Seafile"
+description: ""
+date: "2020-09-24T23:54:03"
+lastmod: "2020-10-04T12:42:28"
+lesezeit: "2 Minuten"
+handbuch: true
+wp_id: 4056
+---
+<p>SeaDrive für Windows unterstützt die selektive Synchronisation von Bibliotheken und Ordnern (&#8222;Pinning&#8220;). SeaDrive speichert von allen Dateien einer gepinnten Bibliothek bzw. eines gepinnten Ordner eine lokale Kopie und führt fortlaufend einen Abgleich des Datenbestand zwischen Client und Server aus. So stehen auch offline, d.h. wenn keine Verbindung zum Seafile Server besteht, alle Dateien zur Verfügung. Der Seafile Drive Client für Windows integriert damit eine Funktion des <a href="/support/benutzer/anleitung/seafile-sync-client/">Seafile Sync Clients</a>.</p>
+
+<p class="alert alert-warning">Die Funktion steht nicht in SeaDrive für macOS zur Verfügung.</p>
+
+<a href="/wp-content/uploads/2020/10/SeaDrive2.0_Kontextmenü_WindowsExplorer_raw.png" data-slb-active="1" data-slb-asset="1975169364" data-slb-internal="0" data-slb-group="4056"><img decoding="async" src="/wp-content/uploads/2020/10/SeaDrive2.0_Kontextmenü_WindowsExplorer_raw.png" alt="Über das Kontextmenü im Windows Explorer lassen sich Bibliotheken und Ordner dauerhaft synchronisieren" width="1366" /></a>
+
+<p>Die Synchronisation einer Bibliothek/eines Ordners richten Sie über das Kontextmenü des Dateimanagers ein. Öffnen Sie das Kontextmenü per Rechtsklick auf die Bibliothek/den Ordner, die/den Sie synchronisieren wollen und wählen Sie nun die Option <i>Immer auf diesem Gerät behalten</i>.</p>
+
+<p>Der Download der Dateien der ausgewählten Bibliothek/Ordner beginnt unmittelbar, was am Wechsel des Wolken- oder Kreis-Icons in das Pfeil-Icon in der Status-Spalte sichtbar wird. Je nach Größe der gewählten Bibliothek/Ordner und der verfügbaren Bandbreite kann der Download einige Zeit in Anspruch nehmen. Der Download ist abgeschlossen, wenn aus dem Pfeil-Icon ein grüner, ausgefüllter Kreis wird.</p>
+
+<a href="/wp-content/uploads/2020/10/SeaDrive2.0_Kontextmenü_WindowsExplorer_pinned_raw.png" data-slb-active="1" data-slb-asset="604640023" data-slb-internal="0" data-slb-group="4056"><img decoding="async" src="/wp-content/uploads/2020/10/SeaDrive2.0_Kontextmenü_WindowsExplorer_pinned_raw.png" alt="Ein dauerhaft synchronisierter Ordner wird in der Statusspalte mit einem grünen Kreis markiert." width="1366"  /></a>
+
+<p>Zur Darstellung des Dateistatus verwendet SeaDrive vier Status-Icons mit den folgenden Bedeutungen:</p>
+<ul>
+  <li>Wolke: keine lokale Kopie der Datei, sondern nur ein Platzhalter vorhanden; Datei wird bei Zugriff von Server herunter geladen</li>
+  <li>Pfeil: ein Statuswechsel erfolgt (z.B. eine Datei wird gerade vom Server heruntergeladen)</li>
+  <li>Leerer Kreis: lokale Kopie der Datei vorhanden; Dateizugriff erfolgt direkt vom lokalen Datenträger</li>
+  <li>Grüner, voller Kreis: lokale Kopie der Datei vorhanden, ein übergeordneter Ordner ist gepinnt; Dateizugriff erfolgt direkt vom lokalen Datenträger</li>
+</ul>
+
+<p>Benötigen Sie die Dateien nicht mehr als Kopie auf Ihrem lokalen Datenträger und wollen Sie den Speicherplatz wieder freigeben, dann gehen Sie wie beim Download vor: Klicken Sie mit der rechten Maustaste auf die Bibliothek/den Ordner, deren/dessen lokale Kopien gelöscht werden sollen und wählen Sie im sich öffnenden Kontextmenü <i>Speicherplatz freigeben</i>. Das Status-Icon wechselt daraufhin zunächst von einem grünen Kreis in das Pfeil-Icon und nach Abschluss des Löschvorgangs zum Wolken-Icon. Damit sind alle lokalen Kopien gelöscht.</p>

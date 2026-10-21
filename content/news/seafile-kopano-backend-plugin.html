@@ -1,0 +1,68 @@
+---
+title: "Seafile Plugin für Kopano: Sync & Share integriert in Groupware"
+slug: "seafile-kopano-backend-plugin"
+seo_title: "Seafile Plugin für Kopano: Sync & Share integriert in Groupware"
+description: "Mit dem neuen Seafile Plugin für Kopano lässt sich nun die Sync & Share Lösung Seafile mit der Groupware Kopano integrieren."
+date: "2019-05-28T15:51:53"
+lastmod: "2025-02-21T09:07:14"
+og_image: "/wp-content/uploads/2019/05/seafile-kopano-backend.jpg"
+beitragsbild: "/wp-content/uploads/2019/05/seafile-kopano-backend.jpg"
+lesezeit: "4 Minuten"
+category:
+  - "release-notes"
+autor: "Ralf D."
+wp_id: 2994
+---
+<p>Das Beste aus der Welt der Groupware und der Sync &#038; Share Lösungen lässt sich nun miteinander kombinieren: Das Seafile Plugin für Kopano Version 1.0 ist ab heute verfügbar! Das Plugin bindet Seafile als File Backend in Kopano ein und erweitert die Groupware um File Sharing Funktionen. Anders herum können Seafile Nutzer mit Kopano ihre Sync &#038; Share Lösung um E-Mail, Terminkalender, Adressbuch und Chat Funktionalitäten ergänzen.</p>
+
+<!--more-->
+
+<h2>Nahtlose Integration von Seafile in Kopano</h2>
+<p>Mit dem Seafile Plugin für Kopano können Nutzer direkt in Kopano auf ihre persönlichen Daten zugreifen, diese verwalten und mit anderen teilen. Vorbei die Zeiten, in denen Wechsel zwischen unterschiedlichen Frontends wertvolle Zeit kosten. Seafile Admins, die sich für Seafile einen Kalender- und Adressbuchsync gewünscht haben, können diese nun mit Kopano nachrüsten.</p>
+
+<a href="/wp-content/uploads/2019/05/kopano-seafile-plugin-übersicht-e1557147793488.png" data-slb-active="1" data-slb-asset="641174211" data-slb-internal="0" data-slb-group="2994"><img decoding="async" src="/wp-content/uploads/2019/05/kopano-seafile-plugin-übersicht-e1557147793488.png" alt="Dateizugriff und File Sharing mit Hilfe des Seafile Plugins für Kopano" class="alignleft size-full wp-image-5945" /></a>
+
+<p>Für unverschlüsselte Bibliotheken stellt das Plugin alle Dateiverwaltungs- und Sharing-Funktionen zur Verfügung. Anwender können durch die gesamte Ordnerstruktur navigieren sowie neue Ordner und Dateien anlegen, hochladen, umbenennen und löschen. Selbstverständlich werden dem Anwender die Größe der Dateien sowie das letzte Bearbeitungsdatum angezeigt. Sharing Links &#8211; gleichermaßen für Ordner wie für Dateien &#8211; lassen sich über das Teilen-Menü erstellen. In einem einfachen Assistenten können Download-Links wahlweise mit einem Passwort und/oder einem Ablaufdatum versehen werden. Eine Statusanzeige informiert die Nutzer über die aktuelle Speicherbelegung in Seafile und ggf. auch ein für den Benutzer gesetztes Datenlimit.</p>
+
+<a href="/wp-content/uploads/2019/05/kopano-seafile-plugin-downloadlink.png" data-slb-active="1" data-slb-asset="382593658" data-slb-internal="0" data-slb-group="2994"><img decoding="async" src="/wp-content/uploads/2019/05/kopano-seafile-plugin-downloadlink.png" alt="Seafile Download-Link in Kopano erzeugen" class="alignleft size-full wp-image-5947" /></a>
+
+<p>Auch wenn die Version 1.0 des Kopano Plugins noch nicht alle Funktionen von Seafile unterstützt (z.B. verschlüsselte Bibliotheken, Dateikommentare, Versionsverlauf), so stellt die Version 1.0 einen Meilenstein für die Integration von Seafile und Kopano sowie die Grundlage für die weitere Entwicklung dar. Mit <a href="/api">Seafiles API</a> lassen sich in kommenden Versionen den bestehenden weitere Funktionen hinzufügen. Noch weitergehende Integrationsoptionen existieren mit Dateieditoren wie z.B. <a href="/online-file-editing/">OnlyOffice</a>. So könnte man überlegen, das ein Klick auf ein Office Dokumente in Kopano nicht den Download startet, sondern dieses an einen Dokumentenserver wie OnlyOffice übergeben wird. </p>
+
+<h2>Technische Implementierung des Seafile Plugins</h2>
+<p>Grundlage für die Integration von Seafile in Kopano ist das Kopano Files Plugin. Diese Kopano Komponente ermöglicht den Zugriff auf externe Speichermedien via FTP und WebDAV. Das Seafile Plugin für Kopano erweitert das Files Plugin dahingehend, dass Seafiles Sharing Funktionen ergänzt und mehrere existierende Funktionen angepasst werden, um den Besonderheiten von Seafiles Bibliotheken beim WebDAV-Zugriff Rechnung zu tragen.</p>
+
+<a href="/wp-content/uploads/2019/05/kopano-seafile-account-einstellungen.png" data-slb-active="1" data-slb-asset="427256208" data-slb-internal="0" data-slb-group="2994"><img fetchpriority="high" decoding="async" width="1239" height="748" src="/wp-content/uploads/2019/05/kopano-seafile-account-einstellungen.png" alt="Seafile Account in den Kopano File Einstellungen" class="alignnone size-full wp-image-3008" srcset="/wp-content/uploads/2019/05/kopano-seafile-account-einstellungen.png 1239w, /wp-content/uploads/2019/05/kopano-seafile-account-einstellungen-300x181.png 300w, /wp-content/uploads/2019/05/kopano-seafile-account-einstellungen-768x464.png 768w, /wp-content/uploads/2019/05/kopano-seafile-account-einstellungen-1024x618.png 1024w" sizes="(max-width: 1239px) 100vw, 1239px" /></a>
+
+<p>Wie auch Kopano ist das Seafile Plugin für Kopano unter der AGPL v3 Lizenz veröffentlicht. Durch die Veröffentlichung unter dieser Open-Source-Lizenz kann der Quellcode des Plugins von jedem Interessierten eingesehen, angepasst und weiterentwickelt werden. Die Weiterentwicklung wird von der <a href="https://www.datamate.org">datamate GmbH &#038; Co. KG</a> überwacht, die auch die Version 1.0 entwickelt hat.</p>
+
+
+<h2>Voraussetzungen und Inbetriebnahme</h2>
+<p>Die Einrichtung von Seafile als File Backend für Kopano erfolgt in drei Schritten. Zunächst wird das Files Plugins von Kopano installiert. Dies ist im <a href="https://documentation.kopano.io/webapp_files_manual/">WebApp Files Manual</a> beschrieben. Anschließend muss das Seafile Plugin von <a href="https://github.com/datamate-rethink-it/kopano-seafile-backend" target="_blank" rel="noopener noreferrer">Github</a> in das Verzeichnis /usr/share/kopano-webapp/plugins/ heruntergeladen oder geclont werden. Schliesslich muss noch die <a href="https://manual.seafile.com/extension/webdav.html">WebDAV-Schnittstelle von Seafile</a> aktiviert werden, wenn das nicht schon der Fall ist.</p>
+
+<p>Die Aktivierung des Files und des Seafile Plugins erfolgt anschließend im Einstellungsbereich von Kopano. Nach der Aktivierung können die Nutzer dort eine Verbindung zu einem Seafile Account herstellen indem Sie die Server-URL und ihre Zugangsdaten hinterlegen. Bei erfolgreicher Authentifizierung stehen dem Benutzer sofort sämtliche Seafile Daten in Kopano zur Verfügung.</p> 
+
+<p>Das Plugin wurde mit Seafile Community und Seafile Professional in der aktuellen Version 6.3 und den Beta-Versionen der Version 7.0 getestet. Einem späteren Upgrade, sobald sich die Version 7 im Produktivbetrieb bewährt hat, steht somit nichts im Wege. </p>
+
+<h2>Open-Source-Collaboration Suite Kopano</h2>
+<p>Die Groupware <a href="https://kopano.com/?lang=de">Kopano</a> ist eine leistungsfähige Open-Source-Groupware mit E-Mail sowie Termin- und Kontaktverwaltungsfunktionen. Damit ist Kopano eine kostengünstige und plattformunabhängige Alternative zu teuren Exchange Servern und ermöglicht die Replikation klassischer Outlook Funktionen. Darüber hinaus bietet Kopano Erweiterungen inklusive Chat- und Videokonferenzfunktionen, die sich durch Addons und Plugins realisieren lassen. Mit Kopano kommuniziert man professionell, plattformunabhängig und kostengünstig im Team und mit Geschäftspartnern.</p>
+
+<img decoding="async" src="/wp-content/uploads/2019/05/Kopano-Logo.png" alt="Kopano Logo" width="250" height="58" class="alignnone size-full wp-image-2965" style="float: right; padding-left: 20px;" />
+
+<p>Kopano unterstützt Clients wie Outlook und Thunderbird zur Bearbeitung von E-Mails, Kalendern und Aufgaben. Darüber hinaus bietet Kopano mit der WebApp ein Webinterface, das alle Funktionen in einem einfach zu verwendenden Frontend zur Verfügung stellt. Die WebApp verspricht eine zu Microsoft Outlook vergleichbare Benutzeroberfläche, um Anwendern den Einstieg bzw. Umstieg so einfach wie möglich zu machen.</p>
+
+<p>Kopano kann entweder auf einem eigenen Server installiert oder von einem Kopano Partner als Cloud Service bezogen werden.</p>
+
+<h2>Ausblick</h2>
+<p>Kopano und Seafile sind zwei sich perfekt ergänzende Dienste für den Unternehmenseinsatz. Mit der Version 1.0 ist nun der erste Schritt für die weitere Integration gemacht. Weitere, spannende Entwicklungen werden folgen. Die Entwickler von datamate planen ein paar Wochen abzuwarten und auf Basis des Nutzerfeedbacks die nächste Entwicklungsstufe anzugehen. Möglich sind auch Crowdfunding-Kampagnen für die gezielte Entwicklung weiterer Funktionen.</p>
+
+<h2>Changelog</h2>
+<h3>Version 1.0 (21.05.2019)</h3>
+<ul>
+	<li>Korrigiertes Bibliotheks- und Ordnerhandling (Erstellen, Löschen, Umbennenen)</li>
+	<li>Erzeugen von Download-Links für Dateien, Ordner und Bibliotheken inkl. Passwortschutz und Ablaufdatum</li>
+	<li>Anzeige von existierenden Freigaben</li>
+	<li>Anzeige der Anwenderquota und des belegten Speicherplatzes</li>
+	<li>Anzeige des Änderungsdatums von Dateien und Ordnern</li>
+	<li>Anzeige der Seafile Server Version</li>
+	<li>Unterstützung von deutschen Sonderzeichen</li>
+</ul>

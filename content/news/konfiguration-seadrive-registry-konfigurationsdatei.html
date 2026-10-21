@@ -1,0 +1,95 @@
+---
+title: "Konfiguration von SeaDrive via Registry und Konfigurationsdatei"
+slug: "konfiguration-seadrive-registry-konfigurationsdatei"
+seo_title: "Konfiguration von SeaDrive via Registry und Konfigurationsdatei | Seafile"
+description: "Der SeaDrive Client lässt sich über die Registrierungsdatenbank und Konfigurationsdateien vorkonfigurieren, so dass Nutzer sofort loslegen können."
+date: "2019-03-23T14:16:38"
+lastmod: "2025-02-21T09:07:14"
+og_image: "/wp-content/uploads/2019/03/seadrive-config.jpg"
+beitragsbild: "/wp-content/uploads/2019/03/seadrive-config.jpg"
+lesezeit: "3 Minuten"
+category:
+  - "anleitungen"
+autor: "Ralf D."
+wp_id: 2859
+---
+<p>Beim ersten Start des Seafile Drive Clients (SeaDrive) fordert ein Dialog den Nutzer auf, die Serveradresse und die Zugangsdaten einzugeben. Bei größeren Installationen und insbesondere wenn SeaDrive über Gruppenrichtlinien ausgerollt werden soll, ist dies nicht praktisch. Darum bietet SeaDrive die Möglichkeit, per Windows Registrierungsdatenbank (Registry) oder über eine Konfigurationsdatei vorkonfiguriert zu werden.</p>
+
+<!--more-->
+
+<h2>Konfigurationsmöglichkeiten von SeaDrive</h2>
+<img fetchpriority="high" decoding="async" src="/wp-content/uploads/2019/03/Konto_einfügen_Dialog_SeaDrive.png" alt="Konto hinzufügen Dialog von SeaDrive" width="552" height="417" class="alignnone size-full wp-image-2861" style="float:right; padding-left:2%;" srcset="/wp-content/uploads/2019/03/Konto_einfügen_Dialog_SeaDrive.png 552w, /wp-content/uploads/2019/03/Konto_einfügen_Dialog_SeaDrive-300x227.png 300w" sizes="(max-width: 552px) 100vw, 552px" />
+<p>Die manuelle Konfiguration von <a href="/support/benutzer/anleitung/seafile-drive-client">SeaDrive</a> über den <i>Konto hinzufügen</i> Dialog (siehe Abbildung) ist bei wenigen Arbeitsplätzen der unkomplizierteste Weg, nicht aber bei Duzenden geschweige denn bei hunderten Arbeitsplätzen. Der hohe manuelle Einrichtungsaufwand auf Seiten der Administratoren ebenso wie der Nutzer macht ein automatisiertes Verfahren notwendig. Seafile bietet ein solches für den SeaDrive Client an, wobei die Möglichkeiten vom eingesetzten Betriebssystem abhängig sind.</p>
+<p>Auf <u>Windows Computern</u> kann SeaDrive auf zweierlei Art durch einen Administrator vorkonfiguriert werden: Entweder werden die Anmeldedaten in der Windows Registry gespeichert oder in einer INI-Datei im Home Verzeichnis des Nutzern.</p>
+<p>Auf <u>Mac und Linux Rechnern</u> steht aufgrund fehlender Registrierungsdatenbank nur die Konfigurationsmöglichkeit durch eine Konfigurationsdatei zur Verfügung. Die Conf-Datei muss im Home Verzeichnis des Nutzers abgelegt werden.</p>
+
+<h2>Konfiguration von SeaDrive via Registry</h2>
+<p>Die Registrierungsdatenbankschlüssel für die Konfiguration von SeaDrive können an zwei Orten abgespeichert werden.</p> 
+
+Bei Windows mit einer 32 Bit Architektur sind dies:
+<ul>
+	<li>HKEY_CURRENT_USER\SOFTWARE\SeaDrive</li>
+	<li>HKEY_LOCAL_MACHINE\SOFTWARE\SeaDrive</li>
+</ul>
+
+Bei Windows Installationen mit 64 Bit Architektur sind dies:
+<ul>
+	<li>HKEY_CURRENT_USER\SOFTWARE\SeaDrive</li>
+	<li>HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\SeaDrive</li>
+</ul>
+<p>Unter 64 Bit Architekturen muss dieser HKLM-Pfad verwendet werden, weil SeaDrive als 32 Bit Anwendung kompiliert wird.</p>
+
+<p>Unabhängig von der Architektur des Betriebssystems gilt: Einträge unter HKEY_CURRENT_USER haben Vorrang, im Falle das an beiden Orten Informationen hinterlegt sind.</p>
+
+<h3>Registrierungsdatenbankschlüssel</h3><br />
+
+Seafile Server Adresse
+<ul>
+	<li>Schlüssel: PreconfigureServerAddr</li>
+	<li>Typ: REG_SZ</li>
+	<li>Wert: &lt;URL des Seafile Servers&gt; </li>
+</ul>
+<p>Der Schlüssel konfiguriert die Adresse des Seafile Servers. Die Adresse muss mit http:// bzw. https:// angegeben werden. Es können URLs wie IP-Adressen verwendet werden.</p>
+
+Zugangsdaten
+<ul>
+	<li>Schlüssel: PreconfigureUsername</li>
+	<li>Typ: REG_SZ</li>
+	<li>Wert: &lt;E-Mail-Adresse oder Benutzername&gt;</li>
+</ul><br />
+
+<ul>
+	<li>Schlüssel: PreconfigureUserToken</li>
+	<li>Typ: REG_SZ</li>
+	<li>Wert: &lt;Sicherheitstoken&gt; </li>
+</ul>
+<p>Der Sicherheitstoken ist nicht das Passwort, dass der Nutzer im Webinterface Seahub oder im <i>Konto hinzufügen</i> Dialog für die Legitimierung eingeben muss. Das Password im Klartext muss nicht in der Registry hinterlegt werden. Der Sicherheitstoken kann über die <a href="/api">Web API</a> ermittelt werden. Die API Aufrufe sind in der <a href="https://manual.seafile.com/develop/web_api_v2.1.html#quick-start">Seafile Manual</a> detailliert beschrieben.</p>
+
+Keine weitere Seafile Server Verbindung
+<ul>
+	<li>Schlüssel: PreconfigureServerAddrOnly</li>
+	<li>Typ: REG_SZ</li>
+	<li>Wert: 0 (inaktiv) oder 1 (aktiv)</li>
+</ul>
+<p>Sollen die Nutzer keine Möglichkeit haben, sich mit anderen Seafile Server zu verbinden, dann muss dieser Schlüssel aktiv gesetzt werden.</p> 
+
+Unterdrückung des Einrichtungsassistenten
+<ul>
+	<li>Schlüssel: HideConfigurationWizard</li>
+	<li>Typ: REG_SZ</li>
+	<li>Wert: 0 (nicht unterdrückt) oder 1 (unterdrückt)</li>
+</ul>
+<p>Ist dieser Schlüssel aktiv, dann versucht SeaDrive in den Registrierungsdatenbankschlüsseln die Konfigurationsdaten zu finden und konfiguriert den Client entsprechend. Der <i>Konto hinzufügen</i> Dialog wird unterdrückt.</p>
+
+<h2>Konfiguration von SeaDrive via Konfigurationsdatei</h2>
+<p>Die Konfiguration des SeaDrive Clients kann alternativ über eine Konfigurationsdateien erfolgen. Die zur Verfügung stehenden Konfigurationsparameter sind identisch mit den aufgeführten für die Konfiguration durch die Registry. Dies ist eine beispielhafte Konfigurationsdatei:
+
+<pre>
+[preconfigure]
+PreconfigureDirectory = ~/
+PreconfigureUsername = user1@example.com
+PreconfigureUserToken = f2210dacd9c6ccb8133606d94ff8e61d99b477fd
+PreconfigureServerAddr = https://seafile.example.com
+</pre>
+
+</p><p>Auf allen Plattformen muss die Konfigurationsdatei im Home Verzeichnis des Nutzers abgelegt werden. Unter Windows ist dies C:\Users\&lt;CurrentUserName&gt; bzw. der Wert der Umgebungsvariable %userprofile%. Die Konfigurationsdatei muss seafile.ini heißen. Auf Macs und Linux Geräten heißt die Conf-Datei ~/.seafilerc.</p>

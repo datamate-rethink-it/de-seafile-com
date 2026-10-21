@@ -1,0 +1,65 @@
+---
+title: "KeePass + Seafile = praktischer Cloud Passwort Safe"
+slug: "keepass-seafile-praktischer-cloud-passwort-safe"
+seo_title: "KeePass + Seafile = praktischer Cloud Passwort Safe | Seafile"
+description: ""
+date: "2018-12-06T21:55:18"
+lastmod: "2025-02-21T09:07:15"
+og_image: "/wp-content/uploads/2018/12/matthew-brodeur-436250-unsplash_1920px_1080px-1.jpg"
+beitragsbild: "/wp-content/uploads/2018/12/matthew-brodeur-436250-unsplash_1920px_1080px-1.jpg"
+lesezeit: "5 Minuten"
+category:
+  - "anleitungen"
+autor: "Ralf D."
+wp_id: 2501
+---
+<p>Das liebste Passwort der Deutschen in 2017 war &#8222;123456&#8220;. Wer solche Passwörter verwendet, der braucht auch keinen Passwort Manager. All diejenigen, die sichere und einzigartige Passwörter für Ihre Anwendungen verwenden, kommen an einem Passwort Safe praktisch nicht mehr vorbei. So viele Passwörter, wie man sich über einen üblichen Tag im Internet merken müsste, können nur die Wenigsten sich merken. In diesem Artikel zeigen wir, wie man mit Seafile den Passwort Safe KeePass in einen praktischen Cloud Passwort Safe verwandelt, der den universellen Zugriff auf seine Passwörter möglich macht.</p>
+<!--more-->
+
+<h2>Passwörter werden überall benötigt</h2>
+<p>Bei E-Mails und Dateien ist es mittlerweile Standard. Gemeint ist der universelle Zugriff, egal ob daheim am PC oder unterwegs am Handy &#8211; dank der Cloud hat man seine Daten immer mit dabei. Eine E-Mail, die man vom iPhone gesendet hat, ist auch später auf dem Rechner in den gesendeten Objekten zu finden.</p>
+<p>Doch wie sieht es bei den Passwörtern aus? Es gibt mittlerweile leistungsfähige Cloud Passwort Safes, über die man seine Passwörter ebenso wie seine E-Mails überall verfügbar machen kann. Anbieter wie LastPass oder RoboForm lassen sich diesen Komfort aber bezahlen. Auch handelt sich bei diesen Dienste um Inseldienste ohne weitere Funktion. Und die wichtigste Frage ist natürlich: will man seine Passwörter überhaupt bei einem externen Anbieter speichern?</p>
+<p>Die private und sichere Alternative sind lokale Passwort Safes. Sie speichern Passwörter in einer Datenbank ab und verschlüsseln den Datenbankinhalt wenigstens mit einem sicheren Masterschlüssel. Wer ein noch höheres Schutzniveau wünscht, der kann weitere Sicherheitsmerkmale wie z.B. 2-Faktorauthentifizierung nutzen.</p>
+<p><a href="https://keepass.info/" target="_blank" rel="noopener">KeePass</a> gehört innerhalb der Gruppe der lokalen Passwort Managern zu den Populärsten: Er ist open source, ist für alle Plattformen verfügbar, ist einfach in der Handhabung und bietet einen guten Schutz. Sein Nachteil: Er bietet keine Cloud-Funktion. Verwaltet man seine Passwörter auf dem Laptop, dann kann man nicht vom Handy aus mal schnell seine Zugangsdaten aufrufen.</p>
+
+<h2>Seafile macht Passwörter überall verfügbar</h2>
+<p>Wünschenswert wäre es also, KeePass in die Cloud zu schicken und so seine Passwörter überall verfügbar zu haben. Mit Seafile ist genau das möglich!</p>
+<p>Mit Seafile lässt sich die KeePass Datenbankdatei mühelos zwischen allen Geräten hin- und her synchronisieren. Da KeePass für alle wichtigen Plattformen existiert, kann man auf all seinen Geräten auf seine Passwörter zugreifen. iPhone/iPad, Android Smart Phone ebenso wie Laptops und Desktops, die Passwörter sind immer und auf jedem Gerät verfügbar.</p>
+<p>Ist Seafile + KeePass ein perfekter Online Passwort Safe für Unternehmen? Nein, das wäre dann doch eine Nummer zu groß! Hauptsächlich sind es zwei Gründe die dagegen sprechen:</p> 
+<ul>
+<li>KeePass besitzt keine Berechtigungsstruktur. Jeder, der Zugriff auf die entschlüsselte Datenbank hat, hat Zugriff auf alle Passwörter. Dies verhindert die parallele Nutzung einer KeePass-Datenbank durch mehreren Personen oder innerhalb einer Firma.</li>
+<li>Die Synchronisation von mobilen Geräten zum Seafile Server läuft leider nicht automatisch. Wenn man am Handy neue Zugangsdaten speichern will, muss man anschließend manuell die KeePass-Datei hochladen.</li>
+</ul>
+<p>Trotzdem ist die Kombination aus KeePass und Seafile insbesondere für den Einzelnen eine sehr praktische Lösung. Gerade wenn man schon Seafile verwendet, ist ein lokales KeePass denkbar einfach Cloud-fähig gemacht. Es entstehen keine Extrakosten, man nutzt eine bekannte Anwendung und die Passwörter liegen in der eigenen Cloud und nicht irgendwo bei einem Dienstleister oder gefangen auf einem der eigenen Geräte. Natürlich können in einer Seafile Cloud auch mehrere Personen Ihre KeePass-Datenbanken ablegen &#8211; jeder Anwender nutzt dementsprechend nur seinen eigenen Passwort Safe.</p>
+
+<h2>Mobiler Zugriff auf die Datenbankdatei</h2>
+<p>Um der KeePass Datenbankdatei &#8222;Flügel zu verleihen&#8220;, muss Sie einfach in einer synchronisierten <a href="/support/benutzer/anleitung/seafile-sync-client/synchronisation-einer-bibliothek-einrichten/">Seafile Bibliothek</a> abgespeichert werden. Seafile übernimmt dann die Synchronisation auf alle anderen Geräte. Bei Laptops und Desktops mit Windows, Linux oder MacOS ist so der Zugriff auf die Passwortdatebank denkbar einfach.</p>
+<p>Der mobile Zugriff auf die KeePass-Datei ist ähnlich einfach: In der mobilen Seafile App öffnet man die Bibliothek, die die Schlüsseldatenbank enthält und tippt auf die KDBX-Datei. Am einfachsten geht dies, wenn man die Datei zu den Seafile Favoriten hinzufügt. Die Seafile App wird den Dateiaufruf dann mit der Meldung &#8222;Seafile unterstützt derzeit leider keine Vorschau für diesen Dateityp&#8220; quittieren. Nun tippt man auf den Action-Button und wählt dann &#8222;Nach MiniKeePass kopieren&#8220;. Voilà, die Datenbankdatei kann nun über das Masterpasswort geöffnet werden und Sie haben Zugriff auf alle Passwörter in dieser KDBX-Datei (siehe Abbildung unten). Kurzum: alle Passwörter überall!</p>
+
+
+<a href="/wp-content/uploads/2018/12/20181206-MobileZugriffAufDatenbankDatei.png" data-slb-active="1" data-slb-asset="1657292843" data-slb-internal="0" data-slb-group="2501"><img decoding="async" src="/wp-content/uploads/2018/12/20181206-MobileZugriffAufDatenbankDatei.png" alt="Zugriff auf KeePass Datenbankdatei über Seafile" style="padding-bottom: 2em;" /></a>
+
+<p>Voraussetzung dafür, dass über den Action-Button &#8222;Nach MiniKeePass kopieren&#8220; oder eine ähnliche Aktion aufgerufen werden kann, ist eine installierte KeePass App. Es gibt eine ganze Reihe von Apps, die KeePass Schlüsseldatenbanken auswerten können. Die meisten können kostenlos aus den jeweiligen App-Stores heruntergeladen werden. Unsere Empfehlungen sind für &#8230;</p>
+
+<!--Bitte diesen Absatz auch noch etwas schöner machen.-->
+
+<div class="row">
+	<div class="col-md-5 nopadding">
+	<h3>Android: <a href="https://play.google.com/store/apps/details?id=com.android.keepass" target="_blank" rel="noopener">KeePassDroid</a></h3>
+		<img decoding="async" src="/wp-content/uploads/2018/12/Screenshot_20181207-121735.png" alt="Download von KeepPassDroid über Google Play" width="640"/>
+	</div>
+	<!--Hier bitte einen ähnlichen Screenshot von Android hinzufügen-->
+
+	<div class="col-md-5 col-md-offset-2">
+	<h3>iOS: <a href="https://itunes.apple.com/de/app/minikeepass/id451661808?mt=8" target="_blank" rel="noopener">MiniKeePass</a></h3>
+		<img decoding="async" src="/wp-content/uploads/2018/12/IMG_0351.png" alt="Download von MiniKeePass über den App Store" width="640"/>
+	</div>
+</div>
+
+<h2>Mobiler Zugriff auf die Datenbankdatei</h2>
+<p>Natürlich lassen Sie nun auch über die Mobile App neue Einträge in der geöffneten KeePass-Datei anlegen und Änderungen vornehmen. Auf Desktops und Laptops werden diese Änderungen direkt in der Datei gespeichert und automatisch per Seafile synchronisiert, so dass sie auf allen Geräten zur Verfügung stehen. Bei mobilen Geräten ist dies leider nicht so. Dort muss die Rücksynchronisation manuell getriggert werden.</p>
+<p>Um die mobil vorgenommenen Änderungen wieder auf den Seafile Server zu laden, ist ein einfacher Upload der Datei auf die Seafile Server nötig. Tippen Sie dazu auf den Action-Button in Ihrer KeePass App und wählen Sie &#8222;Nach SeafilePro kopieren&#8220;. Sobald Sie das gemacht haben, öffnet sich die Seafile App und Sie können zum Speicherort der KDBX-Datei navigieren. Wählen Sie dann am unteren Bildschirmrand &#8222;OK&#8220;. Da die Datei schon existiert, müssen Sie die Meldung, dass die vorhandene Datei überschrieben wird, akzeptieren. Die Gefahr, dabei etwas kaputt zu machen, besteht nicht. Falls etwas schief gelaufen sein sollte, kann man über die Versionierung von Seafile die frühere Version wieder herstellen.</p>
+
+<a href="/wp-content/uploads/2018/12/20181206-UploadDatebankdateiSeafile.png" data-slb-active="1" data-slb-asset="786984590" data-slb-internal="0" data-slb-group="2501"><img fetchpriority="high" decoding="async" width="2200" height="1136" src="/wp-content/uploads/2018/12/20181206-UploadDatebankdateiSeafile.png" alt="Upload der KeePass-Datei auf den Seafile Server" class="alignnone size-full wp-image-2541" style="padding-bottom: 2em;" srcset="/wp-content/uploads/2018/12/20181206-UploadDatebankdateiSeafile.png 2200w, /wp-content/uploads/2018/12/20181206-UploadDatebankdateiSeafile-300x155.png 300w, /wp-content/uploads/2018/12/20181206-UploadDatebankdateiSeafile-768x397.png 768w, /wp-content/uploads/2018/12/20181206-UploadDatebankdateiSeafile-1024x529.png 1024w" sizes="(max-width: 2200px) 100vw, 2200px" /></a>
+
+<p>Das gleiche Prozedere lässt sich auch mit verschlüsselten Bibliotheken umsetzen. So kann man seine KeePass Schlüsseldatenbank auch auf einem Seafile Server abspeichern, bei dem man dem Administrator nicht uneingeschränkt vertraut. Die client-seitige Verschlüsselung von Seafile sorgt dafür, dass die Daten bereits verschlüsselt beim Seafile Server ankommen und auch ein Seafile Administrator unter keinen Umständen an Ihre Zugangsdaten ran kommt.</p>

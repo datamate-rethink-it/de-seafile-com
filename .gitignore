@@ -1,0 +1,15 @@
+/public/
+/resources/
+/.hugo_build.lock
+/de-seafile-com.tar.gz
+
+# Der entpackte WordPress-Dateibestand. Quelle fuer _build/gen_static.py,
+# 503 MB, und enthaelt wp-config.php mit dem Brevo-Schluessel sowie
+# content-trail-page.php mit dem MySQL-root-Passwort des Trial-Servers -
+# gehoert nicht ins Repo. Neu anlegen: siehe README, "Neu aufsetzen".
+/_build/wporig/
+
+# Berichte der Pruefskripte
+/_build/verify-diff.txt
+/_build/linkcheck-report.txt
+/_build/__pycache__/

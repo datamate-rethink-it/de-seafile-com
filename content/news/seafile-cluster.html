@@ -1,0 +1,61 @@
+---
+title: "Der typische Clusteraufbau von Seafile"
+slug: "seafile-cluster"
+seo_title: "Der typische Clusteraufbau von Seafile"
+description: "Zur Vermeidung von Ausfällen setzen viele große Unternehmen auf einen Seafile-Cluster. Dieser Artikel beschreibt den grundsätzlichen Aufbau."
+date: "2019-02-18T13:49:49"
+lastmod: "2025-02-21T09:07:15"
+og_image: "/wp-content/uploads/2019/02/cluster-setup.jpg"
+beitragsbild: "/wp-content/uploads/2019/02/cluster-setup.jpg"
+lesezeit: "5 Minuten"
+category:
+  - "funktionen"
+autor: "Christoph Dyllick-Brenzinger"
+wp_id: 2723
+---
+<p>Seafile ist bekannt für seine Zuverlässigkeit und Stabilität. Doch selbst die robusteste Software hat einem Serverausfall nichts entgegen zu setzen, wenn sie nur auf einem einzigen Server installiert ist. Einen Seafile Cluster, bei dem Seafiles Komponenten redundant auf mehreren Server betrieben werden, können selbst spontane Ausfälle einzelner Komponenten nicht in die Knie zwingen. In diesem Artikel wird ein typischer Clusteraufbau mit Seafile sowie seine Eigenschaften und Fähigkeiten beschrieben. </p>
+
+<!--more-->
+
+<h2>Ausfälle gibt es &#8211; ein Cluster schützt davor</h2>
+
+<p>Serverausfälle sind unvermeidbar: Neben Datenträgern als Achillesferse von Computersystemen können auch Mainboards, Netzteile oder Netzwerkswitches ohne Ankündigung ihren Dienst einstellen und ein IT-System &#8222;ausknipsen&#8220;. Auch menschliche Fehler führen immer wieder zu nicht geplanter Downtime, wenn z.B. nach einer Wartung vergessen wird, einen benötigten Dienst zu starten.</p>
+
+<p>Während bei kleinen Teams und Firmen der Ausfall eines zentralen Systems ärgerlich ist, können sie mit ihren kleineren Strukturen schneller und flexibler reagieren als Großunternehmen. Bei letzteren ist ein Stillstand der IT häufig gleichbedeutend mit einem Stillstand der operativen Tätigkeiten. Umso größer ein Unternehmen und umso abhängiger von einem IT-System, desto wichtiger wird die Forderung nach größtmöglicher Verfügbarkeit und Ausfallsicherheit.</p>
+
+<p>Der Aufbau eines Cluster ist ein wichtiger Schritt auf dem Weg zu einem hochverfügbaren System. Bei einem Cluster liegen alle Komponenten, die für die Dienstbereitstellung notwendig sind, redundant vor und können beim Ausfall einer einzelnen Komponenten auch eigenständig die Dienstbereitstellung garantieren. Das grundsätzliche Ziel beim Aufbau eines solchen integrierten Rechnerverbunds ist somit die Vermeidung von Single-Points of Failure. Ausfälle können zu reduzierter Performance führen, aber die zentrale Funktionalität bleibt erhalten und nutzbar.</p>
+
+<p>Die Kehrseite eines Clusters ist seine größere Komplexität mit einhergehenden Mehraufwänden für Aufbau und Wartung. Während man bei einem <a href="https://de.wikipedia.org/wiki/Rechnerverbund" target="_blank" rel="noopener">1-Knoten-System</a>, also einem auf einem Server installierten Seafile System, nur dieses administrieren muss, erfordert ein Cluster mit mehreren Knoten ein Vielfaches an Zeit und Wissen sowie Investitionen in Hardware und Infrastruktur.</p>
+
+<h3>Minimalaufbau eines Seafile Clusters</h3>
+
+<p>Die einfachste Variante eines Seafile Clusters besteht aus drei Knoten und einem redundanten Storage Backend. Zwei Knoten arbeiten in einem Art <a href="https://de.wikipedia.org/wiki/Master/Slave">Master/Slave Verbund</a> und bilden das Frontend. Fällt der Master aus, übernimmt der Slave nahtlos. Der dritte Knoten übernimmt die unkritischen Hintergrundtätigkeiten (z.B. die Antivirenprüfung, die Dateiindexierung für die Volltextsuche und den E-Mail-Versand)  und wird nicht redundant aufgebaut. Die Verlagerung der Hintergrundtätigkeiten auf einen dedizierten Knoten entlastet die beiden Frontend-Knoten und ermöglicht so gleichbleibende Performance auch bei vielen hunderten Zugriffen.</p>
+
+<p>Die drei Seafile Server werden alle auf identische Art und Weise installiert. Über die Konfiguration werden die Rollen &#8211; zwei Applikationsserver und ein Background Server &#8211; festgelegt. Jeder Server beinhaltet die vollständige Seafile Datenbank, welche konstant über alle drei Knoten synchronisiert wird und über die die Kommunikation der drei Knoten erfolgt.</p>
+
+<p>Um sich vor Hardwareschäden optimal zu schützen, sollten die beiden Applikationsserver physikalisch getrennt sein, d.h. auf zwei verschiedenen Servern installiert werden. Der Zugriff auf den Seafile Cluster erfolgt nun typischerweise nicht mehr über die IP-Adresse eines der beiden Server, sondern der Seafile Cluster verfügt über eine virtuelle IP, die im Regelbetrieb auf den Master und bei einem Ausfall auf den Slave verweist. Auch auf Netzwerkebene sollten man Single-Points of Failure vermeiden und so sollten Master und Slave nicht über den gleichen Netzwerkswitch angebunden sein.</p>
+
+<p>Seafile unterstützt diverse Backends, die potentiell hochverfügbar gemacht werden können. Die meisten Kunden besitzen bereits ein zentralisiertes Speichersystem, welches vom Seafile Cluster dann verwendet wird. Den unterschiedlichen Backendmethoden werden wir einen eigenen Artikel widmen und daher in diesem Artikel nicht näher darauf eingehen.</p>
+
+<p><img decoding="async" src="/wp-content/uploads/2019/03/3nodes_1backend.png" alt="3nodes 1backend Diagramm"/></p>
+
+<p>Der hier beschriebene Minimalaufbau bietet Schutz gegen Ausfälle einzelner Server. Andererseits ist dieser Aufbau ineffizient im Sinne der Ressourcennutzung. Der Server im Slave Modus kommt nur bei einem Ausfall des Masters zum Einsatz. Bei hoher Last bleibt seine Kapazität ungenutzt.</p>
+
+<h3>Seafile Cluster mit Load Balancing</h3>
+<p>Eine effiziente Nutzung der eingesetzten Ressourcen erreicht man durch den Einsatz von Load Balancern. Ihre Aufgabe ist es, die eingehenden Anfragen entgegen zu nehmen und auf die die Frontend-Knoten zu verteilen.</p>
+<p>Durch den Einsatz eines Load Balancers lässt sich ein Seafile Cluster bei Bedarf auch um zusätzliche Rechenleistung ergänzen. Bei steigenden Zugriffen wird einfach ein weiterer Frontend-Knoten in den Cluster eingefügt. Über den Load Balancer wird der zusätzliche Knoten angesprochen.</p>
+<p>Zur Vermeidung eines Single-Points of Failure empfiehlt es sich, auch die Load-Balancer redundant auszulegen, diese über die vorhandene Serverhardware zu verteilen und per virtueller IP anzusprechen. Anstelle von virtualisierten, lokalen Load Balancern können auch externe Load Balancer genutzt werden. Amazon AWS hat mit dem Elastic Load Balancer ein entsprechendes Produkt im Angebot. Eine weitere Alternative sind Hardware Load Balancer von Herstellern wie Cisco, Citrix und Barracuda.</p>
+
+<p><img decoding="async" src="/wp-content/uploads/2019/03/2balancers_3nodes_1backend.png" alt="2balancers 3nodes 1backend Diagramm"/></p>
+
+<h3>Seafile Cluster für Ausfallsicherheit und Lastenverteilung</h3>
+
+<p>Die notwendigen Schritte zum Aufsetzen eines Seafile Clusters sind detailliert im <a href="https://manual.seafile.com/deploy_pro/deploy_in_a_cluster.html" target="_blank" rel="noopener">englischen Seafile Manual</a> beschrieben. Der Aufbau eines Seafile Clusters ist mit ungefähr einem Tag deutlich aufwändiger als ein 1-Knoten System. Wenn man diese Aufgabe jedoch gewissenhaft erledigt, wird man mit einem Seafile System belohnt, das sowohl Ausfallsicherheit als auch eine optimierte Zugriffsverteilung bietet.</p>
+
+<p>Unser deutscher Support Partner datamate berät Sie gerne bei Planung und Einrichtung eines Seafile Clusters. Weitere Informationen zum Thema Seafile Cluster finden Sie im Folgeartikel <a href="/erweiterte-clusterkonfigurationen">Erweiterte Clusterkonfigurationen für den Einsatz in weltweiten Unternehmensnetzwerken</a>.</p>
+
+<h2>Hochverfügbarkeit vs. planbare Downtime</h2>
+<p>Ein Cluster alleine bietet noch keine Hochverfügbarkeit. Für Verfügbarkeiten über 99% müssen sämtliche dienstkritischen Komponenten berücksichtigt werden. Dazu gehören neben Seafile selbst auch Netzwerkswitches und -kabel, Stromversorgung, Internetleitung sowie externe IP-Adressen. Auch menschliche Fehler sind nicht zu vernachlässigen.
+<!--</p><p>Man sollte nicht verschweigen, dass 100% Verfügbarkeit eine Illusion ist. Je nach Hersteller <a href="https://de.wikipedia.org/wiki/Hochverf%C3%BCgbarkeit#Hochverf%C3%BCgbarkeit_und_Verf%C3%BCgbarkeitsklassen" target="_blank" rel="noopener">gelten bereits 99,9% als Hochverfügbarkeit</a>, was einer maximalen Downtime von knapp 9 Stunden pro Jahr entspricht. Doch selbst um solch einen Wert garantieren zu können, darf man nicht beim Aufbau des Clusters aufhören, sondern muss sämtliche Komponenten wie z.B. Netzwerkswitches und -kabel, Stromversorgung, Internetleitung, externe IP-Adressen sowie auch menschliche Fehler berücksichtigen. Man kann sich vorstellen, dass dies umsichtige Planung, Abstimmung mit diversen Parteien und Prozessbeteiligten und folglich eine große Komplexität mit sich zieht um wirklich alle Komponenten redundant bzw. Fehlertolerant aufzubauen.</p>-->
+
+<p>Sollte es Ihrem Unternehmen weniger um eine Verfügbarkeit nahe der 100% gehen und ist für Sie die Planbarkeit der Downtime von größerer Bedeutung, dann ist ein <a href="https://manual.seafile.com/deploy_pro/real_time_backup.html" target="_blank" rel="noopener">Real-Time Backup Server</a> ein alternativer Ansatz zur Reduzierung der Ausfallzeit. Ein solcher Backup Server hält zu jeder Zeit den aktuellen Datenbestand vor und springt bei Problemen ein. Mehr zu dessen Eigenschaften finde Sie in <a href="/seafile-backup/">diesem Artikel</a>.</p>

@@ -1,0 +1,18 @@
+{{- /* /post-sitemap.xml - die 45 Beitraege und die Beitragsseite /news/,
+	wie bei Yoast. XML-Deklaration: siehe home.yoastindex.xml. */ -}}
+{{- printf "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" | safeHTML }}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+	{{- $news := site.GetPage "/news" -}}
+	{{- $alle := (slice $news) | append (where site.RegularPages "Section" "news") -}}
+	{{- range $alle }}
+	<url>
+		<loc>{{ .Permalink }}</loc>
+		<lastmod>{{ .Lastmod.UTC.Format "2006-01-02T15:04:05+00:00" }}</lastmod>
+		{{- with .Params.og_image }}
+		<image:image>
+			<image:loc>{{ . | absURL }}</image:loc>
+		</image:image>
+		{{- end }}
+	</url>
+	{{- end }}
+</urlset>

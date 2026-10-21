@@ -1,0 +1,70 @@
+---
+title: "Seafile Professional Server Version 6.3 ab heute „production-ready“"
+slug: "seafile-professional-server-version-6-3-ab-heute-production-ready"
+seo_title: "Seafile Professional Server Version 6.3 ab heute \"production-ready\""
+description: ""
+date: "2018-08-01T09:36:28"
+lastmod: "2025-02-21T09:07:17"
+og_image: "/wp-content/uploads/2018/08/seafile-professional-6.3-1.jpg"
+beitragsbild: "/wp-content/uploads/2018/08/seafile-professional-6.3-1.jpg"
+lesezeit: "6 Minuten"
+category:
+  - "release-notes"
+autor: "Dennis Früh"
+wp_id: 1156
+---
+<p>Leistungsfähige Gruppenfunktionen, Unterstützung mehrerer Storage Backends, änderungsresistente Sharing Links sowie erweiterte API-Calls für Multi Tenancy Systeme sind die zentralen Neuerungen des Seafile Server Professional Edition 6.3.2. Darüber hinaus profitiert der Professional Server von allen Verbesserungen, die der bereits Ende Mai veröffentlichte Seafile Community Server 6.3 enthielt. Der Seafile Server Professional Edition Version 6.3.2 ist seit heute verfügbar.</p>
+	
+ <!--more-->
+<h2>Seafile 6.3.2 production-ready</h2>
+<p>Nach der Ende Juni freigegebenen Beta-Version 6.3.0 des aktuellen Seafile Servers ist dieser Seafile Server uneingeschränkt für den Produktiveinsatz bereit (&#8222;production-ready&#8220;). Lizenzinhaber können das Update über das <a href="https://customer.seafile.com/accounts/login/?next=/">Customer Center</a> herunterladen. Interessenten können den Seafile Professional Server mit bis zu drei Nutzern auch ohne Lizenz nutzen. </p>
+
+<h2>Erweitertes Gruppenkonzept</h2>
+<p>Mit dem Seafile Professional Server 6.3 wurde das Gruppenkonzept von Seafile deutlich erweitert und leistungsfähiger gemacht. Waren Gruppen bisher nur Benutzerlisten zur einfachen Freigabe von Ressourcen an mehrere Benutzer, so wurde mit den &#8218;Bereichen&#8216; ein Gruppentyp eingeführt, der selbst Bibliotheken besitzen und dem der Systemadministrator eine eigene Storage Quota zuweisen kann. Standardmäßig verfügen Bereichsmitglieder über Lese- und Schreibzugriff auf Gruppenbibliotheken, Gruppenadministratoren können den Zugriff aber auch einschränken. Ebenso können Gruppenbibliotheken individuell auch an andere Nutzer und Gruppen freigegeben werden. Wenn gewünscht können Gruppen auch Untergruppen haben.</p>
+	
+<p>Das erweiterte Gruppenkonzept in Seafile beseitigt bisherige Einschränkungen, die der ausschließliche Besitz von Bibliotheken durch Benutzer in früheren Versionen bedingte:</p>
+	<ol>
+		<li>Storage Quotas für Benutzer müssen keine Rücksicht mehr auf etwaige Gruppenfunktionen einzelner Benutzer nehmen.</li>
+		<li>Bibliothekstransfers sind beim Gruppenaustritt eines Benutzers mit geteilten Bibliotheken nicht mehr notwendig.</li>
+		<li>Organisatorische Bereiche können eigenverantwortlicher Ihre Ressourcen verwalten.</li>
+	</ol>
+
+<p>Um Daten in eine Gruppenbibliothek zu übertragen, kann ein Ordner oder eine Datei in eine Gruppenbibliothek verschoben werden. Die Möglichkeit, bestehende Bibliotheken zwischen Benutzern und Gruppen zu übertragen, folgt mit einem zukünftigen Update. (Mehr Informationen über die Funktion und Nutzung von Departments finden sich auf den <a href="https://help.seafile.com/en/sharing_collaboration/departments.html">Hilfeseite</a>.)</p>
+
+<h2>Support für unterschiedliche Storage Backends</h2>
+<p>Eine weitere zentrale Erweiterung des Seafile Professional Servers ist die Unterstützung für den Parallelbetrieb unterschiedlicher lokaler Storage Backends. Der Seafile Server entscheidet dann auf Basis der Konfiguration, wo er die Daten ablegt.</p>
+<p>Mit dieser Entwicklung macht sich Seafile für Anwendungsfelder fit, in denen Seafile bisher noch nicht stark vertreten war. Ein attraktiver Anwendungsfall ist beispielsweise die Kombination von schnellem Plattenspeicher mit langsamen optischen Speicher für die Langzeitarchivierung. Welche Art von Speicher verwendet werden soll, wählt der Benutzer bei Erstellung der Bibliothek. (Die Konfiguration und der Betrieb von mehreren Backends ist im Seafile <a href="https://manual.seafile.com/deploy_pro/multiple_storage_backends.html">Manual</a> dokumentiert.)</p>
+
+<h2>Robuste und erweiterte Sharing Links</h2>
+<p>Public Links sind ein bequemes Mittel, um größere Datenmengen mit externen Dritten auszutauschen. Seafiles Public Links waren bisher jedoch nicht immun gegen Dateitransaktionen in Seafile. Wurde eine Datei oder ihr Ordner umbenannt oder verschoben, &#8222;brach&#8220; der Link. Der Linkaufruf wurde mit einer Fehlermeldung quittiert.</p>
+<p>Diese Einschränkung wurde mit dem Seafile Professional Server 6.3 aufgehoben. Mit der aktuellen Seafile Version zeigen sich Public Links robust gegen Namens-, Ordner- und oder Eigentümerwechsel. (Nur das Verschieben von Dateien und Ordner über Bibliotheksgrenzen hinweg wird nicht unterstützt.) Mit dem Update des Seafile Servers werden alle bisherigen Links automatisch aufgewertet.</p>
+<p>Mit den Internal Links wurde in Seafile 6.3 auch noch eine zweite Art des Sharing Links eingeführt. Im Gegensatz zu den bisherigen Public Links kann der neue Linktyp nur von Benutzern aufgerufen werden, die die dazugehörigen Berechtigungen für die Dateien oder Ordner besitzen. Internal Links eigenen sich somit insbesondere als Datei- und Ordnerverweise für interne Chat- und Ticketsysteme.</p>
+
+<h2>Schnellere Dokumentenvorschau</h2>
+<p>Die Dokumentenvorschau in Seahub profitiert in der Version 6.3 von der Umstellung auf <a href="https://mozilla.github.io/pdf.js/">PDF.js</a>. Gegenüber dem Rendering mit Collabora in früheren Seafile Versionen ist die Erzeugung und Anzeige von PDFs nun deutlich schneller und präziser.</p>
+<p>Und nicht nur die Dokumentenvorschau von PDF Dokumenten wird besser, sondern auch die von Office Dokumenten. Office Dokumente werden nun direkt mit PDF.js in ein PDF Format umgewandelt und angezeigt. Die langsame Konvertierung in HTML entfällt.</p>
+
+<h2>Erweiterte API Calls für Multi Tenancy Systeme</h2>
+<p>Die existierenden POST, GET, PUT und DELETE API Calls zur Verwaltung von Benutzern in Multi Tenant Systemen  werden im Seafile Server Professional Edition 6.3 um äquivalente Calls auf Organisationsebene ergänzt. Per Web API können von nun an neue Tenants angelegt, geändert und gelöscht sowie Nutzungsdaten abgerufen werden. (Informationen zur Nutzung der Web API finden sich im <a href="https://manual.seafile.com/develop/web_api_v2.1.html">Manual</a> des Seafile Servers.) </p>
+<p>Die Erweiterung der bestehenden APIs erfolgt insbesondere mit Hinblick auf den zunehmenden Einsatz von Seafile bei Hosting Anbietern. Mit Hilfe der neuen API Calls lässt sich die Verwaltung von <a href="https://www.datamate.org/multi-tenancy-in-seafile">Multi Tenant Systemen</a> in bestehende Verwaltungstools integrieren und on-demand Preismodelle umsetzen. An Stelle von zugewiesenen Ressourcen (z.B. Storage Quota) zahlen Nutzer bei letzteren nur für in Anspruch genommene Ressourcen (z.B. Speicherplatz, registrierte Nutzer).</p>
+
+<h2>Verbessertes File Locking</h2>
+<p>File Locking sperrt bei Bearbeitung eines Dokuments die Datei für Schreibzugriffe anderer Benutzer und verhindert damit Versionskonflikte. Bisher unterstützt nur der Sync Clients von Windows diese Funktion. Mit der aktuellen Version unterstützt dies auch der Mac Client in Kombination mit Office für Mac.</p>
+<p>Und noch in einer anderen Hinsicht wurde das File Locking von Seafile verbessert: Auch wenn eine Datei über eine Online Office Suite (d.h. OnlyOffice, Collabora Online, Microsoft Office Online Server) bearbeitet wird, greift File Locking. Einem Nutzer, der eine per Client synchronisiert lokale Kopie versucht zu bearbeiten, wird dies mit Hinweis auf die online Bearbeitung verweigert und das Dokument im nur Lesemodus geöffnet.</p>
+
+<h2>Neuerungen des Seafile Community Servers 6.3</h2>
+<p>Der Seafile Community Server 6.3 wurde Ende Mai in einer Beta Version veröffentlicht und gilt seit Mitte Juni als &#8222;production-ready&#8220;. Die Professional Edition erbt alle Verbesserungen und Erweiterungen von der Community Edition. In der Version 6.3 sind das im Wesentlichen die folgenden drei.</p>
+
+<h3>WYSIWYG Mardown Editor</h3>
+<p>Die zentrale Neuerung des Seafile Community Servers 6.3 ist ein neuer, in großen Teilen selbst entwickelter Markdown Editor. Anderen Markdown Editoren hat er die Unterstützung zweier Komfortfunktionen voraus: Die Erstellung und Anpassung von Tabellen sowie das Einfügen von Bildern im <a href="https://de.wikipedia.org/wiki/WYSIWYG">WYSIWYG</a>-Modus wie man es von Textbearbeitungsprogrammen (z.B. Word) kennt. Der neue Editor ersetzt den alten, der aufgrund seiner fehlenden Erweiterbarkeit das Ende seiner Lebenszeit erreicht hat.</p><p>
+<img decoding="async" src="/eigen/bilder/markdowneditor_tableediting-1024x503.jpg" alt="Neuer WYSIWYG Markdown Editor in Seafile 6.3" width="1024" class="alignnone size-large wp-image-5265" />
+	
+<h3>Update von Django und jQuery</h3>
+</p><p>Beide Seafile Editionen nutzen nun die Django Version 1.11. Django 1.8, das seit der Version 5.2 in Seahub zum Einsatz kam, galt seit April 2018 als veraltet (&#8218;deprecated&#8216;). Django 1.11 wird im Long-Term Support bis Mitte 2020 unterstützt. Eine Konsequenz des Wechsels ist der Wegfall der Unterstützung für FastCGI in einer Server-Konfiguration mit Nginx/Apache als Reverse Proxy. In solchen Fällen ist nun der WSGI Modus zwingend erforderlich.</p>
+
+<h3>Repositionierung der Seahub Action Buttons</h3>
+<p>Mit dem Ziel, das User Interface auf den unterschiedlichen Seiten von Seahub zu vereinheitlichen, wurden die Action Buttons aus dem Hauptfenster in den Top Ribbon verschoben (siehe Abbildung). Ein positiver Nebeneffekt ist, dass nun im Hauptfenster mehr Platz für die Darstellung der Verzeichnisstruktur zur Verfügung steht.</p>
+<img decoding="async" src="/eigen/bilder/Seahub_Action_Buttons-1024x434.jpg" alt="Vergleich der Positionierung der Action Buttons in Seahub Version 6.2 zu Version 6.3" width="1024" class="alignnone size-large wp-image-5262" />
+
+
+<p>Die offiziellen (englischsprachigen) Release Notes zum Seafile Professional Server 6.3 finden sich im <a href="https://blogs.seafile.com/">Blog</a> von Seafile. Das komplette Changelog findet sich <a href="https://manual.seafile.com/changelog.html">hier</a>.</p>

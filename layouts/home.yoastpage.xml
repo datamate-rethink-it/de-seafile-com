@@ -1,0 +1,21 @@
+{{- /* /page-sitemap.xml - alle Seiten ausser /news/ (das steht in
+	post-sitemap.xml, so hat Yoast es gehalten). Die Startseite steht
+	mit Schraegstrich drin; im Canonical stand sie ohne - der
+	Widerspruch ist jetzt aufgeloest, beides mit Schraegstrich.
+	XML-Deklaration: siehe home.yoastindex.xml. */ -}}
+{{- printf "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" | safeHTML }}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+	{{- range where site.Pages "Kind" "in" (slice "home" "page" "section") }}
+	{{- if and (ne .Section "news") (ne .Params.sitemap false) }}
+	<url>
+		<loc>{{ .Permalink }}</loc>
+		<lastmod>{{ .Lastmod.UTC.Format "2006-01-02T15:04:05+00:00" }}</lastmod>
+		{{- with .Params.og_image }}
+		<image:image>
+			<image:loc>{{ . | absURL }}</image:loc>
+		</image:image>
+		{{- end }}
+	</url>
+	{{- end }}
+	{{- end }}
+</urlset>

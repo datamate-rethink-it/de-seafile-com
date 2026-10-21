@@ -1,0 +1,136 @@
+# de.seafile.com als statische Seite.
+#
+# Die Adressen der alten WordPress-Installation sind die Vorgabe: jede
+# Adresse, die bleibt, muss hier dieselbe bleiben. Was wegfaellt, steht in
+# _build/wpdata.py und wird von deploy/Caddyfile.container mit 410 oder
+# einer Weiterleitung beantwortet - nicht hier.
+#
+# Reihenfolge beachten: in TOML gehoert jeder einfache Schluessel zur
+# zuletzt geoeffneten Tabelle. Alles ohne Abschnitt steht deshalb oben,
+# die [abschnitte] folgen danach - sonst landet removePathAccents
+# stillschweigend in [sitemap] und wirkt nicht.
+
+baseURL = 'https://de.seafile.com/'
+locale = 'de-DE'
+defaultContentLanguage = 'de'
+
+# Die Zeitangaben in der Frontmatter sind Ortszeit ohne Zonenangabe - so
+# haelt WordPress sie in post_date/post_modified. Ohne diese Zeile liest
+# Hugo sie als UTC, und "Zuletzt geaendert" steht einen Tag zu frueh.
+# Alle Vorlagen, die UTC brauchen (JSON-LD, Sitemaps, Feed), rechnen mit
+# .UTC um.
+timeZone = 'Europe/Berlin'
+title = 'Seafile'
+
+# Kein /category/ als Uebersicht - die gab es im WordPress nicht, nur die
+# drei einzelnen Archive. rss ist aus, weil der Feed ein eigenes
+# Ausgabeformat mit der Adresse von Yoast hat.
+#
+# Fuer 'taxonomy' reicht das hier nicht: die Seite wird dann zwar nicht
+# als HTML gebaut, Hugo legt aber weiter ihren RSS-Feed unter
+# /category/index.xml an. Erst taxonomy = [] in [outputs] macht Schluss.
+disableKinds = ['taxonomy', 'rss']
+
+# Umlaute und Grossschreibung in Adressen bleiben, wie sie waren - es gibt
+# Bilddateien mit Umlaut im Namen, auf die Weiterleitungen zeigen.
+removePathAccents = false
+disablePathToLower = true
+titleCaseStyle = 'none'
+
+disableHugoGeneratorInject = true   # kein <meta name="generator">
+enableRobotsTXT = false             # robots.txt kommt aus webroot/
+
+# Alles, was unveraendert unter / ausgeliefert wird.
+#
+#   webroot/        der uebernommene Dateibestand aus der alten
+#                   Installation. Wird von _build/gen_static.py erzeugt -
+#                   nichts hineinlegen, was man behalten will.
+#   webroot-eigen/  selbst geschriebene Dateien, wird nie neu erzeugt.
+#                   Hugo mischt beide Verzeichnisse.
+staticDir = ['webroot', 'webroot-eigen']
+
+# ------------------------------------------------------------ Abschnitte
+
+# Yoast nennt die Seite im JSON-LD so; der Text steht im WebSite-Knoten
+# jeder Seite und soll sich nicht aendern.
+[params]
+beschreibung = 'Welcome to the German Seafile Website'
+
+# Hugos eigene sitemap.xml wird dadurch leer, aber weiter geschrieben.
+# /sitemap.xml war im WordPress eine 301 auf /sitemap_index.xml; die
+# leere Datei wird darum im Dockerfile geloescht.
+[sitemap]
+disable = true
+
+# Der Schluessel links ist die Einzahl und taucht nirgends auf, der Wert
+# rechts ist zugleich der Name in der Frontmatter und das Adressstueck:
+# /category/funktionen/, so wie im WordPress.
+[taxonomies]
+kategorie = 'category'
+
+# Die Beitraege liegen in content/news/, ihre Adresse ist aber die Wurzel -
+# so war es im WordPress und so stehen sie in den indexierten Adressen.
+# /news/ selbst bleibt die Beitragsseite.
+[permalinks]
+news = '/:slug/'
+
+[outputs]
+home = ['html', 'feed', 'yoastindex', 'yoastpost', 'yoastpage']
+term = ['html', 'kategoriefeed']
+taxonomy = []
+section = ['html']
+page = ['html']
+
+# RSS unter /feed/ - die Adresse steht in Feedreadern und im Kopf jeder
+# Seite. baseName index + path feed ergibt /feed/index.xml, das der
+# Webserver unter /feed/ ausliefert.
+[outputFormats.feed]
+mediaType = 'application/rss+xml'
+path = 'feed'
+baseName = 'index'
+isPlainText = true
+notAlternative = true
+
+# Der Feed eines Kategoriearchivs. Anders als beim Feed der Startseite
+# darf hier kein path stehen: path ist absolut, nicht relativ zur Seite -
+# mit path = 'feed' landete der Feed von /category/funktionen/ unter
+# /feed/category/funktionen/. Ohne path schreibt Hugo ihn als
+# /category/funktionen/index.xml, und Caddy liefert ihn unter
+# /category/funktionen/feed/ aus, wo er bisher stand.
+[outputFormats.kategoriefeed]
+mediaType = 'application/rss+xml'
+baseName = 'index'
+isPlainText = true
+notAlternative = true
+
+# Die beiden Sitemaps, die bisher Yoast SEO erzeugt hat, plus den Index.
+# sitemap_index.xml steht in der Search Console und behaelt seine Adresse.
+[outputFormats.yoastindex]
+mediaType = 'application/xml'
+baseName = 'sitemap_index'
+isPlainText = true
+notAlternative = true
+
+[outputFormats.yoastpost]
+mediaType = 'application/xml'
+baseName = 'post-sitemap'
+isPlainText = true
+notAlternative = true
+
+[outputFormats.yoastpage]
+mediaType = 'application/xml'
+baseName = 'page-sitemap'
+isPlainText = true
+notAlternative = true
+
+# Die Inhalte sind reine HTML-Dateien, direkt aus dem alten Theme
+# uebernommen, kein Markdown. Hugo sperrt text/html als Inhaltsformat seit
+# 0.16x per Default - hier unbedenklich, weil alle Inhalte aus diesem
+# Repository kommen und kein fremder Autor schreibt.
+[security]
+allowContent = ['^text/html$', '^text/markdown$']
+
+# Kein Verkleinern: das gaebe die Vergleichbarkeit mit dem Schnappschuss
+# auf, die _build/verify.py nachweist.
+[minify]
+disableHTML = true

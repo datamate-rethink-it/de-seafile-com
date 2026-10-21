@@ -1,0 +1,81 @@
+---
+title: "Aktives Monitoring eines Seafile Clusters"
+slug: "monitoring"
+seo_title: "Aktives Monitoring eines Seafile Clusters | Seafile"
+description: "Größere Seafile Installation müssen aktiv überwacht werden. Durch ein geeignetes Monitoring kann man die zuverlässige Bereitstellung sicherstellen."
+date: "2019-09-26T19:00:36"
+lastmod: "2025-02-21T09:07:13"
+og_image: "/wp-content/uploads/2019/09/monitoring-seafile.jpg"
+beitragsbild: "/wp-content/uploads/2019/09/monitoring-seafile.jpg"
+lesezeit: "5 Minuten"
+category:
+  - "anleitungen"
+autor: "Christoph Dyllick-Brenzinger"
+wp_id: 3537
+---
+<p>Für maximale Skalierbarkeit und Verfügbarkeit unterstützt Seafile Clustering. Bei einem Cluster werden Zugriffe mit Hilfe von Load Balancern auf mehrere Nodes verteilt und dadurch Ausfallsicherheit geschaffen. Damit man die technischen Vorteile eines solchen Rechnerverbunds nicht leichtfertig verspielt, muss ein Seafile Cluster über ein aktives Monitoring der Prozesse, der Applikationen und der unterstützenden Infrastruktur verfügen. So lassen sich Probleme erkennen und beseitigen, bevor sie zum Teil- oder Komplettausfall führen. Dieser Artikel gibt einen Überblick über die zu überwachenden Komponenten und leistet Hilfestellung bei der Auswahl der passenden Überwachungsmethoden.</p>
+
+<!--more-->
+
+<h2>Seafile Architektur und Aufbau</h2>
+
+<p>Maßgabe für den Umgang des Monitorings eines Seafile Systems ist die Größe des Systems, der Anzahl der User, die Bedeutung für die Unternehmensprozesse und die Toleranz gegenüber Ausfällen. Bei einem als Austauschplattform genutzten Single-Node Seafile Server ist es normalerweise ausreichend, in regelmäßigen Abständen die Erreichbarkeit der Weboberfläche und des Synchronisationsdienstes zu überprüfen. Man reagiert, wenn eine Komponente ausgefallen ist. Anders bei einem <a href="/cluster/" target="_blank" rel="noopener noreferrer">Seafile Cluster</a>: Dessen bewusst geschaffene Redundanzen sollen den Ausfall einzelner Komponenten ohne Verfügbarkeitseinschränkungen ermöglichen. Ohne ein aktives Monitoring merkt man schlimmstenfalls gar nicht, dass einzelnen Komponenten nicht mehr funktionieren und verpasst das Zeitfenster, in dem man ohne Ausfall das System reparieren kann.</p>
+
+<p>Seafile Cluster orientieren sich typischerweise an den folgenden Best-Practise Ansätzen, die es zu überwachen gilt: </p>
+<ol>
+<li>Das Seafile System besteht aus mehreren Frontend- und einem Backend-Knoten kombiniert mit vorgeschalteten Load Balancern zur Verteilung der Zugriffe.</li>
+<li>Als Datenbank kommt ein <a href="https://galeracluster.com/products/" target="_blank" rel="noopener noreferrer">Galera Cluster für MySQL</a> zum Einsatz, um die Datenbank auf allen Seafile Knoten synchron zu halten. </li>
+<li>Als Storage Backend kommt einer oder mehrerer der unterstützten Objektspeicher wie Amazon AWS, <a href="https://www.openstack.org/software/releases/rocky/components/swift" target="_blank" rel="noopener noreferrer">OpenStack Swift</a> oder <a href="https://ceph.com/" target="_blank" rel="noopener noreferrer">Ceph</a> zum Einsatz.</li>
+</ol>
+<!--<p>Bild des Seafile Cluster-Aufbaus...</p>-->
+
+<h2>Die zentralen Komponenten von Seafile</h2>
+
+<p>Während der zentrale Synchronisationsserver aus C Code besteht, ist Seafiles Webinterface Seahub in Python programmiert. Seafile benötigt ein Dateisystem zum Speichern der Datenblöcke und eine Datenbank zum Abspeichern der Benutzer-, Block- und Metainformationen.</p>
+
+<p>Während der Verlust eines Frontend- oder eines Backendknotens das System nicht in die Knie zwingen sollte, ist es essentiell über so ein Ereignis informiert zu werden, um einen zuverlässigen Betrieb garantieren zu können. Aus diesem Grund ist es von zentraler Bedeutung, dass der Seafile Server, die Load Balancer, der Datenspeicher und die Datenbank aktiv überwacht werden. Dieses Dokument gibt die notwendigen Hilfsmittel hierfür an die Hand.</p>
+
+<h3>Seafile Server und das Webinterface Seahub</h3>
+
+<p>Seafile bietet einen einfachen Mechanismus zur Überprüfung, ob sowohl der Applikationsserver sowie die Weboberfläche verfügbar und bereit sind. Es genügen die folgenden Abfragen, um die Erreichbarkeit zu testen. Wenn die folgenden Rückgabewerte zurückgeliefert werden, kann man davon ausgehen, dass der Seafile Server zur Verfügung steht:</p>
+
+<pre><code>
+$ curl SEAFILE-URL/api2/ping/
+"pong"
+
+$ curl SEAFILE-URL/seafhttp/protocol-version
+{"version": 2}
+</code></pre>
+
+<p>Wichtig: Diese beiden Abfragen müssen auf allen Knoten des Clusters ausgeführt werden.</p>
+
+<h3>Webserver</h3>
+
+<p>Obwohl Seafile den auf Python-basierenden Webserver <a href="https://gunicorn.org/" target="_blank" rel="noopener noreferrer">Gunicorn</a> mitbringt, empfiehlt es sich, einen dedizierten Webserver wie Apache oder nginx als Reverse Proxy einzusetzen. So profitiert das Seafile System von SSL-Verschlüsselung und diversen Caching-Mechanismen, die das System beschleunigen. Da nginx (oder Apache) eine zentrale Komponente zum Betrieb des Seafile Servers ist, sollte dieser Dienst aktiv überwacht werden. So empfiehlt es sich, die beiden Logdateien (seahub.access.log und seahub.error.log) auf Fehlercodes im Bereich 4xx und 5xx zu überwachen. Praktisch jedes Log-Analysetool oder Monitoringtool bringt entsprechende Fähigkeiten mit.</p>
+
+<h3>Datenbank-Cluster</h3>
+
+<p>Die SQL-Datenbank ist eine weitere Komponente von zentraler Bedeutung für den Betrieb von Seafile. Für die Überwachung eines Galera Clusters liefert die Software <a href="https://galeracluster.com/library/documentation/monitoring-cluster.html" target="_blank" rel="noopener noreferrer">entsprechende Methoden</a> direkt mit oder man bedient sich eines separaten Management-Tools wie z.B. <a href="https://severalnines.com/product/clustercontrol" target="_blank" rel="noopener noreferrer">ClusterControl von severalnines</a>.</p>
+<p>Was den Umfang der Überwachung angeht, so sollte man nicht den Fehler machen und die Prüfung auf das Vorhandensein der Datenbank zu beschränken. Man sollte auch regelmäßig die einzelnen Knoten überwachen, um eine <a href="https://de.wikipedia.org/wiki/Split_Brain_(Informatik)" target="_blank" rel="noopener noreferrer">Split-Brain Situation</a> zu vermeiden.</p> <p>Das Management des Datenbank Clusters ist vermutlich die komplexeste Aufgabe des Monitorings. Bei ungelösten Datenbankproblemen drohen im schlimmsten Fall auch Datenverlust. Entsprechende Aufmerksamkeit sollte dieser Komponenten daher geschenkt werden.</p>
+
+<h3>Speichersystem</h3>
+
+<p>Aufgrund der Vielzahl der möglichen Speichersysteme richtet sich die optimale Vorgehensweise nach dem eingesetzten Speichersystem. Grundsätzlich sollte man die verfügbaren Prüfmechanismen des Speichersystemanbieters verwenden und zusätzlich auf verfügbare und bewährte Techniken des Speicher-Host-Systems wie z.B. die Überwachung von SMART Werten und den RAID Zustand setzen. Pauschale Aussagen nach der Art des Monitorings sind jedoch aufgrund der Vielzahl und der Unterschiede nicht möglich.</p>
+
+<h3>Load Balancer</h3>
+
+<p>Auch bei den Load Balancern gibt es eine große Bandbreite an möglichen Lösungen. Neben Software-basierten Lösungen wie <a href="http://www.haproxy.org/" target="_blank" rel="noopener noreferrer">HAProxy</a> oder <a href="https://freeloadbalancer.com/" target="_blank" rel="noopener noreferrer">Kemp</a> gibt es fertige Hardware-basierte Lösungen wie die populären Angebote von <a href="https://f5.com/de/products/deployment-methods/hardware" target="_blank" rel="noopener noreferrer">F5</a>, <a href="https://www.tp-link.com/de/business-networking/load-balance-router/" target="_blank" rel="noopener noreferrer">TP-Link</a> oder <a href="https://www.barracuda.com/products/loadbalancer" target="_blank" rel="noopener noreferrer">Barracuda</a>. Sehr im Trend liegen darüber hinaus Cloud-basierte Load-Balancer von <a href="https://www.digitalocean.com/products/load-balancer/" target="_blank" rel="noopener noreferrer">Digital Ocean</a> und <a href="https://aws.amazon.com/de/elasticloadbalancing/" target="_blank" rel="noopener noreferrer">Amazon AWS</a>.</p>
+
+<p>Während man sich bei Load Balancern aus der Cloud auf die Zuverlässigkeit des jeweiligen Anbieter verlassen kann, muss man Hard- und Software-basierte Lösungen aktiv überwachen und in das Monitoringkonzept integrieren.</p>
+
+<h3>Sonstige unkritische Dienste</h3>
+
+<p>Auch wenn die folgenden Dienste nicht zwingend für den Betrieb von Seafile notwendig sind, lohnt es sich, diese zu überwachen, da ein Ausfall den nutzbaren Funktionsumfang von Seafile einschränkt. Von Haus aus bringt Seafile <a href="https://www.elastic.co/de/products/elasticsearch" target="_blank" rel="noopener noreferrer">elasticsearch</a> als Grundlage für die <a href="/volltextsuche/">Volltextsuche</a> mit. <a href="https://memcached.org/" target="_blank" rel="noopener noreferrer">Memcached</a> wird verwendet, um die Webseitenaufrufe zu beschleunigen. Auch <a href="https://www.keepalived.org/" target="_blank" rel="noopener noreferrer">Keepalived</a> kommt typischerweise bei Seafile Clustern zum Einsatz, um virtuelle IP-Adressen für die interne Kommunikation der Komponenten zu ermöglichen.</p>
+
+<p>Die einfachste Überwachungsmethode dieser drei Komponenten besteht darin, regelmäßig die Anzahl der zugehörigen Prozesse zu zählen und zu reagieren, wenn sich diese unaufgefordert beendet haben sollten oder zu viele Prozesse im System vorhanden sind.</p>
+
+<h2>Das aktive Monitoring eines Seafile Cluster ist Pflicht</h2>
+
+<p>Mit einem Seafile Cluster baut man bewusst Redundanzen auf, um eine höhere Verfügbarkeit des Gesamtsystems zu gewährleisten. Dabei sollte man das System nicht unbeobachtet lassen, sondern ein aktives Monitoring aufbauen, um rechtzeitig über entstehende Probleme oder Ressourcenengpässe informiert zu werden. Nur so erhalten die Administratoren die notwendige Zeit, um auf die aktuelle Situation zu reagieren.</p>
+
+<p>Dieser Artikel hat die zu überwachenden Komponenten eines Seafile Clusters und, soweit möglich, die Art der Überwachungen aufgezeigt. Welche konkreten Monitoring-Tools wir empfehlen und typischerweise verwenden, soll Bestandteil eines folgenden Artikels werden. Wenn Sie Fragen rund um das Thema haben, zögern Sie nicht, uns anzusprechen.</p>

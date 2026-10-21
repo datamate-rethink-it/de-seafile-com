@@ -1,0 +1,82 @@
+---
+title: "ONLYOFFICE und Seafile mit lokaler IP verwenden"
+slug: "onlyoffice-mit-lokaler-ip-verwenden"
+seo_title: "ONLYOFFICE und Seafile mit lokaler IP verwenden | Seafile"
+description: "Die Integration von OnlyOffice und Seafile ist leicht, wenn man sich an die Empfehlungen hällt. Bei lokalen IP-Adressen muss man wissen was man tun."
+date: "2019-10-21T14:06:26"
+lastmod: "2025-02-21T09:07:13"
+og_image: "/wp-content/uploads/2019/10/seafile-onlyoffice-kommunikation.jpg"
+beitragsbild: "/wp-content/uploads/2019/10/seafile-onlyoffice-kommunikation.jpg"
+lesezeit: "4 Minuten"
+category:
+  - "anleitungen"
+autor: "Christoph Dyllick-Brenzinger"
+wp_id: 3559
+---
+<p>Die Online-Editoren von ONLYOFFICE sind eine beliebte Ergänzung zur Sync &#038; Share Lösung Seafile. So einfach die Integration von ONLYOFFICE auch scheint, kontaktieren uns leider immer wieder frustrierte Administratoren, die ONLYOFFICE einfach nicht mit Seafile verknüpft kriegen. Der Grund für diese Probleme liegt in den meisten Fällen in der Verwendung von alten Seafile und ONLYOFFICE Versionen oder eines selbst erzeugten Zertifikats &#8211; häufig in Kombination mit der Verwendung von lokalen IP-Adressen. Dieser Artikel gibt eine Hilfestellung, wie man auch mit diesem Setup eine funktionierende Integration von ONLYOFFICE und Seafile erreicht.</p>
+
+<!--more-->
+
+<h2>Typische Integration von ONLYOFFICE mit Seafile</h2>
+
+<p>Im englischen Seafile Manual sind <a href="https://download.seafile.com/published/seafile-manual/deploy/only_office.md" target="_blank" rel="noopener noreferrer">die notwendigen Schritte zur Integration von ONLYOFFICE mit Seafile</a> umfangreich beschrieben. Die offizielle Empfehlung ist es, dass sowohl Seafile als auch ONLYOFFICE über eine öffentliche URL erreichbar sein sollten. ONLYOFFICE kann dabei entweder als Unterverzeichnis eines Seafile Systems (z.B. &#8230;/onlyofficeds) oder als Subdomain (onlyofficeds.domain.de) installiert werden. Auch bei der Art der Installation gibt es zwei Alternativen. ONLYOFFICE kann entweder als <a href="https://helpcenter.onlyoffice.com/de/server/docker/document/docker-installation.aspx" target="_blank" rel="noopener noreferrer">Docker-Container</a> oder direkt aus den <a href="https://helpcenter.onlyoffice.com/de/server/integration-edition/linux/linux-installation.aspx" target="_blank" rel="noopener noreferrer">Paketquellen</a> installiert werden.</p>
+
+<p>Egal für welche Art der Installation man sich entscheidet, sobald ein ONLYOFFICE zur Verfügung steht sollte, genügt es in den <i>seahub_settings.py</i> den folgenden Code-Block einzutragen. Schon sollte die Integration funktionieren.</p>
+<pre><code># Enable ONLYOFFICE
+ENABLE_ONLYOFFICE = True
+VERIFY_ONLYOFFICE_CERTIFICATE = False
+ONLYOFFICE_APIJS_URL = 'http{s}://{your ONLYOFFICE server's domain or IP}/web-apps/apps/api/documents/api.js'
+ONLYOFFICE_FILE_EXTENSION = ('doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'odt', 'fodt', 'odp', 'fodp', 'ods', 'fods')
+ONLYOFFICE_EDIT_FILE_EXTENSION = ('docx', 'pptx', 'xlsx')
+
+</code></pre>
+
+<p>Dieses Setup funktioniert einwandfrei, wenn sowohl Seafile als auch ONLYOFFICE über eine öffentlich erreichbare URL mit einem gültigen SSL-Zertifikat erreichbar sind. Insbesondere in Zeiten von Let&#8217;s Encrypt stellt dies typischerweise auch kein Problem mehr dar. Die Probleme entstehen typischerweise dann, wenn entweder ONLYOFFICE oder Seafile nicht über ein gültiges Zertifikat verfügen.</p>
+
+<a href="/wp-content/uploads/2019/10/onlyoffice-welcome-page.jpg" data-slb-active="1" data-slb-asset="1282147975" data-slb-internal="0" data-slb-group="3559"><img decoding="async" src="/wp-content/uploads/2019/10/onlyoffice-welcome-page-300x165.jpg" alt="ONLYOFFICE Welcome Page" width="300" height="165" class="alignnone size-medium wp-image-3566" style="float: left; padding: 20px;" srcset="/wp-content/uploads/2019/10/onlyoffice-welcome-page-300x165.jpg 300w, /wp-content/uploads/2019/10/onlyoffice-welcome-page.jpg 641w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+<p>Ein problematisches Szenario könnte z.B. so aussehen: auf einem Sever mit der lokalen IP-Adresse <i>192.168.1.14</i> ist sowohl Seafile und auch ONLYOFFICE als Docker-Variante installiert. Der lokale Webserver ist so konfiguriert, dass die <i>ONLYOFFICE Welcome Page</i> zuverlässig über <i>192.168.1.14/onlyofficeds</i> angezeigt wird. Trotzdem funktioniert die Integration von Seafile nicht. Beim Aufruf eines Office-Dokuments öffnet sich zwar ONLYOFFICE im Browserfenster, aber es kommt zu einer Fehlermeldung. Je nach Seafile Version können die Fehlermeldungen unterschiedlich lauten: Entweder es erscheint schlicht ein Error oder ein Warnhinweis, dass das Dokument kann nicht gespeichert werden etc.</p>
+
+<img fetchpriority="high" decoding="async" src="/wp-content/uploads/2019/10/onlyoffice-loading.jpeg" alt="ONLYOFFICE Fehlermeldung" width="921" height="553" class="alignnone size-full wp-image-3575" style="display: block; padding: 20px 0px;" srcset="/wp-content/uploads/2019/10/onlyoffice-loading.jpeg 921w, /wp-content/uploads/2019/10/onlyoffice-loading-300x180.jpeg 300w, /wp-content/uploads/2019/10/onlyoffice-loading-768x461.jpeg 768w" sizes="(max-width: 921px) 100vw, 921px" />
+
+<h2>Wieso entsteht dieses Problem?</h2>
+
+<p>Das Problem ist, dass die Kommunikation in beide Richtungen erfolgt. Seafile fragt beim ONLYOFFICE Server nach und ONLYOFFICE schickt Informationen an Seafile. In der Seafile Konfiguration kann man angeben, dass die Verifikation von SSL Zertifikaten nicht erforderlich ist. Bei ONLYOFFICE kann man diesen Parameter nicht setzen. Hier wird erwartet, dass die Seafile URL über ein gültiges Zertifikat verfügt. Man kann sich das also vereinfacht so vorstellen:
+Seafile schickt die Datei an ONLYOFFICE. ONLYOFFICE verarbeitet diese Informationen und will seine Antwort an Seafile schicken, stellt jedoch fest, dass die Kommunikation mit Seafile nicht den Anforderungen entspricht.</p>
+
+<h2>Wie löst man dieses Problem?</h2>
+
+<p>Am Ende ist die Lösung so einfach wie trivial. In ONLYOFFICE-Dokumentenserver muss eingestellt werden, dass die Kommunikation mit Seafile über eine Verbindung mit einem selbst erzeugten Zertifikat erfolgen darf. Dafür genügt es einen Konfigurationsparameter zu ändern und den Dokumentenserver neu zu starten.</p>
+
+<pre><code>
+# Absprung in den ONLYOFFICE-Docker Container (nur notwendig bei Docker-Installationen)
+$ docker exec -it <container name> /bin/bash
+
+# Der ONLYOFFICE-Parameter "rejectunauthorized" muss auf "false" geändert werden
+nano /etc/onlyoffice/documentserver/default.json muss ein Parameter umgestellt werden.
+
+# Neustart von ONLYOFFICE und ggf. verlassen des Containers
+$ supervisorctl restart all
+$ exit</container></code></pre>
+
+<p>Danach sollte es, ohne Probleme möglich sein Office Dokumente aus Seafile an ONLYOFFICE zu übergeben und damit zu arbeiten. Die Kommunikation zwischen Seafile und ONLYOFFICE läuft weiterhin verschlüsselt per HTTPS ab, jedoch wird ab sofort von beiden Softwarelösungen nicht mehr ein beglaubigtes Zertifikat gefordert.</p> 
+
+<h2>ONLYOFFICE öffnet sich zwar, aber es kommt zum Fehler beim Speicher</h2>
+
+<img decoding="async" src="/wp-content/uploads/2019/06/Seahub_MeineBibliotheken_ColumnView_v703.png" alt="ONLYOFFICE Fehler beim Speichern in Seafile" width="1200" height="540" class="alignnone size-full wp-image-3342" style="display: block; padding: 20px 0;" srcset="/wp-content/uploads/2019/06/Seahub_MeineBibliotheken_ColumnView_v703.png 1200w, /wp-content/uploads/2019/06/Seahub_MeineBibliotheken_ColumnView_v703-300x135.png 300w, /wp-content/uploads/2019/06/Seahub_MeineBibliotheken_ColumnView_v703-768x346.png 768w, /wp-content/uploads/2019/06/Seahub_MeineBibliotheken_ColumnView_v703-1024x461.png 1024w" sizes="(max-width: 1200px) 100vw, 1200px" />
+
+<p>Dieses Verhalten sollte nur bei älteren Seafile Versionen auftreten. Nach einem Update auf die neueste Seafile Version sollte dieser Fehler verschwinden. Hintergrund ist, dass in älteren Seafile Versionen der Parameter Verify_ssl_&#8230; nicht konsequent umgesetzt wurde. So gibt es einzelne Views, wie z.B. der für den Speichervorgang von ONLYOFFICE verantwortlich ist, in denen weiterhin eine abgesicherte Verbindung erforderlich ist. Möchte man partout nicht auf eine neuere Seafile Version aktualisieren, muss man die entsprechenden Dateien identifizieren und entsprechend anpassen. So müsste man z.B. bei der Version 7.0.4 Professional Edition folgende Änderung durchführen.</p>
+
+<pre><code>
+# alte Version von /home/seafile/seafile-server-latest/seahub/seahub/onlyoffice/views.py
+requests.post(update_url, files=files)
+
+# neue Version von /home/seafile/seafile-server-latest/seahub/seahub/onlyoffice/views.py
+requests.post(update_url, files=files, verify=False)
+</code></pre>
+
+<p>Nach dieser Änderung ist ein Neustart von Seafile und Seahub notwendig.</p>
+
+<h2>ONLYOFFICE und Seafile &#8211; es funktioniert</h2>
+
+<p>Machen Sie sich das Leben leicht und nutzen Sie sowohl für Seafile als auch ONLYOFFICE Let&#8217;s Encrypt Zertifikate und öffentlich erreichbare URLs. So vermeiden Sie Stolpersteine, wie sie in diesem Artikel beschrieben sind. Wenn Sie trotzdem entgegen der Empfehlung selbst-erzeugte Zertifikate verwenden wollen, müssen Sie um die Details von ONLYOFFICE und Seafile wissen und die entsprechenden Konfigurationsanpassungen vornehmen. Ich wünsche viel Spaß mit ONLYOFFICE und Seafile.</p>

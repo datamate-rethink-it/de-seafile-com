@@ -1,0 +1,58 @@
+---
+title: "Seafile Server sicher sichern"
+slug: "seafile-backup"
+seo_title: "Seafile Server sicher sichern | Seafile"
+description: "Seafile bietet zwei Backupmethoden an: Neben der Vollsicherung gibt es noch den Real-Time Backup Server, durch den die Downtime minimiert wird."
+date: "2019-03-19T23:16:42"
+lastmod: "2025-02-21T09:07:14"
+og_image: "/wp-content/uploads/2019/03/seafile-real-time-backup.jpg"
+beitragsbild: "/wp-content/uploads/2019/03/seafile-real-time-backup.jpg"
+lesezeit: "6 Minuten"
+category:
+  - "funktionen"
+autor: "Christoph Dyllick-Brenzinger"
+wp_id: 2812
+---
+<p>Damit Sie Ihre Daten nicht nur einfach mit anderen teilen und bequem zwischen Geräten synchronisieren, sondern auch darauf vertrauen können, dass Ihre Daten in Seafile ganz sicher sind, unterstützt Seafile verschiedene Backup Methoden. So können auch massive Ausfälle und Schäden Ihren Daten nichts anhaben. In diesem Artikel wird die Vollsicherung von Seafile und die Einsatzmöglichkeiten des Real-Time Backup Servers vorgestellt.</p>
+
+<!--more-->
+<h2>Rolle von Backups in Seafile</h2>
+<p>Die Wiederherstellung von Dateien aus einem Backup ist bei Seafile die Ausnahme. Wurde ein Ordner/eine Datei irrtümlicherweise gelöscht oder Daten bei einem Angriff von Schadsoftware vernichtet, dann ist die <a href="/versionierung/">Dateiversionierung und Snapshotfunktion</a> von Seafile der erste Anlaufpunkt. Mit ihr lassen sich &#8211; von jedem Benutzer, unabhängig vom Administrator &#8211; <a hre="/support/benutzer/anleitung/seahub/fruehere-dateiversionen-wiederherstellen/">frühere Datenbestände wiederherstellen</a>. Weder muss man dazu ein Backup anlegen noch ein erstelltes Backup zeitaufwändig nach den verloren gegangenen Daten durchsuchen.</p>
+<p>Backups kommen bei Seafile nur in Fällen zum Einsatz, in denen die Datenbank oder der Speicher massiv beschädigt wurden. Solche Schäden treten bei verantwortungsvoller Systemkonfiguration nur bei Großschadensereignissen auf. Neben Naturereignissen sind dies Brand, Überspannung, Diebstahl und andere. In einem solchen Fall hilft auch Seafiles Dateihistorie nichts mehr.</p>
+<p>Der Datenbestand von Seafile lässt sich auf verschiedene Art und Weise sichern. Die regelmäßige Vollsicherung ist ein einfach auszuführendes Backup Verfahren und stellt keine großen Anforderungen. Sie kann aber aufgrund ihrer Funktionsweise einen partiellen Datenverlust nicht komplett verhindern. Das Real-Time Backup bietet höchsten Schutz für Ihre Daten, stellt aber  höhere Anforderungen.
+
+<h2>Regelmäßige Vollsicherung von Seafile</h2>
+</p><p>Bei diesem Backup werden die für Seafile relevanten Datenbanktabellen, der Blockspeicher sowie der Konfigurationsordner in regelmäßigen Abständen &#8211; manuell oder automatisiert &#8211; auf einen Sicherungsdatenträger kopiert. Aus diesen Daten lässt sich das gesicherte System mit überschaubarem Aufwand auf neuer Hardware vollständig wiederherstellen. Um das Schutzniveau zu erhöhen, lassen sich auch Backups auf unterschiedliche Sicherungsdatenträger mittels Vollbackup realisieren. Unabhängig von der Anzahl der verwendeten Sicherungsdatenträger sollten diese immer räumlich getrennt von Seafile aufbewahrt werden. Ansonsten droht im Schadensfall beiden das selbe Schicksal.</p>
+
+<p>Eine Vollsicherung schützt zuverlässig vor dem Komplettverlust der Daten. Auch lässt sich gut kontrollieren, ob das Backup erfolgreich war. In ein Testsystem importiert, lässt sich die Vollständigkeit des Datenbestandes und die korrekte Funktion einfach prüfen. Nachteile sind: Da die Daten in Seafile in definierten Intervallen und nicht fortlaufend gesichert werden, ist nur der Datenbestand zum Zeitpunkt des letzten Sicherungslauf vor Verlust geschützt. Liegt das letzte Backup Tage zurück, dann müssen die Dateiänderungen seitdem abgeschrieben werden. Ein weiterer Nachteil ist, dass die Wiederherstellung eine gewisse Zeit benötigt. Umso größer der Datenbestand, desto länger dauert die Wiederherstellung. Organisationen, die ihre Downtime minimieren müssen, sollten sich daher den zweiten Backupansatz genau anschauen. Er begegnet beiden Schwächen.</p>
+
+<h2>Seafile Real-Time Backup Server</h2>
+<p>Die Idee hinter diesem Backup Ansatz ist bestechend einfach: Man repliziert den Datenbestand des produktiven Seafile Systems fortlaufend auf einen zweiten Server und erstellt somit eine Kopie des Hauptsystems. Fällt das Produktivsystem aus, dient der Backup Server als Ersatzsystem &#8211; mit vollständigem Datenbestand und allen Funktionen des Hauptsystems.</p>
+<p>Aus technischer Perspektive ist der Backup Server damit ein Client des zu sichernden Seafile Produktivsystems. Einen wichtigen Unterschied jedoch gibt es: Beim Backup Server ist das <a href="/support/benutzer/anleitung/seahub">Webinterface Seahub</a> deaktiviert.</p>
+<p>Zur Sicherung des Datenbestandes wird &#8211; wie könnte es anders sein &#8211; Seafiles eigene zuverlässige Synchronisationstechnik verwendet. Die Authentifizierung zwischen Haupt- und Backupsytem erfolgt über einen auf beiden Systemen hinterlegten 40-stellige Security Token. </p>
+<p>Zusätzlich zu den Blockdaten werden auch die Tabellen der MySQL Datenbank, die für die Wiederherstellung der Dateien aus ihren Blöcken benötigt werden, permanent auf das Backup System synchronisiert. Alle anderen Datenbankbestandteile werden separat &#8211; manuell oder per Cronjob &#8211; gesichert und auf den Backupserver übertragen. Diese Unterteilung der Datenbank wirkt auf den ersten Blick unnötig, macht aber Sinn: Wenn in der Datenbank des Backup Servers keine User eingetragen sind, können diese sich nicht versehentlich auf dem Backup Server einloggen. Ohne hinterlegte Datenbanktabellen können vom Backup Server auch keine unerwünschten Aktivitäten wie z.B. E-Mail-Benachrichtigung getriggert werden. </p>
+
+<center><img decoding="async" src="/wp-content/uploads/2019/03/seafile_backup-1.png" alt="3nodes 1backend Diagramm"/></center>
+
+<h3>Vorteile des Real-Time Backup Servers</h3>
+<p>Der entscheidende Vorteil des Real-Time Backups ist die Minimierung des Datenverlusts. Bei halbstündlicher oder stündlicher Datensynchronisation ist der Schaden in Form von verlorenen Daten überschaubar.</p>
+<p>Das Real-Time Backup reduziert aber nicht nur den Datenverlust, sondern auch die Server Downtime: Zur Inbetriebnahme des Backup Systems als Ersatzsystem sind nur zwei Maßnahmen erforderlich: Der Import der Datenbankdumps und der Start von Seahub. Beide Aufgaben dauern nicht viel länger als ein paar Augenblicke.</p>
+<p>Auch ist die Überwachung des Real-Time Backup Servers mit wenig Aufwand möglich. Mit einem SH-Skript, ausgeführt auf dem Backup Server, lässt sich der Zustand des Servers abfragen. </p>
+
+<!-- Screenshot einfügen -->
+
+<p>Und damit sind die Möglichkeiten der Sichtprüfung noch nicht erschöpft. Theoretisch ist es möglich, eine manuelle Sichtprüfung durchzuführen, in dem man einfach Seahub startet ohne oder mit vorherigem Datenbankimport. Sämtliche Daten werden angezeigt, ggf. existiert für die Daten kein User in der Datenbank.</p>
+<img decoding="async" src="/wp-content/uploads/2019/03/daten-ohne-user-real-time-backup-server.png" alt="Anzeige der Daten eines Real-Time Backup Servers ohne vorherigen Datenbankimport"/>
+
+<p>Ein weiterer Vorteil sind die vergleichsweise geringen Hardwareanforderungen des Backup Servers. Da anders als beim regelmäßigen Vollbackup nicht wiederholt der gesamte Datenbestand kopiert wird, reicht dem Backup Server die Speicherkapazität des zu sichernden Hauptsystems. Auch sonst kann der Backup Server sparsam ausgerüstet werden, wenn vor allem die Verfügbarkeit und weniger die Performance des Notfallsystems im Vordergrund steht. So lässt sich z.B. auch ein <a href="/cluster">Seafile Cluster</a> auf einem Single-Node Seafile Server sichern. </p>
+
+<h3>Nachteile des Real-Time Backup Servers</h3>
+<p>Der Real-Time Server hat einige Stärken. Es gibt aber auch Situationen, in denen sein alleiniger Einsatz nicht geeignet ist. Muss die Unveränderbarkeit eines Backups garantiert werden, dann lässt sich dies offensichtlich mit dem Backup Server nicht erreichen. Aus Gründen der Revisionssicherheit kann dieser Backup Ansatz daher eine Nicht-Option sein. Auch ist mit dem Real time Backup kein Rücksprung zu einem früheren Systemzustand möglich. Der Backup Server enthält zwar die gesamte Dateihistorie und alle Logs des Hauptsystems, aber eben immer nur vom zuletzt gesicherten Zeitpunkt.</p>
+<p>Darüber hinaus erfordert der Backup Server regelmäßige Aufmerksamkeit im Sinne von Updates. Wird das Hauptsystem aktualisiert, dann muss das gleiche auch mit dem Backup System geschehen. Die Wartungsarbeit verdoppelt sich.</p>
+
+<center><img decoding="async" src="/wp-content/uploads/2019/03/seafile_backup_list-2.png" alt="Vorteile und Nachteile Real-Time Backup"/></center>
+
+<h2>Bester Schutz für Ihre Daten &#8211; Backup Ihrer Seafile Daten</h2>
+<p>Mit dem regelmäßigen Vollbackup und dem Realtime Backup Server bietet Seafile zwei Backup Verfahren, die für unterschiedliche Szenarien geeignet sind. Beide schützen die Daten zuverlässig vor Komplettverlust. Ersteres ist von seiner Systematik denkbar einfach in der Umsetzung. Das Real-Time Backup ist etwas aufwändiger, bietet dafür aber ein kleineres Verlustfenster und kann als vollwertiger Seafile Server unmittelbar als Ersatzsystem fungieren.</p>
+<p>Aus technischer Sicht ist der Real-Time Backup Server dem Vollbackup überlegen. Besondere Gründe können jedoch gegen seinen (exklusiven) Einsatz sprechen. Natürlich lassen sich beide Backup Methoden parallel einsetzen. So lassen sich die Vorteile beider Verfahren kombinieren.</p> 
+<p>Gerne unterstützt Sie unser deutscher Seafile Partner datamate bei Planung, Aufbau, Administration und Wartung des für Sie passenden Backups Ihres Seafile Servers.</p>

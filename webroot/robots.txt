@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://de.seafile.com/sitemap_index.xml

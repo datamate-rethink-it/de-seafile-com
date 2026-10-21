@@ -1,0 +1,6 @@
+/_build/
+/public/
+/resources/
+/.git/
+/.hugo_build.lock
+/de-seafile-com.tar.gz

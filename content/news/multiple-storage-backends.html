@@ -1,0 +1,55 @@
+---
+title: "Multiple Storage Backends"
+slug: "multiple-storage-backends"
+seo_title: "Multiple Storage Backends | Seafile"
+description: "Qual der Wahl beim Storage Backend. Seafile unterstützt neben verschiedene Protokollen und Dateisystemen genauso wie den Parallelbetrieb mehrerer Backends."
+date: "2018-10-03T09:45:41"
+lastmod: "2025-02-21T09:07:16"
+og_image: "/wp-content/uploads/2018/10/AdobeStock_126455034_1920px_1080px.jpg"
+beitragsbild: "/wp-content/uploads/2018/10/AdobeStock_126455034_1920px_1080px.jpg"
+lesezeit: "4 Minuten"
+category:
+  - "funktionen"
+autor: "Christoph Dyllick-Brenzinger"
+wp_id: 697
+---
+<p>Seafile ist vergleichsweise sparsam in Bezug auf die Systemressourcen. Beim Speicherplatz kann man jedoch nicht genug bekommen. Daher unterstützt Seafile unterschiedliche Protokolle, Dateisysteme und Objektspeicher. Würde Seafile nun erlauben, Speichermedien mit unterschiedlichen Charakteristika zu kombinieren, dann liessen sich unterschiedlichste Anforderungen abdecken. Kurz: Seafile kann auch das!</p>
+
+<!--more-->
+
+<p>Die Fähigkeit, mehrere Datenspeicher anzusprechen, bietet der Seafile Server Professional Edition seit der Version 6.3. Jede Art von Speicher, die sich in das Linux Dateisystem einbinden lässt, wird unterstützt. Neben gewöhnlichem lokalen Festplattenspeicher fallen darunter auch die Objektspeicher Ceph, Swift und S3 sowie magnetische und optische Archivspeichermedien.</p> 
+
+<h2>Einsatzszenarien</h2>
+<p>Dank Multiple Storage Backend Unterstützung ist es in Seafile keine technische Herausforderung mehr, unterschiedliche Speichermedien miteinander zu kombinieren. Es ist alleine eine Frage der klaren Anforderungsspezifikation. Zwei Anwendungsfälle erscheinen besonders attraktiv.
+
+<h3>Unternehmen mit großem Speicherbedarf</h3>
+</p><p>In den letzten Jahren haben schnelle SSD-Datenträger die Rechenzentren dieser Welt erobert. Die Auswahl an schnellen und günstigen VServern, die sich sehr gut für das Hosting von Webseiten, Shopsystemen oder sonstige Webapplikationen eignen, ist unüberschaubar geworden. Die Auswahl an geeigneten VServern für die eigene File Cloud ist jedoch im gleichem Maße geschrumpft. Ein Seafile Server soll schließlich hunderte von Gigabyte, wenn nicht sogar Terabyte an Daten aufnehmen können und die Mietpreise der VServer steigen typischerweise unverhältnismäßig mit zunehmender Speicherkapazität, da auch die sonstigen Ressourcen wie CPU-Kerne und Arbeitsspeicher ansteigen.</p>
+
+<p>Mit Seafiles Unterstützung multipler Storage Backends besteht die Möglichkeit, die schnellen SSD-basierten VServer um separate preisgünstige Datenspeicher zu ergänzen. So lässt sich mit geringen monatlichen Kosten ein Seafile Server mit einer Speicherkapazität im Terabyte Bereich aufbauen.</p>
+
+<p>Ein solches Hybrid-System erhalten Sie beispielsweise von unserem Partner datamate. Für unter 100€ pro Monat erhalten Sie ein hochperformantes Seafile System mit über 10 Terabyte Massenspeicher, automatische Backups der Backends inklusive (Stand Oktober 2018). datamate kombiniert dafür einen Strato V-Server V40 inkl. 600 GB SSD-Speicher mit einem 10 TB HiDrive Business. Wo kriegt man so viel Cloud-Speicher für so wenig Geld? </p>
+
+<h3>Langzeitarchivierung</h3>
+<p>Neben ökonomischen Gründen für die Nutzung unterschiedlicher Storage Backends gibt es viele technische. Durch die Kombination unterschiedlicher Speichertechniken lassen sich deren individuellen Eigenschaften ausnutzen.</p>
+<p>Insbesondere die Kombination von schnellem Produktiv- mit langsamen Archivspeicher bietet sich an. Dateien in aktiver Nutzung und solche die noch nicht archiviert sind, werden im Hot Storage gespeichert. Archivierte Dateien für die Erfüllung von Aufbewahrungspflichten landen im Cold Storage. Für den Cold Storage eignen sich Magnetbänder oder andere Langzeitspeichermedien mit ihren langen Lebensdauern.</p>
+
+<h2>Auswahl des Backends</h2>
+<p>Zur Steuerung der Nutzung der eingerichteten Backends bietet Seafile drei Mapping Policies.</p>
+
+<h3>Benutzerdeterminiertes Mapping</h3>
+<p>Ist die Nutzung der Backends benutzerdeterminiert, dann legt der Benutzer bei Anlage einer neuen Bibliothek fest, in welchem Backend die Bibliotheksdaten gespeichert werden sollen. Archivdaten und Bildmaterial können problemlos auf weniger performanten, aber speichergünstigen Medien abgelegt werden. Bibliotheken mit tagtäglich genutzten Dateien sind im Sinne der Arbeitseffizienz auf Hot Access Speichermedien des Servers besser aufgehoben.</p>
+
+<img fetchpriority="high" decoding="async" width="752" height="526" src="/wp-content/uploads/2018/10/seafile-multiple-backends.png" alt="" class="alignnone size-full wp-image-1569" srcset="/wp-content/uploads/2018/10/seafile-multiple-backends.png 752w, /wp-content/uploads/2018/10/seafile-multiple-backends-300x210.png 300w" sizes="(max-width: 752px) 100vw, 752px" />
+
+<p>Bei der benutzerdeterminierten Mapping Policy liegt große Verantwortung bei den Benutzern. Benutzer müssen über die Konsequenzen ihrer Entscheidungen aufgeklärt werden. Soll die Entscheidungsgewalt nicht bei den Benutzern liegen, dann bieten sich die weiteren Mapping Policies an.
+
+<h3>Mapping via Benutzerrolle</h3>
+</p><p>Bei der rollendeterminierten Backendwahl entscheidet die Rolle des Benutzers, in welches Backend eine neue Bibliothek geschrieben wird. Die Bibliotheken von Standardbenutzern könnten so in einem anderen Backend landen als solche von Benutzern mit einer Custom Rolle.</p> 
+<p>Das Mapping via Benutzerrolle ist gerade für Hosting Provider eine interessante Option. Mit dieser Policy lassen sich aufpreispflichtige Premium-Pakete mit schnellem SSD-Speicher genauso wie  Archivierungsangebote schnüren.</p>
+
+<h3>Automatisches Mapping</h3>
+<p>Beim automatischen Mapping verteilt Seafile neue Bibliotheken gleichmäßig auf die verfügbaren Backends. Für den Anwender ist weder ersichtlich, dass der Server mehrere Backends verwendet, noch ist es durch die Benutzer beeinflussbar.</p>
+<p>Für die aktive Steuerung der Speichernutzung ist diese Policy ungeeignet. Das automatische Mapping eignet sich jedoch für den kontinuierlichen Ausbau der Speicherkapazitäten bei gleichbleibenden sonstigen Systemressourcen wie CPU und RAM.</p>
+
+<h2>Schnell, groß und preisgünstig &#8211; mit Seafile gibts alle drei</h2>
+<p>Seafiles Unterstützung multipler Storage Backends ist eine noch junge Funktion mit großem Potenzial. Sie bietet Unternehmen und Organisationen aller Größen interessante Einsatzmöglichkeiten und Einsparpotenziale. An die Stelle des &#8222;one-size-fits-all&#8220; tritt die bedürfnisorientierte Beschaffung und Einrichtung spezifischer Backendkapazitäten. Archivdaten können sofort auf geeigneten Langzeitspeichermedien abgelegt werden. Sie zahlen nicht mehr zu viel für schnellen Speicher, der gar nicht benötigt wird. Benutzer freuen sich über neue Kapazitäten, ohne dass ein Loch ins Budget gerissen wird. </p>

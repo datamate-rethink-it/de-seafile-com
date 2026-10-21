@@ -1,0 +1,78 @@
+---
+title: "Seafile Drive Client 2.0/3.0"
+seo_title: "Seafile Drive Client 2.0/3.0 | Seafile"
+description: "Der Seafile Sync Client (SeaDrive) bildet alle Bibliotheken eines Benutzer im lokalen Dateisystem ab. Dies erlaubt einfachen Zugriff ohne Speicherbelastung."
+date: "2020-09-24T21:25:52"
+lastmod: "2023-10-06T23:59:34"
+og_image: "/wp-content/uploads/2022/01/SeaDrive_Status_Icon_LockedByMe.png"
+lesezeit: "3 Minuten"
+handbuch: true
+wp_id: 4028
+---
+<p>Der Seafile Drive Client (kurz SeaDrive) ist ein Programm, das alle Bibliotheken eines Benutzers im Dateisystem des Arbeitsplatzrechners abbildet und so direkt im Dateimanager verfügbar macht. Da die Abbildung der Bibliotheken nicht den Download der Bibliotheken erfordert, wird auch kein Speicherplatz auf dem lokalen Datenträger belegt. Um offline, d.h. ohne Serververbindung, auf Dateien zugreifen zu können, unterstützt SeaDrive die Zwischenspeicherung von Dateien, Ordnern und Bibliotheken auf dem lokalen Datenträger.</p>
+
+<a href="/wp-content/uploads/2020/10/SeaDrive2.0_Übersicht_raw.png" data-slb-active="1" data-slb-asset="1675543383" data-slb-internal="0" data-slb-group="4028"><img decoding="async" src="/wp-content/uploads/2020/10/SeaDrive2.0_Übersicht_raw.png" alt="SeaDrive 2.0 erlaubt den direkten Dateizugriff über den Windows Explorer" width="1366"  /></a>
+
+<p>Die Abbildung (&#8222;Mapping&#8220;) repliziert auf dem lokalen Datenträger die Verzeichnisstruktur der eigenen, freigegebenen und Gruppenbibliotheken des Benutzers und erstellt Platzhalter für jede enthaltene Datei. Die Platzhalter enthalten alle Datei-Metadaten (z.B. Name, Größe, Erstellungsdatum), belegen aber keinen Speicherplatz. Der Download einer Dateien vom Seafile Server erfolgt erst durch expliziten Dateizugriff durch den Benutzer (&#8222;on-demand Download&#8220;). Heruntergeladene Dateien speichert SeaDrive auf dem lokalen Datenträger zwischen (&#8222;Caching&#8220;), wodurch die Dateien später auch ohne Verbindung zum Seafile Server aufgerufen werden können (&#8222;offline Zugriff&#8220;). Änderungen an Dateien und Ordnern synchronisiert SeaDrive automatisch im Hintergrund mit dem Seafile Server. Besteht keine Verbindung zum Seafile Server, speichert SeaDrive Änderungen in den lokalen Kopien zwischen und überträgt sie beim nächsten Verbindungsaufbau.</p>
+
+<p>Der Zugriff auf die abgebildeten Bibliotheken erfolgt über den Dateimanager (d.h. den Windows Explorer bei Windows, den Finder bei macOS). Mit der Einrichtung eines Benutzerkontos fügt SeaDrive dem Navigationsbereich des Dateimanagers einen Eintrag hinzu. Über diesen kann der Benutzer die ihm vertraute Ordnerstruktur öffnen, in der er navigieren und Dateien suchen kann. Der Download einer Dateien vom Seafile Server erfolgt durch das Öffnen einer Datei (z.B. durch Doppelklick) oder den Befehl zum Download einer Bibliothek oder eines Ordners. </p>
+
+<p>Ob von einer Datei eine lokale Kopie vorliegt, wird in der Spalte Status im Dateimanager angezeigt. Platzhalter sind durch ein Wolken-Icon gekennzeichnet; Dateien, von denen lokale Kopien vorliegen, sind mit ein Kreis-Icon versehen. </p>
+
+<table style="width: 100%">
+    <colgroup>
+       <col span="1" style="width: 15%;"/>
+       <col span="1" style="width: 85%;"/>
+    </colgroup>
+
+	<tr>
+		<td  style="border-bottom:1px solid grey;"><center><b>Icon</b></center></td>
+		<td  style="border-bottom:1px solid grey;"><b>Erklärung</b></td>
+	</tr>
+	<tr>
+		<td><center><img decoding="async" src="/wp-content/uploads/2022/01/SeaDrive_Status_Icon_Cloud_.png" alt="SeaDrive Status Icon Wolke" width="70" height="70" class="alignnone size-full wp-image-4372"style="border:none" /></center> </td>
+		<td>Die Datei liegt nur auf Server<br />Die Datei belegt lokal keinen Speicherplatz<br />Zum Öffnen der Datei muss die Datei vom Seafile Server heruntergeladen werden<br /></td>
+	</tr>
+	<tr>
+		<td><center><img decoding="async" src="/wp-content/uploads/2022/01/SeaDrive_Status_Icon_Downloaded.png" alt="SeaDrive Status Icon grüner Kreis" width="70" height="70" class="alignnone size-full wp-image-4373" style="border:none"/></center></td>
+		<td>Eine Kopie der Datei liegt lokal vor<br />Die Datei liegt lokal auf dem Datenträger und belegt Speicherplatz<br />Die Datei ist offline verfügbar<br />
+	</td></tr>
+	<tr>
+		<td><center><img decoding="async" src="/wp-content/uploads/2022/01/SeaDrive_Status_Icon_Pinned.png" alt="SeaDrive Status Icon grüner Kreis ausgefüllt" width="70" height="70" class="alignnone size-full wp-image-4374" style="border:none"/></center></td>
+		<td>Eine Kopie der Datei liegt lokal vor und wird laufend synchronisiert<br />Die Datei liegt lokal auf dem Datenträger und belegt Speicherplatz<br />Die Datei ist offline verfügbar
+	</td></tr>
+</table>
+
+<p>Über das Kontextmenü kann ein Benutzer lokale Kopien löschen. Der durch die lokalen Kopien belegte Speicherplatz wird dann freigegeben.</p>
+
+<p>Der <a href="/support/benutzer/anleitung/seafile-drive-client/seadrive-mit-server-verbinden/">Seafile Drive Client muss einmalig eingerichtet</a> werden und läuft dann automatisch im Hintergrund. Anders als der <a href="/support/benutzer/anleitung/seafile-sync-client/">Seafile Sync Client</a> hat SeaDrive kein eigenes Benutzerinterface. Der Dateizugriff erfolgt ausschließlich über den Dateimanager. Ein Klick auf das SeaDrive Icon im Infobereich bzw. dem Status Menü öffnet den Speicherort der abgebildeten Bibliotheken im Dateimanager.</p><p>
+
+</p><p>Ebenfalls einmalig eingerichtet werden muss der <a href="/support/benutzer/anleitung/seafile-drive-client/verschluesselte-bibliotheken-einbinden/">Zugriff auf verschlüsselte Bibliotheken</a>. Damit SeaDrive den Inhalt einer verschlüsselten Bibliothek anzeigen kann, muss der Benutzer das Passwort der verschlüsselten Bibliothek eingeben. SeaDrive speichert dieses Passwort und übernimmt dann automatisch bei jedem Neustart die Einbindung der verschlüsselten Bibliothek.</p>
+
+<p>SeaDrive für Windows erlaubt es,  <a href="/support/benutzer/anleitung/seafile-drive-client/bibliotheken-und-ordner-vollstaendig-herunterladen/">Bibliotheken und einzelne Ordner lokal zu synchronisieren</a> (“Pinning”) und damit für alle Dateien der synchronisierten Bibliothek/des Ordners einen offline Zugriff zu ermöglichen. Auch den Dateizugriff beschleunigt die Synchronisation: Da die Dateien auf der lokalen Festplatte gespeichert sind, erfolgt der Dateiaufruf mit voller Festplattengeschwindigkeit. Ein Download vom Server ist nicht notwendig.</p>
+
+
+
+<table style="width: 100%">
+    <colgroup>
+       <col span="1" style="width: 15%;"/>
+       <col span="1" style="width: 85%;"/>
+    </colgroup>
+
+	<tr>
+		<td style="border-bottom:1px solid grey;"><center><b>Icon</b></center></td>
+		<td style="border-bottom:1px solid grey;"><b>Erklärung</b></td>
+	</tr>
+	<tr>
+		<td><center><img loading="lazy" decoding="async" src="/wp-content/uploads/2022/01/SeaDrive_Status_Icon_Locked.png" alt="SeaDrive Status Icon Keine Durchfahrt rot" width="70" height="70" class="alignnone size-full wp-image-4375" style="border:none" /></center> </td>
+		<td>Die Datei ist durch einen anderen Benutzer gesperrt<br />Die Datei nur schreibgeschützt geöffnet werden<br />Die Datei kann nicht gelöscht oder umbenannt werden</td>
+	</tr>
+	<tr>
+		<td><center><img loading="lazy" decoding="async" src="/wp-content/uploads/2022/01/SeaDrive_Status_Icon_LockedByMe.png" alt="SeaDrive Status Icon Keine Durchfahrt orange" width="70" height="70" class="alignnone size-full wp-image-4376" style="border:none"/></center></td>
+		<td>Die Datei ist durch den eigenen Benutzer gesperrt<br />Die Datei ist lokal geöffnet<br />Die Datei kann nicht gelöscht oder umbenannt werden<br />
+	</td></tr>
+	<tr>
+		<td><center><img loading="lazy" decoding="async" src="/wp-content/uploads/2022/01/SeaDrive_Status_Icon_ReadOnly.png" alt="SeaDrive Status Icon Keine Durchfahrt grau" width="70" height="70" class="alignnone size-full wp-image-4377" style="border:none"/></center></td>
+		<td>Auf die Datei kann nur lesend zugegriffen werden<br />Änderungen an der Datei sind nicht möglich<br /></td>
+	</tr>
+</table>

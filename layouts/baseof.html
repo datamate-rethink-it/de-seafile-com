@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="de">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#FFA10F"/>
+	<link rel="manifest" href="/wp-content/themes/seafileger/manifest.json">
+	<meta http-equiv="language" content="DE">
+	{{ partial "kopf.html" . }}
+
+	<link rel="stylesheet" media="screen" type="text/css" href="/wp-content/themes/seafileger/css/bootstrap.min.css">
+	<link rel="stylesheet" media="screen" type="text/css" href="/wp-content/themes/seafileger/css/template.min.css">
+	<link rel="stylesheet" media="screen" type="text/css" href="/wp-content/themes/seafileger/css/lightbox.min.css">
+	<link rel="stylesheet" media="print" type="text/css" href="/wp-content/themes/seafileger/css/print.min.css">
+	<link rel="stylesheet" media="screen" type="text/css" href="/wp-content/themes/seafileger/style.css">
+</head>
+<body class="{{ if .IsHome }}front-page{{ end }}">
+{{ partial "navigation.html" . }}
+
+{{ block "main" . }}{{ .Content }}{{ end }}
+
+{{ partial "fusszeile.html" . }}
+
+<script src="/wp-content/themes/seafileger/js/jquery.min.js"></script>
+<script src="/wp-content/themes/seafileger/js/bootstrap.min.js"></script>
+<script src="/wp-content/themes/seafileger/js/waypoints/jquery.waypoints.min.js"></script>
+<script src="/wp-content/themes/seafileger/js/jquery.sticky.js"></script>
+<script src="/wp-content/themes/seafileger/js/parallax.min.js"></script>
+<script src="/wp-content/themes/seafileger/js/lightbox.min.js"></script>
+<script src="/wp-content/themes/seafileger/js/navigation.js"></script>
+<script src="/wp-content/themes/seafileger/js/skip-link-focus-fix.js"></script>
+<script src="/eigen/seite.js"></script>
+</body>
+</html>

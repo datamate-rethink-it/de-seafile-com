@@ -1,0 +1,140 @@
+---
+title: "Rollen"
+seo_title: "Rollen | Seafile"
+description: ""
+date: "2018-09-13T23:47:47"
+lastmod: "2021-10-18T10:59:25"
+og_image: "/wp-content/uploads/2018/09/Seahub_Rollen.png"
+lesezeit: "3 Minuten"
+handbuch: true
+wp_id: 449
+---
+<p>Rollen vereinfachen die Berechtigungsverwaltung in Seafile. Sie regeln auf einfache Art und Weise, was ein Benutzer darf bzw. was er nicht darf.</p>
+
+<p>Eine Berechtigung ist typischerweise als Ja/Nein-Frage definiert: Darf ein Benutzer eine bestimmte Aktion ausführen oder nicht? Eine <a href="https://de.wikipedia.org/wiki/Berechtigungskonzept#Rollen">Rolle</a> ist ein Set solcher Berechtigungen (englisch: permissions). Erhält der Benutzer eine Rolle zugewiesen, dann werden für ihn alle dazugehörigen Berechtigungen entsprechend der Rollendefinition gesetzt. Ist einer Rolle z.B. nicht erlaubt, per <a href="/support/benutzer/anleitung/seafile-mobile-apps/">Mobile App</a> von seinem Handy aus auf Seafile zuzugreifen, dann sind die Android und iOS App für alle Nutzer mit dieser Rolle nutzlos. Sie werden über die Apps keine Daten vom Seafile Server abrufen können.</p>
+
+<h2>Rollenzuweisung</h2>
+
+<p>Die Zuweisung einer Rolle zu einem Benutzer erfolgt im Admin Panel des <a href="/support/benutzer/anleitung/seahub/">Seafile Webinterfaces Seahub</a> über ein Dropdown-Feld. Jeder Benutzer hat immer nur eine Benutzerrolle, eine kumulative Rollenvergabe unterstützt Seafile nicht. Zugang zum Admin Panel und damit auch die Rollenvergabe ist natürlich ein Vorrecht der Administratoren. Alternativ können Rollen auch über ein zentrales Benutzerverwaltungssystem wie ein <a href="/zentrale-benutzerverwaltung-ad-ldap-integration/">Active Directory oder ein LDAP-Verzeichnis</a> gesetzt werden. (Details zu diesem Administratorthema finden sich im <a href="https://manual.seafile.com/deploy_pro/using_ldap_pro/">Seafile Manual</a>.)</p>
+
+<img decoding="async" src="/wp-content/uploads/2018/09/Seahub_Rollen.png" alt="Rollen" width="1395" class="alignnone size-full wp-image-1207" srcset="/wp-content/uploads/2018/09/Seahub_Rollen.png 1395w, /wp-content/uploads/2018/09/Seahub_Rollen-300x147.png 300w, /wp-content/uploads/2018/09/Seahub_Rollen-768x375.png 768w, /wp-content/uploads/2018/09/Seahub_Rollen-1024x501.png 1024w" sizes="(max-width: 1395px) 100vw, 1395px" />
+
+<p>Seafile nutzt zwei vordefinierte Benutzerrollen: Standard und Gast. (Eine Benutzerrolle Administrator gibt es nicht. Administratorenberechtigungen werden in Seafile separat von den Benutzerberechtigungen verwaltet.)</p>
+
+<p>Die Rolle Standard ist für interne Mitarbeiter mit normalen, nicht-Administratorberechtigungen. Mit dieser Rolle kann ein Benutzer Bibliotheken anlegen, Freigabe an andere Benutzer erteilen und Freigabelinks erstellen. Außerdem kann er mit den verfügbaren Clients auf seine Dateien in Seafile zugreifen.</p>
+
+<p>Anders die Rolle Gast: Ein Benutzer mit dieser Rolle ist stark eingeschränkt. Er hat nur auf Bibliotheken und Inhalte Zugriff, die für ihn freigegeben wurden, und dies nur per Webinterface. Die Erstellung einer Bibliotheken, der Zugriff auf Daten per Client/App und das Teilen von Daten per Public Link ist für einen Gast unmöglich. Benutzer, die per <a href="/public-sharing/">Benutzer einladen</a> Funktion Zugriff auf Seafile bekommen, erhalten automatisch die Rolle Gast zugewiesen.</p>
+
+<h2>Individuelle Rollenverwaltung</h2>
+
+<p>In der Professional Edition des Seafile Servers lässt sich das Rollenkonzept auf die eigenen Bedürfnisse anpassen und eine granularere Berechtigungsverwaltung umsetzen. Bestehende Rollen können umdefiniert und neue Rollen angelegt werden. Einer neuen Rolle externer Projektmitarbeiter können beispielsweise weitergehende Berechtigungen zugewiesen werden als einem Gast, aber nicht so weitgehende wie der Rolle Standard, die für interne Mitarbeiter vorgesehen ist. Im Community Server von Seafile sind solche Änderungen nicht möglich.</p>
+
+<p>In der Seafile Server Version 8 (Stand 18.10.2021) unterstützt Seafile 15 Benutzerberechtigungen (siehe Tabelle unten). Eine ausführliche Anleitung für die Erstellung und Anpassung von Rollen befindet sich im englischsprachigen <a href="https://manual.seafile.com/deploy_pro/roles_permissions/">Seafile Manual</a>.</p>
+
+<table style="border-collapse: collapse; width: 100%;" border="1" class="table table-striped">
+	<thead>
+	<tr class="th-center">
+		<th style="width: 34%;text-align:left;">Berechtigung</th>
+		<th style="width: 40%;text-align:left;">&#8222;Rolle darf &#8230; &#8222;</th>
+		<th style="width: 13%;">Standard</th>
+		<th style="width: 13%;">Gast</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td>can_add_repo</td>
+		<td>&#8230; Gruppe erstellen</td>
+		<td><span class="yes"></span></td>
+		<td><span class="no"></span></td>
+	</tr>
+	<tr>
+		<td>can_add_group</td>
+		<td>&#8230; Bibliothek erstellen</td>
+		<td><span class="yes"></span></td>
+		<td><span class="no"></span></td>
+	</tr>
+	<tr>
+		<td>can_add_public_repo</td>
+		<td>&#8230; Organisationsbibliothek erstellen</td>
+		<td><span class="yes"></span></td>
+		<td><span class="no"></span></td>
+	</tr>	
+	<tr>
+		<td>can_view_org</td>
+		<td>&#8230; Organisationsbibliotheken sehen</td>
+		<td><span class="yes"></span></td>
+		<td><span class="no"></span></td>
+	</tr>
+	<tr>
+		<td>can_publish_repo</td>
+		<td>&#8230; Bibliotheken veröffentlichen</td>
+		<td><span class="yes"></span></td>
+		<td><span class="no"></span></td>
+	</tr>
+	<tr>
+		<td>can_use_global_address_book</td>
+		<td>&#8230; Freigabenamenvorschlag erhalten </td>
+		<td><span class="yes"></span></td>
+		<td><span class="no"></span></td>
+	</tr>
+	<tr>
+		<td>can_generate_share_link</td>
+		<td>&#8230; Download-Link erstellen</td>
+		<td><span class="yes"></span></td>
+		<td><span class="no"></span></td>
+	</tr>
+	<tr>
+		<td>can_generate_upload_link</td>
+		<td>&#8230; Upload-Link erstellen</td>
+		<td><span class="yes"></span></td>
+		<td><span class="no"></span></td>
+	</tr>
+	<tr>
+		<td>can_send_share_link_mail</td>
+		<td>&#8230; Links direkt per Seahub versenden</td>
+		<td><span class="yes"></span></td>
+		<td><span class="no"></span></td>
+	</tr>
+	<tr>
+		<td>can_invite_guest</td>
+		<td>&#8230; Gast einladen</td>
+		<td><span class="no"></span></td>
+		<td><span class="no"></span></td>
+	</tr>
+	<tr>
+		<td>can_connect_with_android_clients</td>
+		<td>&#8230; sich mit Android App verbinden</td>
+		<td><span class="yes"></span></td>
+		<td><span class="no"></span></td>
+	</tr>
+	<tr>
+		<td>can_connect_with_ios_clients</td>
+		<td>&#8230; sich mit iOS App verbinden</td>
+		<td><span class="yes"></span></td>
+		<td><span class="no"></span></td>
+	</tr>
+	<tr>
+		<td>can_connect_with_desktop_clients</td>
+		<td>&#8230; sich mit Desktop Clients verbinden</td>
+		<td><span class="yes"></span></td>
+		<td><span class="no"></span></td>
+	</tr>
+	<tr>
+		<td>storage_ids</td>
+		<td>&#8230; diese Storage Backends nutzen</td>
+		<td style="text-align:center;" colspan=2>alle Backends</td>
+	</tr>
+	<tr>
+		<td>role_quota</td>
+		<td>&#8230; max. GB an Datenvolumen nutzen</td>
+		<td style="text-align:center;" colspan=2>keine Speicherquota</td>
+	</tr>
+	</tbody>
+</table>
+
+<h2>Administratorrollen</h2>
+<p>Seit der Version 6.2.2 des Seafile Servers gibt es neben den Benutzerrollen auch unterschiedliche Administratorenrollen. Die Administratorrolle mit Vollzugriff auf das System ist der Standard Admin. Der System Admin, der Audit Admin und der Tägliche Admin haben eingeschränkte Rechte. </p>
+
+<p>Die Rollenverwaltung für Administratoren erfolgt analog der Rollenverwaltung für Benutzer. In der Version 8 (Stand 18.10.2021) unterstützt Seafile acht Administratorberechtigungen. Details zur Verwaltung von Administratorrollen finden sich im englischsprachigen <a href="https://manual.seafile.com/deploy_pro/admin_roles_permissions/">Seafile Manual</a>.</p>
+
+<p class="alert alert-warning">Es gibt keine Abhängigkeiten zwischen den Administrator- und den Benutzerrollen. Ein Benutzer mit Benutzerrolle Gast kann gleichzeitig die Admin-Rolle Standard Admin besitzen.</p>

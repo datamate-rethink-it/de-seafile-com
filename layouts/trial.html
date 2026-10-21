@@ -1,0 +1,37 @@
+{{ define "main" }}
+{{- /* /trial/ - die einzige Seite, die nicht rein statisch ist.
+
+	Kopfband und Meldungsbereich kamen frueher aus
+	template-parts/content-trail-page.php, der redaktionelle Teil aus der
+	Seite selbst. Das Anlegen des Mandanten laeuft jetzt auf dem
+	Trial-Server (siehe BESTANDSAUFNAHME.md): das Formular postet nach
+	/api/trial, Caddy im Image reicht das an trial.seafile-demo.de weiter.
+	Fuer den Browser ist das gleiche Herkunft - kein CORS.
+
+	Ohne JavaScript ging das Formular auch bisher nicht: reCAPTCHA v2
+	braucht es. */ -}}
+<section id="intro-teaser">
+	<div class="block categorie-header">
+		<img src="/wp-content/uploads/2018/09/Material-Wallpaper-30-1600x900.jpg" data-speed="-2" class="img-parallax" alt="">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 white">
+					<h1>Übernehmen Sie die Kontrolle über Ihre Daten <span>Einfach. Sicher. Zuverlässig.</span></h1>
+					<p>Starten Sie jetzt und testen Sie Seafile <b>7 Tage</b> lang mit bis zu <b>7 Usern</b> und mit <b>777 Megabyte</b> Speicherplatz.<br/>
+					In wenigen Sekunden kann Ihre private Cloud zur Verfügung stehen.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="calm padding50px" id="trial-meldung" hidden style="padding-bottom: 0px;">
+	<div class="container" style="padding:0px; margin: 0 auto;">
+		<div class="row row-eq-height justify-content-md-center" style="margin:0px;">
+			<div class="col-md-6 alert" id="trial-meldung-text"></div>
+		</div>
+	</div>
+</section>
+
+{{ .Content }}
+{{ end }}

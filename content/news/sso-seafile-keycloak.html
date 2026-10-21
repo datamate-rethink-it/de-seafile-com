@@ -1,0 +1,143 @@
+---
+title: "Single Sign-On mit Seafile und Keycloak"
+slug: "sso-seafile-keycloak"
+seo_title: "Single Sign-On mit Seafile und Keycloak | Seafile"
+description: "Keycloak ist ein Open Source Identity Manager und ermöglicht Single-Sign-On im Zusammenspiel mit Seafile. Dieser Artikel beschreibt die Konfiguration."
+date: "2020-01-24T00:43:56"
+lastmod: "2025-02-21T09:07:13"
+og_image: "/wp-content/uploads/2020/01/sso-seafile-keycloak.jpg"
+beitragsbild: "/wp-content/uploads/2020/01/sso-seafile-keycloak.jpg"
+lesezeit: "7 Minuten"
+category:
+  - "anleitungen"
+autor: "Christoph Dyllick-Brenzinger"
+wp_id: 3815
+---
+<p>Seafile bietet Administratoren eine große Anzahl von Single Sign-On Authentifizierungsprotokollen. Seafile Community unterstützt neben Shibboleth und Remote User mit Kerberos auch das zunehmend beliebte OAuth2. Die Professional Edition kommen dann noch ADFS, SAML 2.0 und CAS hinzu. In diesem Artikel geht es explizit um die Einrichtung von Single Sign-On (SSO) mit der Hilfe des Identity Providers (IDP) Keycloak. Keycloak ist ein Open Source Projekt, welches federführend von Red Hat entwickelt wird und sich zum Ziel gesetzt hat, moderne Applikationen mit wenig oder sogar gar keinem Coding-Aufwand abzusichern.</p>
+
+<!--more-->
+<h2>Identity Management mit Keycloak</h2>
+<p>Neben seiner Einfachheit besticht Keycloak durch einen beeindruckenden Funktionsumfang, der auch komplexe Business-Szenarien abdeckt. Keycloak unterstützt nicht nur die Protokolle SAML und OpenID Connect, sondern ist auch kompatibel mit anderen Identity Providern und erlaubt die einfache Anbindung an weitere Identity Provider in Form eines Identity Brokerings. </p>
+
+<p>Zusätzlich bietet Keycloak die Möglichkeit, LDAP-Server und Microsoft Active Directories als Basis für die Nutzerinformationen zu verwenden. So übernimmt Keycloak dank User Federation den zentralisierte Login, während die zentrale Benutzerverwaltung in einem LDAP oder Active Directory erfolgt.</p>
+
+<p>Wer mehr über den Funktionsumfang von Keycloak erfahren will, sollte einen Blick in die <a href="" target="_blank" rel="noopener noreferrer">offizielle Dokumentation von Keycloak</a> werfen. In diesem Artikel geht es lediglich darum zu zeigen, wie einfach es ist, Seafile als eine Client-Applikation in Keycloak anzulegen.</p>
+
+<h2>Vorbereitung</h2>
+
+<p>Folgenden Voraussetzungen werden im Weitern unterstellt:</p>
+
+<ul>
+<li><strong>Seafile CE oder PE</strong> ist installiert </li>
+<li>requests_oauthlib ist auf dem Seafile Server installiert</li>
+<li><strong>Keycloak Standalone Server</strong> ist installiert </li>
+<li>Beide System können sich über das Netzwerk erreichen</li>
+<li>Sie haben SSH-Zugriff auf den Seafile Server</li>
+<li>Sie haben Zugang zur Admin Console des Keycloak Realms</li>
+<li>[optional, aber in diesem Artikel gegeben] Beide Systeme sind über eine öffentliche URL mit Let&#8217;s Encrypt Zertifikat erreichbar</li>
+</ul>
+
+<p>Wenn dies alles gegeben ist, kann es losgehen. Ansonsten finden Sie eine Videoanleitung für die Installation von Seafile auf <a href="https://www.youtube.com/watch?v=uS4c2DPZA6M" target="_blank" rel="noopener noreferrer">YouTube</a>. Die Installation von Keycloak auf Ubuntu 18.04 findet sich <a href="https://www.datamate.org/installation-keycloak-sso-ubuntu-18-04/" target="_blank" rel="noopener noreferrer">Blog des Seafile Partners datamate</a>.</p>
+
+<h2>Registrierung von Seafile als neuer Client in Keycloak</h2>
+
+<a href="/wp-content/uploads/2020/01/keycloak-existing-clients.png" data-slb-active="1" data-slb-asset="1075990731" data-slb-internal="0" data-slb-group="3815"><img fetchpriority="high" decoding="async" width="1244" height="669" src="/wp-content/uploads/2020/01/keycloak-existing-clients.png" alt="Existierende Clients in Keycloak" class="alignnone size-full wp-image-3820" srcset="/wp-content/uploads/2020/01/keycloak-existing-clients.png 1244w, /wp-content/uploads/2020/01/keycloak-existing-clients-300x161.png 300w, /wp-content/uploads/2020/01/keycloak-existing-clients-768x413.png 768w, /wp-content/uploads/2020/01/keycloak-existing-clients-1024x551.png 1024w" sizes="(max-width: 1244px) 100vw, 1244px" /></a>
+
+<p>Öffnen Sie das Webinterface von Keycloak und wählen Sie den Bereich Clients in der Hauptnavigation aus. Im Hauptfenster werden nun die aktuell existierenden Clients angezeigt. </p>
+
+<a href="/wp-content/uploads/2020/01/keycloak-add-openid-connect-client.png" data-slb-active="1" data-slb-asset="1917411473" data-slb-internal="0" data-slb-group="3815"><img decoding="async" width="1242" height="685" src="/wp-content/uploads/2020/01/keycloak-add-openid-connect-client.png" alt="Neuen Client in Keycloak hinzufügen" class="alignnone size-full wp-image-3819" srcset="/wp-content/uploads/2020/01/keycloak-add-openid-connect-client.png 1242w, /wp-content/uploads/2020/01/keycloak-add-openid-connect-client-300x165.png 300w, /wp-content/uploads/2020/01/keycloak-add-openid-connect-client-768x424.png 768w, /wp-content/uploads/2020/01/keycloak-add-openid-connect-client-1024x565.png 1024w" sizes="(max-width: 1242px) 100vw, 1242px" /></a>
+
+<p>Hier werden wir nun Seafile als neuen Client anlegen. Ein Klick auf oben rechts auf Create führt zu einem ersten Eingabeformular, in dem die Client-ID, das Client Protokoll und die Root URL des neuen Clients festgelegt werden müssen. Die Client-ID darf ein beschreibender Namen wie z.B. <i>Seafile</i> sein. Als Client Protokoll wählen Sie <i>openid-connect</i>. Im Eingabefeld für die Root URL tragen Sie schließlich die URL des Seafile Systems ein.</p>
+
+<a href="/wp-content/uploads/2020/01/keycloak-client-settings.png" data-slb-active="1" data-slb-asset="1516595468" data-slb-internal="0" data-slb-group="3815"><img decoding="async" width="1225" height="1322" src="/wp-content/uploads/2020/01/keycloak-client-settings.png" alt="Konfiguration des neuen Keycloak Clients" class="alignnone size-full wp-image-3818" srcset="/wp-content/uploads/2020/01/keycloak-client-settings.png 1225w, /wp-content/uploads/2020/01/keycloak-client-settings-278x300.png 278w, /wp-content/uploads/2020/01/keycloak-client-settings-768x829.png 768w, /wp-content/uploads/2020/01/keycloak-client-settings-949x1024.png 949w" sizes="(max-width: 1225px) 100vw, 1225px" /></a>
+
+<p>Nach einem Klick auf Save wird der neue Client angelegt und man gelangt zu den Details. In mindestens neun Tabs sind die Konfigurationseinstellungen gegliedert und erlauben eine einfache und schnelle Anpassung des neuen Seafile Clients in Keycloak.</p>
+
+<p>Im ersten Tab Settings müssen Sie die folgenden Einstellungen vornehmen:</p>
+
+<ul>
+<li>Der <i>Access Type</i> wird auf <strong>confidential</strong> geändert. Sobald man diesen Wert speichert, wird ein neuer Tab eingeblendet.</li>
+<li><i>Direct Access Grants Enabled</i> ist nicht zwingend erforderlich und kann deaktiviert werden.</li>
+<li>Die <i>Root URL</i> muss die URL des Seafile Systems sein. Dies sollte bereits richtig gefüllt sein. </li>
+<li>Bei <i>Valid Redirect URIs</i> müssen die erlaubten Rücksprungadressen definiert werden. Tragen Sie <strong>/oauth/callback/</strong> ein.</li>
+<li>Die letzte Einstellung ist die Base URL. Hier sollte <strong>/accounts/login</strong> eingetragen werden.</li>
+</ul>
+
+<a href="/wp-content/uploads/2020/01/keycloak-credentials.png" data-slb-active="1" data-slb-asset="863099525" data-slb-internal="0" data-slb-group="3815"><img loading="lazy" decoding="async" width="1240" height="676" src="/wp-content/uploads/2020/01/keycloak-credentials.png" alt="Auslesen der Zugangsdaten für den Client" class="alignnone size-full wp-image-3817" srcset="/wp-content/uploads/2020/01/keycloak-credentials.png 1240w, /wp-content/uploads/2020/01/keycloak-credentials-300x164.png 300w, /wp-content/uploads/2020/01/keycloak-credentials-768x419.png 768w, /wp-content/uploads/2020/01/keycloak-credentials-1024x558.png 1024w" sizes="auto, (max-width: 1240px) 100vw, 1240px" /></a>
+
+<p>Als nächstes wechseln Sie in den Tab Credentials und speichern das <i>Secret</i> in die Zwischenablage. Wir werden diesen Wert im nächsten Schritt bei der Konfiguration von Seafile benötigen.</p>
+
+<p>Die Werte in den anderen Tabs müssen nicht angepasst werden. Wer möchte, kann die <i>Client Scopes</i> reduzieren, so dass nur noch <strong>email, profile</strong> verwendet werden. Dies ist aber nicht zwingend notwendig.</p>
+
+<h2>Anlage eines Anwenders in Keycloak</h2>
+
+<p>Wie bereits oben beschrieben, ist Keycloak nicht zwingend das System, in dem die Anwender gespeichert und administriert werden müssen. Der Einfachheit halber, legt man jedoch für diesen Test einfach einen Testuser an. Klicken Sie dafür links auf <i>Users</i> und erzeugen  dann einen neuen Anwender. </p>
+
+<a href="/wp-content/uploads/2020/01/keycloak-new-user.png" data-slb-active="1" data-slb-asset="1856504871" data-slb-internal="0" data-slb-group="3815"><img loading="lazy" decoding="async" width="1248" height="666" src="/wp-content/uploads/2020/01/keycloak-new-user.png" alt="Ein neuer Anwender wird in Keycloak angelegt" class="alignnone size-full wp-image-3822" srcset="/wp-content/uploads/2020/01/keycloak-new-user.png 1248w, /wp-content/uploads/2020/01/keycloak-new-user-300x160.png 300w, /wp-content/uploads/2020/01/keycloak-new-user-768x410.png 768w, /wp-content/uploads/2020/01/keycloak-new-user-1024x546.png 1024w" sizes="auto, (max-width: 1248px) 100vw, 1248px" /></a>
+
+<p>Im Tab <i>Credentials</i> setzen Sie noch ein Passwort für diesen User.</p>
+
+<h2>Konfiguration von SSO in Seafile</h2>
+
+<p>Im nächsten Schritt erfolgt die Konfiguration dieses neuen Keycloak Clients in den Konfigurationsdateien von Seafile. Im <a href="https://download.seafile.com/published/seafile-manual/deploy/oauth.md" target="_blank" rel="noopener noreferrer">englischsprachigen Seafile Handbuch</a> ist die Konfiguration anhand von Github oder Google beschrieben. In diesem deutschsprachigen Video unseres Partners datamate wird gezeigt, welche Anpassungen für Microsoft Azure bzw. Office365 vorgenommen werden müssen. Analog dieser Beschreibungen müssen für Keycloak in der seahub_settings.py die folgenden Einstellungen hinzugefügt werden.</p>
+
+<pre><code>
+ENABLE_OAUTH = True
+OAUTH_ENABLE_INSECURE_TRANSPORT = True
+
+OAUTH_CLIENT_ID = "seafile"
+OAUTH_CLIENT_SECRET = "&lt;replace-with-client-secret&gt;"
+OAUTH_REDIRECT_URL = 'https://&lt;seafile-url&gt;/oauth/callback/'
+ 
+OAUTH_PROVIDER_DOMAIN   = '&lt;seafile-url-without https&gt;'
+OAUTH_AUTHORIZATION_URL = 'https://&lt;keycloak-url&gt;/auth/realms/master/protocol/openid-connect/auth'
+OAUTH_TOKEN_URL         = 'https://&lt;keycloak-url&gt;/auth/realms/master/protocol/openid-connect/token'
+OAUTH_USER_INFO_URL     = 'https://&lt;keycloak-url&gt;/auth/realms/master/protocol/openid-connect/userinfo'
+OAUTH_SCOPE = ["profile", "email"]
+OAUTH_ATTRIBUTE_MAP = {
+    "id":    (False, "not used"),
+    "name":  (False, "full name"),
+    "email": (True, "email"),
+}</code></pre>
+
+<p>Die Werte in den spitzen Klammern müssen natürlich entsprechend angepasst werden. Wenn Sie den Seafile Client in Keycloak nicht im <i>master</i>, sondern in einem anderen Realm erzeugt haben, müssen Sie auch diesen Wert drei Mal entsprechend anpassen.</p>
+
+<p>Nach diesen Änderungen muss der Seafile Server noch neu gestartet werden.</p>
+
+<h2>SSO, jetzt geht es los!</h2>
+
+<a href="/wp-content/uploads/2020/01/seafile-sso-enabled.png" data-slb-active="1" data-slb-asset="152115241" data-slb-internal="0" data-slb-group="3815"><img loading="lazy" decoding="async" width="1102" height="899" src="/wp-content/uploads/2020/01/seafile-sso-enabled.png" alt="SSO wird auf der Login Maske von Seafile angezeigt" class="alignnone size-full wp-image-3829" srcset="/wp-content/uploads/2020/01/seafile-sso-enabled.png 1102w, /wp-content/uploads/2020/01/seafile-sso-enabled-300x245.png 300w, /wp-content/uploads/2020/01/seafile-sso-enabled-768x627.png 768w, /wp-content/uploads/2020/01/seafile-sso-enabled-1024x835.png 1024w" sizes="auto, (max-width: 1102px) 100vw, 1102px" /></a>
+
+<p>Wenn Sie nun den Seafile Login aufrufen, wird unterhalb der Eingabefelder ein neuer Link <i>Single Sign-On</i> angezeigt. Einen Klick darf leitet den Besucher auf die Anmeldeseite von Keycloak um.</p>
+
+<a href="/wp-content/uploads/2020/01/keycloak-login.png" data-slb-active="1" data-slb-asset="1318965745" data-slb-internal="0" data-slb-group="3815"><img loading="lazy" decoding="async" width="1300" height="876" src="/wp-content/uploads/2020/01/keycloak-login.png" alt="Anmeldeseite von Keycloak" class="alignnone size-full wp-image-3836" srcset="/wp-content/uploads/2020/01/keycloak-login.png 1300w, /wp-content/uploads/2020/01/keycloak-login-300x202.png 300w, /wp-content/uploads/2020/01/keycloak-login-768x518.png 768w, /wp-content/uploads/2020/01/keycloak-login-1024x690.png 1024w" sizes="auto, (max-width: 1300px) 100vw, 1300px" /></a>
+
+<p>Auf dieser Login-Seite gibt der Anwender nun seine Zugangsdaten ein bzw. man testet diesen Login mit dem eben in Keycloak angelegten User. Wenn Benutzername und Passwort richtig sind, wird man wieder zurück zu Seafile geleitet und direkt eingeloggt. Sollte man noch andere Anwendung mit Keycloak verbunden haben, muss man sich in diesen Anwendungen nun nicht mehr einloggen. Die einmalige Anmeldung genügt für die Dauer der konfigurierten Session und erlaubt die Nutzung aller Anwendungen ohne erneute Authentifizierung.</p>
+
+<h2>Typische Fehler, die bei Single Sign-On auftreten können</h2>
+
+<p>Wie so häufig in der IT, können selbst kleinste Fehler in der Konfiguration verhindern, dass dieses Zusammenspiel von Seafile und Keycloak funktioniert. Die folgende Auflistung versucht die typischen Fehlerquellen mit Ursache und Lösungen zu benenen. </p>
+
+<p><strong>Fehlerbild: SSO-Link wird auf der Seafile Loginseite nicht angezeigt.</strong><br />
+Normalerweise wird dieser Link immer eingeblendet, sobald in der <i>seahub_settings.py</i> oauth aktiviert wurde. Wenn er also nicht angezeigt wird, kann dies verschiedenste Gründe haben:</p>
+<ul>
+<li>Wurde der Seafile Server wirklich neu gestartet?</li>
+<li>Ist in der SSO-Konfiguration der <i>seahub_settings.py</i> vielleicht irgendwo ein Tippfehler?</li>
+<li>Wurde die Python-Bibliothek <i>requests_oauthlib</i> eventuell nicht installiert?</li>
+</ul>
+
+<p><strong>Fehlerbild: Keycloak Login bleibt weiß oder öffnet sich nicht.</strong><br />
+Seafile öffnet einfach nur die URL, welche im Wert <i>OAUTH_AUTHORIZATION_URL</i> definiert ist. Ist dieser Wert korrekt? Läuft eventuell ein Memcache, welches neu gestartet werden muss?</p>
+
+<p><strong>Fehlerbild: Es erscheint kein Keycloak Login sondern die Fehlermeldung <i>Missing parameters: client_id</i></strong><br />
+Die Konfigurationsparameter <i>OAUTH_CLIENT_ID</i> und <i>OAUTH_CLIENT_SECRET</i> sollten überprüft werden. Anscheinend sind diese nicht richtig. Eventuell ist auch der Realm falsch.</p>
+
+<p><strong>Fehlerbild: Keycloak zeigt an <i>Invalid username or password.</i></strong><br />
+Wurde der User im richtigen Realm angelegt? Hat der User in Keycloak auch wirklich ein Passwort? Steht seine E-Mailadresse auf validiert?</p>
+
+<p><strong>Fehlerbild: Keycloak login erfolgreich, Seafile zeigt die Fehlermeldung <i>Please contact the administrator</i></strong><br />
+In diesem Fall scheint die Authentifizierung in Keycloak erfolgreich gewesen zu sein und der Browser wurde zurück zu Seafile geleitet. Dort ist aber ein Fehler aufgetreten, der von der Fehlermeldung nicht weiter spezifiziert wird. Das kann daran liegen, dass der <i>OAUTH_SCOPE</i> oder die <i>OAUTH_ATTRIBUTE_MAP</i> falsch ist. Es kann aber auch daran liegen, dass in der <i>seahub_settings.py</i> eventuell die Anlage von neuen Usern unterbunden wird. Zur Sicherheit sollte man die Werte <i>ACTIVATE_AFTER_REGISTRATION = True</i> und <i>ENABLE_SIGNUP = True</i> setzen und Seafile neu starten. Ansonsten lohnt sich ein Blick in die <i>seahub_settings.py</i> um weitere Hinweise auf den Fehler zu erhalten.</p>
+
+<h2>Seafile und Keycloak für Single Sign-On</h2>
+
+<p>Single Sign-On in Seafile im Zusammenspiel mit Keycloak ist nicht schwer einzurichten. Wenn man keine Fehler macht und sowohl Seafile als auch Keycloak zur Verfügung stehen, ist die Arbeit in weniger als 15 Minuten erledigt. Die Anwender werden dafür mit dem Komfort einer zentralen und einmaligen Anmeldung belohnt. Ich wünsche viel Spaß beim Ausprobieren.</p>

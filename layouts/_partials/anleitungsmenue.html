@@ -1,0 +1,20 @@
+{{- /* Seitenmenue der Anleitungsseiten, aus data/anleitung.yaml.
+	Im WordPress war das ein eigenes Menue, das content-manual-page.php
+	ueber wp_nav_menu geholt hat. */ -}}
+<div class="jqsticky">
+	<h2>Themenübersicht</h2>
+	<ul id="menu-seafileanleitung" class="primary-menu">
+		{{- range site.Data.anleitung.punkte }}
+		<li class="menu-item{{ if .unterpunkte }} menu-item-has-children{{ end }}{{ if eq $.RelPermalink .ziel }} current-menu-item{{ end }}"><a href="{{ .ziel }}">{{ .titel }}</a>
+			{{- with .unterpunkte }}
+			<ul class="sub-menu">
+				{{- range . }}
+				<li class="menu-item{{ if eq $.RelPermalink .ziel }} current-menu-item{{ end }}"><a href="{{ .ziel }}">{{ .titel }}</a></li>
+				{{- end }}
+			</ul>
+			{{- end }}
+		</li>
+		{{- end }}
+	</ul>
+	{{ partial "suchfeld.html" . }}
+</div>

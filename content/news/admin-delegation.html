@@ -1,0 +1,314 @@
+---
+title: "Delegation administrativer Aufgaben in hierarchischen Organisationen"
+slug: "admin-delegation"
+seo_title: "Delegation administrativer Aufgaben in hierarchischen Organisationen | Seafile"
+description: ""
+date: "2018-09-19T09:44:43"
+lastmod: "2025-02-21T09:07:16"
+og_image: "/wp-content/uploads/2018/10/seafile-delegation-administration.jpg"
+beitragsbild: "/wp-content/uploads/2018/10/seafile-delegation-administration.jpg"
+lesezeit: "9 Minuten"
+category:
+  - "funktionen"
+autor: "Christoph Dyllick-Brenzinger"
+wp_id: 695
+---
+<p>Die Vorstellung einer undurchsichtigen oder sogar doppelten Benutzerverwaltung treibt Administratoren Schweißperlen auf die Stirn &#8211; umso größer die Organisation, desto größer die Schweißperlen. Auf der einen Seite muss der administrative Aufwand minimiert werden, auf der anderen Seite möchte man verschiedene Anwendergruppen zusammenbringen bzw. voneinander trennen. Seafile bietet mit Gruppen, Bereichen, Einrichtungen und Organisationen vier unterschiedliche Strukturierungsoptionen zur dezentralen Verwaltung großer und hierarchisch-organisierter Benutzergruppen.</p>
+
+<!--more-->
+
+<p>Bei einer kleinen, flach-organisierten Benutzergruppe ist die Benutzerverwaltung in Seafile trivial. Benutzer werden über die Seafile Weboberfläche angelegt und gegebenfalls mit Administratorrechten ausgestattet. In großen Organisationen kommen weitere Komplexitätsfaktoren hinzu: Die Benutzerauthentifizierung erfolgt über existierende Verzeichnisdienste, granularer Benutzerberechtigungen werden benötigt, organisatorische Begebenheiten gilt es abzubilden, es ist eine (Teil-)Dezentralisierung der Benutzerverwaltung gewünscht, &#8230; Es macht also großen Sinn, sich vor der Einrichtung intensiv mit dem Thema Benutzerverwaltung zu beschäftigen, um Doppelspurigkeiten und administrative Sackgassen zu vermeiden.</p>
+
+<p>Seafile gibt auf die sich dabei ergebenden Fragestellungen überzeugende Antworten! Neben den verschiedenen unterstützten <a href="/ad-ldap/">Authentifizierungsmethoden</a> und seiner <a href="/support/benutzer/anleitung/seafile-server/rollen/">rollenbasierten Berechtigungsverwaltung</a> bietet Seafile mit seinen flexiblen Konfigurationsoptionen zur Strukturierung der Benutzer große Freiheitsgrade zur Delegation von Administrationsfunktionen und zur Abbildung organisatorischer Strukturen. Konkret gibt es für diese Aufgaben in Seafile vier Strukturen:</p>
+<ul>
+	<li>Organisationen</li>
+	<li>Einrichtungen</li>
+	<li>Bereiche</li>
+	<li>Gruppen</li>
+</ul>
+
+<p>Diese werden in diesem Beitrag zunächst beschrieben und dann direkt gegenübergestellt.</p>
+
+<h2>Organisationen</h2>
+<p>Organisationen sind im Sinne von Seafile separate Einheiten ohne geteilte Verantwortlichkeiten wie z.B. einer gemeinsamen Dachorganisation. Mitglieder, d.h. Seafile Benutzer einer Organisation, müssen und sollen nichts von Mitgliedern anderer Organisationen wissen.</p>
+<p>Im sogenannten <a href="https://manual.seafile.com/deploy_pro/multi_tenancy.html">Multi Tenancy</a> Betrieb von Seafile teilen sich unterschiedliche Organisationen ein System, die Benutzergruppen sind jedoch strikt voneinander isoliert (englisch: user group separation). Gegenseitige Freigaben innerhalb des Benutzerkreises der eigenen Organisation sind möglich, solche über Organisationsgrenzen hinweg sind nicht möglich. <!--In einer erweiterten Konfiguration lassen sich auch die Datenbestände isolieren (englisch: data separation).--></p>
+<p>Der Begriff Multi Tenancy stammt vom englischen Wort tenant für Mieter. Multi Tenancy empfiehlt sich insbesondere für Webservice Provider, die mit einer Seafile Instanz mehrere Geschäftskunden Seafiles Filesharing Funktionen zur Verfügung stellen möchten.</p>
+<p>Jeder Tenant, d.h. jede Organisation hat ein ihr zugewiesenes Speicher- und Benutzerkontingent sowie einen eigenen Administrator, den sogenannten Organisationsadministrator (Org-Admininstrator). Der Organisationsadmininstrator, der bei Anlage einer Organisation festgelegt wird, kann im Rahmen der Kontingente der Organisation selbständig die Benutzer der Organisation verwalten.</p>
+
+<img style="borderline: blue;"src="/wp-content/uploads/2018/09/Multi_Tenant_Administration_Seafile.png" alt="Verwaltung von Organisationen über das Seafile Webinterface Seahub" width="1089" class="alignnone size-full wp-image-1294" srcset="/wp-content/uploads/2018/09/Multi_Tenant_Administration_Seafile.png 1089w, /wp-content/uploads/2018/09/Multi_Tenant_Administration_Seafile-300x164.png 300w, /wp-content/uploads/2018/09/Multi_Tenant_Administration_Seafile-768x420.png 768w, /wp-content/uploads/2018/09/Multi_Tenant_Administration_Seafile-1024x560.png 1024w" sizes="(max-width: 1089px) 100vw, 1089px" />
+
+<p>Der Telekommunikationsanbieter Witcom aus der hessischen Landeshauptstadt Wiesbaden nutzt Multi Tenancy für sein Produktangebot <a href="https://www.witcom.de/geschaeftskunden/datacenter/syncshare/">Sync&#038;Share</a>. Eine Buchung des Produkts durch einen Kunden läuft dann vereinfacht wie  folgt ab:</p>
+<ol>
+	<li>Die Beispiel GmbH bucht bei Witcom das Produkt Sync&#038;Share.</li>
+	<li>Witcom legt die Organisation Beispiel GmbH mit dem Org-Administrator mustermann@beispiel-gmbh.de an.</li>
+	<li>Witcom teilt der Beispiel GmbH ein Benutzerlimit und eine Speicherquota in gewünschter Höhe zu.</li>
+	<li>Herr Mustermann als Org-Admin legt selbständig weitere Benutzer in Seafile an.</li>
+	<li>Herr Mustermann kann durch Anlage weiterer Org-Administratoren Verantwortlichkeiten delegieren.</li>
+</ol>
+
+<p>Traditionelle Preismodelle auf Basis von lizenzierten Nutzern oder zugewiesenem Speichervolumen lassen sich in Seafile genauso abbilden wie nutzungsabhängige oder kombinierte Preismodelle. Der genutzte Speicherplatz lässt sich beispielsweise in regelmäßigen Abständen per API abfragen und als Preisfaktor berücksichtigen. Mehr zu Seafiles API und dessen Fähigkeiten finden Sie im Artikel <a href="/api/">Seafile Integration per API</a>.</p>
+
+<h2>Einrichtungen</h2>
+<p>Einrichtungen versteht Seafile als separate Einheiten mit einem sie verbindenden Element wie z.B. einer gemeinsamen Trägerschaft. Universitäten in einem Bundesland sind Beispiele für Einrichtungen im Sinne von Seafile. In einer solchen Konstellation dürfen und sollen die Mitglieder der Einrichtungen voneinander Kenntnis haben, ermöglicht dies ja erst die einfache Zusammenarbeit.</p>
+<p>Anders als bei Multi Tenancy findet bei der Nutzung von <a href="https://manual.seafile.com/deploy_pro/multi_institutions.html">Multi Institutions</a> keine strikte organisatorische Trennung der Benutzer statt. Jeder Benutzer gehört zwar zu einer Einrichtung, die Einrichtungsgrenzen sind aber transparent und stellen kein Hindernis dar. Gegenseitige Freigaben über die Grenzen der Einrichtung hinweg sind daher möglich. </p>
+<p>Die Administration einer Einrichtung erfolgt normalerweise dezentral durch einen eigenen Admin, dieser Einrichtungsadmin muss bei Anlage einer Einrichtung aber nicht zwingend benannt werden. Einrichtungen haben in Seafile mit Organisationen gemeinsam, dass ihnen eine Speicherquota zugewiesen werden kann, sie also nicht mehr als eine definierte Menge an Speicherplatz benutzen können. Eine Kontingentierung der Benutzer kennt Multi Institutions jedoch nicht. Nur auf Systemebene wird die Benutzerzahl durch die Lizenzdatei begrenzt.</p>
+	
+<p>Einrichtungen kommen bisher hauptsächlich im universitäten Umfeld vor. Im Beispiel der <a href="https://seafile.rlp.net/accounts/login/?next=/">Rheinland-Pfalz-Cloud</a> (RLP-Cloud) ist jede Hochschule des 7. größten deutschen Bundeslandes wie z.B. die Johannes Gutenberg-Universität in Mainz oder die Technische Universität Kaiserslautern eine eigene Einrichtung mit eigenen Administratoren. Damit diese nicht alle Studenten händisch im System anlegen müssen, erfolgt die Anlage der User über zusätzliche Informationen während des auf <!--<a href="#">-->Shibboleth-basierenden Logins<!--</a>-->, der die Anwender direkt den richtigen Institutionen zuordnet. Die Benutzerverwaltung erfolgt somit dezentral in den jeweiligen Universitäten.</p>
+
+<p>Der organisatorische Ablauf zur Einbindung einer weiteren Hochschule würde folgendermaßen aussehen:</p>
+<ol>
+	<li>Die Universität Beispielstadt möchte der RLP-Cloud beitreten.</li>
+	<li>Ein Systemadministrator legt die neue Universität als neue Einrichtung an und teilt ihr eine Speicherquota zu.</li>
+	<li>Der Systemadministrator legt einen Einrichtungsadmin admin@uni-beispielstadt.de an.</li>
+	<li>Die Mitarbeiter und Studenten der Universität Beispielstadt können sich ab sofort bei der RLP-Cloud anmelden.</li>
+	<li>Im Rahmen der Shibboleth-Authentifizierung erkennt Seafile, dass es sich um einen Studenten der Uni Beispielstadt handelt und ordnet den Studenten der entsprechenden Einrichtung zu.</li>
+</ol>
+
+<p class="alert alert-warning">Organisationen und Einrichtungen sind vom Design her ein &#8222;public&#8220; Hosting, welches darauf ausgelegt ist, dass die Nutzer von einem eigenständigen Administrator verwaltet werden. Durch die Delegation von administrativen Rechten an Untereinheiten ermöglichen Multi Tenancy und Multi Institutions eine weitgehende Dezentralisierung der Benutzerverwaltung.</p>
+
+<h2>Bereiche</h2>
+<p>In Seafile sind Bereiche Strukturen, die &#8211; anders als Organisationen und Einrichtungen &#8211; neben ihren Administratoren und Benutzern auch ihre eigenen Bibliotheken besitzen. Damit helfen Bereiche in Seafile zum einen dabei, Organisationsstrukturen und -hierarchien von Organisationen abzubilden. Darüber hinaus haben sie noch zwei administrative Funktionen:</p>
+	<ul>
+		<li>Bereiche haben ihre eigene Speicherquota und Bereichsadministratoren verwalten innerhalb ihrer eigenen Speicherkontingente die Datenstrukturen selbst.</li>
+		<li>Jedes Mitglied eines Bereichs hat Zugriff auf Bibliotheken des Bereichs. Gruppenbibliotheken sind damit unabhängig vom &#8211; häufig unsteten &#8211; Schicksal der Bereichsmitglieder.</li>
+	</ul>
+<p>Bereiche sind sowohl in einer Multi Tenancy als auch in einer Multi Institutions Konfiguration möglich. Die Verwaltung der Bereiche kann ohne weitere Voraussetzungen durch einen Administrator manuell über das Seafile Webinterface <a href="/support/benutzer/anleitung/">Seahub</a> erfolgen. Typischerweise erfolgt jedoch eine Übernahme der Hierarchie aus einem existierenden Active Directory (AD) oder LDAP-Verzeichnis per <a href="/zentrale-benutzerverwaltung-ad-ldap-integration/">AD/LDAP-Sync</a>. So werden die Mitarbeiter direkt ihrem Bereich zugeordnet und erhalten Zugriff auf die für sie relevanten Bibliotheken. Bereiche haben kein eigenes User-Limit, jedoch kann der Systemadmin eine maximale Speicherbelegung festlegen.</p>
+
+<img decoding="async" src="/wp-content/uploads/2018/09/Multi_Department_Administration_Seafile.png" alt="Verwaltung von Bereichen über das Seafile Webinterface Seahub" width="1108" class="alignnone size-full wp-image-1296" srcset="/wp-content/uploads/2018/09/Multi_Department_Administration_Seafile.png 1108w, /wp-content/uploads/2018/09/Multi_Department_Administration_Seafile-300x182.png 300w, /wp-content/uploads/2018/09/Multi_Department_Administration_Seafile-768x467.png 768w, /wp-content/uploads/2018/09/Multi_Department_Administration_Seafile-1024x623.png 1024w" sizes="(max-width: 1108px) 100vw, 1108px" />
+
+<p>Die fiktive mittelständische Beispiel GmbH verwendet im gesamten Unternehmen Seafile als zentrale Datenspeicherlösung und Dateiaustauschplattform. Mit Einführung von Seafile wurde vereinbart, dass jeder Unternehmensbereich seine Ordnerstruktur und Inhalte selbständig pflegt. Mit der Einstellung eines neuen Mitarbeiters läuft der folgende Prozess ab:
+	
+<ol>
+	<li>Der neue Mitarbeiter wird im Active Directory angelegt und einem Firmenbereich zugeordnet.</li>
+	<li>Die AD-Synchronisation legt den Mitarbeiter in der Seafile Benutzerdatenbank an und macht ihn zum Mitglied seines Bereiches.</li>
+	<li>Der Bereichsadministrator kann den Zugriff auf Bibliotheken auf nur-Lesen einschränken.</li>
+	<li>Mit seinem ersten Seafile Login hat der neue Mitarbeiter ohne weitere Maßnahmen Zugriff auf alle für ihn relevanten Dateien und Ordner.</li>
+	<li>Freigaben privater Bibliotheken an Bereichskollegen oder an andere Mitarbeiter sind möglich.</li>
+</ol>
+
+<h2>Gruppen</h2>
+</p><p>Gruppen sind die einfachste organisatorische Sturkutureinheit in Seafile. Eine Gruppe besteht aus einer beliebigen Anzahl von Benutzern und Administratoren und kann sowohl von jedem User als auch zentral von einem Administrator angelegt werden. Gruppen sind sowohl in Multi Tenancy als auch in Multi Institutions Umgebungen möglich. Der wichtigste Vorteil von Gruppen liegt im einfacheren Handling von Freigaben und Datenstrukturen für die Anwender einer Gruppe. So lässt sich mittels Gruppen ganz einfach sicherstellen, dass jedem Gruppenmitglied gewisse Inhalte zur Verfügung stehen.</p> 
+
+<p>Gruppen unterscheiden sich von Bereichen dahingehend, dass sie von jedem Anwender eigenständig angelegt werden können und ihnen keine Speicherquota zugewiesen werden kann. Auch können sie keine Untergruppen und keine eigenen Bibliotheken besitzen. Gruppen sind somit am ehesten dafür geeignet, eine Gruppe von Anwendern zusammenzufassen, um an diesen Personenkreis schnell und einfach Freigaben zu erteilen. Umfangreiche Ordnerstrukturen sollte man keiner Gruppe, sondern lieber einem Bereich zuordnen.</p> 
+
+<p class="alert alert-warning">Bereiche und Gruppen erleichtern die Verwaltung von Benutern innerhalb einer Seafile Installation &#8211; mit oder ohne Multi Tenancy / Multi Institutions.</p>
+
+<h2>Vergleich von Seafiles Benutzerstrukturen</h2>
+<p>Aufgrund ihrer individuelle Vor- und Nachteile haben Seafiles Benutzerstrukturen typische Anwendungsfälle. Drei exemplarische Anwendungsfälle wurden oben beschrieben.</p>
+<p>Andererseits haben Gruppen, Bereiche, Einrichtungen und Organisationen auch überlappende Eigenschaften und können sich in ähnlichem Maße für bestimmte Nutzungen eignen. Insbesondere mit Hinblick auf die Möglichkeiten zur Dezentralisierung der Benutzerverwaltung sind Bereiche, Einrichtungen und Organisationen ähnlich.</p> 
+<p>Als Entscheidungshilfe fasst die nachfolgende Tabelle die zentralen Eigenschaften von Seafiles vier Benutzerstrukturen zusammen und stellt sie gegenüber.</p>
+
+<table style="border-collapse: collapse; width: 100%;" border="1" class="table table-striped">
+	<thead>
+	<tr class="th-center">
+		<th style="width: 40%;">&nbsp;</th>
+		<th style="width: 15%;">Gruppen</th>
+		<th style="width: 15%;">Bereiche</th>
+		<th style="width: 15%;">Einrichtungen</th>
+		<th style="width: 15%;">Organisationen</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td>Eigene(r) Administrator(en)</td>
+		<td><span class="no"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+	</tr>		
+	<tr>
+		<td>Eigene Speicherquota</td>
+		<td><span class="no"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+	</tr>		
+	<tr>
+		<td>Eigenes Benutzerlimit</td>
+		<td><span class="no"></span></td>
+		<td><span class="no"></span></td>
+		<td><span class="no"></span></td>
+		<td><span class="yes"></span></td>
+	</tr>
+	<tr>
+		<td>Eigene Bibliothek(en)</td>
+		<td><span class="no"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="no"></span></td>
+		<td><span class="no"></span></td>
+	</tr>
+	<tr>
+		<td><b>Freigaben</b></td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>		
+	<tr>
+		<td>Freigabe an andere Mitglieder</td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+	</tr>
+	<tr>
+		<td>Freigabe an alle Benutzer im System</td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="no"></span></td>
+	</tr>
+	<tr>
+		<td><b>Externe Authentifizierung</b></td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>Benutzerauthentifizierung mit AD/LDAP</td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="no"></span></td>
+		<td><span class="no"></span></td>
+	</tr>
+	<tr>
+		<td>Benutzeranlage per Shibboleth</td>
+		<td><span class="no"></span></td>
+		<td><span class="no"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="no"></span></td>
+	</tr>
+	</tbody>
+</table>
+
+<p>Grundsätzlich gilt auch eine Kombinierbarkeit der Strukturierungselemente. Gruppen und Bereiche koexistieren in Seafile Systemen für eine Organisation ebenso wie in Multi Tenent und Multi Institutions Systemen. Alleine die Kombination von Multi Institutions und Multi Tenancy schliesst sich gegenseitig aus.</p>
+
+<h2>Kompatibilität von Benutzerstrukturen und Funktionen</h2>
+<p>Die Nutzung von Seafiles Möglichkeiten zur Benutzerstrukturierung steht grundsätzlich in keiner Konkurrenz zur Nutzung der erweiterten Funktionen von Seafile. Nur einige Funktionen stehen aus gutem Grund in bestimmten Konstellationen nicht zur Verfügung.</p>
+<p>Völlig unabhängig von der Wahl der Benutzerstrukturen sind häufig genutzte Funktionen wie die Integration eines Online Editors, die 2-Faktor Authentifizierung, die Rollenverwaltung und die WebDAV-Schnittstelle. Generell lässt sich auch festhalten, dass Gruppen und Bereiche völlig ohne Funktionseinschränkungen genutzt werden können. </p>
+<p>Bei Organisationen und Einrichtungen muss man lediglich berücksichtigen, dass es nicht sinnhaft ist, dass sich Anwender selbst registrieren bzw. selbst Gäste einladen können. Die Verwendung unterschiedlicher Backends wird aktuell nicht im Multi Tenancy Modus unterstützt. Eine umfangreiche Übersicht finden Sie in der folgenden Tabelle.</p>
+
+<table style="border-collapse: collapse; width: 100%;" border="1" class="table table-striped">
+	<thead>
+	<tr class="th-center">
+		<th style="width: 40%;">&nbsp;</th>
+		<th style="width: 15%;">Gruppen</th>
+		<th style="width: 15%;">Bereiche</th>
+		<th style="width: 15%;">Einrichtungen</th>
+		<th style="width: 15%;">Organisationen</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td><b>Benutzerverwaltung</b></td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>Gäste-Accounts</td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="no"></span></td>
+		<td><span class="no"></span></td>
+	</tr>
+	<tr>
+		<td>Rollenverwaltung</td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+	</tr>
+	<tr>
+		<td>Selbstregistrierung</td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="no"></span></td>
+		<td><span class="no"></span></td>
+	</tr>
+	<tr>
+		<td><b>Bibliotheken</b></td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>Verschlüsselte Bibliotheken</td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+	</tr>
+	<tr>
+		<td>Organisationsbibliotheken</td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="no"></span></td>
+		<td><span class="no"></span></td>
+	</tr>
+	<tr>
+		<td><b>Sicherheit</b></td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>2-Faktor Authentifizierung</td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+	</tr>
+	<tr>
+		<td>Passwort Policy</td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+	</tr>
+	<tr>
+		<td>Fernlöschung</td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+	</tr>
+	<tr>
+		<td><b>Integrationen</b></td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>Online Editor Integration</td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+	</tr>
+	<tr>
+		<td>Multiple Storage Backends</td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="no"></span></td>
+	</tr>
+	<tr>
+		<td>WebDAV-Schnittstelle</td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+		<td><span class="yes"></span></td>
+	</tr>
+	</tbody>
+</table>
+
+
+<h2>Leistungsfähigste Benutzerverwaltung am Markt</h2>
+<p>Die flexiblen Möglichkeiten zur hierarchischen Benutzerstrukturierung und Dezentralisierung von Administrationsaufgaben zeichnen Seafile aus. In Kombination mit AD/LDAP-Unterstützung, Shibboleth-Authentifizierung, rollenbasiertes Berechtigungsmanagement und Gast-Funktionen ist die Benutzerverwaltung von Seafile so leistungsfähig und vielseitig wie keine andere Sync &#038; Share Lösung.</p>
+<p>Sie wollen mehr erfahren, wie Sie Seafile in und für Ihr Unternehmen einsetzen können?<br /> Sprechen Sie uns an: +49 (0)6131 3270777.</p>

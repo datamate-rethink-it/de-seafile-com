@@ -1,0 +1,5 @@
+{{- /* "13. Mai 2025" - das Format d. F Y aus dem alten Theme. Der Tag ist
+	dort zweistellig aufgefuellt. Hugos time.Format uebersetzt die
+	Monatsnamen nicht, darum die Liste. */ -}}
+{{- $monate := slice "Januar" "Februar" "März" "April" "Mai" "Juni" "Juli" "August" "September" "Oktober" "November" "Dezember" -}}
+{{- printf "%02d. %s %d" .Day (index $monate (sub .Month 1)) .Year -}}

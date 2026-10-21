@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="de">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="theme-color" content="#FFA10F"/>
+	<link rel="manifest" href="https://de.seafile.com/wp-content/themes/seafileger/manifest.json">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<meta http-equiv="language" content="DE">
+	<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	
+	<!-- This site is optimized with the Yoast SEO plugin v25.1 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>Seafile Server sicher sichern | Seafile</title>
+	<meta name="description" content="Seafile bietet zwei Backupmethoden an: Neben der Vollsicherung gibt es noch den Real-Time Backup Server, durch den die Downtime minimiert wird." />
+	<link rel="canonical" href="https://de.seafile.com/seafile-backup/" />
+	<meta property="og:locale" content="de_DE" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Seafile Server sicher sichern | Seafile" />
+	<meta property="og:description" content="Seafile bietet zwei Backupmethoden an: Neben der Vollsicherung gibt es noch den Real-Time Backup Server, durch den die Downtime minimiert wird." />
+	<meta property="og:url" content="https://de.seafile.com/seafile-backup/" />
+	<meta property="og:site_name" content="Seafile" />
+	<meta property="article:published_time" content="2019-03-19T22:16:42+00:00" />
+	<meta property="article:modified_time" content="2025-02-21T08:07:14+00:00" />
+	<meta property="og:image" content="https://de.seafile.com/wp-content/uploads/2019/03/seafile-real-time-backup.jpg" />
+	<meta property="og:image:width" content="2000" />
+	<meta property="og:image:height" content="980" />
+	<meta property="og:image:type" content="image/jpeg" />
+	<meta name="author" content="Christoph Dyllick-Brenzinger" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:label1" content="Verfasst von" />
+	<meta name="twitter:data1" content="Christoph Dyllick-Brenzinger" />
+	<meta name="twitter:label2" content="Geschätzte Lesezeit" />
+	<meta name="twitter:data2" content="6 Minuten" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://de.seafile.com/seafile-backup/","url":"https://de.seafile.com/seafile-backup/","name":"Seafile Server sicher sichern | Seafile","isPartOf":{"@id":"https://de.seafile.com/#website"},"primaryImageOfPage":{"@id":"https://de.seafile.com/seafile-backup/#primaryimage"},"image":{"@id":"https://de.seafile.com/seafile-backup/#primaryimage"},"thumbnailUrl":"https://de.seafile.com/wp-content/uploads/2019/03/seafile-real-time-backup.jpg","datePublished":"2019-03-19T22:16:42+00:00","dateModified":"2025-02-21T08:07:14+00:00","author":{"@id":"https://de.seafile.com/#/schema/person/de4e7d0d19df316762ea3ddbb385da67"},"description":"Seafile bietet zwei Backupmethoden an: Neben der Vollsicherung gibt es noch den Real-Time Backup Server, durch den die Downtime minimiert wird.","breadcrumb":{"@id":"https://de.seafile.com/seafile-backup/#breadcrumb"},"inLanguage":"de","potentialAction":[{"@type":"ReadAction","target":["https://de.seafile.com/seafile-backup/"]}]},{"@type":"ImageObject","inLanguage":"de","@id":"https://de.seafile.com/seafile-backup/#primaryimage","url":"https://de.seafile.com/wp-content/uploads/2019/03/seafile-real-time-backup.jpg","contentUrl":"https://de.seafile.com/wp-content/uploads/2019/03/seafile-real-time-backup.jpg","width":2000,"height":980},{"@type":"BreadcrumbList","@id":"https://de.seafile.com/seafile-backup/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://de.seafile.com/"},{"@type":"ListItem","position":2,"name":"News","item":"https://de.seafile.com/news/"},{"@type":"ListItem","position":3,"name":"Seafile Server sicher sichern"}]},{"@type":"WebSite","@id":"https://de.seafile.com/#website","url":"https://de.seafile.com/","name":"Seafile","description":"Welcome to the German Seafile Website","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://de.seafile.com/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"de"},{"@type":"Person","@id":"https://de.seafile.com/#/schema/person/de4e7d0d19df316762ea3ddbb385da67","name":"Christoph Dyllick-Brenzinger","image":{"@type":"ImageObject","inLanguage":"de","@id":"https://de.seafile.com/#/schema/person/image/","url":"https://secure.gravatar.com/avatar/8397d8fc1e7a3db138e7260a7234f9c6df8fd489306d5eca8c7fe81c17f55cf2?s=96&d=mm&r=g","contentUrl":"https://secure.gravatar.com/avatar/8397d8fc1e7a3db138e7260a7234f9c6df8fd489306d5eca8c7fe81c17f55cf2?s=96&d=mm&r=g","caption":"Christoph Dyllick-Brenzinger"},"url":"https://de.seafile.com/author/cdb/"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel="alternate" type="application/rss+xml" title="Seafile &raquo; Feed" href="https://de.seafile.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Seafile &raquo; Kommentar-Feed" href="https://de.seafile.com/comments/feed/" />
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16.0.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16.0.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/de.seafile.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=ada5b926b2d0e9637ab2e984f9c51c4f"}};
+/*! This file is auto-generated */
+!function(s,n){var o,i,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),a=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===a[t]})}function u(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);for(var n=e.getImageData(16,16,1,1),a=0;a<n.data.length;a++)if(0!==n.data[a])return!1;return!0}function f(e,t,n,a){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!a(e,"\ud83e\udedf")}return!1}function g(e,t,n,a){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):s.createElement("canvas"),o=r.getContext("2d",{willReadFrequently:!0}),i=(o.textBaseline="top",o.font="600 32px Arial",{});return e.forEach(function(e){i[e]=t(o,e,n,a)}),i}function t(e){var t=s.createElement("script");t.src=e,t.defer=!0,s.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",i=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){s.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+g.toString()+"("+[JSON.stringify(i),f.toString(),p.toString(),u.toString()].join(",")+"));",a=new Blob([e],{type:"text/javascript"}),r=new Worker(URL.createObjectURL(a),{name:"wpTestEmojiSupports"});return void(r.onmessage=function(e){c(n=e.data),r.terminate(),t(n)})}catch(e){}c(n=g(i,f,p,u))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='https://de.seafile.com/wp-includes/css/dist/block-library/style.min.css?ver=ada5b926b2d0e9637ab2e984f9c51c4f' type='text/css' media='all' />
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='seafileger-style-css' href='https://de.seafile.com/wp-content/themes/seafileger/style.css?ver=ada5b926b2d0e9637ab2e984f9c51c4f' type='text/css' media='all' />
+<link rel='stylesheet' id='slb_core-css' href='https://de.seafile.com/wp-content/plugins/simple-lightbox/client/css/app.css?ver=2.8.1' type='text/css' media='all' />
+<link rel='stylesheet' id='cookie-notice-front-css' href='https://de.seafile.com/wp-content/plugins/cookie-notice/includes/../css/front.min.css?ver=ada5b926b2d0e9637ab2e984f9c51c4f' type='text/css' media='all' />
+<script type="text/javascript" id="cookie-notice-front-js-extra">
+/* <![CDATA[ */
+var cnArgs = {"ajaxUrl":"https:\/\/de.seafile.com\/wp-admin\/admin-ajax.php","nonce":"8230521465","hideEffect":"fade","position":"bottom","onScroll":"0","onScrollOffset":"100","onClick":"0","cookieName":"cookie_notice_accepted","cookieTime":"2592000","cookieTimeRejected":"2592000","cookiePath":"\/","cookieDomain":"","redirection":"0","cache":"0","refuse":"0","revokeCookies":"0","revokeCookiesOpt":"automatic","secure":"1"};
+/* ]]> */
+</script>
+<script async type="text/javascript" src="https://de.seafile.com/wp-content/plugins/cookie-notice/includes/../js/front.min.js?ver=2.2.3" id="cookie-notice-front-js"></script>
+<link rel="https://api.w.org/" href="https://de.seafile.com/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://de.seafile.com/wp-json/wp/v2/posts/2812" /><link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://de.seafile.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fde.seafile.com%2Fseafile-backup%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://de.seafile.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fde.seafile.com%2Fseafile-backup%2F&#038;format=xml" />
+<!-- Analytics by WP Statistics - https://wp-statistics.com -->
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style><link rel="icon" href="https://de.seafile.com/wp-content/uploads/2018/12/cropped-favicon-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://de.seafile.com/wp-content/uploads/2018/12/cropped-favicon-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://de.seafile.com/wp-content/uploads/2018/12/cropped-favicon-180x180.png" />
+<meta name="msapplication-TileImage" content="https://de.seafile.com/wp-content/uploads/2018/12/cropped-favicon-270x270.png" />
+	
+	<link rel="stylesheet" media="screen" type="text/css" href="https://de.seafile.com/wp-content/themes/seafileger/css/bootstrap.min.css">
+  <!--<link rel="stylesheet" media="screen" type="text/css" href="https://de.seafile.com/wp-content/themes/seafileger/css/animations.css">-->
+	<link rel="stylesheet" media="screen" type="text/css" href="https://de.seafile.com/wp-content/themes/seafileger/css/template.min.css">
+	<link rel="stylesheet" media="screen" type="text/css" href="https://de.seafile.com/wp-content/themes/seafileger/css/lightbox.min.css">
+	<link rel="stylesheet" media="print" type="text/css" href="https://de.seafile.com/wp-content/themes/seafileger/css/print.min.css">
+	<!--[if lte IE 9]>
+    <link href='https://de.seafile.com/wp-content/themes/seafileger/css/animations-ie-fix.css' rel='stylesheet'>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+<body class="">
+<!--<img width="330" id="logomobi" alt="Seafile Menu Logo" src="https://de.seafile.com/wp-content/themes/seafileger/img/svg/seafile_logo_proposed.svg"/>-->
+<nav id="navbar" class="navbar navbar-expand-lg sticky-top navbar-light">
+	<div class="container">
+		<a class="navbar-brand" href="https://de.seafile.com"><img width="130" alt="Seafile Menu Logo" src="https://de.seafile.com/wp-content/themes/seafileger/img/svg/seafile_logo_proposed.svg"/></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse ml-auto" id="navbarNavDropdown">
+			<div class="ml-auto"><div class="menu-hauptmenue-container"><ul id="primary-menu" class="navbar-nav nav"><li class="nav-item menu-item menu-item-type-post_type menu-item-object-page"><a class="nav-link hvr-underline-reveal"  href="https://de.seafile.com/get-seafile/">Get Seafile</a> </li>
+<li class="nav-item menu-item menu-item-type-post_type menu-item-object-page"><a class="nav-link hvr-underline-reveal"  href="https://de.seafile.com/tour/">Tour</a> </li>
+<li class="nav-item menu-item menu-item-type-post_type menu-item-object-page current_page_parent"><a class="nav-link hvr-underline-reveal"  href="https://de.seafile.com/news/">News</a> </li>
+<li class="nav-item menu-item menu-item-type-post_type menu-item-object-page"><a class="nav-link hvr-underline-reveal"  href="https://de.seafile.com/support/">Support</a> </li>
+<li class="nav-item menu-item menu-item-type-post_type menu-item-object-page"><a class="nav-link hvr-underline-reveal"  href="https://de.seafile.com/trial/">Trial</a> </li>
+</ul></div>		</div>
+		</div>
+	</div>
+</nav>
+
+<section id="intro-teaser">
+	<div class="block small animatedParent">
+		<img src="https://de.seafile.com/wp-content/uploads/2019/03/seafile-real-time-backup.jpg" style="width: 100vmax;z-index: -1;position: absolute;top: 0;left: 50%;transform: translate(-50%,-42%);pointer-events: none;">
+			<div class="container animated fadeInLeftShort delay-500">
+				<div class="row">
+					<div class="col-md-12">
+											</div>
+				</div>
+			</div>
+	</div>
+</section>
+<div class="container">
+		<div class="col-md-9 col-sm-12 m-auto">
+		
+
+
+
+
+
+
+			<h1 class="entry-title">Seafile Server sicher sichern</h1>			<p>
+				<p>Damit Sie Ihre Daten nicht nur einfach mit anderen teilen und bequem zwischen Geräten synchronisieren, sondern auch darauf vertrauen können, dass Ihre Daten in Seafile ganz sicher sind, unterstützt Seafile verschiedene Backup Methoden. So können auch massive Ausfälle und Schäden Ihren Daten nichts anhaben. In diesem Artikel wird die Vollsicherung von Seafile und die Einsatzmöglichkeiten des Real-Time Backup Servers vorgestellt.</p>
+
+<span id="more-2812"></span>
+<h2>Rolle von Backups in Seafile</h2>
+<p>Die Wiederherstellung von Dateien aus einem Backup ist bei Seafile die Ausnahme. Wurde ein Ordner/eine Datei irrtümlicherweise gelöscht oder Daten bei einem Angriff von Schadsoftware vernichtet, dann ist die <a href="/versionierung/">Dateiversionierung und Snapshotfunktion</a> von Seafile der erste Anlaufpunkt. Mit ihr lassen sich &#8211; von jedem Benutzer, unabhängig vom Administrator &#8211; <a hre="/support/benutzer/anleitung/seahub/fruehere-dateiversionen-wiederherstellen/">frühere Datenbestände wiederherstellen</a>. Weder muss man dazu ein Backup anlegen noch ein erstelltes Backup zeitaufwändig nach den verloren gegangenen Daten durchsuchen.</p>
+<p>Backups kommen bei Seafile nur in Fällen zum Einsatz, in denen die Datenbank oder der Speicher massiv beschädigt wurden. Solche Schäden treten bei verantwortungsvoller Systemkonfiguration nur bei Großschadensereignissen auf. Neben Naturereignissen sind dies Brand, Überspannung, Diebstahl und andere. In einem solchen Fall hilft auch Seafiles Dateihistorie nichts mehr.</p>
+<p>Der Datenbestand von Seafile lässt sich auf verschiedene Art und Weise sichern. Die regelmäßige Vollsicherung ist ein einfach auszuführendes Backup Verfahren und stellt keine großen Anforderungen. Sie kann aber aufgrund ihrer Funktionsweise einen partiellen Datenverlust nicht komplett verhindern. Das Real-Time Backup bietet höchsten Schutz für Ihre Daten, stellt aber  höhere Anforderungen.
+
+<h2>Regelmäßige Vollsicherung von Seafile</h2>
+</p><p>Bei diesem Backup werden die für Seafile relevanten Datenbanktabellen, der Blockspeicher sowie der Konfigurationsordner in regelmäßigen Abständen &#8211; manuell oder automatisiert &#8211; auf einen Sicherungsdatenträger kopiert. Aus diesen Daten lässt sich das gesicherte System mit überschaubarem Aufwand auf neuer Hardware vollständig wiederherstellen. Um das Schutzniveau zu erhöhen, lassen sich auch Backups auf unterschiedliche Sicherungsdatenträger mittels Vollbackup realisieren. Unabhängig von der Anzahl der verwendeten Sicherungsdatenträger sollten diese immer räumlich getrennt von Seafile aufbewahrt werden. Ansonsten droht im Schadensfall beiden das selbe Schicksal.</p>
+
+<p>Eine Vollsicherung schützt zuverlässig vor dem Komplettverlust der Daten. Auch lässt sich gut kontrollieren, ob das Backup erfolgreich war. In ein Testsystem importiert, lässt sich die Vollständigkeit des Datenbestandes und die korrekte Funktion einfach prüfen. Nachteile sind: Da die Daten in Seafile in definierten Intervallen und nicht fortlaufend gesichert werden, ist nur der Datenbestand zum Zeitpunkt des letzten Sicherungslauf vor Verlust geschützt. Liegt das letzte Backup Tage zurück, dann müssen die Dateiänderungen seitdem abgeschrieben werden. Ein weiterer Nachteil ist, dass die Wiederherstellung eine gewisse Zeit benötigt. Umso größer der Datenbestand, desto länger dauert die Wiederherstellung. Organisationen, die ihre Downtime minimieren müssen, sollten sich daher den zweiten Backupansatz genau anschauen. Er begegnet beiden Schwächen.</p>
+
+<h2>Seafile Real-Time Backup Server</h2>
+<p>Die Idee hinter diesem Backup Ansatz ist bestechend einfach: Man repliziert den Datenbestand des produktiven Seafile Systems fortlaufend auf einen zweiten Server und erstellt somit eine Kopie des Hauptsystems. Fällt das Produktivsystem aus, dient der Backup Server als Ersatzsystem &#8211; mit vollständigem Datenbestand und allen Funktionen des Hauptsystems.</p>
+<p>Aus technischer Perspektive ist der Backup Server damit ein Client des zu sichernden Seafile Produktivsystems. Einen wichtigen Unterschied jedoch gibt es: Beim Backup Server ist das <a href="/support/benutzer/anleitung/seahub">Webinterface Seahub</a> deaktiviert.</p>
+<p>Zur Sicherung des Datenbestandes wird &#8211; wie könnte es anders sein &#8211; Seafiles eigene zuverlässige Synchronisationstechnik verwendet. Die Authentifizierung zwischen Haupt- und Backupsytem erfolgt über einen auf beiden Systemen hinterlegten 40-stellige Security Token. </p>
+<p>Zusätzlich zu den Blockdaten werden auch die Tabellen der MySQL Datenbank, die für die Wiederherstellung der Dateien aus ihren Blöcken benötigt werden, permanent auf das Backup System synchronisiert. Alle anderen Datenbankbestandteile werden separat &#8211; manuell oder per Cronjob &#8211; gesichert und auf den Backupserver übertragen. Diese Unterteilung der Datenbank wirkt auf den ersten Blick unnötig, macht aber Sinn: Wenn in der Datenbank des Backup Servers keine User eingetragen sind, können diese sich nicht versehentlich auf dem Backup Server einloggen. Ohne hinterlegte Datenbanktabellen können vom Backup Server auch keine unerwünschten Aktivitäten wie z.B. E-Mail-Benachrichtigung getriggert werden. </p>
+
+<center><img decoding="async" src="/wp-content/uploads/2019/03/seafile_backup-1.png" alt="3nodes 1backend Diagramm"/></center>
+
+<h3>Vorteile des Real-Time Backup Servers</h3>
+<p>Der entscheidende Vorteil des Real-Time Backups ist die Minimierung des Datenverlusts. Bei halbstündlicher oder stündlicher Datensynchronisation ist der Schaden in Form von verlorenen Daten überschaubar.</p>
+<p>Das Real-Time Backup reduziert aber nicht nur den Datenverlust, sondern auch die Server Downtime: Zur Inbetriebnahme des Backup Systems als Ersatzsystem sind nur zwei Maßnahmen erforderlich: Der Import der Datenbankdumps und der Start von Seahub. Beide Aufgaben dauern nicht viel länger als ein paar Augenblicke.</p>
+<p>Auch ist die Überwachung des Real-Time Backup Servers mit wenig Aufwand möglich. Mit einem SH-Skript, ausgeführt auf dem Backup Server, lässt sich der Zustand des Servers abfragen. </p>
+
+<!-- Screenshot einfügen -->
+
+<p>Und damit sind die Möglichkeiten der Sichtprüfung noch nicht erschöpft. Theoretisch ist es möglich, eine manuelle Sichtprüfung durchzuführen, in dem man einfach Seahub startet ohne oder mit vorherigem Datenbankimport. Sämtliche Daten werden angezeigt, ggf. existiert für die Daten kein User in der Datenbank.</p>
+<img decoding="async" src="/wp-content/uploads/2019/03/daten-ohne-user-real-time-backup-server.png" alt="Anzeige der Daten eines Real-Time Backup Servers ohne vorherigen Datenbankimport"/>
+
+<p>Ein weiterer Vorteil sind die vergleichsweise geringen Hardwareanforderungen des Backup Servers. Da anders als beim regelmäßigen Vollbackup nicht wiederholt der gesamte Datenbestand kopiert wird, reicht dem Backup Server die Speicherkapazität des zu sichernden Hauptsystems. Auch sonst kann der Backup Server sparsam ausgerüstet werden, wenn vor allem die Verfügbarkeit und weniger die Performance des Notfallsystems im Vordergrund steht. So lässt sich z.B. auch ein <a href="/cluster">Seafile Cluster</a> auf einem Single-Node Seafile Server sichern. </p>
+
+<h3>Nachteile des Real-Time Backup Servers</h3>
+<p>Der Real-Time Server hat einige Stärken. Es gibt aber auch Situationen, in denen sein alleiniger Einsatz nicht geeignet ist. Muss die Unveränderbarkeit eines Backups garantiert werden, dann lässt sich dies offensichtlich mit dem Backup Server nicht erreichen. Aus Gründen der Revisionssicherheit kann dieser Backup Ansatz daher eine Nicht-Option sein. Auch ist mit dem Real time Backup kein Rücksprung zu einem früheren Systemzustand möglich. Der Backup Server enthält zwar die gesamte Dateihistorie und alle Logs des Hauptsystems, aber eben immer nur vom zuletzt gesicherten Zeitpunkt.</p>
+<p>Darüber hinaus erfordert der Backup Server regelmäßige Aufmerksamkeit im Sinne von Updates. Wird das Hauptsystem aktualisiert, dann muss das gleiche auch mit dem Backup System geschehen. Die Wartungsarbeit verdoppelt sich.</p>
+
+<center><img decoding="async" src="/wp-content/uploads/2019/03/seafile_backup_list-2.png" alt="Vorteile und Nachteile Real-Time Backup"/></center>
+
+<h2>Bester Schutz für Ihre Daten &#8211; Backup Ihrer Seafile Daten</h2>
+<p>Mit dem regelmäßigen Vollbackup und dem Realtime Backup Server bietet Seafile zwei Backup Verfahren, die für unterschiedliche Szenarien geeignet sind. Beide schützen die Daten zuverlässig vor Komplettverlust. Ersteres ist von seiner Systematik denkbar einfach in der Umsetzung. Das Real-Time Backup ist etwas aufwändiger, bietet dafür aber ein kleineres Verlustfenster und kann als vollwertiger Seafile Server unmittelbar als Ersatzsystem fungieren.</p>
+<p>Aus technischer Sicht ist der Real-Time Backup Server dem Vollbackup überlegen. Besondere Gründe können jedoch gegen seinen (exklusiven) Einsatz sprechen. Natürlich lassen sich beide Backup Methoden parallel einsetzen. So lassen sich die Vorteile beider Verfahren kombinieren.</p> 
+<p>Gerne unterstützt Sie unser deutscher Seafile Partner datamate bei Planung, Aufbau, Administration und Wartung des für Sie passenden Backups Ihres Seafile Servers.</p>
+			</p>
+
+						
+		<div>
+	</div><!-- #primary -->
+</div>
+
+	</div><!-- #content -->
+
+
+	<footer class="bg-dark text-light">
+	  <div class="container text-left">
+			<div class="row animatedParent">
+				<div class="col-md-3 col-sm-12 animated fadeIn" style="padding: 0px;">
+								<h4>Über</h4><div class="menu-about-container"><ul id="menu-about" class="menu"><li id="menu-item-890" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-890"><a href="https://seafile.com/en/home/">seafile.com</a></li>
+<li id="menu-item-2009" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2009"><a href="https://de.seafile.com/support/individueller-support/#kontakt">Kontakt</a></li>
+<li id="menu-item-888" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-888"><a href="https://de.seafile.com/impressum/">Impressum</a></li>
+<li id="menu-item-887" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-887"><a href="https://de.seafile.com/datenschutz/">Datenschutz</a></li>
+</ul></div><a href="https://de.seafile.com"><img width="100" height="58" src="https://de.seafile.com/wp-content/uploads/2018/09/seafile-300x174.png" class="image wp-image-892  attachment-100x58 size-100x58" alt="" style="max-width: 100%; height: auto;" decoding="async" loading="lazy" srcset="https://de.seafile.com/wp-content/uploads/2018/09/seafile-300x174.png 300w, https://de.seafile.com/wp-content/uploads/2018/09/seafile.png 424w" sizes="auto, (max-width: 100px) 100vw, 100px" /></a>								</div>
+				<div class="col-md-3 col-sm-12 animated fadeIn" style="padding: 0px;">
+								<h4>Vorteile</h4><div class="menu-seafilevorteile-container"><ul id="menu-seafilevorteile" class="menu"><li id="menu-item-876" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-876"><a href="https://de.seafile.com/volltextsuche/">Volltextsuche</a></li>
+<li id="menu-item-877" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-877"><a href="https://de.seafile.com/admin-delegation/">Benutzerverwaltung</a></li>
+<li id="menu-item-878" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-878"><a href="https://de.seafile.com/multiple-storage-backends/">Multiple Backends</a></li>
+<li id="menu-item-879" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-879"><a href="https://de.seafile.com/online-file-editing/">Online Collaboration</a></li>
+<li id="menu-item-880" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-880"><a href="https://de.seafile.com/cluster/">Performance Cluster</a></li>
+<li id="menu-item-881" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-881"><a href="https://de.seafile.com/api/">Integration per API</a></li>
+<li id="menu-item-882" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-882"><a href="https://de.seafile.com/ad-ldap/">AD/LDAP Integration</a></li>
+</ul></div>							</div>
+			<div class="col-md-3 col-sm-12 animated fadeIn" style="padding: 0px;">
+								<h4>Links</h4><div class="menu-quick-support-container"><ul id="menu-quick-support" class="menu"><li id="menu-item-873" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-873"><a href="https://de.seafile.com/tour/">Tour</a></li>
+<li id="menu-item-874" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-874"><a href="https://de.seafile.com/downloads/">Downloads</a></li>
+<li id="menu-item-865" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-865"><a href="https://de.seafile.com/support/">Support</a></li>
+<li id="menu-item-868" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-868"><a href="https://de.seafile.com/support/benutzer/anleitung/seafile-drive-client-1-0/">Seafile Drive Client 1.0</a></li>
+<li id="menu-item-869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-869"><a href="https://de.seafile.com/support/benutzer/anleitung/seafile-mobile-apps/">Seafile Mobile Apps</a></li>
+<li id="menu-item-871" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-871"><a href="https://de.seafile.com/support/benutzer/anleitung/seafile-sync-client/">Seafile Sync Client</a></li>
+<li id="menu-item-872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-872"><a href="https://de.seafile.com/support/benutzer/anleitung/seahub/">Seahub</a></li>
+</ul></div>							</div>
+			<div class="col-md-3 col-sm-12 animated fadeIn" style="padding: 0px;">
+								<h4>Get Seafile</h4><div class="menu-get-seafile-container"><ul id="menu-get-seafile" class="menu"><li id="menu-item-896" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-896"><a href="https://de.seafile.com/get-seafile/">Seafile Lizenzen</a></li>
+<li id="menu-item-1846" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1846"><a href="https://de.seafile.com/get-seafile/#webserver">Cloud-Installation</a></li>
+<li id="menu-item-894" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-894"><a href="http://www.datamate.org/homie">Private Home Cloud</a></li>
+<li id="menu-item-895" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-895"><a href="http://www.datamate.org/fellow">Small Business Cloud</a></li>
+<li id="menu-item-1845" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1845"><a href="https://de.seafile.com/support/individueller-support/">Individuelle Projekte</a></li>
+<li id="menu-item-2011" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2011"><a href="https://de.seafile.com/individueller-support/#kontakt">Kontakt</a></li>
+</ul></div>							</div>
+		  </div>
+			<!--<div class="row animatedParent">
+					<div class="site-info animated fadeIn text-center col-md-12">
+						<span class="sep">Copyright 2018. All Rights Reserved | </span>
+												</div>
+		  </div>-->
+		</div>
+	</footer>
+
+</div><!-- #page -->
+
+
+<script src="https://de.seafile.com/wp-content/themes/seafileger/js/jquery.min.js"></script>
+<script src="https://de.seafile.com/wp-content/themes/seafileger/js/bootstrap.min.js"></script>
+<!--<script src='https://de.seafile.com/wp-content/themes/seafileger/js/css3-animate-it.js'></script>-->
+<script src="https://de.seafile.com/wp-content/themes/seafileger/js/waypoints/jquery.waypoints.min.js"></script>
+<script src="https://de.seafile.com/wp-content/themes/seafileger/js/jquery.sticky.js"></script>
+<script src="https://de.seafile.com/wp-content/themes/seafileger/js/parallax.min.js"></script>
+<script src="https://de.seafile.com/wp-content/themes/seafileger/js/lightbox.min.js"></script>
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/seafileger\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script type="text/javascript" src="https://de.seafile.com/wp-content/themes/seafileger/js/navigation.js?ver=20151215" id="seafileger-navigation-js"></script>
+<script type="text/javascript" src="https://de.seafile.com/wp-content/themes/seafileger/js/skip-link-focus-fix.js?ver=20151215" id="seafileger-skip-link-focus-fix-js"></script>
+<script type="text/javascript" id="slb_context">/* <![CDATA[ */if ( !!window.jQuery ) {(function($){$(document).ready(function(){if ( !!window.SLB ) { {$.extend(SLB, {"context":["public","user_guest"]});} }})})(jQuery);}/* ]]> */</script>
+
+		<!-- Cookie Notice plugin v2.2.3 by Hu-manity.co https://hu-manity.co/ -->
+		<div id="cookie-notice" role="dialog" class="cookie-notice-hidden cookie-revoke-hidden cn-position-bottom" aria-label="Cookie Notice" style="background-color: rgba(255,255,255,1);"><div class="cookie-notice-container" style="color: #1e1e1e;"><span id="cn-notice-text" class="cn-text-container">Diese Website verwendet Cookies, um unsere Website zu verbessern und den Besuchern die bestmögliche Benutzererfahrung zu bieten. Durch die weitere Nutzung der Webseite stimmen Sie der Verwendung von Cookies zu.</span><span id="cn-notice-buttons" class="cn-buttons-container"><a href="#" id="cn-accept-cookie" data-cookie-set="accept" class="cn-set-cookie cn-button cn-button-custom button blue small" aria-label="OK">OK</a><a href="https://de.seafile.com/datenschutz/" target="_blank" id="cn-more-info" class="cn-more-info cn-button cn-button-custom button blue small" aria-label="Datenschutzerklärung">Datenschutzerklärung</a></span><span id="cn-close-notice" data-cookie-set="accept" class="cn-close-icon" title="Nein"></span></div>
+			
+		</div>
+		<!-- / Cookie Notice plugin --><script>
+$(document).ready(function(){
+	var jqstickyH = $(".jqsticky").height()+100,
+	viewPortH = $(window).height(),
+	viewPortW = $(window).width();
+	if (viewPortW > 1024) {
+		if (jqstickyH < viewPortH) {
+			$(".jqsticky").sticky({topSpacing:65});
+		}
+	}
+});
+
+</script>
+<script>
+$(document).ready(function(){
+
+    $(".filter-button").click(function(){
+        var value = $(this).attr('data-filter');
+        
+        if(value == "all")
+        {
+            $('.filter').show('1000');
+        }
+        else
+        {
+            $(".filter").not('.'+value).hide('3000');
+            $('.filter').filter('.'+value).show('3000');
+            
+        }
+    });
+    
+    if ($(".filter-button").removeClass("active")) {
+$(this).removeClass("active");
+}
+$(this).addClass("active");
+
+});
+</script>
+
+<script>
+$("#navbar.sub-menu").addClass('dropdown-menu');
+
+$('ul.navbar-nav li.dropdown').hover(function() {
+$(this).find('.dropdown-menu').stop(true, true).fadeIn(500);
+}, function() {
+$(this).find('.dropdown-menu').stop(true, true).fadeOut(500);
+});
+</script>
+<script type="text/javascript">
+//Change Menu class when scrolled
+$(document).ready(function(){
+	var scrollTop = 0;
+	$(window).scroll(function(){
+		scrollTop = $(window).scrollTop();
+		 $('.counter').html(scrollTop);
+
+		if (scrollTop >= 100) {
+			$('#navbar').addClass('scrolled-nav');
+		} else if (scrollTop < 100) {
+			$('#navbar').removeClass('scrolled-nav');
+		}
+
+	});
+
+});
+
+</script>
+</body>
+</html>

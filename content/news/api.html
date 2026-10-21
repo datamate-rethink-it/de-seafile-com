@@ -1,0 +1,44 @@
+---
+title: "Seafile genau wie Sie es brauchen: Integration und Anpassung per API"
+slug: "api"
+seo_title: "Seafile genau wie Sie es brauchen: Integration und Anpassung per API"
+description: "Machen Sie sich die Stärken von Seafile für Ihre eigenen Anwendungen zu Nutze. Seafiles REST API bietet dafür nahezu unbegrenzte Möglichkeiten."
+date: "2018-09-17T10:13:54"
+lastmod: "2025-02-21T09:07:16"
+og_image: "/wp-content/uploads/2018/09/seafile-api.jpg"
+beitragsbild: "/wp-content/uploads/2018/09/seafile-api.jpg"
+lesezeit: "3 Minuten"
+category:
+  - "funktionen"
+autor: "Christoph Dyllick-Brenzinger"
+wp_id: 566
+---
+<p>Mit Seafile als <a href="/file-cloud/">File Cloud</a> lassen sich große Datenmengen auf einfache Art und Weise speichern, synchronisieren und teilen. Mit seiner leistungsfähigen REST API läßt sich Seafile darüber hinaus auch als Datenquelle und Speicherziel für andere Applikationen und Web-Anwendungen nutzen.
+
+<!--more--></p>
+<h2>Unbegrenzte Möglichkeiten</h2>
+<p>Über seine API können Sie Seafile mit Hilfe standardisierter Aufrufe aus anderen Applikationen heraus ansprechen und seine Funktionen steuern. Neben den Anwenderfunktionen, die man im <a href="/support/benutzer/anleitung/seahub">Webinterface Seahub</a> findet, sind dies auch sämtliche administrative Tätigkeiten: Download- und Uploadlinks können angelegt und deaktiviert werden. Dateien lassen sich übertragen, speichern und löschen. Benutzer werden erstellt, ihre Bereichszuordnung sowie Rechte und Rollen modifiziert und ihr Benutzerkonto schließlich auch wieder aus dem System entfernt. Als REST API basiert Seafiles API auf dem HTTP-Protokoll und ist programmiersprachenunabhängig.</p>
+
+<p>Aus Entwicklersicht lassen sich mit der API die Einsatzmöglichkeiten von Seafile beliebig erweitern: Sie können z.B. Dateiuploads auf einer Webseite direkt in einer Seafile Bibliothek speichern oder in Seafile abgelegte Daten in einer existierenden Firmenapplikation zur Verfügung stellen. Die folgenden drei Beispiele sind attraktive Anwendungen der Seafile API. Die Möglichkeiten gehen aber weit darüber hinaus.</p>
+
+<h2>Custom Frontend für Individualisten</h2>
+<p>Wenn Sie das Seafile Webinterface an Ihre Corporate Design angleichen wollen, dann kommen Sie mit einem Custom CSS sehr weit: Farben, Schriftarten, Absatzformatierungen können frei geändert werden; Schaltflächen lassen sich aus- und das eigene Logo einblenden. Wenn Sie noch weiter gehen wollen, dann können Sie mit der Seafile API Ihr eigenes Seafile Webinterface entwickeln, welches sich nahtlos in jedes Design integriert und einen maßgeschneiderten Funktionsumfang bietet.</p>
+<p>Das Cockpit des <a href="https://www.datamate.org/homie">Home Servers Homie</a> und des <a href="https://www.datamate.org/fellow">Small Business Servers Fellow</a> unseres Partners datamate ist ein solches Custom Frontend. Nach der Anmeldung am datamate Cockpit bieten diese Serversysteme den vollen Zugriff auf sämtliche Seafile Daten des Anwenders. Dateien lassen sich über das Cockpit herunter- und heraufladen, Download- und Uploadlinks können angelegt und Dateikommentaren direkt im Cockpit angezeigt werden. Auch die Benutzerverwaltung von Seafile erfolgt zentral über den Adminbereich des Cockpits. Für Nutzer wird zu keinem Zeitpunkt ersichtlich, dass es Seafile ist, das es Seafile ist, das im Hintergrund die Arbeit erledigt.</p>
+
+<img fetchpriority="high" decoding="async" width="1024" height="505" src="/wp-content/uploads/2018/09/Benutzer-DateiFreigaben_1280-1024x505.png" alt="Custom Frontend für Seafile" class="alignnone size-full wp-image-571" srcset="/wp-content/uploads/2018/09/Benutzer-DateiFreigaben_1280-1024x505.png 1024w, /wp-content/uploads/2018/09/Benutzer-DateiFreigaben_1280-1024x505-300x148.png 300w, /wp-content/uploads/2018/09/Benutzer-DateiFreigaben_1280-1024x505-768x379.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" />
+
+<h2>Integration in Verwaltungs- und Abrechnungssysteme für Reseller</h2>
+
+<p>Reseller können mit der API die Verwaltung und Abrechnung von Dienstleistungen rund um Seafile in die eigenen Systeme integrieren. Die Benutzerverwaltung inkl. Anlage, Löschung und Änderung von Benutzern, Bereichen und Organisationen, die Abfrage von genutzten Speichervolumina und erfolgten Zugriffen genauso wie die Administration von Bibliotheken und Freigaben kann automatisiert per API erfolgen &#8211; ohne Interaktion mit dem Seafile Webinterface.</p>
+
+<p>Sie wollen Kunden unterschiedliche Preismodell anbieten &#8211; neben Fixpreismodellen auch solche mit Abrechnung nach effektiver Nutzung? Die Seafile API macht&#8217;s möglich! Aktive Benutzer, Speicherbelastung, Anzahl der Zugriffe und Traffic Statistiken können Sie regelmäßig abgreifen und Ihrer Abrechnung zugrunde legen.</p>
+	
+<img decoding="async" width="1032" height="728" src="/wp-content/uploads/2018/09/IntegrationVerwaltungssystem.png" alt="Integration in Verwaltungs- und Abrechnungssysteme für Reseller" class="alignnone size-full wp-image-1705" srcset="/wp-content/uploads/2018/09/IntegrationVerwaltungssystem.png 1032w, /wp-content/uploads/2018/09/IntegrationVerwaltungssystem-300x212.png 300w, /wp-content/uploads/2018/09/IntegrationVerwaltungssystem-768x542.png 768w, /wp-content/uploads/2018/09/IntegrationVerwaltungssystem-1024x722.png 1024w" sizes="(max-width: 1032px) 100vw, 1032px" />
+
+<h2>Datenspeicher für eine andere Applikation</h2>
+
+<p>Die zentrale Stärke von Seafile ist die zuverlässige und effiziente Speicherung und Verwaltung großer Datenmengen. Mit der API können Sie diese Stärke in anderen Anwendungen nutzen. Der Anwendungsentwickler kann auf dem gesamten Funktionsumfang von Seafile aufbauen und sich die Zuverlässigkeit und Schnelligkeit des Seafile Servers zu Nutze machen. Wenn Sie nicht wollen, dass die Anwender bemerken, dass Seafile die Daten speichert, dann müssen sie das auch nicht.</p>
+
+<h2>Seafile maßgeschneidert</h2>
+
+<p>Dank seiner plattform- und programmiersprachenunabhängigen Schnittstelle sind die Integrationsmöglichkeiten von Seafile grenzenlos. Egal ob individuelle Webinterfaces, automatisiert erstellte Nutzungsstatistiken oder Verknüpfungen mit anderen Systemen, auch anspruchsvolle Anforderungen sind mit Seafiles API umsetzbar. Die Seafile API ist im <a href="https://manual.seafile.com/develop/web_api_v2.1.html">englischsprachigen Seafile Manual</a> vollständig dokumentiert. Haben Sie Anforderungen, die Sie gerne mit einem Experten diskutieren möchten? Sprechen Sie uns bitte an!</p>

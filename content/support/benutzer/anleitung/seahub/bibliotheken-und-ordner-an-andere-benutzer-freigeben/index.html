@@ -1,0 +1,115 @@
+---
+title: "Bibliotheken und Ordner an andere Benutzer freigeben"
+seo_title: "Bibliotheken und Ordner an andere Benutzer freigeben | Seafile"
+description: ""
+date: "2018-09-11T14:23:50"
+lastmod: "2023-03-23T20:40:40"
+og_image: "/wp-content/uploads/2019/06/Seahub_BibliothekFreigeben_v703.png"
+lesezeit: "4 Minuten"
+handbuch: true
+wp_id: 133
+---
+<p>Wenn Sie eine Bibliothek oder einen Ordner an einen anderen Seafile Benutzer bzw. eine Gruppe freigeben, dann geben Sie diesem Benutzer bzw. den Angehörigen dieser Gruppe Zugriff auf die darinliegenden Dateien. Bei der Freigabe entscheiden Sie, mit welche Rechten Sie die berechtigten Nutzer ausstatten. Eine Freigabe kann jederzeit entzogen werden.</p>
+
+<img decoding="async" src="/wp-content/uploads/2019/06/Seahub_BibliothekFreigeben_v703.png" alt="Bibliothek freigeben"/>
+Die Freigabe einer Bibliothek und eines Ordners funktioniert auf identische Art und Weise. Bewegen Sie den Mauszeiger in die Zeile der freizugebenden Bibliothek bzw. des freizugebenden Ordners und klicken Sie dann auf das Freigabe-Icon.
+
+<img decoding="async" src="/wp-content/uploads/2019/06/Seahub_BibliothekFreigebenBenutzer_v703.png" alt="Bibliotheken an Benutzer freigeben" />
+
+<p>Im sich öffnenden Dialog wählen Sie zunächst auf der linken Seite <i>Freigabe für Benutzer</i>. Wenn Sie eine Bibliothek/Ordner an eine Gruppe freigeben wollen, dann wählen Sie stattdessen <i>Freigabe für Gruppe</i>. Der Benutzer/die Gruppe muß zum Zeitpunkt der Freigabeerteilung im System bestehen.</p>
+
+<p>Nun tragen Sie den Namen des Benutzers/der Gruppe ein. Wenn die Auto-Complete Funktion aktiviert ist, dann werden Ihnen bereits bei der Eingabe mögliche Kandidaten angezeigt. Wählen Sie den Benutzer/die Gruppe aus. Wenn Auto-Complete deaktiviert ist, dann geben Sie den vollständigen Namen ein.</p>
+
+<p>Im Dropdown <i>Berechtigung</i> auf der rechten Seite bestimmen Sie den Umfang des Zugriffsrechts. Wählen Sie die gewünschte Freigabeberechtigung aus. (Mehr zu den Freigabeberechtigungen im nachfolgenden Abschnitt.)</p>
+
+<p>Mit Klick auf <i>Absenden</i> wird die Freigabe erteilt. Der Name des berechtigten Nutzers/der Gruppe erscheint daraufhin in der Liste unterhalb des Namensfeldes. Soll eine Freigabe gelöscht werden, können Sie die Freigabe hier durch Klick auf den Mülleimer hinter dem Benutzernamen/dem Gruppennamen entfernen.</p>
+
+<h2>Freigabeberechtigungen</h2>
+<p>Seafile Server Professional Edition bietet fünf vordefinierten Freigabeberechtigungen. In Seafile Server Community Edition gibt es zwei solcher Berechtigungen. Die nachfolgende Tabelle stellt diese gegenüber. (Die beiden in Seafile Server Community Edition verfügbaren Freigabeberechtigungen sind mit * gekennzeichnet.)</p>
+<table style="border-collapse: collapse; width: 100%;" border="1" class="table table-striped">
+<thead>
+<tr class="th-center">
+<th style="width: 35%;"></th>
+<th style="width: 25%;"><strong>Online Nur Lesen</strong></th>
+<th style="width: 25%;"><strong>Online Lesen und Schreiben</strong></th>
+<th style="width: 25%;"><strong>Nur Lesen*</strong></th>
+<th style="width: 25%;"><strong>Lesen und Schreiben*</strong></th>
+<th style="width: 25%;"><strong>Administration</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="width: 25%;">Dateien öffnen</td>
+<td style="width: 25%;"><span class="yes"></span></td>
+<td style="width: 25%;"><span class="yes"></span></td>
+<td style="width: 25%;"><span class="yes"></span></td>
+<td style="width: 25%;"><span class="yes"></span></td>
+<td style="width: 25%;"><span class="yes"></span></td>
+</tr>
+<tr>
+<td style="width: 25%;">Dateien bearbeiten</td>
+<td style="width: 25%;"><span class="no"></span></td>
+<td style="width: 25%;"><span class="yes"></span></td>
+<td style="width: 25%;"><span class="no"></span></td>
+<td style="width: 25%;"><span class="yes"></span></td>
+<td style="width: 25%;"><span class="yes"></span></td>
+</tr>
+<tr>
+<td style="width: 25%;">Dateien herunterladen bzw. synchronisieren</td>
+<td style="width: 25%;"><span class="no"></span></td>
+<td style="width: 25%;"><span class="no"></span></td>
+<td style="width: 25%;"><span class="yes"></span></td>
+<td style="width: 25%;"><span class="yes"></span></td>
+<td style="width: 25%;"><span class="yes"></span></td>
+</tr>
+<tr>
+<td style="width: 25%;">Dateien löschen</td>
+<td style="width: 25%;"><span class="no"></span></td>
+<td style="width: 25%;"><span class="no"></span></td>
+<td style="width: 25%;"><span class="no"></span></td>
+<td style="width: 25%;"><span class="yes"></span></td>
+<td style="width: 25%;"><span class="yes"></span></td>
+</tr>
+<tr>
+<td style="width: 25%;">Weitere Freigaben erstellen</td>
+<td style="width: 25%;"><span class="no"></span></td>
+<td style="width: 25%;"><span class="no"></span></td>
+<td style="width: 25%;"><span class="no"></span></td>
+<td style="width: 25%;"><span class="no"></span></td>
+<td style="width: 25%;"><span class="yes"></span></td>
+</tr>
+</tbody>
+</table>
+
+<p>In <a href="/seafile-server-9-0/">Seafile Server 9.0</a> wurden individuelle Freigabeberechtigungen eingeführt. Mit diesen lassen sich zusätzliche Freigabeberechtigungen definieren. Eine individuelle Freigabeberechtigung besteht aus einer beliebigen Kombination der folgenden acht Berechtigungen:</p>
+
+<ul>
+<li>Hochladen (Dateien und Ordner können in Bibliotheken und Ordner hochgeladen werden)</li>
+<li>Herunterladen (Dateien und Ordner können heruntergeladen werden)</li>
+<li>Erstellen (Dateien und Ordner können erstellt werden)
+</li><li>Ändern (Dateien und Ordner können umbenannt und verschoben sowie Dateien in Seahub angezeigt und verändert werden)</li>
+<li>Kopieren (Dateien und Ordner können in andere Bibliotheken kopiert werden – das Kopieren innerhalb einer Bibliothek erfordert die Berechtigung Ändern)</li>
+<li>Löschen (Dateien und Ordner können gelöscht werden)</li>
+<li>Vorschau online (Dateien können in Seahub angezeigt werden)</li>
+<li>Freigabelink erstellen (Freigabelinks können für Dateien und Ordner erstellt werden)</li>
+</ul>
+<p>Als Voraussetzung für alle anderen Berechtigungen ist die Berechtigung Ansicht – die Ordnerstruktur einer Bibliothek (einschließlich Metadaten wie Dateigröße und letzte Aktualisierung) kann angezeigt und durchsucht werden – Bestandteil aller individuellen Freigabeberechtigungen.</p>
+
+<p>Im Freigabe-Dialog wählen Sie zunächst auf der linken Seite <i>Individuelle Freigabeberechtigung</i> und klicken dann auf <i>Berechtigung hinzufügen</i>. Definieren Sie nun die Freigabeberechtigung, wie Sie sie benötigen, und geben Sie einen Namen und Beschreibung ein. Mit Klick auf <i>Absenden</i> wird die individuelle Freigabeberechtigung erstellt und Sie können sie bei der Erstellung einer Freigabe im Dropdown <i>Berechtigung</i> auswählen.</p>
+
+<h2>Feinjustierung von Bibliotheksfreigaben</h2>
+<p>Bei der Freigabe definieren Sie die grundsätzlichen Zugriffsrechte eines Benutzers/einer Gruppe für eine Bibliothek. Bei freigegebenen Bibliotheken bietet Seafile die Möglichkeit, die gewählte Berechtigungen auf Ordnerebene zu erweitern bzw. einzuschränken. So kann z.B. eine Bibliothek mit Leserechten an einen Benutzer freigegeben werden, für einen bestimmten Ordner in der Bibliothek hat der Benutzer jedoch Lese- und Schreibrechte.</p>
+
+<img decoding="async" src="/wp-content/uploads/2019/06/Seahub_BibliothekFreigebenOrdnerRechte1_v703.png" alt="Bibliothektsfreigaben feinjustieren (I/III)" />
+
+<p>Die Feinjustierung der Ordnerrechte erfolgt über die erweiterten Einstellungen. Klicken Sie auf das Icon für die erweiterten Optionen und wählen Sie aus den erweiterten Optionen <i>Ordner-Rechte</i>.</p>
+
+<img decoding="async" src="/wp-content/uploads/2019/06/Seahub_BibliothekFreigebenOrdnerRechte2_v703.png" alt="Bibliotheksfreigaben feinjustieren (II/III)" />
+
+<p>In dem sich öffnenden Dialog können Sie nun für jeden Ordner in der freigegebenen Bibliothek individuelle Berechtigungen vergeben. Ohne individuelle Berechtigung gilt die Berechtigung der Freigabe. Geben Sie zunächst in der Spalte <i>Benutzer</i> den Namen des Benutzers ein, dessen Berechtigungen Sie anpassen wollen. Wenn Sie eine Freigabeberechtigung an eine Gruppe anpassen wollen, klicken Sie links zunächst auf <i>Gruppenrechte</i>.</p>
+
+<img decoding="async" src="/wp-content/uploads/2019/06/Seahub_BibliothekFreigebenOrdnerRechte3_v703.png" alt="Bibliotheksfreigaben feinjustieren (III/III)"/>
+
+<p>Klicken Sie dann auf das + in der Ordner Spalte. Im Verzeichnisbaum können Sie nun einfach den Ordner auswählen, für den Sie die Berechtigung anpassen wollen. Schließlich legen Sie über das Dropdown-Feld fest, welche Berechtigung für den gewählten Ordner gelten soll. Diesen Vorgang müssen Sie ggf. wiederholen, wenn Sie die Berechtigungen für mehrere Ordner ändern wollen.</p>
+
+<p class="alert alert-warning">Es ist nicht möglich, in einer freigegebenen Bibliothek den Zugriff auf einen Ordner komplett zu entziehen oder einen Ordner „unsichtbar“ zu machen.</p>

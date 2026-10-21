@@ -1,0 +1,120 @@
+---
+title: "Hochverfügbarkeit „Light“: Datenreplikation mit dem Seafile CLI Client"
+slug: "hochverfuegbarkeit-light-datenreplikation-mit-dem-seafile-cli-client"
+seo_title: "Hochverfügbarkeit „Light“: Datenreplikation mit dem Seafile CLI Client"
+description: "Mit dem Seafile CLI Client lässt sich eine einfache Hochverfügbarkeitslösung umsetzen. Ihre Simplizität macht sie für kleine Unternehmen interessant."
+date: "2019-06-13T10:01:59"
+lastmod: "2025-02-21T09:07:14"
+og_image: "/wp-content/uploads/2019/06/hochverfügbarkeit-lite.jpg"
+beitragsbild: "/wp-content/uploads/2019/06/hochverfügbarkeit-lite.jpg"
+lesezeit: "8 Minuten"
+category:
+  - "anleitungen"
+autor: "Ralf D."
+wp_id: 3147
+---
+<p>Neben einem <a href="/cluster/">Cluster</a> und einem <a href="/seafile-backup/">Real-Time Backup Server</a> lässt sich mit dem Seafile CLI Client eine dritte Hochverfügbarkeitslösung implementieren. Im Vergleich zu ihren &#8222;großen Brüdern&#8220; ist sie zwar funktional eingeschränkt, aufgrund ihrer geringen Komplexität ist sie aber auch für kleine Unternehmen attraktiv. Der hochverfügbare Zugriff auf die in Seafile gespeicherten Daten wird durch die Replikation des Datenbestands auf einen Online Speicher mit Webzugriff umgesetzt. In diesem Beitrag erklären wir das Vorgehen zur Einrichtung dieser Lösung und stellen ein Skript vor, das dessen Verwaltung und Überwachung einfacher und komfortabler macht.</p>
+
+<!--more-->
+
+<h2>Datenreplikation mit dem Seafile CLI Client</h2>
+<p>Der Seafile CLI Client (CLI Client) ist ein Seafile Sync Client für Linux ohne graphische Benutzeroberfläche. Die Steuerung erfolgt über die Kommandozeile oder, englisch und namensgebend, das Command Line Interface (CLI). Abgesehen von kleineren funktionalen Einschränkungen arbeitet der CLI Client identisch wie seine Pendants für Windows und Mac: Er synchronisiert Bibliotheken zwischen einem Seafile Server und dem ihm zugewiesenen Datenspeicher. Im Datenspeicher des CLI Clients liegt somit ein Replikat des Datenbestands des Seafile Servers in Dateiformat vor. Der Umfang der Replikation &#8211; der gesamte Datenbestand oder nur Teile davon &#8211; lässt sich über die Auswahl der zu synchronisierenden Bibliotheken steuern.</p>
+<img decoding="async" src="/wp-content/uploads/2019/06/Replikation_Seafile_CLI-_Client.png" alt="Schematische Darstellung der Replikation mit dem Seafile CLI Client" width="213" style="float:right; margin-left:2%;"/>
+<p>Der CLI Client lässt sich auf dem Host des Seafile Servers ebenso wie auf einem separaten Linux System installieren. In den meisten Fällen ist ersteres zweckmäßig, da man keinen zusätzlichen Server benötigt. Mit mehr Leistung muss der Seafile Host deshalb auch nicht ausgestattet werden. Der CLI Client hat sehr geringe Leistungsanforderungen.</p>
+<p>Damit der Zugriff auf das Replikat bei einem Ausfall des Seafile Servers sichergestellt ist, muss der CLI Client auf einen Speicher schreiben, der vom Produktivsystem und dessen Internetzugang völlig unabhängig ist. In Betracht kommen damit insbesondere die Storage Produkte der großen Rechenzentrenanbieter wie z.B. die StorageBox von Hetzner oder HiDrive von Strato. Dank deren guter Protokollunterstützung lassen sich diese in Linux mounten und damit als Speicher für den CLI Client nutzen. Ist der Speicher gemountet, dann muss nur noch der Linux Nutzer, der den CLI Client ausführt, Schreibrechte auf den Speicher erhalten und fertig sind die Vorbereitungen.</p>
+<p>Mehr als CLI Client und Online Speicher sind für die Einrichtung dieser einfachen Hochverfügbarkeitslösung grundsätzlich nicht nötig. Die <a href=https://help.seafile.com/en/syncing_client/linux-cli.html>Konfigurationsoptionen des Seafile CLI Clients sind vollständig im Seafile Manual</a> dokumentiert. Einmal eingerichtet, übernimmt der CLI Client die Replikation der ausgewählten Bibliotheken. Jede Änderung auf dem Server wird fortlaufend nachvollzogen, so dass vom Online Speicher immer eine Kopie der aktuellsten Dateiversion abgerufen werden kann. Die Webzugriffsoption der Online Speicher macht dies auch denkbar einfach.</p>
+
+<h2>Best Practices für die Verwendung des CLI Clients</h2>
+<p>In der Praxis hat die Einrichtung der Hochverfügbarkeitslösung Light aufgrund der Eigenschaften der Organisationen, für die die CLI-Replikation attraktiv ist, die eine oder andere Stolperfalle im Angebot. So verfügen kleine Unternehmen selten über einen dedizierten IT-Admin und der Internet-Uplink ist schwach angesichts der zu sichernden Datenmengen.</p>
+<p>Stabilitäts- und Zuverlässigkeitsprobleme sind quasi unvermeidbar, wenn sich Replikationsläufe über viele Stunden oder sogar Tage hinziehen. Um Komplikationen zu reduzieren, empfiehlt es sich daher, in Seafile einen dedizierten Benutzer für die Datenreplikation mit dem CLI Client anzulegen und diesem eine ebenso dedizierte Rolle mit weitgehend eingeschränkten Rechten zuzuweisen. </p>
+<p>Eine gute Dokumentation ist nicht gleichbedeutend mit Benutzerfreundlichkeit. Das gilt in besonderem Maße für den CLI Client. Das wohl am leichtesten lösbare Problem ist die Verwendung der unhandlichen Repo IDs an Stelle der Bibliotheksnamen durch den CLI Client. Schwerer wiegt die Komplexität bei der fortlaufenden Administration und Überwachung: Soll eine neue Bibliothek in die Replikation aufgenommen werden, so muss diese Konfigurationsanpassung naturgemäß über die Kommandozeile erfolgen. Damit dies geschehen kann, muss der im CLI Client eingerichtete Seafile Benutzer auf die Bibliothek Zugriff haben, was wiederum eine Freigabe an diesen Benutzer erfordert. Schliesslich muss auch die Überwachung der Replikation über die Kommandozeile erfolgen. Dies sind Aktivitäten, die normalerweise jenseits der Fähigkeiten eines normalen Benutzers liegen bzw. Benutzer aufgrund ihre Systemrechte gar nicht tun können. Die Definition klarer Prozesse, Verantwortlichkeiten und Kommunikationskanäle ist daher erforderlich. In der Tat wünschenswert wäre eine einfachere Verwaltung der Replikation.</p>
+
+<h2>Einfache Verwaltung per Skript</h2>
+<p>Unser deutscher Supportpartner <a href="https://www.datamate.org/seafile">datamate</a> ist diesem Wunsch nachgekommen und hat ein Admin-Skript entwickelt, das Verwaltung, Überwachung und Zuverlässigkeit der Datenreplikation erleichtert und verbessert. Konkret lassen sich mit diesem Skript &#8230;
+<ul>
+<li>die Replikation der Bibliotheken über das Seafile Webinterface Seahub verwalten,</li>
+<li>der Status der Replikation bequem über eine Webseite überwachen und</li>
+<li>die Erreichbarkeit des Seafile Servers und das korrekte Mounting des Speichers automatisch prüfen.</li>
+</ul>
+</p><p>Ist das Skript eingerichtet, muss eine Bibliothek einfach mit der Berechtigung <i>Lesen + Schreiben</i> an den CLI Seafile Benutzer freigegeben werden, um sie der Liste der zu replizierenden Bibliotheken hinzuzufügen. Ein Cron-Job übernimmt die fortlaufende Prüfung auf Änderungen an dieser Liste. Neu an den CLI Benutzer freigegebene Bibliotheken werden repliziert; Bibliotheken, für die die Freigabe entzogen wird, wird die Replikation beendet. (Einmal replizierte Daten werden im Speicher aber nicht gelöscht.) Darüber hinaus erzeugt das Skript eine HTML-Statusmeldung. Diese kann mit einem Browser abgerufen werden. So ist es deutlich leichter, einen Überblick über die Inhalte und den Status der Replikation zu behalten.</p>
+
+<h2>Einrichtung</h2>
+
+<p>Das Vorgehen zur Einrichtung und Überwachung dieser Hochverfügbarkeitslösung Lösung unter Nutzung des Skripts erfolgt in 7 Schritten:</p>
+<ol>
+<li>Mount des externen Speichers</li>
+<li>Anlage einer dedizierten Benutzerrolle für den Benutzer des CLI Clients (nur bei Seafile PE möglich)</li>
+<li>Anlage eines dedizierten Benutzers für den CLI Client</li>
+<li>Download, Anpassung und Initialisierung des Admin-Skripts</li>
+<li>Anpassung der Webserver-Konfiguration</li>
+<li>Lese-Freigabe der zu replizierenden Bibliotheken an den CLI Benutzer</li>
+<li>Überwachung der Replizierung</li>
+</ol>
+
+<strong>Mount des externen Speichers</strong>
+<p>In separaten Beiträgen wird das Mounting externer Cloud-Speicher erläutert, um deren Produktspezifika Rechnung zu tragen.</p>
+
+<strong>Anlage einer dedizierten Benutzerrolle für den Benutzer des CLI Clients</strong>
+<p>Um zu vermeiden, dass der CLI Client bei einer Fehlfunktion ungewollte Änderungen vornimmt sowie um einen Missbrauch des Nutzers zu vermeiden, empfiehlt es sich, für den Seafile Benutzer des CLI Clients eine eigene Rolle anzulegen. Aktivieren Sie hierzu in der seahub_settings.py die <a href="https://manual.seafile.com/deploy_pro/roles_permissions.html" target="_blank" rel="noopener noreferrer">individuellen Rollen und Berechtigungen</a> und fügen Sie neben der <i>default</i>&#8211; und <i>guest</i>-Rolle eine neue individuelle Rolle hinzu. Die Rollendefinition in der seahub_settings.py lautet:</p>
+<code><pre>
+'cli-sync': {
+  'can_add_repo': False,
+  'can_add_group': False,
+  'can_view_org': False,
+  'can_use_global_address_book': False,
+  'can_generate_share_link': False,
+  'can_generate_upload_link': False,
+  'can_invite_guest': False,
+  'can_connect_with_android_clients': False,
+  'can_connect_with_ios_clients': False,
+  'can_connect_with_desktop_clients': True,
+  'role_quota': '',
+  'can_add_public_repo': False,
+  'can_send_share_link_mail': False,
+}
+</pre></code>
+<p>Hinweis: Nur ein Seafile Server der Professional Edition unterstützt die Anlage individueller Rollen.</p>
+
+<strong>Anlage eines dedizierten Benutzers für den CLI Client</strong>
+<p>Legen Sie einen neuen Seafile Benutzer an und weisen Sie diesem die neu angelegte Rolle zu. Damit die Rolle zugewiesen werden kann, muss der Seafile Server nach der Konfigurationsänderung einmal neu gestartet werden.</p>
+
+<strong>Download, Anpassung und Initialisierung des Admin-Skritps</strong>
+<p>Laden Sie das Skript von Github herunter und ergänzen Sie die Execute-Berechtigung. </p>
+<code><pre>
+$ git clone https://github.com/datamate-rethink-it/cli-autosync
+$ chmod +x cli-autosync.sh
+</pre></code>
+
+<p>Öffnen Sie die Skriptdatei und passen Sie die Parameter des ersten Abschnitts an, um Ihrer Seafile und Speicherkonfiguration zu entsprechen.</p>
+<code><pre>
+$ nano cli-autosync.sh
+</pre></code>
+
+<p>Initialisieren Sie nun das Skript durch seine Ausführung mit dem Parameter init. Im Rahmen der Initialisierung wird der Seafile CLI Client installiert und konfiguriert. Außerdem wird der notwendige Cron-Job angelegt.</p>
+<code><pre>
+./cli-autosync.sh init
+</pre></code>
+
+<p>Der Seafile unterstützt zwei weitere Kommandos, die auch manuell aufgerufen werden können.</p>
+<code><pre>
+./cli-autosync.sh run
+# Prüfung auf Änderungen am Replikationsumfang und Start der Replikation
+# Befehl wird automatisch per Cronjob ausgeführt; Frequenz ist in Skriptvariable syncintervall definiert
+
+./cli-autosync.sh status
+# Anzeige des aktuellen Status der Synchronisation
+</pre></code>
+
+<strong>Anpassung der Webserver-Konfiguration</strong>
+<p>Die bei Ausführung des run-Befehls erzeugte Status Datei wird im Verzeichnis abgespeichert, das über die Variable <i>logfile</i> im Admin-Skript definiert wird. Durch eine Anpassung der Webserver Konfiguration lässt sich diese bequem über den Browser abrufen und anzeigen.</p>
+<p>Um die Statusseite über die URL &nbsp;&nbsp; http://IP-Adresse-CLI-Hosts/seafcli-status.html/ &nbsp;&nbsp; abzurufen, ergänzen Sie folgenden Block in die nginx Konfiguration. (Hinweis: Hier wird unterstellt, dass der CLI Client auf der gleichen Maschine installiert ist wie der Seafile Server und der Wert der Variable <i>logfile</i> nicht verändert wurde.)</p>
+<code><pre>
+location /seafcli-status.html {
+  root /tmp/;
+  index seafcli-status.html;
+}
+</pre></code>
+
+
+<h2>Alternative Anwendungsfelder für die Lösung Hochverfügbarkeit Light</h2>
+<p>Die in diesem Beitrag vorgestellte Hochverfügbarkeitslösung leistet nicht nur als einfache Absicherungslösung gute Dienste. Sie kann ebenso dazu verwendet werden, um externe Zugriff auf einen lokalen Seafile Server zu beschleunigen. Der CLI Client repliziert dafür häufig extern abgerufene Dateien (z.B. Vertriebsunterlagen) auf einen Cloud-Speicher. Der Abruf von dort erfolgt dank dessen schneller Datenanbindung mit maximaler Geschwindigkeit. Der interne Zugriff auf den Seafile Server erfolgt weiterhin mit voller LAN Geschwindigkeit. Über einen Zeitplan im Cronjob lässt sich der Client so steuern, dass die Replikation nur nachts erfolgt, wenn der Internetanschluss nicht von Mitarbeitern in Anspruch genomen wird.</p>

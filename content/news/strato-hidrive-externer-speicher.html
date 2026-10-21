@@ -1,0 +1,79 @@
+---
+title: "Strato HiDrive als externer Seafile Speicher"
+slug: "strato-hidrive-externer-speicher"
+seo_title: "Strato HiDrive als externer Seafile Speicher"
+description: "Strato HiDrive eignet sich gut als externer Massenspeicher für Seafile. In dieser Anleitung erklären wir, wie sich HiDrive unter Linux mounten lässt."
+date: "2019-06-13T10:11:23"
+lastmod: "2025-02-21T09:07:14"
+og_image: "/wp-content/uploads/2019/06/seafile-uses-block-storage.jpg"
+beitragsbild: "/wp-content/uploads/2019/06/seafile-uses-block-storage.jpg"
+lesezeit: "4 Minuten"
+category:
+  - "anleitungen"
+autor: "Christoph Dyllick-Brenzinger"
+wp_id: 3114
+---
+<p>Das Speicherprodukt HiDrive von Strato bietet sich aufgrund der überschaubaren Kosten, der hohen Verfügbarkeit und der Webverwaltung als externer Speicher für Seafile an. HiDrive kann sowohl als primärer Speicher als auch als sekundäres (Archiv-)Backend verwendet werden. Die Einrichtung von HiDrive unter Linux ist allerdings nicht trivial. Darum erklären wir in diesem Beitrag, wie Sie HiDrive per WebDAV in einem Ubuntu Linux mounten und damit als Speicherort für Seafile verfügbar machen.</p>
+
+<!--more-->
+
+<h2>Strato HiDrive im Überblick</h2>
+
+<p>HiDrive ist der Online Speicher des Berliner Internetdienstanbieters Strato. Strato bietet HiDrive in <a href="https://www.strato.de/cloud-speicher/">drei Editionen an: HiDrive, HiDrive Business und HiDrive S3</a>. In diesem Beitrag geht es nur um die ersten beiden Editionen.</p>
+
+<p>Das &#8222;normale&#8220; HiDrive gibt es in Speichergrößen von 250GB bis 2TB. Ein Benutzerzugang ist im Paketpreis standardmäßig enthalten, weitere gibt es gegen Aufpreis. Für die Verwendung mit Seafile ist dieses Basispaket leider noch nicht ausreichend. Um HiDrive als Seafile Speicher nutzen zu können, muss die kostenpflichtige Zusatzoption &#8218;Protokolle Basic&#8216; für 4€ pro Monat gebucht werden. Diese ermöglicht den Speicherzugriff per SMB und WebDAV. Das teurere Zusatzpaket &#8218;Protokolle Extended&#8216; ist für die Nutzung von HiDrive als Seafile Speicher nicht notwendig.</p>
+<img decoding="async" src="/wp-content/uploads/2019/06/Preise_HiDriveBusiness_Juni2019.png" alt="HiDrive Business Preise Stand Juni 2019" width="1032"  />
+<p>HiDrive Business bietet standardmäßig das erweiterte Protokollpaket. Mit ihm kann man auf HiDrive per FTP, FTPS, WebDav, SFTP, SCP, rsync, SMB/CIFS und GIT zugreifen. Die angebotenen Speichergrößen reichen von 1TB bis 10TB. Mindestens fünf Benutzerzugänge sind weiterhin inklusive. Das gleiche gilt für den telefonischen Support. Dieses erweiterte Business Paket hat aber seinen Preis: Mit 30€ ist das HiDrive Business Basic Paket mit 2TB Speicherplatz doppelt so teuer wie das gleichgroße nicht-Business HiDrive Paket. (Alle Angaben Stand Juni 2019.)</p>
+
+
+<h2>Vielfältige Anwendungsfälle</h2>
+
+<p>HiDrive kann als primärer Speicher eines Seafile Servers und als sekundärer bzw. Archivspeicher genutzt werden. Gerade bei virtuellen Servern mit geringem SSD-Speicherplatz bietet sich HiDrive an, um den Speicherplatz des Seafile Systems zu vergrößern. Alternativ kann man HiDrive auch als zweites (Archiv-)Backend in Seafile verwenden und dort alle Bibliotheken hin verschieben, die nicht mehr in aktiver Nutzung sind. (Support für <a href="/multiple-storage-backends/">Multiple Backends</a> steht nur in der Seafile Professional Edition zur Verfügung.) Eine dritte Einsatzmöglichkeit für HiDrive ist die <a href="/hochverfuegbarkeit-light-datenreplikation-mit-dem-seafile-cli-client/">Hochverfügbarkeit Light</a>.</p>
+
+<h2>Einrichtung von HiDrive als Seafile Speicher</h2>
+
+<p>Wir fokussieren uns in dieser Einrichtungsanleitung auf den Zugriff via WebDAV. Wir gehen davon aus, dass Sie bereits HiDrive gebucht und Zugriff auf die HiDrive Verwaltung haben.</p>
+
+<h3>Vorbereitung von HiDrive</h3>
+<p>Deaktivieren Sie zunächst alle Verbindungsmöglichkeiten mit Ausnahme von verschlüsseltem WebDAV.</p>
+<p>Legen Sie nun einen HiDrive User ohne Administratorberechtigungen an. Notieren Sie dessen Benutzernamen und Passwort. Diese werden im nächsten Schritt benötigt.</p>
+
+<h3>Vorbereitung des Systems</h3>
+<p>Installieren Sie nun das Paket davfs2 auf dem Linux Server.</p>
+<code><pre>sudo apt-get install davfs2</pre></code>
+<p>In der Datei /etc/davfs2/secrets hinterlegen Sie die Zugangsdaten des gerade angelegten HiDrive Users in diesem Format:</p>
+<code><pre>
+#Mountpunkt     User      	Passwort
+/mnt/hidrive    share-xxxx	passwort</pre></code>
+<p>Die Platzhalter &#8217;share-xxxx&#8216; und &#8218;passwort&#8216; in dem Code Block sind selbstverständlich anzupassen. Natürlich lässt sich HiDrive auch an einer anderen Stelle als dem Verzeichnis /mnt/hidrive mounten. Sollten Sie sich dafür entscheiden, muss der Mountpunkt an allen anderen Stellen in der nachfolgenden Anleitung entsprechend angepasst werden.</p>
+
+<p>Anschließend lohnt es sich, die folgenden Optimierungen in der Datei /etc/davfs2/davfs2.conf vorzunehmen:</p>
+
+<code><pre>
+use_locks 0
+cache_size 1
+table_size 4096
+gui_optimize 1
+trust_server_cert  /etc/davfs2/certs/hidrive.pem
+buf_size 1024
+if_match_bug 0
+max_upload_attempts 5
+dir_refresh 600
+file_refresh 5
+</pre></code>
+
+<h3>HiDrive in Linux mounten</h3>
+<p>Nach diesen Vorbereitungsarbeiten läßt sich HiDrive unter dem definierten Verzeichnis mounten. Sollte das Verzeichnis nicht existieren, muss es zuerst angelegt werden. Sollte eine Fehlermeldung zum fehlenden HiDrive Zertifikat kommen, genügt es, den folgenden Befehl auszuführen:</p>
+
+<code><pre>
+echo | openssl s_client -connect webdav.hidrive.strato.com:443 |openssl x509 -out /etc/davfs2/certs/hidrive.pem
+</pre></code>
+
+<p>Damit HiDrive nach jedem Reboot automatisch gemountet wird, ist der nachfolgende Eintrag in der Konfigurationsdatei /etc/fstab erforderlich.</p>
+<code><pre>
+https://webdav.hidrive.strato.com/users/username/ /mnt/hidrive davfs rw,gid=1000,uid=1000,_netdev 0 0
+</pre></code>
+<p>Vergessen Sie nicht die Anpassung der beiden Platzhalter &#8218;username&#8216; an den tatsächlichen User im obigen Pfad. Das gleiche gilt für die <i>gid</i> und <i>uid</i>. Hier sind die IDs des Linux Benutzers erforderlich, der auf auf den Speicher zugreifen soll. Sind diese in fstab eingetragen, erhält der Nutzer automatisch Schreib- und Leseberechtigungen. Die uid erhält man mit dem folgenden Befehl:
+<code><pre>id -u username</pre></code>
+
+</p><p>Anschließend steht HiDrive als zusätzlicher Speicher in Ihrem Linux-System zur Verfügung und kann z.B. für den Ordner <i>seahub-data</i> verwendet werden.</p>

@@ -1,0 +1,47 @@
+{{- /*
+	Der Kopf jeder Seite. Baut nach, was Yoast SEO ausgegeben hat - gleiche
+	Angaben, gleiche Reihenfolge, damit sich an den indexierten Seiten
+	nichts aendert.
+
+	Nicht uebernommen: die Emoji-Erkennung von WordPress, die
+	block-library-Stile (kein einziger wp-block-* im Text), die
+	oEmbed- und wp-json-Verweise, der Kommentar-Feed (null Kommentare)
+	und das Cookie-Banner (nichts mehr zu melden, siehe README).
+
+	Die Startseite stand in der Sitemap mit Schraegstrich und im Canonical
+	ohne. Hier gilt durchgaengig der Schraegstrich.
+*/ -}}
+{{- $titel := or .Params.seo_title (printf "%s | Seafile" .Title) -}}
+{{- $beschreibung := .Params.description -}}
+{{- $bild := "" -}}
+{{- with .Params.og_image }}{{ $bild = . | absURL }}{{ end -}}
+<title>{{ $titel }}</title>
+{{ with $beschreibung }}<meta name="description" content="{{ . }}" />
+{{ end -}}
+<meta name="robots" content="{{ or .Params.robots "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" }}" />
+<link rel="canonical" href="{{ .Permalink }}" />
+<meta property="og:locale" content="de_DE" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="{{ $titel }}" />
+{{ with $beschreibung }}<meta property="og:description" content="{{ . }}" />
+{{ end -}}
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:site_name" content="Seafile" />
+{{ with .Lastmod }}<meta property="article:modified_time" content="{{ .UTC.Format "2006-01-02T15:04:05+00:00" }}" />
+{{ end -}}
+{{ with $bild }}<meta property="og:image" content="{{ . }}" />
+{{ end -}}
+<meta name="twitter:card" content="summary_large_image" />
+{{ with .Params.lesezeit -}}
+<meta name="twitter:label1" content="Geschätzte Lesezeit" />
+<meta name="twitter:data1" content="{{ . }}" />
+{{ end -}}
+{{ partial "jsonld.html" . }}
+
+<link rel="alternate" type="application/rss+xml" title="Seafile &raquo; Feed" href="{{ "/feed/" | absURL }}" />
+{{ with .OutputFormats.Get "feed" }}{{ if ne .Permalink ($.Site.Home.OutputFormats.Get "feed").Permalink }}<link rel="alternate" type="application/rss+xml" title="Seafile &raquo; {{ $.Title }} Feed" href="{{ .Permalink }}" />
+{{ end }}{{ end -}}
+<link rel="icon" href="/wp-content/uploads/2018/12/cropped-favicon-32x32.png" sizes="32x32" />
+<link rel="icon" href="/wp-content/uploads/2018/12/cropped-favicon-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="/wp-content/uploads/2018/12/cropped-favicon-180x180.png" />
+<meta name="msapplication-TileImage" content="/wp-content/uploads/2018/12/cropped-favicon-270x270.png" />

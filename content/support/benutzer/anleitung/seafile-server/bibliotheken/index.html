@@ -1,0 +1,50 @@
+---
+title: "Bibliotheken"
+seo_title: "Bibliotheken | Seafile"
+description: ""
+date: "2018-09-11T09:50:18"
+lastmod: "2019-06-20T12:08:00"
+og_image: "/wp-content/uploads/2018/09/Seahub_MeineBibliotheken.png"
+lesezeit: "4 Minuten"
+handbuch: true
+wp_id: 70
+---
+<p>Bibliotheken sind zentral für die Dateiorganisation in Seafile. Sie sind die Container, in denen Dateien gespeichert werden. Innerhalb von Bibliotheken können mit Ordnern und Unterordnern hierarchische Verzeichnisstrukturen aufgebaut werden.</p>
+
+<img fetchpriority="high" decoding="async" width="1043" height="468" src="/wp-content/uploads/2018/09/Seahub_MeineBibliotheken.png" alt="Meine Bibliotheken" class="alignnone size-full wp-image-230" srcset="/wp-content/uploads/2018/09/Seahub_MeineBibliotheken.png 1043w, /wp-content/uploads/2018/09/Seahub_MeineBibliotheken-300x135.png 300w, /wp-content/uploads/2018/09/Seahub_MeineBibliotheken-768x345.png 768w, /wp-content/uploads/2018/09/Seahub_MeineBibliotheken-1024x459.png 1024w" sizes="(max-width: 1043px) 100vw, 1043px" />
+
+<p>Seafile Bibliotheken können somit grundsätzlich als Ordner auf oberster Ebene angesehen werden. Gegenüber gewöhnlichen Ordnern haben sie jedoch eine Besonderheit: Seafile führt für jede Bibliothek eine Chronik der Datei- und Verzeichnisoperationen (z.B. Dateiänderung, Dateilöschung, Ordnererstellung). Seafile verwendet dafür <a href="https://de.wikipedia.org/wiki/Schnappschuss_(Informationstechnik)">Snapshots</a>. In diesen Abbildern wird die vollständige Datei- und Ordnerstruktur einer Bibliothek nach Abschluß einer Operation gespeichert. Snapshots sind aus Benutzersicht sehr interessant, da sich mit Ihnen <a href="/support/benutzer/anleitung/seahub/bibliotheken-auf-frueheren-stand-zuruecksetzen/">Änderungen in Bibliotheken vollständig rückgängig</a> machen lassen. </p>
+
+<p class="alert alert-warning">In der Standardeinstellung werden Snapshots zeitlich unbegrenzt gespeichert. Diese Voreinstellung lässt sich in <a href="/seahub">Seahub</a> über die erweiterten Optionen ändern. Die Erstellung von Snapshots lässt sich zeitlich begrenzen und komplett deaktivieren.</p>
+
+<h2>Zugriff auf Bibliotheken</h2>
+<p>Jede Seafile Bibliotheken hat immer einen Besitzer. Der Bibliotheksbesitzer verfügt über uneingeschränkten Zugriff auf die Bibliothek, d.h. er kann sie umbenennen, Ordner darin anlegen, Dateien erstellen bzw. hochladen und die Bibliothek auch löschen. In der Seafile Community Edition sind Besitzer immer auch Benutzer. In der Professional Edition können auch Gruppen Bibliotheken besitzen.</p>
+
+<p>Um sich verändernde Umstände abbilden zu können, lassen sich Bibliotheken zwischen Benutzern übertragen. In Seafile Professional kann eine Bibliotheken auch an eine Gruppe übertragen werden. Aktuell lassen sich jedoch keine Bibliotheken zwischen zwei Gruppen und auch nicht von einer Gruppe auf einen Benutzer übertragen (Stand Seafile Server Version 7.0).</p>
+
+<p>Die gemeinsame Verwaltung von Dateien wird durch sogenannte Freigaben möglich. <a href="/support/benutzer/anleitung/seahub/bibliotheken-und-ordner-an-andere-benutzer-freigeben/">Freigaben</a> erlauben es anderen Benutzern, auf die freigegebenen Bibliotheken und deren Inhalte zuzugreifen. Freigaben können mit unterschiedlichen Berechtigungen erteilt werden &#8211; von der eingeschränkten Nur-Lesen Freigabe bis hin zur administrativen Freigabe mit vollem Zugriff.</p>
+
+<h2>Gruppenbibliotheken</h2>
+<p>Gruppenbibliotheken sind Bibliotheken im Besitz einer Gruppe. Alle Mitglieder einer Gruppe haben standardmäßig über das Menüelement <i>Für meine Gruppen</i> im Webinterface Lese- und Schreibzugriff auf die Bibliotheken der Gruppe. Der bzw. die Gruppenadministratoren können den Zugriff aber über die <a href="/support/benutzer/anleitung/seahub/bibliotheken-und-ordner-an-andere-benutzer-freigeben/">Ordnerrechte</a> einschränken.</p>
+
+<p>Gruppenbibliotheken eignen sich für die Ablage von Dateien, die für zahlreiche Personen (z.B. in einer Abteilung) relevant sind. Gerade auch für Projekte bieten sich Gruppenbibliotheken an, da Gruppenbibliothek unabhängig von der Rolle der individuellen Benutzer im Projektteam sind.</p>
+
+<p class="alert alert-warning">Gruppenbibliotheken stehen nur in der Seafile Professional Edition zur Verfügung.</p>
+
+<h2>Organisationsbibliotheken</h2>
+<img decoding="async" src="/wp-content/uploads/2018/09/Seahub_Organisationsbibliotheken.png" alt="Organisationsbibliotheken" width="1050" class="alignnone size-full wp-image-1218" srcset="/wp-content/uploads/2018/09/Seahub_Organisationsbibliotheken.png 1050w, /wp-content/uploads/2018/09/Seahub_Organisationsbibliotheken-300x157.png 300w, /wp-content/uploads/2018/09/Seahub_Organisationsbibliotheken-768x402.png 768w, /wp-content/uploads/2018/09/Seahub_Organisationsbibliotheken-1024x535.png 1024w" sizes="(max-width: 1050px) 100vw, 1050px" />
+<p>Eine Sonderrolle spielen Organisationsbibliotheken. Diese sind für alle Benutzer des Systems mit der <a href="/support/benutzer/anleitung/seafile-server/rollen">Rolle</a> Standard im Webinterface unter dem Menüelement <i>Für alle freigegeben</i> sichtbar. Gäste, d.h. Benutzer mit der Rolle Gast, können diese Bibliotheken nicht sehen.</p>
+<p>Organisationsbibliotheken sind dafür gedacht, nicht-vertrauliche, für alle Mitarbeiter einer Organisation verfügbare Informationen auf einfache Art und Weise zugänglich zu machen. Der Kantinenplan, Informationen zum Betriebsausflug oder Produktbroschüren sind Informationen, die in solchen quasi öffentlichen Bibliotheken abgelegt werden können. Organisationsbibliotheken können aber auch mit Schreibrechten freigegeben werden. In dem Fall kann jeder Benutzer (ausgenommen Gäste) in den Bibliotheken Änderungen vornehmen.</p>
+<p class="alert alert-warning">Organisationsbibliotheken können vom Administrator deaktiviert werden. Wenn sie deaktiviert sind, dann wird im <a href="/seahub/">Seafile Webinterface Seahub</a> der Menüeintrag <i>Für alle freigegeben</i> ausgeblendet.</p>
+
+<h2>Verschlüsselte Bibliotheken</h2>
+
+<img decoding="async" width="1043" height="607" src="/wp-content/uploads/2018/09/Seahub_BibliothekVerschlüsselt.png" alt="Bibliotheken verschlüsseln"  class="alignnone size-full wp-image-215" srcset="/wp-content/uploads/2018/09/Seahub_BibliothekVerschlüsselt.png 1043w, /wp-content/uploads/2018/09/Seahub_BibliothekVerschlüsselt-300x175.png 300w, /wp-content/uploads/2018/09/Seahub_BibliothekVerschlüsselt-768x447.png 768w, /wp-content/uploads/2018/09/Seahub_BibliothekVerschlüsselt-1024x596.png 1024w" sizes="(max-width: 1043px) 100vw, 1043px" />
+
+<p>Zum Schutz der Bibliotheksinhalte lassen sich Bibliotheken verschlüsseln. Alle Dateien und Ordner in einer Bibliothek werden dann vor der Übertragung an den Seafile Server mit modernen Verschlüsselungsmethoden kodiert. Da die Verschlüsselung vor der Übertragung an den Server erfolgt, wird diese Art der Verschlüsselung als client-side encryption bezeichnet. (Detailinformationen zur Verschlüsselung in Seafile finden Sie im <a href="https://manual.seafile.com/security/security_features.html">Seafile Manual</a>.)</p>
+
+<p class="alert alert-warning">Verschlüsselte Bibliotheken sind auch durch den Seafile Administrator nicht lesbar. Ein verlorenes Passwort kann auch durch den Administrator nicht wieder hergestellt werden.</p>
+
+<p>Verschlüsselte Bibliotheken bieten hohen Schutz der darin gespeicherten Daten, einige bei unverschlüsselten Bibliotheken zur Verfügung stehende Funktionen werden von ihnen aber nicht unterstützt. So lassen sich für Dateien und Ordner keine Freigabelinks erzeugen und auch Office Dokumente können nicht online bearbeitet werden. Ordner und Dateien können innerhalb der verschlüsselten Bibliothek, aber nicht in eine andere Bibliothek verschoben werden. Verschlüsselte Bibliotheken können auch nicht an Gruppen übertragen, als Gruppenbibliotheken erstellt und zu Organisationsbibliotheken gemacht werden. Aktuell unterstützt der <a href="/support/benutzer/anleitung/seafile-drive-client/">Seafile Drive Client</a> keine verschlüsselten Bibliotheken (Stand Juni 2019). </p>
+
+<p class="alert alert-warning">Die nachträgliche Verschlüsselung einer unverschlüsselten Bibliothek und die Umstellung einer verschlüsselten auf eine unverschlüsselte Bibliothek sind nicht möglich. </p>

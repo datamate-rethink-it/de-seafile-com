@@ -1,0 +1,67 @@
+---
+title: "Hetzner Storage Box als externer Seafile Speicher"
+slug: "hetzner-storagebox-externer-speicher"
+seo_title: "Hetzner Storage Box als externer Seafile Speicher"
+description: "Die Hetzner Storage Boxen sind kostengünstiger und flexibler Online-Speicher. Damit eignen sie sich gut als Remote-Backupspeicher für Seafile."
+date: "2020-02-01T16:21:33"
+lastmod: "2025-02-21T09:07:13"
+og_image: "/wp-content/uploads/2020/02/Hetzner_Background-1.png"
+beitragsbild: "/wp-content/uploads/2020/02/Hetzner_Background-1.png"
+lesezeit: "4 Minuten"
+category:
+  - "anleitungen"
+autor: "Ralf D."
+wp_id: 3846
+---
+<p>Die Storage Box von Hetzner bietet viel Speicherplatz zu einem sehr günstigen Preis. Die gute Protokollunterstützung in Kombination mit der einfachen Verwaltbarkeit inkl. Wechseloptionen sind weitere Pluspunkte. Gerade für ein Backup von Seafile mittels <a href="https://www.datamate.org/duplicity-duply-datensicherung-auf-die-verlass-ist/">duplicity</a> oder Restic sind die Storage Boxen gut geeignet. In diesem Artikel erklären wir, wie Sie eine Hetzner Storage Box per WebDAV in einem Ubuntu Linux mounten .</p>
+
+<!--more-->
+
+<h2>Hetzner Storage Box im Überblick</h2>
+
+<p>Die mittelfränkische Hetzner Online GmbH ist eine von Deutschlands größten Rechnezentrumsbetreibern. Die Storage Box ist das Online Storage Angebot von Hetzner. <a href="https://www.hetzner.de/storage/storage-box">Sechs verschieden große Speicherklassen</a> gibt es: BX 10, die kleineste Storage Box, bietet 100GB Online Speicher für 3,45€ pro Monat (inkl. MwSt.); am oberen Ende der Skala befindet sich die BX60 mit satten 10TB Speicher für 47,48€ monatlich (inkl. MwSt.). Der Inklusivtraffic sollte für die meisten Anwendungen ausreichen, so dass mit keinen Extrakosten zu rechnen ist.</p>
+
+<p>Alle Storage Box Produkte bieten standardmäßig 10 gleichzeitige Verbindungen und 100 Benutzeraccounts. Ebenfalls inkludiert sind Snapshots, wobei deren Anzahl von der gebuchten Speicherklasse abhängig ist. Flexibel einsetzbar sind die Storage Boxen durch ihre breite Protokollunterstützung: FTP/SFTP/FTPS, SCP, SMB, rsync/SSH sowie BorgBackup und HTTPS/WebDAV sind mit dabei. Wer will, kann seine Storage Box monatlich up- oder downgraden. Langfristige Vertragslaufenzeiten kennt Hetzner bei den Storage Boxen nicht, genauso wenig wie Setupgebühren. Ein rundes Paket soweit. Es gibt wohl kaum einen deutschen Speicheranbieter, der bei diesen Preisen mitgehen kann. (Alle Angaben Stand Februar 2020.)
+
+<img decoding="async" src="/wp-content/uploads/2020/02/Hetzner_StorageBox_Preise.png" alt="Preise der Hetzner Storage Boxen" width="1039" />
+
+<h2>Anwendungsfälle der Storage Box</h2>
+
+</p><p>Wir empfehlen die Storage Boxen primär als praktischer Online Speicher für Seafile Backups. Sie sind sehr preisgünstig und lassen sich bequem skalieren. Ihre Verwaltung geht in der Verwaltungsoberfläche Hetzner Robot denkbar einfach von der Hand.</p>
+<p>Alles kann man von einem solchen Diskountprodukt wie der Storage Box aber nicht erwarten. Als Produktivspeicher für ein Seafile System empfehlen wir die Storage Boxen nicht. Dies hat vor allem zwei Gründe: Zum einen garantiert Hetzner keine hohe Zugriffsgeschwindigkeit und zum anderen werden die Daten nicht gespiegelt. Hetzner beschreibt das in seinem <a href="https://wiki.hetzner.de/index.php/Storage_Boxes">Produktwiki</a> so: &#8222;Die Übertragungsgeschwindigkeit Ihrer Daten auf der Storage Box hängt davon ab, wie viele andere Kunden gleichzeitig auf den selben Server zugreifen. Falls die Übertragung zu lange dauert, dann können Sie eine andere Uhrzeit für den Upload ausprobieren.&#8220; An anderer Stelle heißt es zur Spiegelung: &#8222;Bitte beachten Sie aber, dass Sie weiterhin die Verantwortung für Ihre Daten tragen und Hetzner keinerlei Garantie für einen möglichen Datenverlust gibt. Eine Spiegelung der Daten auf andere Server findet nicht statt.&#8220; Dieser Einschränkungen sprechen nicht pauschal gegen die Storage Box, man muss sich aber ihrer Einschränkungen im Einsatz bewusst sein.</p>
+
+<h2>Einrichtung einer Storage Box als Speicher in Ubuntu</h2>
+
+<p>Wir fokussieren uns in diesem Beitrag auf den Zugriff via WebDAV. Wir gehen davon aus, dass Sie bereits eine Storage Box gebucht und Zugriff auf die Administrationsoberfläche Hetzner Robot haben.</p>
+
+<h3>Vorbereitung der Storage Box </h3>
+<p>Aktivieren Sie zunächst in der Administrationsoberfläche Robot den WebDAV-Support. Dies ist kostenfrei möglich. Ebenfalls muss die externe Erreichbarkeit aktiviert sein, wenn der Seafile Server nicht auf einem Hetzner Server im bayrischen Rechenzentrum in Falkenstein liegt. </p>
+
+<img decoding="async" src="/wp-content/uploads/2020/02/HetznerRobot_StorageBox_Verwaltung.png" alt="Verwaltung Storage Box in Hetzner Robot" width="1214" />
+
+<p>Erzeugen Sie nun ein Passwort für Ihre Storage Box per Klick auf die Schaltfläche &#8222;Neues Passwort erstellen&#8220;. Ein sicheres alphanumerisches Passwort wird daraufhin erzeugt und angezeigt. Dieses kann später nicht mehr aufgerufen werden. Notieren Sie dieses daher gut. Wir werden es im nächsten Schritt auch benötigen.</p>
+
+<p>In dieser Anleitung gehen nicht explizit auf die Konfiguration des Zugriffs über ein Storage Box Sub-Account ein. Ein solcher kann über Robot einfach eingerichtet werden. Falls Sie einen Sub-Account verwenden, nutzen Sie bitte im folgenden immer dessen Benutzernamen.</p>
+
+<h3>Vorbereitung des Ubuntu Systems</h3>
+<p>Installieren Sie das Paket davfs2 auf dem Linux Server.</p>
+<code><pre>sudo apt-get install davfs2</pre></code>
+
+<p>In der Datei /etc/davfs2/secrets hinterlegen Sie die Zugangsdaten des Storage Box Benutzers in diesem Format:</p>
+<code><pre>https://username.your-storagebox.de username passwort</pre></code>
+<p>URL, Benutzername und Passwort sind entsprechend anzupassen. Die Serveradresse und Benutzername können Sie direkt aus der Verwaltungsoberfläche ablesen. Das Passwort ist das vorhin notierte.</p>
+
+<h3>Storage Box in Linux mounten</h3>
+
+<p>Nun haben Sie zwei Möglichkeiten die Storage Box ins System einzubinden. (Der Platzhalter &#8218;mountpoint&#8216; steht im folgenden für das Verzeichnis, in das die Storage Box gemountet wird, z.B. /mnt/storagebox.) </p>
+
+<p>Mit dem folgenden Befehl mounten Sie die Storage Box ins System:</p>
+<code><pre>mount -t davfs https://username.your-storagebox.de /mountpoint</pre></code>
+<p>Einen Neustart des Systems &#8222;überlebt&#8220; dieser Mount jedoch nicht.</p>
+
+<p>Um die Storage Box automatisch zu mounten, ergänzen Sie die folgende Zeile in der Konfigurationsdatei /etc/fstab:</p>
+<code><pre>https://username.your-storagebox.de /mountpoint davfs rw,uid=0,gid=0,file_mode=0660,dir_mode=0770,_netdev 0 0</pre></code>
+
+<p>Als Systemkonto (uid) und Systemgruppe (gid) haben wir im Code Block oben die 0 für den Root-User verwendet. Alternative können Sie auch das Systemkonto und die Systemgruppe eines anderen Benutzers verwenden. Dieser User erhält dann automatisch Lese- und Schreibberechtigung, da sämtliche Dateien mit dieser User- und Gruppenberechtigung gemountet werden. Um die Systemkonto- und die Systemgruppen-ID des jeweiligen Users zu erfahren, tippen Sie einfach <i>id -u username</i> und <i>id -p username</i> ein, wobei username in diesem Fall der Linux Benutzername ist.</p> 
+
+<p>Anschließend steht die Storagebox als zusätzlicher Speicher in Ihrem Linux System zur Verfügung und kann als Backupziel verwendet werden.</p>

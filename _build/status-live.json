@@ -1,0 +1,801 @@
+{
+ "/": {
+  "status": 200,
+  "location": null,
+  "bytes": 53150
+ },
+ "/2018/": {
+  "status": 200,
+  "location": null,
+  "bytes": 57808
+ },
+ "/2019/": {
+  "status": 200,
+  "location": null,
+  "bytes": 58354
+ },
+ "/2020/": {
+  "status": 200,
+  "location": null,
+  "bytes": 38337
+ },
+ "/2021/": {
+  "status": 200,
+  "location": null,
+  "bytes": 35912
+ },
+ "/2022/": {
+  "status": 200,
+  "location": null,
+  "bytes": 34973
+ },
+ "/ad-ldap/": {
+  "status": 200,
+  "location": null,
+  "bytes": 40492
+ },
+ "/admin-delegation/": {
+  "status": 200,
+  "location": null,
+  "bytes": 57570
+ },
+ "/api/": {
+  "status": 200,
+  "location": null,
+  "bytes": 41822
+ },
+ "/category/anleitungen/": {
+  "status": 200,
+  "location": null,
+  "bytes": 55408
+ },
+ "/category/anleitungen/feed/": {
+  "status": 200,
+  "location": null,
+  "bytes": 13578
+ },
+ "/category/funktionen/": {
+  "status": 200,
+  "location": null,
+  "bytes": 57044
+ },
+ "/category/funktionen/feed/": {
+  "status": 200,
+  "location": null,
+  "bytes": 13233
+ },
+ "/category/release-notes/": {
+  "status": 200,
+  "location": null,
+  "bytes": 47711
+ },
+ "/category/release-notes/feed/": {
+  "status": 200,
+  "location": null,
+  "bytes": 12952
+ },
+ "/cluster/": {
+  "status": 200,
+  "location": null,
+  "bytes": 39504
+ },
+ "/comments/feed/": {
+  "status": 200,
+  "location": null,
+  "bytes": 694
+ },
+ "/dateien-mit-dem-seafile-client-synchronisieren/": {
+  "status": 301,
+  "location": "https://de.seafile.com/support/benutzer/anleitung/seafile-sync-client/",
+  "bytes": 0
+ },
+ "/datenschutz/": {
+  "status": 200,
+  "location": null,
+  "bytes": 67281
+ },
+ "/downloads/": {
+  "status": 200,
+  "location": null,
+  "bytes": 51612
+ },
+ "/en/": {
+  "status": 301,
+  "location": "https://www.seafile.com/en/home/",
+  "bytes": 0
+ },
+ "/en/about-the-future-of-seafile/": {
+  "status": 301,
+  "location": "https://de.seafile.com/support/administratoren/roadmap/",
+  "bytes": 0
+ },
+ "/en/important-infos-about-app-seafile-de-and-licensing-purchases-through-our-web-shops/": {
+  "status": 301,
+  "location": "https://www.seafile.com/en/home/",
+  "bytes": 0
+ },
+ "/en/seafile-now-accepts-bitcoin-via-bitpay/": {
+  "status": 301,
+  "location": "https://www.seafile.com/en/home/",
+  "bytes": 0
+ },
+ "/en/some-background-information-about-our-conflict-with-paypal/": {
+  "status": 301,
+  "location": "https://www.seafile.com/en/home/",
+  "bytes": 0
+ },
+ "/erweiterte-clusterkonfigurationen/": {
+  "status": 200,
+  "location": null,
+  "bytes": 44055
+ },
+ "/favicon.ico": {
+  "status": 302,
+  "location": "https://de.seafile.com/wp-content/uploads/2018/12/cropped-favicon-32x32.png",
+  "bytes": 0
+ },
+ "/featurelog/": {
+  "status": 200,
+  "location": null,
+  "bytes": 48616
+ },
+ "/feed/": {
+  "status": 200,
+  "location": null,
+  "bytes": 13154
+ },
+ "/file-cloud/": {
+  "status": 200,
+  "location": null,
+  "bytes": 41396
+ },
+ "/file-locking/": {
+  "status": 200,
+  "location": null,
+  "bytes": 39407
+ },
+ "/fr/produits/hebergement-de-serveur-seafile/": {
+  "status": 301,
+  "location": "https://fr.seafile.com/",
+  "bytes": 0
+ },
+ "/get-seafile/": {
+  "status": 200,
+  "location": null,
+  "bytes": 47948
+ },
+ "/gravatar-icons-seafile/": {
+  "status": 200,
+  "location": null,
+  "bytes": 42992
+ },
+ "/hetzner-storagebox-externer-speicher/": {
+  "status": 200,
+  "location": null,
+  "bytes": 42928
+ },
+ "/hochverfuegbarkeit-light-datenreplikation-mit-dem-seafile-cli-client/": {
+  "status": 200,
+  "location": null,
+  "bytes": 48599
+ },
+ "/impressum/": {
+  "status": 200,
+  "location": null,
+  "bytes": 33526
+ },
+ "/instructions-for-translations/": {
+  "status": 200,
+  "location": null,
+  "bytes": 37832
+ },
+ "/keepass-seafile-praktischer-cloud-passwort-safe/": {
+  "status": 200,
+  "location": null,
+  "bytes": 49694
+ },
+ "/konfiguration-seadrive-registry-konfigurationsdatei/": {
+  "status": 200,
+  "location": null,
+  "bytes": 41609
+ },
+ "/monitoring/": {
+  "status": 200,
+  "location": null,
+  "bytes": 45545
+ },
+ "/multi-tenancy/": {
+  "status": 200,
+  "location": null,
+  "bytes": 39321
+ },
+ "/multiple-storage-backends/": {
+  "status": 200,
+  "location": null,
+  "bytes": 42309
+ },
+ "/news/": {
+  "status": 200,
+  "location": null,
+  "bytes": 91920
+ },
+ "/news/feed/": {
+  "status": 200,
+  "location": null,
+  "bytes": 13185
+ },
+ "/now/": {
+  "status": 200,
+  "location": null,
+  "bytes": 44734
+ },
+ "/online-file-editing/": {
+  "status": 200,
+  "location": null,
+  "bytes": 41937
+ },
+ "/onlyoffice-mit-lokaler-ip-verwenden/": {
+  "status": 200,
+  "location": null,
+  "bytes": 49121
+ },
+ "/page-sitemap.xml": {
+  "status": 200,
+  "location": null,
+  "bytes": 40547
+ },
+ "/plugin-integration/": {
+  "status": 200,
+  "location": null,
+  "bytes": 71382
+ },
+ "/post-sitemap.xml": {
+  "status": 200,
+  "location": null,
+  "bytes": 26892
+ },
+ "/public-sharing/": {
+  "status": 200,
+  "location": null,
+  "bytes": 40080
+ },
+ "/robots.txt": {
+  "status": 200,
+  "location": null,
+  "bytes": 172
+ },
+ "/schriftarten-onlyoffice-hinzufuegen/": {
+  "status": 200,
+  "location": null,
+  "bytes": 40268
+ },
+ "/seadrive-client-2-0-installationsdokumentation/": {
+  "status": 200,
+  "location": null,
+  "bytes": 52470
+ },
+ "/seafile-akzeptiert-jetzt-bitcoin-zahlungen-ueber-bitpay/": {
+  "status": 301,
+  "location": "https://de.seafile.com/get-seafile/",
+  "bytes": 0
+ },
+ "/seafile-backup/": {
+  "status": 200,
+  "location": null,
+  "bytes": 44778
+ },
+ "/seafile-ce-als-fertiges-image-bei-netcup/": {
+  "status": 200,
+  "location": null,
+  "bytes": 44941
+ },
+ "/seafile-cluster/": {
+  "status": 200,
+  "location": null,
+  "bytes": 44512
+ },
+ "/seafile-community-edition-server-5-1-2/": {
+  "status": 301,
+  "location": "https://de.seafile.com/downloads/",
+  "bytes": 0
+ },
+ "/seafile-desktop-client-5-1-1/": {
+  "status": 301,
+  "location": "https://de.seafile.com/downloads/",
+  "bytes": 0
+ },
+ "/seafile-drive-client-1-fuer-windows-macos-und-linux-verfuegbar/": {
+  "status": 200,
+  "location": null,
+  "bytes": 39552
+ },
+ "/seafile-drive-client-2-0-file-server-alternative-der-naechsten-generation/": {
+  "status": 200,
+  "location": null,
+  "bytes": 41611
+ },
+ "/seafile-editionen/": {
+  "status": 200,
+  "location": null,
+  "bytes": 52610
+ },
+ "/seafile-kopano-backend-plugin/": {
+  "status": 200,
+  "location": null,
+  "bytes": 49044
+ },
+ "/seafile-professional-5-1-3-ist-veroeffentlicht/": {
+  "status": 301,
+  "location": "https://de.seafile.com/downloads/",
+  "bytes": 0
+ },
+ "/seafile-professional-5-1-7/": {
+  "status": 301,
+  "location": "https://de.seafile.com/downloads/",
+  "bytes": 0
+ },
+ "/seafile-professional-5-1/": {
+  "status": 301,
+  "location": "https://de.seafile.com/downloads/",
+  "bytes": 0
+ },
+ "/seafile-professional-server-version-6-3-ab-heute-production-ready/": {
+  "status": 200,
+  "location": null,
+  "bytes": 46430
+ },
+ "/seafile-server-7-0-knowledge-management-with-sync-share/": {
+  "status": 200,
+  "location": null,
+  "bytes": 47780
+ },
+ "/seafile-server-8-0/": {
+  "status": 200,
+  "location": null,
+  "bytes": 49421
+ },
+ "/seafile-server-9-0/": {
+  "status": 200,
+  "location": null,
+  "bytes": 52482
+ },
+ "/seafile-server-professional-edition-7-1-mit-starker-basis-auf-zu-neuen-entwicklungen/": {
+  "status": 200,
+  "location": null,
+  "bytes": 42454
+ },
+ "/seafile-sync-client-als-windows-dienst/": {
+  "status": 200,
+  "location": null,
+  "bytes": 44165
+ },
+ "/seafile-unter-plesk-installieren/": {
+  "status": 200,
+  "location": null,
+  "bytes": 39948
+ },
+ "/sharing/": {
+  "status": 200,
+  "location": null,
+  "bytes": 43981
+ },
+ "/sitemap.xml": {
+  "status": 301,
+  "location": "https://de.seafile.com/sitemap_index.xml",
+  "bytes": 0
+ },
+ "/sitemap_index.xml": {
+  "status": 200,
+  "location": null,
+  "bytes": 523
+ },
+ "/sso-seafile-keycloak/": {
+  "status": 200,
+  "location": null,
+  "bytes": 57820
+ },
+ "/strato-hidrive-externer-speicher/": {
+  "status": 200,
+  "location": null,
+  "bytes": 42055
+ },
+ "/support/": {
+  "status": 200,
+  "location": null,
+  "bytes": 37281
+ },
+ "/support/administratoren/": {
+  "status": 200,
+  "location": null,
+  "bytes": 42919
+ },
+ "/support/administratoren/documentation-seafile-app-ucs/": {
+  "status": 200,
+  "location": null,
+  "bytes": 58574
+ },
+ "/support/administratoren/dokumentation-seafile-app-ucs/": {
+  "status": 200,
+  "location": null,
+  "bytes": 60868
+ },
+ "/support/administratoren/roadmap/": {
+  "status": 200,
+  "location": null,
+  "bytes": 37065
+ },
+ "/support/administratoren/verwaltung-lizenzdatei-seafile/": {
+  "status": 200,
+  "location": null,
+  "bytes": 39819
+ },
+ "/support/benutzer/": {
+  "status": 200,
+  "location": null,
+  "bytes": 51183
+ },
+ "/support/benutzer/anleitung/": {
+  "status": 200,
+  "location": null,
+  "bytes": 45253
+ },
+ "/support/benutzer/anleitung/seafile-drive-client-1-0/": {
+  "status": 200,
+  "location": null,
+  "bytes": 47655
+ },
+ "/support/benutzer/anleitung/seafile-drive-client-1-0/client-einstellungen-verwalten/": {
+  "status": 200,
+  "location": null,
+  "bytes": 52261
+ },
+ "/support/benutzer/anleitung/seafile-drive-client-1-0/seadrive-mit-server-verbinden/": {
+  "status": 200,
+  "location": null,
+  "bytes": 47609
+ },
+ "/support/benutzer/anleitung/seafile-drive-client/": {
+  "status": 200,
+  "location": null,
+  "bytes": 57370
+ },
+ "/support/benutzer/anleitung/seafile-drive-client/bibliotheken-und-ordner-vollstaendig-herunterladen/": {
+  "status": 200,
+  "location": null,
+  "bytes": 53220
+ },
+ "/support/benutzer/anleitung/seafile-drive-client/client-einstellungen-verwalten/": {
+  "status": 200,
+  "location": null,
+  "bytes": 57514
+ },
+ "/support/benutzer/anleitung/seafile-drive-client/dateien-manuell-sperren/": {
+  "status": 200,
+  "location": null,
+  "bytes": 50121
+ },
+ "/support/benutzer/anleitung/seafile-drive-client/links-erstellen/": {
+  "status": 200,
+  "location": null,
+  "bytes": 50119
+ },
+ "/support/benutzer/anleitung/seafile-drive-client/parallelbetrieb-von-seafile-sync-und-drive-client/": {
+  "status": 200,
+  "location": null,
+  "bytes": 47987
+ },
+ "/support/benutzer/anleitung/seafile-drive-client/seadrive-mit-server-verbinden/": {
+  "status": 200,
+  "location": null,
+  "bytes": 52383
+ },
+ "/support/benutzer/anleitung/seafile-drive-client/verschluesselte-bibliotheken-einbinden/": {
+  "status": 200,
+  "location": null,
+  "bytes": 52688
+ },
+ "/support/benutzer/anleitung/seafile-mobile-apps/": {
+  "status": 200,
+  "location": null,
+  "bytes": 48075
+ },
+ "/support/benutzer/anleitung/seafile-mobile-apps/app-einstellungen-verwalten/": {
+  "status": 200,
+  "location": null,
+  "bytes": 48626
+ },
+ "/support/benutzer/anleitung/seafile-mobile-apps/mobile-app-mit-server-verbinden/": {
+  "status": 200,
+  "location": null,
+  "bytes": 48908
+ },
+ "/support/benutzer/anleitung/seafile-outlook-addin/": {
+  "status": 200,
+  "location": null,
+  "bytes": 47619
+ },
+ "/support/benutzer/anleitung/seafile-outlook-addin/add-in-mit-server-verbinden/": {
+  "status": 200,
+  "location": null,
+  "bytes": 47498
+ },
+ "/support/benutzer/anleitung/seafile-outlook-addin/e-mails-und-anhaenge-in-seafile-hochladen/": {
+  "status": 200,
+  "location": null,
+  "bytes": 47609
+ },
+ "/support/benutzer/anleitung/seafile-outlook-addin/freigabe-links-erzeugen-und-einfuegen/": {
+  "status": 200,
+  "location": null,
+  "bytes": 49778
+ },
+ "/support/benutzer/anleitung/seafile-server/": {
+  "status": 200,
+  "location": null,
+  "bytes": 46233
+ },
+ "/support/benutzer/anleitung/seafile-server/bibliotheken/": {
+  "status": 200,
+  "location": null,
+  "bytes": 54266
+ },
+ "/support/benutzer/anleitung/seafile-server/funktionen/": {
+  "status": 200,
+  "location": null,
+  "bytes": 45417
+ },
+ "/support/benutzer/anleitung/seafile-server/rollen/": {
+  "status": 200,
+  "location": null,
+  "bytes": 53594
+ },
+ "/support/benutzer/anleitung/seafile-server/schnittstellen/": {
+  "status": 200,
+  "location": null,
+  "bytes": 53589
+ },
+ "/support/benutzer/anleitung/seafile-sync-client/": {
+  "status": 200,
+  "location": null,
+  "bytes": 48260
+ },
+ "/support/benutzer/anleitung/seafile-sync-client/client-einstellungen-verwalten/": {
+  "status": 200,
+  "location": null,
+  "bytes": 51612
+ },
+ "/support/benutzer/anleitung/seafile-sync-client/sync-client-mit-server-verbinden/": {
+  "status": 200,
+  "location": null,
+  "bytes": 48629
+ },
+ "/support/benutzer/anleitung/seafile-sync-client/synchronisation-einer-bibliothek-einrichten/": {
+  "status": 200,
+  "location": null,
+  "bytes": 48829
+ },
+ "/support/benutzer/anleitung/seafile-sync-client/synchronisationen-verwalten/": {
+  "status": 200,
+  "location": null,
+  "bytes": 47614
+ },
+ "/support/benutzer/anleitung/seahub/": {
+  "status": 200,
+  "location": null,
+  "bytes": 50182
+ },
+ "/support/benutzer/anleitung/seahub/2fa-aktivieren/": {
+  "status": 200,
+  "location": null,
+  "bytes": 50275
+ },
+ "/support/benutzer/anleitung/seahub/an-seahub-anmelden/": {
+  "status": 200,
+  "location": null,
+  "bytes": 47351
+ },
+ "/support/benutzer/anleitung/seahub/benutzereinstellungen-bearbeiten/": {
+  "status": 200,
+  "location": null,
+  "bytes": 48491
+ },
+ "/support/benutzer/anleitung/seahub/bibliotheken-auf-frueheren-stand-zuruecksetzen/": {
+  "status": 200,
+  "location": null,
+  "bytes": 47739
+ },
+ "/support/benutzer/anleitung/seahub/bibliotheken-ordner-und-dateien-erstellen/": {
+  "status": 200,
+  "location": null,
+  "bytes": 48947
+ },
+ "/support/benutzer/anleitung/seahub/bibliotheken-ordner-und-dateien-mit-dritten-teilen/": {
+  "status": 200,
+  "location": null,
+  "bytes": 48596
+ },
+ "/support/benutzer/anleitung/seahub/bibliotheken-uebertragen/": {
+  "status": 200,
+  "location": null,
+  "bytes": 47756
+ },
+ "/support/benutzer/anleitung/seahub/bibliotheken-und-ordner-an-andere-benutzer-freigeben/": {
+  "status": 200,
+  "location": null,
+  "bytes": 55195
+ },
+ "/support/benutzer/anleitung/seahub/dateien-und-inhalte-suchen/": {
+  "status": 200,
+  "location": null,
+  "bytes": 47219
+ },
+ "/support/benutzer/anleitung/seahub/favoriten-verwalten/": {
+  "status": 200,
+  "location": null,
+  "bytes": 47103
+ },
+ "/support/benutzer/anleitung/seahub/freigaben-und-public-links-verwalten/": {
+  "status": 200,
+  "location": null,
+  "bytes": 47387
+ },
+ "/support/benutzer/anleitung/seahub/fruehere-dateiversionen-wiederherstellen/": {
+  "status": 200,
+  "location": null,
+  "bytes": 47804
+ },
+ "/support/benutzer/anleitung/seahub/geloeschte-dateien-wiederherstellen/": {
+  "status": 200,
+  "location": null,
+  "bytes": 47587
+ },
+ "/support/benutzer/anleitung/seahub/markdown-dateien-online-bearbeiten/": {
+  "status": 200,
+  "location": null,
+  "bytes": 48769
+ },
+ "/support/benutzer/anleitung/seahub/office-dateien-online-bearbeiten/": {
+  "status": 200,
+  "location": null,
+  "bytes": 48801
+ },
+ "/support/benutzer/anleitung/seahub/ordner-und-dateien-hoch-und-runterladen/": {
+  "status": 200,
+  "location": null,
+  "bytes": 48345
+ },
+ "/support/benutzer/anleitung/seahub/text-dateien-online-bearbeiten/": {
+  "status": 200,
+  "location": null,
+  "bytes": 48816
+ },
+ "/support/individueller-support/": {
+  "status": 200,
+  "location": null,
+  "bytes": 45778
+ },
+ "/support/rechtliches/": {
+  "status": 200,
+  "location": null,
+  "bytes": 37777
+ },
+ "/support/whitepapers/": {
+  "status": 200,
+  "location": null,
+  "bytes": 39427
+ },
+ "/synchronisation/": {
+  "status": 200,
+  "location": null,
+  "bytes": 39093
+ },
+ "/tour/": {
+  "status": 200,
+  "location": null,
+  "bytes": 48491
+ },
+ "/trial/": {
+  "status": 200,
+  "location": null,
+  "bytes": 37020
+ },
+ "/trial/nutzungsbedingungen/": {
+  "status": 200,
+  "location": null,
+  "bytes": 41995
+ },
+ "/ueber-uns/geschichte/": {
+  "status": 301,
+  "location": "https://de.seafile.com/",
+  "bytes": 0
+ },
+ "/vergleich-seafile-onedrive/": {
+  "status": 200,
+  "location": null,
+  "bytes": 50124
+ },
+ "/versionierung/": {
+  "status": 200,
+  "location": null,
+  "bytes": 40107
+ },
+ "/versionsvergleich/": {
+  "status": 301,
+  "location": "https://de.seafile.com/seafile-editionen/",
+  "bytes": 0
+ },
+ "/versionsvergleich/professional-features/": {
+  "status": 301,
+  "location": "https://de.seafile.com/seafile-editionen/",
+  "bytes": 0
+ },
+ "/volltextsuche/": {
+  "status": 200,
+  "location": null,
+  "bytes": 40262
+ },
+ "/wav-dateien-seahub-abspielen/": {
+  "status": 200,
+  "location": null,
+  "bytes": 41094
+ },
+ "/wechselnder-login-hintergrund/": {
+  "status": 200,
+  "location": null,
+  "bytes": 46566
+ },
+ "/wichtige-informationen-zu-app-seafile-de-und-zu-lizenzkaeufen/": {
+  "status": 301,
+  "location": "https://de.seafile.com/support/administratoren/verwaltung-lizenzdatei-seafile/",
+  "bytes": 0
+ },
+ "/wikis/": {
+  "status": 200,
+  "location": null,
+  "bytes": 41456
+ },
+ "/wp-admin/": {
+  "status": 302,
+  "location": "https://de.seafile.com/wp-login.php?redirect_to=https%3A%2F%2Fde.seafile.com%2Fwp-admin%2F&reauth=1",
+  "bytes": 0
+ },
+ "/wp-content/uploads/2016/03/seafile-unlock.jpg": {
+  "status": 301,
+  "location": "https://de.seafile.com/",
+  "bytes": 0
+ },
+ "/wp-json/": {
+  "status": 200,
+  "location": null,
+  "bytes": 228090
+ },
+ "/wp-json/wp/v2/posts": {
+  "status": 200,
+  "location": null,
+  "bytes": 227461
+ },
+ "/wp-login.php": {
+  "status": 200,
+  "location": null,
+  "bytes": 10571
+ },
+ "/xmlrpc.php": {
+  "status": null,
+  "error": "Remote end closed connection without response"
+ },
+ "/youtube-video-in-begruessungs-popup/": {
+  "status": 200,
+  "location": null,
+  "bytes": 48450
+ },
+ "/zimbra-und-seafile-das-neue-collaboration-dream-team/": {
+  "status": 200,
+  "location": null,
+  "bytes": 55113
+ },
+ "/zur-zukunft-von-seafile/": {
+  "status": 301,
+  "location": "https://de.seafile.com/support/administratoren/roadmap/",
+  "bytes": 0
+ }
+}

@@ -1,0 +1,1118 @@
+{
+ "/": {
+  "status": 200,
+  "bytes": 53150,
+  "file": "index.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/2018/": {
+  "status": 200,
+  "bytes": 57808,
+  "file": "2018.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/2019/": {
+  "status": 200,
+  "bytes": 58354,
+  "file": "2019.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/2020/": {
+  "status": 200,
+  "bytes": 38337,
+  "file": "2020.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/2021/": {
+  "status": 200,
+  "bytes": 35912,
+  "file": "2021.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/2022/": {
+  "status": 200,
+  "bytes": 34973,
+  "file": "2022.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/ad-ldap/": {
+  "status": 200,
+  "bytes": 40492,
+  "file": "ad-ldap.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/admin-delegation/": {
+  "status": 200,
+  "bytes": 57570,
+  "file": "admin-delegation.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/api/": {
+  "status": 200,
+  "bytes": 41822,
+  "file": "api.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/category/anleitungen/": {
+  "status": 200,
+  "bytes": 55408,
+  "file": "category_anleitungen.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/category/anleitungen/feed/": {
+  "status": 200,
+  "bytes": 13578,
+  "file": "category_anleitungen_feed.html",
+  "content_type": "application/rss+xml; charset=UTF-8",
+  "location": null
+ },
+ "/category/funktionen/": {
+  "status": 200,
+  "bytes": 57044,
+  "file": "category_funktionen.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/category/funktionen/feed/": {
+  "status": 200,
+  "bytes": 13233,
+  "file": "category_funktionen_feed.html",
+  "content_type": "application/rss+xml; charset=UTF-8",
+  "location": null
+ },
+ "/category/release-notes/": {
+  "status": 200,
+  "bytes": 47711,
+  "file": "category_release-notes.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/category/release-notes/feed/": {
+  "status": 200,
+  "bytes": 12952,
+  "file": "category_release-notes_feed.html",
+  "content_type": "application/rss+xml; charset=UTF-8",
+  "location": null
+ },
+ "/cluster/": {
+  "status": 200,
+  "bytes": 39504,
+  "file": "cluster.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/comments/feed/": {
+  "status": 200,
+  "bytes": 694,
+  "file": "comments_feed.html",
+  "content_type": "application/rss+xml; charset=UTF-8",
+  "location": null
+ },
+ "/dateien-mit-dem-seafile-client-synchronisieren/": {
+  "status": 200,
+  "bytes": 48260,
+  "file": "dateien-mit-dem-seafile-client-synchronisieren.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/datenschutz/": {
+  "status": 200,
+  "bytes": 67281,
+  "file": "datenschutz.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/downloads/": {
+  "status": 200,
+  "bytes": 51612,
+  "file": "downloads.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/en/": {
+  "status": 200,
+  "bytes": 19241,
+  "file": "en.html",
+  "content_type": "text/html; charset=utf-8",
+  "location": null
+ },
+ "/en/about-the-future-of-seafile/": {
+  "status": 200,
+  "bytes": 37065,
+  "file": "en_about-the-future-of-seafile.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/en/important-infos-about-app-seafile-de-and-licensing-purchases-through-our-web-shops/": {
+  "status": 200,
+  "bytes": 19241,
+  "file": "en_important-infos-about-app-seafile-de-and-licensing-purchases-through-our-web-shops.html",
+  "content_type": "text/html; charset=utf-8",
+  "location": null
+ },
+ "/en/seafile-now-accepts-bitcoin-via-bitpay/": {
+  "status": 200,
+  "bytes": 19241,
+  "file": "en_seafile-now-accepts-bitcoin-via-bitpay.html",
+  "content_type": "text/html; charset=utf-8",
+  "location": null
+ },
+ "/en/some-background-information-about-our-conflict-with-paypal/": {
+  "status": 200,
+  "bytes": 19241,
+  "file": "en_some-background-information-about-our-conflict-with-paypal.html",
+  "content_type": "text/html; charset=utf-8",
+  "location": null
+ },
+ "/erweiterte-clusterkonfigurationen/": {
+  "status": 200,
+  "bytes": 44055,
+  "file": "erweiterte-clusterkonfigurationen.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/favicon.ico": {
+  "status": 200,
+  "bytes": 752,
+  "file": "favicon.ico",
+  "content_type": "image/png",
+  "location": null
+ },
+ "/featurelog/": {
+  "status": 200,
+  "bytes": 48616,
+  "file": "featurelog.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/feed/": {
+  "status": 200,
+  "bytes": 13154,
+  "file": "feed.html",
+  "content_type": "application/rss+xml; charset=UTF-8",
+  "location": null
+ },
+ "/file-cloud/": {
+  "status": 200,
+  "bytes": 41396,
+  "file": "file-cloud.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/file-locking/": {
+  "status": 200,
+  "bytes": 39407,
+  "file": "file-locking.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/fr/produits/hebergement-de-serveur-seafile/": {
+  "status": 200,
+  "bytes": 53150,
+  "file": "fr_produits_hebergement-de-serveur-seafile.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/get-seafile/": {
+  "status": 200,
+  "bytes": 47948,
+  "file": "get-seafile.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/gravatar-icons-seafile/": {
+  "status": 200,
+  "bytes": 42992,
+  "file": "gravatar-icons-seafile.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/hetzner-storagebox-externer-speicher/": {
+  "status": 200,
+  "bytes": 42928,
+  "file": "hetzner-storagebox-externer-speicher.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/hochverfuegbarkeit-light-datenreplikation-mit-dem-seafile-cli-client/": {
+  "status": 200,
+  "bytes": 48599,
+  "file": "hochverfuegbarkeit-light-datenreplikation-mit-dem-seafile-cli-client.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/impressum/": {
+  "status": 200,
+  "bytes": 33526,
+  "file": "impressum.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/instructions-for-translations/": {
+  "status": 200,
+  "bytes": 37832,
+  "file": "instructions-for-translations.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/keepass-seafile-praktischer-cloud-passwort-safe/": {
+  "status": 200,
+  "bytes": 49694,
+  "file": "keepass-seafile-praktischer-cloud-passwort-safe.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/konfiguration-seadrive-registry-konfigurationsdatei/": {
+  "status": 200,
+  "bytes": 41609,
+  "file": "konfiguration-seadrive-registry-konfigurationsdatei.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/monitoring/": {
+  "status": 200,
+  "bytes": 45545,
+  "file": "monitoring.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/multi-tenancy/": {
+  "status": 200,
+  "bytes": 39321,
+  "file": "multi-tenancy.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/multiple-storage-backends/": {
+  "status": 200,
+  "bytes": 42309,
+  "file": "multiple-storage-backends.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/news/": {
+  "status": 200,
+  "bytes": 91920,
+  "file": "news.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/news/feed/": {
+  "status": 200,
+  "bytes": 13185,
+  "file": "news_feed.html",
+  "content_type": "application/rss+xml; charset=UTF-8",
+  "location": null
+ },
+ "/now/": {
+  "status": 200,
+  "bytes": 44734,
+  "file": "now.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/online-file-editing/": {
+  "status": 200,
+  "bytes": 41937,
+  "file": "online-file-editing.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/onlyoffice-mit-lokaler-ip-verwenden/": {
+  "status": 200,
+  "bytes": 49121,
+  "file": "onlyoffice-mit-lokaler-ip-verwenden.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/page-sitemap.xml": {
+  "status": 200,
+  "bytes": 40547,
+  "file": "page-sitemap.xml",
+  "content_type": "text/xml; charset=UTF-8",
+  "location": null
+ },
+ "/plugin-integration/": {
+  "status": 200,
+  "bytes": 71376,
+  "file": "plugin-integration.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/post-sitemap.xml": {
+  "status": 200,
+  "bytes": 26892,
+  "file": "post-sitemap.xml",
+  "content_type": "text/xml; charset=UTF-8",
+  "location": null
+ },
+ "/public-sharing/": {
+  "status": 200,
+  "bytes": 40080,
+  "file": "public-sharing.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/robots.txt": {
+  "status": 200,
+  "bytes": 172,
+  "file": "robots.txt",
+  "content_type": "text/plain; charset=utf-8",
+  "location": null
+ },
+ "/schriftarten-onlyoffice-hinzufuegen/": {
+  "status": 200,
+  "bytes": 40268,
+  "file": "schriftarten-onlyoffice-hinzufuegen.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/seadrive-client-2-0-installationsdokumentation/": {
+  "status": 200,
+  "bytes": 52470,
+  "file": "seadrive-client-2-0-installationsdokumentation.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/seafile-akzeptiert-jetzt-bitcoin-zahlungen-ueber-bitpay/": {
+  "status": 200,
+  "bytes": 47948,
+  "file": "seafile-akzeptiert-jetzt-bitcoin-zahlungen-ueber-bitpay.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/seafile-backup/": {
+  "status": 200,
+  "bytes": 44778,
+  "file": "seafile-backup.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/seafile-ce-als-fertiges-image-bei-netcup/": {
+  "status": 200,
+  "bytes": 44941,
+  "file": "seafile-ce-als-fertiges-image-bei-netcup.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/seafile-cluster/": {
+  "status": 200,
+  "bytes": 44512,
+  "file": "seafile-cluster.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/seafile-community-edition-server-5-1-2/": {
+  "status": 200,
+  "bytes": 51612,
+  "file": "seafile-community-edition-server-5-1-2.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/seafile-desktop-client-5-1-1/": {
+  "status": 200,
+  "bytes": 51612,
+  "file": "seafile-desktop-client-5-1-1.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/seafile-drive-client-1-fuer-windows-macos-und-linux-verfuegbar/": {
+  "status": 200,
+  "bytes": 39552,
+  "file": "seafile-drive-client-1-fuer-windows-macos-und-linux-verfuegbar.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/seafile-drive-client-2-0-file-server-alternative-der-naechsten-generation/": {
+  "status": 200,
+  "bytes": 41611,
+  "file": "seafile-drive-client-2-0-file-server-alternative-der-naechsten-generation.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/seafile-editionen/": {
+  "status": 200,
+  "bytes": 52610,
+  "file": "seafile-editionen.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/seafile-kopano-backend-plugin/": {
+  "status": 200,
+  "bytes": 49042,
+  "file": "seafile-kopano-backend-plugin.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/seafile-professional-5-1-3-ist-veroeffentlicht/": {
+  "status": 200,
+  "bytes": 51612,
+  "file": "seafile-professional-5-1-3-ist-veroeffentlicht.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/seafile-professional-5-1-7/": {
+  "status": 200,
+  "bytes": 51612,
+  "file": "seafile-professional-5-1-7.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/seafile-professional-5-1/": {
+  "status": 200,
+  "bytes": 51612,
+  "file": "seafile-professional-5-1.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/seafile-professional-server-version-6-3-ab-heute-production-ready/": {
+  "status": 200,
+  "bytes": 46430,
+  "file": "seafile-professional-server-version-6-3-ab-heute-production-ready.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/seafile-server-7-0-knowledge-management-with-sync-share/": {
+  "status": 200,
+  "bytes": 47780,
+  "file": "seafile-server-7-0-knowledge-management-with-sync-share.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/seafile-server-8-0/": {
+  "status": 200,
+  "bytes": 49419,
+  "file": "seafile-server-8-0.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/seafile-server-9-0/": {
+  "status": 200,
+  "bytes": 52482,
+  "file": "seafile-server-9-0.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/seafile-server-professional-edition-7-1-mit-starker-basis-auf-zu-neuen-entwicklungen/": {
+  "status": 200,
+  "bytes": 42454,
+  "file": "seafile-server-professional-edition-7-1-mit-starker-basis-auf-zu-neuen-entwicklungen.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/seafile-sync-client-als-windows-dienst/": {
+  "status": 200,
+  "bytes": 44165,
+  "file": "seafile-sync-client-als-windows-dienst.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/seafile-unter-plesk-installieren/": {
+  "status": 200,
+  "bytes": 39948,
+  "file": "seafile-unter-plesk-installieren.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/sharing/": {
+  "status": 200,
+  "bytes": 43981,
+  "file": "sharing.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/sitemap.xml": {
+  "status": 200,
+  "bytes": 523,
+  "file": "sitemap.xml",
+  "content_type": "text/xml; charset=UTF-8",
+  "location": null
+ },
+ "/sitemap_index.xml": {
+  "status": 200,
+  "bytes": 523,
+  "file": "sitemap_index.xml",
+  "content_type": "text/xml; charset=UTF-8",
+  "location": null
+ },
+ "/sso-seafile-keycloak/": {
+  "status": 200,
+  "bytes": 57822,
+  "file": "sso-seafile-keycloak.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/strato-hidrive-externer-speicher/": {
+  "status": 200,
+  "bytes": 42055,
+  "file": "strato-hidrive-externer-speicher.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/": {
+  "status": 200,
+  "bytes": 37281,
+  "file": "support.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/administratoren/": {
+  "status": 200,
+  "bytes": 42919,
+  "file": "support_administratoren.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/administratoren/documentation-seafile-app-ucs/": {
+  "status": 200,
+  "bytes": 58574,
+  "file": "support_administratoren_documentation-seafile-app-ucs.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/administratoren/dokumentation-seafile-app-ucs/": {
+  "status": 200,
+  "bytes": 60868,
+  "file": "support_administratoren_dokumentation-seafile-app-ucs.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/administratoren/roadmap/": {
+  "status": 200,
+  "bytes": 37065,
+  "file": "support_administratoren_roadmap.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/administratoren/verwaltung-lizenzdatei-seafile/": {
+  "status": 200,
+  "bytes": 39819,
+  "file": "support_administratoren_verwaltung-lizenzdatei-seafile.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/": {
+  "status": 200,
+  "bytes": 51183,
+  "file": "support_benutzer.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/": {
+  "status": 200,
+  "bytes": 45253,
+  "file": "support_benutzer_anleitung.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-drive-client-1-0/": {
+  "status": 200,
+  "bytes": 47655,
+  "file": "support_benutzer_anleitung_seafile-drive-client-1-0.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-drive-client-1-0/client-einstellungen-verwalten/": {
+  "status": 200,
+  "bytes": 52261,
+  "file": "support_benutzer_anleitung_seafile-drive-client-1-0_client-einstellungen-verwalten.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-drive-client-1-0/seadrive-mit-server-verbinden/": {
+  "status": 200,
+  "bytes": 47609,
+  "file": "support_benutzer_anleitung_seafile-drive-client-1-0_seadrive-mit-server-verbinden.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-drive-client/": {
+  "status": 200,
+  "bytes": 57370,
+  "file": "support_benutzer_anleitung_seafile-drive-client.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-drive-client/bibliotheken-und-ordner-vollstaendig-herunterladen/": {
+  "status": 200,
+  "bytes": 53222,
+  "file": "support_benutzer_anleitung_seafile-drive-client_bibliotheken-und-ordner-vollstaendig-herunterladen.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-drive-client/client-einstellungen-verwalten/": {
+  "status": 200,
+  "bytes": 57516,
+  "file": "support_benutzer_anleitung_seafile-drive-client_client-einstellungen-verwalten.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-drive-client/dateien-manuell-sperren/": {
+  "status": 200,
+  "bytes": 50121,
+  "file": "support_benutzer_anleitung_seafile-drive-client_dateien-manuell-sperren.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-drive-client/links-erstellen/": {
+  "status": 200,
+  "bytes": 50117,
+  "file": "support_benutzer_anleitung_seafile-drive-client_links-erstellen.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-drive-client/parallelbetrieb-von-seafile-sync-und-drive-client/": {
+  "status": 200,
+  "bytes": 47987,
+  "file": "support_benutzer_anleitung_seafile-drive-client_parallelbetrieb-von-seafile-sync-und-drive-client.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-drive-client/seadrive-mit-server-verbinden/": {
+  "status": 200,
+  "bytes": 52383,
+  "file": "support_benutzer_anleitung_seafile-drive-client_seadrive-mit-server-verbinden.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-drive-client/verschluesselte-bibliotheken-einbinden/": {
+  "status": 200,
+  "bytes": 52690,
+  "file": "support_benutzer_anleitung_seafile-drive-client_verschluesselte-bibliotheken-einbinden.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-mobile-apps/": {
+  "status": 200,
+  "bytes": 48075,
+  "file": "support_benutzer_anleitung_seafile-mobile-apps.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-mobile-apps/app-einstellungen-verwalten/": {
+  "status": 200,
+  "bytes": 48626,
+  "file": "support_benutzer_anleitung_seafile-mobile-apps_app-einstellungen-verwalten.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-mobile-apps/mobile-app-mit-server-verbinden/": {
+  "status": 200,
+  "bytes": 48908,
+  "file": "support_benutzer_anleitung_seafile-mobile-apps_mobile-app-mit-server-verbinden.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-outlook-addin/": {
+  "status": 200,
+  "bytes": 47619,
+  "file": "support_benutzer_anleitung_seafile-outlook-addin.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-outlook-addin/add-in-mit-server-verbinden/": {
+  "status": 200,
+  "bytes": 47498,
+  "file": "support_benutzer_anleitung_seafile-outlook-addin_add-in-mit-server-verbinden.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-outlook-addin/e-mails-und-anhaenge-in-seafile-hochladen/": {
+  "status": 200,
+  "bytes": 47609,
+  "file": "support_benutzer_anleitung_seafile-outlook-addin_e-mails-und-anhaenge-in-seafile-hochladen.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-outlook-addin/freigabe-links-erzeugen-und-einfuegen/": {
+  "status": 200,
+  "bytes": 49778,
+  "file": "support_benutzer_anleitung_seafile-outlook-addin_freigabe-links-erzeugen-und-einfuegen.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-server/": {
+  "status": 200,
+  "bytes": 46233,
+  "file": "support_benutzer_anleitung_seafile-server.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-server/bibliotheken/": {
+  "status": 200,
+  "bytes": 54266,
+  "file": "support_benutzer_anleitung_seafile-server_bibliotheken.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-server/funktionen/": {
+  "status": 200,
+  "bytes": 45417,
+  "file": "support_benutzer_anleitung_seafile-server_funktionen.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-server/rollen/": {
+  "status": 200,
+  "bytes": 53594,
+  "file": "support_benutzer_anleitung_seafile-server_rollen.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-server/schnittstellen/": {
+  "status": 200,
+  "bytes": 53589,
+  "file": "support_benutzer_anleitung_seafile-server_schnittstellen.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-sync-client/": {
+  "status": 200,
+  "bytes": 48260,
+  "file": "support_benutzer_anleitung_seafile-sync-client.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-sync-client/client-einstellungen-verwalten/": {
+  "status": 200,
+  "bytes": 51612,
+  "file": "support_benutzer_anleitung_seafile-sync-client_client-einstellungen-verwalten.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-sync-client/sync-client-mit-server-verbinden/": {
+  "status": 200,
+  "bytes": 48629,
+  "file": "support_benutzer_anleitung_seafile-sync-client_sync-client-mit-server-verbinden.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-sync-client/synchronisation-einer-bibliothek-einrichten/": {
+  "status": 200,
+  "bytes": 48829,
+  "file": "support_benutzer_anleitung_seafile-sync-client_synchronisation-einer-bibliothek-einrichten.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seafile-sync-client/synchronisationen-verwalten/": {
+  "status": 200,
+  "bytes": 47614,
+  "file": "support_benutzer_anleitung_seafile-sync-client_synchronisationen-verwalten.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seahub/": {
+  "status": 200,
+  "bytes": 50182,
+  "file": "support_benutzer_anleitung_seahub.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seahub/2fa-aktivieren/": {
+  "status": 200,
+  "bytes": 50275,
+  "file": "support_benutzer_anleitung_seahub_2fa-aktivieren.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seahub/an-seahub-anmelden/": {
+  "status": 200,
+  "bytes": 47351,
+  "file": "support_benutzer_anleitung_seahub_an-seahub-anmelden.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seahub/benutzereinstellungen-bearbeiten/": {
+  "status": 200,
+  "bytes": 48491,
+  "file": "support_benutzer_anleitung_seahub_benutzereinstellungen-bearbeiten.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seahub/bibliotheken-auf-frueheren-stand-zuruecksetzen/": {
+  "status": 200,
+  "bytes": 47739,
+  "file": "support_benutzer_anleitung_seahub_bibliotheken-auf-frueheren-stand-zuruecksetzen.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seahub/bibliotheken-ordner-und-dateien-erstellen/": {
+  "status": 200,
+  "bytes": 48947,
+  "file": "support_benutzer_anleitung_seahub_bibliotheken-ordner-und-dateien-erstellen.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seahub/bibliotheken-ordner-und-dateien-mit-dritten-teilen/": {
+  "status": 200,
+  "bytes": 48596,
+  "file": "support_benutzer_anleitung_seahub_bibliotheken-ordner-und-dateien-mit-dritten-teilen.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seahub/bibliotheken-uebertragen/": {
+  "status": 200,
+  "bytes": 47756,
+  "file": "support_benutzer_anleitung_seahub_bibliotheken-uebertragen.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seahub/bibliotheken-und-ordner-an-andere-benutzer-freigeben/": {
+  "status": 200,
+  "bytes": 55195,
+  "file": "support_benutzer_anleitung_seahub_bibliotheken-und-ordner-an-andere-benutzer-freigeben.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seahub/dateien-und-inhalte-suchen/": {
+  "status": 200,
+  "bytes": 47219,
+  "file": "support_benutzer_anleitung_seahub_dateien-und-inhalte-suchen.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seahub/favoriten-verwalten/": {
+  "status": 200,
+  "bytes": 47103,
+  "file": "support_benutzer_anleitung_seahub_favoriten-verwalten.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seahub/freigaben-und-public-links-verwalten/": {
+  "status": 200,
+  "bytes": 47387,
+  "file": "support_benutzer_anleitung_seahub_freigaben-und-public-links-verwalten.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seahub/fruehere-dateiversionen-wiederherstellen/": {
+  "status": 200,
+  "bytes": 47804,
+  "file": "support_benutzer_anleitung_seahub_fruehere-dateiversionen-wiederherstellen.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seahub/geloeschte-dateien-wiederherstellen/": {
+  "status": 200,
+  "bytes": 47587,
+  "file": "support_benutzer_anleitung_seahub_geloeschte-dateien-wiederherstellen.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seahub/markdown-dateien-online-bearbeiten/": {
+  "status": 200,
+  "bytes": 48769,
+  "file": "support_benutzer_anleitung_seahub_markdown-dateien-online-bearbeiten.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seahub/office-dateien-online-bearbeiten/": {
+  "status": 200,
+  "bytes": 48801,
+  "file": "support_benutzer_anleitung_seahub_office-dateien-online-bearbeiten.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seahub/ordner-und-dateien-hoch-und-runterladen/": {
+  "status": 200,
+  "bytes": 48345,
+  "file": "support_benutzer_anleitung_seahub_ordner-und-dateien-hoch-und-runterladen.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/benutzer/anleitung/seahub/text-dateien-online-bearbeiten/": {
+  "status": 200,
+  "bytes": 48816,
+  "file": "support_benutzer_anleitung_seahub_text-dateien-online-bearbeiten.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/individueller-support/": {
+  "status": 200,
+  "bytes": 45778,
+  "file": "support_individueller-support.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/rechtliches/": {
+  "status": 200,
+  "bytes": 37777,
+  "file": "support_rechtliches.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/support/whitepapers/": {
+  "status": 200,
+  "bytes": 39427,
+  "file": "support_whitepapers.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/synchronisation/": {
+  "status": 200,
+  "bytes": 39093,
+  "file": "synchronisation.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/tour/": {
+  "status": 200,
+  "bytes": 48491,
+  "file": "tour.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/trial/": {
+  "status": 200,
+  "bytes": 37020,
+  "file": "trial.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/trial/nutzungsbedingungen/": {
+  "status": 200,
+  "bytes": 41995,
+  "file": "trial_nutzungsbedingungen.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/ueber-uns/geschichte/": {
+  "status": 200,
+  "bytes": 53150,
+  "file": "ueber-uns_geschichte.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/vergleich-seafile-onedrive/": {
+  "status": 200,
+  "bytes": 50124,
+  "file": "vergleich-seafile-onedrive.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/versionierung/": {
+  "status": 200,
+  "bytes": 40107,
+  "file": "versionierung.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/versionsvergleich/": {
+  "status": 200,
+  "bytes": 52610,
+  "file": "versionsvergleich.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/versionsvergleich/professional-features/": {
+  "status": 200,
+  "bytes": 52610,
+  "file": "versionsvergleich_professional-features.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/volltextsuche/": {
+  "status": 200,
+  "bytes": 40262,
+  "file": "volltextsuche.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/wav-dateien-seahub-abspielen/": {
+  "status": 200,
+  "bytes": 41094,
+  "file": "wav-dateien-seahub-abspielen.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/wechselnder-login-hintergrund/": {
+  "status": 200,
+  "bytes": 46568,
+  "file": "wechselnder-login-hintergrund.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/wichtige-informationen-zu-app-seafile-de-und-zu-lizenzkaeufen/": {
+  "status": 200,
+  "bytes": 39819,
+  "file": "wichtige-informationen-zu-app-seafile-de-und-zu-lizenzkaeufen.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/wikis/": {
+  "status": 200,
+  "bytes": 41456,
+  "file": "wikis.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/wp-admin/": {
+  "status": 200,
+  "bytes": 10661,
+  "file": "wp-admin.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/wp-content/uploads/2016/03/seafile-unlock.jpg": {
+  "status": 200,
+  "bytes": 53150,
+  "file": "wp-content_uploads_2016_03_seafile-unlock.jpg",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/wp-json/": {
+  "status": 200,
+  "bytes": 228090,
+  "file": "wp-json.html",
+  "content_type": "application/json; charset=UTF-8",
+  "location": null
+ },
+ "/wp-json/wp/v2/posts": {
+  "status": 200,
+  "bytes": 227461,
+  "file": "wp-json_wp_v2_posts.html",
+  "content_type": "application/json; charset=UTF-8",
+  "location": null
+ },
+ "/wp-login.php": {
+  "status": 200,
+  "bytes": 10559,
+  "file": "wp-login.php.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/xmlrpc.php": {
+  "error": "Remote end closed connection without response"
+ },
+ "/youtube-video-in-begruessungs-popup/": {
+  "status": 200,
+  "bytes": 48450,
+  "file": "youtube-video-in-begruessungs-popup.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/zimbra-und-seafile-das-neue-collaboration-dream-team/": {
+  "status": 200,
+  "bytes": 55111,
+  "file": "zimbra-und-seafile-das-neue-collaboration-dream-team.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ },
+ "/zur-zukunft-von-seafile/": {
+  "status": 200,
+  "bytes": 37065,
+  "file": "zur-zukunft-von-seafile.html",
+  "content_type": "text/html; charset=UTF-8",
+  "location": null
+ }
+}

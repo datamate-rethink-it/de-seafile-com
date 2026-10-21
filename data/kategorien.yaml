@@ -1,0 +1,9 @@
+anleitungen:
+  name: "Anleitungen"
+  beschreibung: ""
+funktionen:
+  name: "Funktionen"
+  beschreibung: "Übersichtliche Darstellungen der zentralen Funktionen und Möglichkeiten von Seafile – von A wie API bis Z wie Zentrale Benutzerverwaltung"
+release-notes:
+  name: "Release Notes"
+  beschreibung: "Die Neuerungen aller Major und Minor Releases des Seafile Professional Servers im Detail erklärt."

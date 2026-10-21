@@ -1,0 +1,35 @@
+---
+title: "Seafile unter Plesk installieren"
+slug: "seafile-unter-plesk-installieren"
+seo_title: "Seafile unter Plesk installieren | Seafile"
+description: "Seafile und Plesk sind eine leistungsfähige Kombination für kleine Teams und Firmen. Bei der Installation gilt es ein paar Besonderheiten zu beachten."
+date: "2018-12-04T14:25:07"
+lastmod: "2025-02-21T09:07:15"
+og_image: "/wp-content/uploads/2018/12/seafile-mit-plesk.jpg"
+beitragsbild: "/wp-content/uploads/2018/12/seafile-mit-plesk.jpg"
+lesezeit: "2 Minuten"
+category:
+  - "anleitungen"
+autor: "Christoph Dyllick-Brenzinger"
+wp_id: 2488
+---
+<p>Plesk ist eine häufig anzutreffende Managementsoftware für virtuelle Server. Plesk ermöglicht die einfache Administration von Benutzern, Webseiten, Datenbanken und Webapplikationen wie z.B. WordPress durch eine übersichtliche gestaltete Weboberfläche. Gerade kleine Teams oder Firmen profitieren von der vergleichsweise einsteigerfreundlichen Verwaltung des eigenen Servers. Dieser Artikel zeigt die notwendigen Schritte um Seafile mit seinen leistungsfähigen Sync-and-Share Funktionen auf einem Server mit vorinstalliertem Plesk Onxy zu installieren.</p>
+
+<!--more-->
+
+<h2>Seafile und Plesk &#8211; ein starkes Team für kleine Teams</h2>
+<p>Fast jeder Webhoster bietet mittlerweile auf seinen virtuellen Servern die Möglichkeit ein Plesk vorzuinstallieren. Dank Plesk Webadmin Edition gelingt die Verwaltung der Mitarbeiter und deren E-Mailadressen sowie der eigenen Webseite vergleichsweise einfach und unkompliziert. Die Kehrseite von Plesk ist jedoch, dass die Integration von Applikationen, die keine offizielle Erweitung sind, mit vielen Stolperfallen versehen ist. So überschreibt Plesk bei jeder Änderung ungefragt eigene Konfigurationsdateien und erzwingt die Integration von eigenen Anwendungen in ein ganz enges von Plesk definiertes Raster. Natürlich könnte man die eigenen Anwendungen auf andere Ports außerhalb des http- und https-Standards 80 und 443 legen, jedoch ist dies für viele IT unerfahrene Kunden eher abschreckend.</p>
+
+<p>In folgenden Video zeige ich das komplette Vorgehen um auf einem virtuellen Server von Strato mit vorinstalliertem Plesk Onxy ein Seafile Community und ein WordPress zu installieren. Beide Applikationen werden mit Lets Encrypt abgesichert und Fail2ban als Brute-Force-Schutz wird auf dem Server eingerichtet.</p>
+
+<iframe title="Seafile 6 ganz einfach - Teil 12 - Seafile unter Plesk installieren" width="640" height="360" src="https://www.youtube.com/embed/CIF9ZQU7CDE?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<h2>Notwendige Vorbereitungen für die Installation von Seafile unter Plesk</h2>
+
+<p>Das allgemeine Vorgehen zur Integration einer eigenen Anwendung ist vergleichsweise logisch. Seafile nutzt drei MySQL-Tabellen, welche man direkt über Plesk anlegen kann. Weiterhin soll Seafile über eine Subdomain wie z.B. im Video über seafile.pixelrebels.de angesprochen werden. Auch diese lässt sich einfach und bequem über Plesk anlegen und mit einem Let&#8217;s Encrypt Zertifikat versehen. Der wohl komplizierteste Teil ist die Installation von nginx als Webserver und die Konfigurationseinstellungen der Webserver Apache und nginx in Plesk selbst.</p>
+
+<img fetchpriority="high" decoding="async" width="1281" height="719" src="/wp-content/uploads/2018/12/seafile-plesk-Proxymodus.png" alt="Der Proxymodus in Plesk muss für Seafile deaktiviert werden" class="alignnone size-medium wp-image-2498" srcset="/wp-content/uploads/2018/12/seafile-plesk-Proxymodus.png 1281w, /wp-content/uploads/2018/12/seafile-plesk-Proxymodus-300x168.png 300w, /wp-content/uploads/2018/12/seafile-plesk-Proxymodus-768x431.png 768w, /wp-content/uploads/2018/12/seafile-plesk-Proxymodus-1024x575.png 1024w" sizes="(max-width: 1281px) 100vw, 1281px" />
+
+<p>Nur wenn man die richtigen Funktionen wie den &#8222;Proxymodus&#8220; und die verschiedenen Hosting-Einstellungen wie &#8222;Benutzerdefinierte Fehlerdokumente&#8220;, &#8222;FastCGI-&#8220; und &#8222;PHP-Unterstützung&#8220; deaktiviert, funktioniert der Zugriff auf die Weboberfläche von Seafile einwandfrei. Wenn diese standardmäßig gesetzten Funktionen nicht deaktiviert werden, sieht man zwar die Seafile-Kopfzeile, nicht jedoch die Datei- und Ordnerstrukturen.</p>
+
+<p>Sobald jedoch die richtigen Einstellungen getroffen sind, steht der Nutzung von Seafile nichts mehr im Wege. Die Datenbanken können bequem über Plesk gesichert werden und solange man die Einstellungen der Seafile-Subdomain in Plesk nicht verändert, kollidiert nichts mit der individuellen Lösung Seafile.</p>

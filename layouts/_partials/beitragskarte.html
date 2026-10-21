@@ -1,0 +1,25 @@
+{{- /* Eine Beitragskarte fuer /news/ und die Kategoriearchive. Aufbau aus
+	template-parts/content.php.
+
+	Der Teaser ist .Summary, also der Text bis zur <!--more-->-Marke -
+	dieselbe Grenze, die the_content(false,false) im WordPress benutzt
+	hat. Achtung: Hugo balanciert .Summary nicht; bei fuenf Beitraegen
+	sitzt die Marke mitten im Absatz, das </p> fehlt dann. Der Browser
+	schliesst es am Kartenrand. */ -}}
+<div class="col-md-6 d-flex">
+	<div class="card flex-fill animatedParent">
+		<div class="card-block animated fadeIn">
+			{{- with (or .Params.beitragsbild .Params.og_image) }}
+			<a class="post-thumbnail" href="{{ $.RelPermalink }}" aria-hidden="true" tabindex="-1">
+				<img class="card-img-top" src="{{ . }}" alt="" loading="lazy" decoding="async">
+			</a>
+			{{- end }}
+		</div>
+		<div class="card-body animated fadeIn">
+			<time class="text-right" datetime="{{ .Date.Format "2006-01-02" }}" itemprop="datePublished">{{ partial "datum.html" .Date }}</time>
+			<span> | {{ with index (.GetTerms "category") 0 }}{{ .Title }}{{ end }}</span>
+			<h4 class="card-title"><a href="{{ .RelPermalink }}" rel="bookmark">{{ .Title }}</a></h4>
+			<p>{{ .Summary }}</p>
+		</div>
+	</div>
+</div>

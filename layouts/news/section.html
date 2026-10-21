@@ -1,0 +1,25 @@
+{{ define "main" }}
+{{- /* /news/ - im WordPress die Beitragsseite. Aufbau aus index.php.
+	Alle Beitraege auf einer Seite, ohne Blaetterwerk: /news/page/2/ hat
+	schon im WordPress mit 404 geantwortet. */ -}}
+<section id="intro-teaser">
+	<div class="block categorie-header">
+		<img src="/wp-content/themes/seafileger/img/seafile-news-arch.jpg" data-speed="-2" class="img-parallax" alt="">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 white">
+					<h1>Seafile News &amp; Blog</h1><span><p>Neuigkeiten zu Seafile, Release Notes zu neuen Programmversionen und andere Beiträge rund um Seafile und seine Funktionen.</p></span>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{{ partial "kategorieleiste.html" . }}
+<div class="container-fluid container">
+	<div class="row">
+		{{- range .Pages.ByDate.Reverse }}
+		{{ partial "beitragskarte.html" . }}
+		{{- end }}
+	</div>
+</div>
+{{ end }}

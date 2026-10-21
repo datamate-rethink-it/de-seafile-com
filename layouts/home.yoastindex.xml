@@ -1,0 +1,25 @@
+{{- /* /sitemap_index.xml - die Adresse steht in der Search Console.
+
+	Die XML-Deklaration gehoert in genau diese Datei und nicht in ein
+	Partial: Hugo fuehrt auch .xml-Vorlagen durch html/template, und das
+	maskiert <?xml ?> zu &lt;?xml ?>. Bei datamate.org waren drei
+	Sitemaps deswegen drei Stunden lang ungueltig online, waehrend der
+	Bau gruen durchlief und die <loc>-Eintraege vollstaendig aussahen.
+	_build/verify_news.py parst das Ergebnis deshalb, statt zu zaehlen.
+
+	Der <?xml-stylesheet?>-Verweis auf main-sitemap.xsl faellt weg - die
+	Datei gehoerte dem Yoast-Plugin und war nur Schmuck fuer Menschen,
+	die eine Sitemap im Browser oeffnen. */ -}}
+{{- printf "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" | safeHTML }}
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	{{- $beitraege := (where site.RegularPages "Section" "news") -}}
+	{{- $seiten := (where site.Pages "Section" "ne" "news") }}
+	<sitemap>
+		<loc>{{ "/post-sitemap.xml" | absURL }}</loc>
+		<lastmod>{{ (index ($beitraege.ByLastmod.Reverse) 0).Lastmod.UTC.Format "2006-01-02T15:04:05+00:00" }}</lastmod>
+	</sitemap>
+	<sitemap>
+		<loc>{{ "/page-sitemap.xml" | absURL }}</loc>
+		<lastmod>{{ (index ($seiten.ByLastmod.Reverse) 0).Lastmod.UTC.Format "2006-01-02T15:04:05+00:00" }}</lastmod>
+	</sitemap>
+</sitemapindex>

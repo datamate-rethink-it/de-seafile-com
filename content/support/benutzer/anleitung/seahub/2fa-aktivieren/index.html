@@ -1,0 +1,31 @@
+---
+title: "Zwei-Faktor-Authentifizierung aktivieren"
+seo_title: "Zwei-Faktor-Authentifizierung aktivieren | Seafile"
+description: ""
+date: "2025-05-13T10:09:41"
+lastmod: "2025-05-13T17:08:23"
+og_image: "/wp-content/uploads/2025/05/Seahub_2FA.png"
+lesezeit: "3 Minuten"
+handbuch: true
+wp_id: 4561
+---
+<p>Die <a href="/support/benutzer/anleitung/seahub/an-seahub-anmelden/">Anmeldung an Seahub</a> sowie die <a href="/support/benutzer/anleitung/seafile-sync-client/sync-client-mit-server-verbinden/">Benutzerauthentifizierung in den Seafile Clients</a> erfolgt standardmäßig durch Eingabe von Benutzername und Passwort. Der Zugriff kann jedoch durch einen zweiten Faktor zusätzlich abgesichert werden. Seafile unterstützt das weit verbreitete <a href="https://de.wikipedia.org/wiki/Time-based_one-time_password">TOTP-Verfahren</a>. Ist die Zwei-Faktor-Authentifizierung (2FA) aktiviert, dann muss neben Benutzername und Passwort auch ein sechsstelliger Code, ein sogenannter Token, eingegeben werden, der in einer TOTP-App wie dem Google Authenticator erzeugt wird.</p>
+
+<img fetchpriority="high" decoding="async" src="/wp-content/uploads/2025/05/Seahub_2FA.png" alt="" width="1054" height="346" class="alignnone size-full wp-image-4562" srcset="/wp-content/uploads/2025/05/Seahub_2FA.png 1054w, /wp-content/uploads/2025/05/Seahub_2FA-300x98.png 300w, /wp-content/uploads/2025/05/Seahub_2FA-1024x336.png 1024w, /wp-content/uploads/2025/05/Seahub_2FA-768x252.png 768w" sizes="(max-width: 1054px) 100vw, 1054px" />
+
+<p>Benutzer können 2FA über die <a href="/support/benutzer/anleitung/seahub/benutzereinstellungen-bearbeiten/">persönlichen Einstellungen</a> verwalten. 2FA kann durch den Systemadministrator optional oder verpflichtend gemacht werden. Die Abbildung oben zeigt die persönlichen Einstellungen mit optionaler, aber nicht eingerichteter 2FA. (Der gleichnamige Abschnitt ist ausgeblendet, wenn 2FA vom Systemadministrator nicht aktiviert ist.)</p>
+
+<h2>2FA aktivieren</h2>
+<img decoding="async" src="/wp-content/uploads/2025/05/Seahub_2FA_QR.png" alt="" width="359" height="489" style="float: right; margin-left: 3%;" class="alignnone size-full wp-image-4568" srcset="/wp-content/uploads/2025/05/Seahub_2FA_QR.png 359w, /wp-content/uploads/2025/05/Seahub_2FA_QR-220x300.png 220w" sizes="(max-width: 359px) 100vw, 359px" />
+
+<p>Eine Voraussetzung für die Aktivierung von 2FA ist eine geeignete TOTP-App. Diese erzeugt die sechsstelligen Token. Der Google Authenticator ist wohl die bekannteste, aber bei weitem nicht die einzige TOTP-App. Eine Übersicht über geeignete Apps erhalten Sie in diesem <a href="https://www.datamate.org/die-7-besten-2fa-apps-fuer-android-und-ios/">Artikel unseres Partners datamate</a>.</p>
+
+<p>Um 2FA zu aktivieren, klicken Sie auf die Schaltfläche &#8222;Zwei-Faktor-Authentifizierung aktivieren&#8220;. Öffnen Sie nun die TOTP-App und fügen Sie einen neuen Token hinzu. Scannen Sie den angezeigten QR-Code in der App und geben Sie den von der App erzeugten Token in Seafile ein. Bestätigen Sie die Eingabe.</p>
+<p>Nach Bestätigung der Eingabe werden in Seafile 10 Ersatz-Token angezeigt. Diese Token erlauben den Zugriff auf Seafile ohne die TOTP-App. Drucken Sie diese aus und legen Sie diese an einem sicheren Ort ab. Sie können neue Codes jederzeit neu erstellen.</p>
+
+<h2>2FA deaktivieren</h2>
+<p>Um 2FA zu deaktivieren, klicken Sie auf die Schaltfläche &#8222;Zwei-Faktor-Authentifizierung deaktivieren&#8220;. Bestätigen Sie diese Entscheidung.
+<img decoding="async" src="/wp-content/uploads/2025/05/Seahub_2FA_deaktivieren.png" alt="" width="1054" height="394" class="alignnone size-full wp-image-4564" srcset="/wp-content/uploads/2025/05/Seahub_2FA_deaktivieren.png 1054w, /wp-content/uploads/2025/05/Seahub_2FA_deaktivieren-300x112.png 300w, /wp-content/uploads/2025/05/Seahub_2FA_deaktivieren-1024x383.png 1024w, /wp-content/uploads/2025/05/Seahub_2FA_deaktivieren-768x287.png 768w" sizes="(max-width: 1054px) 100vw, 1054px" />
+
+<h2>TOTP-App verloren?</h2>
+</p><p>Wenn Sie Ihr Gerät mit der TOTP-App verloren haben und Sie haben keine Ersatz-Token, dann kontaktieren Sie bitte den Systemadministrator. Der kann 2FA für Ihr Benutzerkonto deaktivieren, so dass Sie sich auch ohne den zweiten Faktor anmelden können. Dann können Sie 2FA auf einem anderen Gerät einrichten.</p>

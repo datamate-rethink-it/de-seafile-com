@@ -1,0 +1,27 @@
+{{ define "main" }}
+{{- /* Fehlerseite, Aufbau aus 404.php. Statt des Kontaktabschnitts mit
+	toter Adresse steht hier derselbe Text wie bisher. */ -}}
+<div class="container animatedParent">
+	<div class="row m-0 mt-5 mb-3 animated fadeIn">
+		<div class="mbox m-auto text-center bg-white">
+			<h1 class="page-title">Diese Seite gibt es leider nicht.<span>Probieren Sie die Suche oder schreiben Sie uns.</span></h1>
+		</div>
+	</div>
+</div>
+<div class="container mb-5 animatedParent">
+	<div class="row animated fadeIn">
+		<div class="col-md-5 col-sm-12">
+			<img class="center" src="/wp-content/themes/seafileger/img/svg/sad_cloud.svg" width="310px" alt="" />
+		</div>
+		<div class="col-md-7 col-sm-12">
+			<h2 style="margin-top:0px;">Suche</h2>
+			<p>Suchen Sie auf der Webseite nach dem Thema, das Sie interessiert.</p>
+			<div style="position:relative;">
+				{{ partial "suchfeld.html" . }}
+			</div>
+			<h2 style="margin-top:70px;">Kontakt</h2>
+			<p>Sie erreichen unseren Supportpartner datamate per E-Mail <a href="mailto:seafile@datamate.org">seafile@datamate.org</a></p>
+		</div>
+	</div>
+</div>
+{{ end }}

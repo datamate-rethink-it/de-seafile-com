@@ -1,0 +1,47 @@
+---
+title: "Arbeiten statt Suchen – Volltextsuche in Seafile"
+slug: "volltextsuche"
+seo_title: "Arbeiten statt Suchen - Volltextsuche in Seafile"
+description: "Die Volltextsuche von Seafile macht das Auffinden von Dateien und Dokumenten zu Kinderspiel, egal wo die Dateien und unter welchem Namen sie abgelegt sind."
+date: "2018-09-15T11:31:57"
+lastmod: "2025-02-21T09:07:17"
+og_image: "/wp-content/uploads/2018/09/AdobeStock_183214785_1920px_1080px.jpg"
+beitragsbild: "/wp-content/uploads/2018/09/AdobeStock_183214785_1920px_1080px.jpg"
+lesezeit: "2 Minuten"
+category:
+  - "funktionen"
+autor: "Ralf D."
+wp_id: 503
+---
+<p>In größeren Teams kommt die Ambition, Dateien strukturiert abzulegen, regelmäßig an Ihre Grenzen. Die Konsequenz: Mehr und mehr Zeit geht für Suchen denn für Arbeiten verloren. In Seafile ist dank Volltextsuche das Wiederauffinden unkonventionell abgelegter Dateien ganz einfach.</p>
+
+<!--more-->
+
+<h2>Inhalte schnell gefunden</h2>
+<p>Im Eifer des Gefechts werden Dateien regelmäßig an Orten ablegt, wo sie nicht unbedingt hingehören, oder es werden Dateinamen verwendet, die nicht selbsterklärend sind. Aus einer ordentlichen Verzeichnisstruktur wird Wildwuchs. Der individuelle Versuch, Dateien fürs Team zu ordnen, führt mit Sicherheit zu einem Aufschrei, da nun niemand mehr ohne Suche eine Datei findet.</p>
+
+<p>Seafile nimmt zwar nicht die Aufräumarbeit ab, wohl hilft es aber bei der Sucharbeit! Mit der Volltextsuche von Seafile lassen sich zusätzlich zu Dateinamen und Metadaten auch die Inhalte von Dateien durchsuchen. Sie suchen ein Dokument und erinnern sich an einen prägnanten Satz daraus? Geben Sie diesen einfach in der Suchzeile ein und Seafile sagt Ihnen, wo Sie das Dokument finden.</p>
+
+<img fetchpriority="high" decoding="async" width="1048" height="510" src="/wp-content/uploads/2018/09/Volltextsuche_Seafile.png" alt="Volltextsuche in Seafile" class="alignnone size-full wp-image-512" srcset="/wp-content/uploads/2018/09/Volltextsuche_Seafile.png 1048w, /wp-content/uploads/2018/09/Volltextsuche_Seafile-300x146.png 300w, /wp-content/uploads/2018/09/Volltextsuche_Seafile-768x374.png 768w, /wp-content/uploads/2018/09/Volltextsuche_Seafile-1024x498.png 1024w" sizes="(max-width: 1048px) 100vw, 1048px" />
+
+<p>Über die erweiterten Suchoptionen können Sie die Suche präzisieren und die Anzahl der Suchergebnisse verringern. Gerade wenn Sie nur vage Informationen über die gesuchte Datei haben, lässt sich dadurch die Suchzeit massiv reduzieren. Einschränken lässt sich die Suche durch Angabe von Zielbibliothek, Dateityp bzw. Dateikategorie, Dateigröße sowie Änderungsdatum. Seafile zeigt dann nur die Ergebnisse an, die alle Kriterien erfüllen. </p>
+
+<img decoding="async" width="1048" height="510" src="/wp-content/uploads/2018/09/Volltextsuche_Seafile_Erweiterte_Suchoptionen.png" alt="Erweiterte Suchoptionen in der Volltextsuche von Seafile" class="alignnone size-full wp-image-510" srcset="/wp-content/uploads/2018/09/Volltextsuche_Seafile_Erweiterte_Suchoptionen.png 1048w, /wp-content/uploads/2018/09/Volltextsuche_Seafile_Erweiterte_Suchoptionen-300x146.png 300w, /wp-content/uploads/2018/09/Volltextsuche_Seafile_Erweiterte_Suchoptionen-768x374.png 768w, /wp-content/uploads/2018/09/Volltextsuche_Seafile_Erweiterte_Suchoptionen-1024x498.png 1024w" sizes="(max-width: 1048px) 100vw, 1048px" />
+
+<p>Der Seafile Server durchsucht und indexiert die wichtigsten textbasierten Dokumententypen:</p>
+<ul>
+	<li>Microsoft Office Dateien im XML-Dateiformat seit Office 2007 (z.B. DOCX, XLSX, PPTX)
+	</li><li>Microsoft Office Dateien im Binärdateiformat von Office 97 &#8211; 2003 (z.B. DOC, XLS, PPT)</li>
+	<li>LibreOffice und OpenOffice Dateien (z.B. ODT, ODS, ODP)</li>
+	<li>PDF-Dateien </li>
+	<li>Markdown Dateien</li>
+	<li>Text Dateien (z.B. CSV, LOG, TXT)</li>
+	<li>Quelldateien (z.B. HTML, PY, XML)</li>
+</ul>
+
+<p>(Seafile bringt keine Texterkennungssoftware mit. Seafile kann daher gescannte PDF-Dokumente erst nach Bearbeitung durch eine Texterkennungssoftware indexieren.)</p>
+
+<h2>Einfache Integration in bestehende Systeme</h2>
+<p>Die Volltextsuche von Seafile basiert auf <a href="https://www.elastic.co/">Elasticsearch</a>, einem quelloffenen Suchserver. Ein solcher Server kann zusammen mit Seafile installiert werden. Wenn Sie in Ihrer Organisation bereits einen Elasticsearch Server betrieben, dann können Sie mit einer einfachen Konfigurationsänderung Seafile mit Ihrer bestehenden Infrastruktur verbinden.</p>
+
+<p>Die Volltextsuche kann zur Einsparung der dafür benötigten Rechenkapazitäten durch den Administrator deaktivert werden. Bei deaktivierter Volltextsuche erfolgt die Suche ausschliesslich auf Basis von Datei und Ordnernamen sowie Metadaten wie Änderungsdatum und Größe.</p>

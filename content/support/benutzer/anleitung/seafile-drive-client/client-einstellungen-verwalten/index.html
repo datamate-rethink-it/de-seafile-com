@@ -1,0 +1,48 @@
+---
+title: "Client Einstellungen verwalten"
+seo_title: "Client Einstellungen verwalten | Seafile"
+description: ""
+date: "2020-09-24T21:30:31"
+lastmod: "2021-06-24T14:07:34"
+og_image: "/wp-content/uploads/2020/10/SeaDrive2.0_Einstellungen_Allgemein_raw.png"
+lesezeit: "3 Minuten"
+handbuch: true
+wp_id: 4031
+---
+<p>Die Einstellungen des Seafile Drive Clients öffnen Sie über dessen Kontextmenü, das Sie per Rechtsklick auf das SeaDrive Icon im Infobereich (bei Windows) bzw. im Status Menü (bei macOS) aufrufen.</p>
+
+<a href="/wp-content/uploads/2020/10/SeaDrive2.0_Kontextmenü_Client_Einstellungen_raw.png" data-slb-active="1" data-slb-asset="1133621892" data-slb-internal="0" data-slb-group="4031"><img decoding="async" src="/wp-content/uploads/2020/10/SeaDrive2.0_Kontextmenü_Client_Einstellungen_raw.png" alt="Die Einstellungen des SeaDrive Clients sind über das Kontextmenü des Infobereichicons erreichbar" width="1366" /></a>
+
+<p>Die Einstellungen des Sync Clients verteilen sich auf vier Tabs. Für die meisten Benutzer sind von diesen nur die Tabs <i>Allgemein</i> und <i>Sprache</i> relevant.</p>
+
+<a href="/wp-content/uploads/2020/10/SeaDrive2.0_Einstellungen_Allgemein_raw.png" data-slb-active="1" data-slb-asset="2098931365" data-slb-internal="0" data-slb-group="4031"><img decoding="async" src="/wp-content/uploads/2020/10/SeaDrive2.0_Einstellungen_Allgemein_raw.png" alt="Im Tab Allgemein befinden sich die meisten Einstellungsoptionen" width="562" /></a>
+
+<p>Im <b>Tab Allgemein</b> legen Sie das generelle Verhalten von SeaDrive fest.</p>
+<ul>
+<li><i>Benachrichtigen, wenn Bibliotheken synchronisiert sind</i>: Diese Einstellung sorgt dafür, dass Sie laufend über Synchronisationsvorgänge per Systembenachrichtigungen informiert werden. Bei einer erfolgreichen Synchronisation wird eine Benachrichtigung im rechten, unteren Eck des Windows Desktops eingeblendet. (Wenn Sie sehr viele Dateien synchronisieren, dann kann die Benachrichtigungsfunktion lästig werden. In dem Fall empfiehlt es sich, die Benachrichtigung (temporär) zu deaktivieren.)</li>
+<li><i>Temporäre Dateien von MS Office und LibreOffice synchronisieren</i>: MS Office und LibreOffice legen während der Bearbeitung temporäre Dateien an. Diese synchronisiert SeaDrive ebenfalls, wenn diese Einstellung aktiviert ist.</li>
+<li><i>SeaDrive nach der Anmeldung automatisch starten</i>: Der SeaDrive Client wird automatisch mit anderen Systemdiensten beim Computerstart gestartet, wenn diese Einstellung aktiviert ist. Die Aktivierung erspart Ihnen den manuellen Start von SeaDrive bei jedem Neustart und Sie können sofort auf Ihre Dateien in Seafile zugreifen.</li>
+<li><i>Die Explorer-Symbole anzeigen</i>: Diese Einstellung aktiviert bzw. deaktiviert die Anzeige des Status im Dateimanager.</li>
+<li><i>Automatisch auf Aktualisierungen prüfen</i>: Bei aktivierter Einstellung prüft der Client in regelmäßigen Abständen automatisch, ob ein Programmupdate verfügbar ist. Ein verfügbares Updates wird dann zur Installation vorgeschlagen.</li>
+<li><i>Maximale Download- und Upload-Geschwindigkeit</i>: Limitieren Sie den Down- und Upload, wenn Sie nicht wollen, dass SeaDrive Ihre gesamte Bandbreite für den Dateitransfer verwendet. Eine solche Limitierung macht dann Sinn, wenn Sie über eine schwache Internetverbindung auf den Seafile Server zugreifen und parallel weitere Aktivitäten im Web ausführen wollen.</li>
+</ul>
+
+<p class="alert alert-warning">In SeaDrive 1.0 wurden die Seafile Bibliotheken unter einem Laufwerksbuchstaben abgebildet. Dies erfolgt in SeaDrive 2.0 nicht mehr. Daher gibt es &#8211; anders als in den Einstellungen von SeaDrive 1.0 &#8211; bei SeaDrive 2.0 keine Option für die Auswahl eines Laufwerkbuchstabens. </p>
+
+<a href="/wp-content/uploads/2021/06/SeaDrive2.0_Einstellungen_Erweitert_raw.png" data-slb-active="1" data-slb-asset="188936390" data-slb-internal="0" data-slb-group="4031"><img decoding="async" src="/wp-content/uploads/2021/06/SeaDrive2.0_Einstellungen_Erweitert_raw.png" alt="Im Tab Erweitert wird die Validierung von SSL-Zertikaten und der lokale Zwischenspeicher konfiguriert" width="562" /></a>
+
+<p>Im <b>Tab Erweitert</b> können Sie die Überprüfung des SSL-Zertifikats des Seafile Servers deaktivieren und den lokalen Zwischenspeicher konfigurieren.</p>
+
+<p>Die Deaktivierung des Server-Zertifikats ist grundsätzlich nicht empfohlen, kann aber beim Einsatz von selbst-signierten Zertifikaten oder SSL-Fehlern sinnvoll sein.</p>
+
+<p>Bis Version 2.0.13 konnte nur der Ordner des Zwischenspeichers konfiguriert werden. Mit Version 2.0.14 wurde eine Bereinigungsfunktion für den Zwischenspeicher eingeführt. Für diese lässt sich in diesem Tab die maximale Größe des Zwischenspeichers und das Bereinigungsintervall festlegen. Die Bereinigung des Zwischenspeichers erfolgt automatisch, wenn dessen Speicherbedarf das definierte Maximum überschreitet. Wie häufig SeaDrive dies prüft, können Sie über die Länge des Bereinigungsintervalls festlegen. Für den Bereinigungsprozess verwendet der SeaDrive Client das First In, First Out-Prinzip, d.h. die Dateien, die zuerst zwischengespeichert wurden, werden als erstes gelöscht. SeaDrive löscht so lange Dateien, bis der vom Zwischenspeicher belegte Speicherplatz unter dem definierten Maximum liegt.</p>
+
+<p class="alert alert-warning">Da die Bereinigung erst mit Überschreiten der definierten Maximalgröße einsetzt, kann es zu Situationen kommen, in denen der SeaDrive Zwischenspeicher mehr Speicherplatz als das definierte Maximum benötigt.</p>
+
+<a href="/wp-content/uploads/2020/10/SeaDrive2.0_Einstellungen_Sprache_raw.png" data-slb-active="1" data-slb-asset="187770690" data-slb-internal="0" data-slb-group="4031"><img decoding="async" src="/wp-content/uploads/2020/10/SeaDrive2.0_Einstellungen_Sprache_raw.png" alt="Im Tab Sprache lässt sich die Sprache des SeaDrive Clients ändern" width="562" /></a>
+
+<p>Im <b>Tab Sprache</b> können Sie die Anzeigesprache des Seafile Drive Clients auswählen.</p>
+
+<a href="/wp-content/uploads/2020/10/SeaDrive2.0_Einstellungen_Netzwerk_raw.png" data-slb-active="1" data-slb-asset="830944255" data-slb-internal="0" data-slb-group="4031"><img decoding="async" src="/wp-content/uploads/2020/10/SeaDrive2.0_Einstellungen_Netzwerk_raw.png" alt="Im Tab Netzwerk lässt sich ein Proxy konfigurieren" width="562" /></a>
+
+<p>Im <b>Tab Netzwerk</b> können Sie den Betrieb des Drive Clients hinter einem Proxy konfigurieren. Falls dies notwendig ist, wird Ihr Seafile Administrator Sie darüber informieren.</p>

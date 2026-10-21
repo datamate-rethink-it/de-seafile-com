@@ -1,0 +1,79 @@
+{{- /*
+	Der schema.org-Graph, den Yoast SEO ausgegeben hat: WebPage,
+	ImageObject, BreadcrumbList, WebSite. Gleiche @id-Werte wie bisher,
+	damit sich fuer Suchmaschinen nichts verschiebt.
+
+	Nicht uebernommen ist der Person-Knoten der Beitraege. Er hing nur an
+	einem Gravatar-Bild - also eine Anfrage an automattic.com bei jedem
+	Aufruf -, der Autorenname stand nirgends auf der Seite, und
+	/author/<slug>/ hat schon im WordPress auf die Startseite geleitet.
+
+	Die Krumen folgen der Verzeichnistiefe. Beitraege liegen in
+	content/news/, erscheinen aber unter /<slug>/ - fuer sie gab Yoast
+	nur Home > Titel aus, nicht Home > News > Titel.
+*/ -}}
+{{- $seite := . -}}
+{{- $bild := "" -}}
+{{- with .Params.og_image }}{{ $bild = . | absURL }}{{ end -}}
+{{- $krumen := slice (dict "name" "Home" "item" ($.Site.Home.Permalink)) -}}
+{{- if ne .Section "news" -}}
+	{{- range .Ancestors.Reverse -}}
+		{{- if not .IsHome -}}
+			{{- $krumen = $krumen | append (dict "name" .Title "item" .Permalink) -}}
+		{{- end -}}
+	{{- end -}}
+{{- end -}}
+{{- if not .IsHome -}}
+	{{- $krumen = $krumen | append (dict "name" $seite.Title) -}}
+{{- end -}}
+{{- $liste := slice -}}
+{{- range $i, $k := $krumen -}}
+	{{- $eintrag := dict "@type" "ListItem" "position" (add $i 1) "name" $k.name -}}
+	{{- with $k.item }}{{ $eintrag = merge $eintrag (dict "item" .) }}{{ end -}}
+	{{- $liste = $liste | append $eintrag -}}
+{{- end -}}
+{{- $webpage := dict
+	"@type" "WebPage"
+	"@id" .Permalink
+	"url" .Permalink
+	"name" (or .Params.seo_title (printf "%s | Seafile" .Title))
+	"isPartOf" (dict "@id" (printf "%s#website" $.Site.Home.Permalink))
+	"datePublished" (.Date.UTC.Format "2006-01-02T15:04:05+00:00")
+	"dateModified" (.Lastmod.UTC.Format "2006-01-02T15:04:05+00:00")
+	"breadcrumb" (dict "@id" (printf "%s#breadcrumb" .Permalink))
+	"inLanguage" "de"
+	"potentialAction" (slice (dict "@type" "ReadAction" "target" (slice .Permalink)))
+-}}
+{{- $graph := slice -}}
+{{- if $bild -}}
+	{{- $webpage = merge $webpage (dict
+		"primaryImageOfPage" (dict "@id" (printf "%s#primaryimage" .Permalink))
+		"image" (dict "@id" (printf "%s#primaryimage" .Permalink))
+		"thumbnailUrl" $bild) -}}
+{{- end -}}
+{{- with .Params.description }}{{ $webpage = merge $webpage (dict "description" .) }}{{ end -}}
+{{- $graph = $graph | append $webpage -}}
+{{- if $bild -}}
+	{{- $graph = $graph | append (dict
+		"@type" "ImageObject"
+		"inLanguage" "de"
+		"@id" (printf "%s#primaryimage" .Permalink)
+		"url" $bild
+		"contentUrl" $bild) -}}
+{{- end -}}
+{{- $graph = $graph | append (dict
+	"@type" "BreadcrumbList"
+	"@id" (printf "%s#breadcrumb" .Permalink)
+	"itemListElement" $liste) -}}
+{{- $graph = $graph | append (dict
+	"@type" "WebSite"
+	"@id" (printf "%s#website" $.Site.Home.Permalink)
+	"url" $.Site.Home.Permalink
+	"name" "Seafile"
+	"description" $.Site.Params.beschreibung
+	"potentialAction" (slice (dict
+		"@type" "SearchAction"
+		"target" (dict "@type" "EntryPoint" "urlTemplate" (printf "%ssuche/?q={search_term_string}" $.Site.Home.Permalink))
+		"query-input" (dict "@type" "PropertyValueSpecification" "valueRequired" true "valueName" "search_term_string")))
+	"inLanguage" "de") -}}
+<script type="application/ld+json" class="yoast-schema-graph">{{ dict "@context" "https://schema.org" "@graph" $graph | jsonify }}</script>

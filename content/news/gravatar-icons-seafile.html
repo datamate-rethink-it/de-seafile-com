@@ -1,0 +1,124 @@
+---
+title: "Gravatar-Icons in Seafile"
+slug: "gravatar-icons-seafile"
+seo_title: "Gravatar-Icons in Seafile"
+description: "Seafile unterstützt Gravatar nicht out-of-the-box, mit diesem Skript kann Seafile aber Gravatare automatisch herunterladen und als Avatare einbinden."
+date: "2019-05-10T00:48:47"
+lastmod: "2025-02-21T09:07:14"
+og_image: "/wp-content/uploads/2019/05/seafile-gravatar.png"
+beitragsbild: "/wp-content/uploads/2019/05/seafile-gravatar.png"
+lesezeit: "5 Minuten"
+category:
+  - "anleitungen"
+autor: "Christoph Dyllick-Brenzinger"
+wp_id: 2971
+---
+<p>Benutzerindividuelle Bilder bzw. Icons, sogenannte Avatare, machen Anwendungen lebendig und persönlich. Aus diesem Grund sind sie gerade in Chatprogrammen wie WhatsApp und Slack allgegenwärtig. In Seafile läßt sich über die Benutzereinstellungen ein Avatar hochladen, Seafile unterstützt aber nicht den bekannten Web-Avatar Dienst Gravatar out-of-the-box. Zumindest nicht bis jetzt! In diesem Artikel erklären wir, wie Sie Seafile per Skript &#8222;Gravatar-ready&#8220; machen.</p>
+
+<!--more-->
+
+<h2>Avatar + Wiederverwendung = Gravatar</h2>
+<p>Die Gravatar Idee wurde von den Machern von WordPress geboren. Diese ärgerten sich, dass man in jeder Anwendung seinen Avatar manuell neu einstellen musste. Viel einfacher wäre es doch, so dachten sich die WordPress Entwickler, wenn man einen Avatar an einer zentralen Stelle für seine E-Mail-Adresse definieren könne und sich Anwendungsprogramme dort den Avatar herunterladen. Der Webdienst <a href="https://de.gravatar.com/" target="_Blank" rel="noopener noreferrer">Gravatar</a> war also geboren. Der Begriff Gravatar ist eine Wortschöpfung und steht für Globally Recognized Avatar oder &#8211; auf deutsch &#8211; weltweit wiedererkennbarer Avatar.</p>
+
+<img decoding="async" src="/wp-content/uploads/2019/05/Logo_Gravatar.png" alt="Gravatar Logo" width="274" height="55" style="float:right; padding-left: 2%;" />
+
+<p>Seiner Entstehungsgeschichte nach war WordPress zunächst Hauptanwendungsfall für Gravatar. Die Idee aber überzeugte auch darüber hinaus und so nutzt mittlerweile eine Vielzahl von Anwendungen ebenso wie Webdiensten den Komfort von Gravatar. Zu den bekanntesten Gravatar-Nutzern gehören github und stackoverflow.</p>
+
+<p>Die generelle Funktionsweise von Gravatar ist denkbar simpel: Bei Anlage eines User-Accounts prüft die Software, ob ein Gravatar für die verwendete E-Mail-Adresse existiert. Liegt ein Match vor, dann lädt die Software den Gravatar heruntergeladen und bindet ihn als Avatar ein. Auf diese Weise hat man auf vielen unterschiedlichen Webseiten und in Progammen den gleichen Avatar &#8211; seinen weltweit wiederkennbaren Avatar. <a href="http://www.gravatar.com/avatar/2b2afadc04367b6aa3a973f7951479f4" target="_Blank" rel="noopener noreferrer">Dies ist beispielsweise der Gravatar des Artikelautors</a>. </p>
+
+<h2>Gravatar für Seafile</h2>
+
+<img fetchpriority="high" decoding="async" src="/wp-content/uploads/2019/05/seafile-mit-gravatar-bildern.png" alt="Seafile mit Gravatar Bildern" width="360" height="522" class="alignnone size-full wp-image-2976" style="padding-left: 20px; float: right;" srcset="/wp-content/uploads/2019/05/seafile-mit-gravatar-bildern.png 360w, /wp-content/uploads/2019/05/seafile-mit-gravatar-bildern-207x300.png 207w" sizes="(max-width: 360px) 100vw, 360px" />
+
+<p>In der aktuellen Version 6.3.12 (Stand: Mai 2019) bringt Seafile noch keine Gravatar Unterstützung mit. Mit folgendem Bash-Skipt läßt sich die Funktion aber mit wenig Aufwand nachzurüsten. Per Cronjob in regelmäßigen Abständen ausgeführt, sorgt das Skript dafür, dass Seafile die Avatar-Bilder von Gravatar herunterlädt und einbindet.</p>
+
+<p>Das Skript verwendet die folgende Logik:</p>
+
+<ol>
+<li>Durchlaufe sämtliche Anwender im System</li>
+<li>Prüfe, ob der Anwender noch den Seafile-Standard-Avatar verwendet</li>
+<li>Wenn der Standard-Avatar verwendet wird, errechne den Gravatar-Hash Wert anhand der E-Mail-Adresse</li>
+<li>Prüfe mit Hilfe des Gravatar-Hash-Wertes, ob es einen Gravatar für diese E-Mail-Adresse gibt</li>
+<li>Wenn es einen Gravatar gibt, dann speichere diesen als neues Avatar-Bild des Anwenders in Seafile ab</li>
+</ol>
+
+<p style="clear:both;">Und, voilà, hier ist das Skript:</p>
+
+<pre><code>
+#!/bin/bash
+
+MYSQL_USER="DEIN-MYSQL-USER (bitte anpassen)"
+MYSQL_PW="DEIN-MYSQL-PASSWORT (bitte anpassen"
+SEAFILE_URL="z.B. downloads.seafile.com (bitte anpassen)"
+
+## ab hier muss nichts mehr angepasst werden! ##
+
+# hole user und token
+MYSQL_PWD=$MYSQL_PW mysql -u$MYSQL_USER seahub-db -se "SELECT * FROM api2_token" | while read key user created; do
+  # echo "key: ${key}, user: ${user}"
+
+  # prüfe, ob beim aktuellen avatar is_default = true
+  RESULT_JSON=`/usr/bin/curl --silent -H "Authorization: Token $key" -H 'Accept: application/json; indent=4' "https://${SEAFILE_URL}/api2/avatars/user/${user}/resized/80/"`
+  is_default=`echo ${RESULT_JSON} | /usr/bin/jq -r ".is_default"`
+  if [[ $is_default == "true" ]]; then
+
+	echo "Versuche das Gravatar-Bild für den User ${user} zu holen:"
+
+	# prüfe, ob ein Gravatar vorhanden ist für diese E-Mailadresse
+	email_hash=`echo -n ${user} | md5sum | awk '{ print $1 }'`
+	wget -q http://www.gravatar.com/avatar/$email_hash?d=404 -O /tmp/${user}.png
+
+	# prüfe, die Größe der heruntergeladenen Datei.
+	size=`stat --printf="%s" /tmp/${user}.png`
+	if [ ${size} -gt 0 ]; then
+
+	  # Gravatar gefunden. Füge dem User hinzu.
+	  RESULT_JSON=`/usr/bin/curl --silent -H "Authorization: Token $key" -H 'Accept: application/json; indent=4' -F "avatar=@/tmp/${user}.png" -F "avatar_size=64" "https://${SEAFILE_URL}/api/v2.1/user-avatar/"`
+	  success=`echo ${RESULT_JSON} | /usr/bin/jq -r ".success"`
+	  if [[ ${success} == "true" ]]; then
+		echo "-> Gravatar für den User ${user} wurde hinzugefügt."
+	  fi
+			
+	else
+	  echo "-> Leider kein Gravatar-Bild gefunden."
+	fi
+
+	# Lösche temporäre Gravatar-Datei
+	rm /tmp/${user}.png
+
+  else
+
+	echo "Der User ${user} hat schon ein Avatar-Bild:"
+	echo "-> Nichts zu tun."
+
+  fi
+
+  echo
+   
+done
+exit
+</code></pre>
+
+<h2>Inbetriebnahme</h2>
+
+<p>Wollen auch Sie Seafile Gravatar-ready machen, dann müssen Sie die folgenden drei Voraussetzungen erfüllen.</p>
+
+<p>Zunächste müssen die drei Pakete jq, wget und curl auf dem Seafile Server installiert sein.</p>
+<pre><code>$ apt-get install jq wget curl</code></pre>
+<p>Dann müssen die User-Tokens generiert werden, die das Skript über die Datenbank abfragt. Hier hilft eine minimale Anpassung der Seafile-Funktion, die bei der Benutzeranlage ausgeführt wird. Durch die folgende Ergänzungen in der Datei <i>&#8230;/seafile-server-latest/seahub/seahub/base/accounts.py</i> wird automatisch beim Erzeugen eines Anwenders der benötigte Token gesetzt.</p>
+<pre><code>
+# nach den zwei existierenden imports, fügen wir noch diesen import hinzu:
+import requests
+
+# nach user.save() fügen wir noch die folgenden Zeilen ein:
+data = {
+  'username': email,
+  'password': password
+}
+response = requests.post('https://{DEINE-SEAFILE-URL}/api2/auth-token/', data=data)
+</code></pre>
+<p>Schliesslich muss noch der Cronjob angelegt werden, der das Skript ausgeführt. Das Skript selbst muss dazu natürlich ausführbar sein. Hinsichtlich der Ausführungsfrequenz kann man ruhig eine häufige Ausführung wählen. Das Skript benötigt nur minimale Ressourcen. Wenn für einen Anwender schon ein Avatar-Bild gespeichert wurde, wird dieser User Account einfach übersprungen.</p>
+
+<p>Nach einem Neustart von Seafile wird bei jeder Benutzeranlage auch gleich der notwendige Token gesetzt, das Skript sucht automatisch nach Gravataren und Sie werden mit vielen schönen Avatar-Bilder belohnt.</p>
+
+<p>Das war auch schon alles. Falls Sie Fragen haben, können Sie Ihre  Kommentare im <a href="https://forum.seafile.com/t/gravatar-for-seafile/8905" target="_blank" rel="noopener noreferrer">Seafile Forum</a> stellen.</p>

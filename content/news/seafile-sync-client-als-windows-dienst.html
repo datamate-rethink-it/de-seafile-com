@@ -1,0 +1,71 @@
+---
+title: "Seafile Sync Client als Windows Dienst"
+slug: "seafile-sync-client-als-windows-dienst"
+seo_title: "Seafile Sync Client als Windows Dienst"
+description: "Die Einrichtung des Seafile Sync Clients als Windows Dienst macht die Seafile Synchronisation unabhängig von der Benutzeranmeldung. Und so geht es."
+date: "2018-12-17T09:34:37"
+lastmod: "2025-02-21T09:07:15"
+og_image: "/wp-content/uploads/2018/12/windows-sync-client.jpg"
+beitragsbild: "/wp-content/uploads/2018/12/windows-sync-client.jpg"
+lesezeit: "5 Minuten"
+category:
+  - "anleitungen"
+autor: "Ralf D."
+wp_id: 2556
+---
+<p>Auf Arbeitsplatzrechnern ist die Synchronisation mittels Seafile trivial: Der Seafile Sync Client startet automatisch nach der Anmeldung und hält die Bibliotheken synchron. Auf einem Windows Server, wo in der Regel keine Benutzeranmeldung erfolgt, greift die Client-Einstellung <i>Seafile nach der Anmeldung automatisch starten</i> nicht. Die Konfiguration des Seafile Sync Clients als Windows Dienst ist in diesem Fall eine einfache Option, um den Start des Seafile Sync Clients unabhängig von der Windows Benutzeranmeldung zu machen. Dieser Artikel beschreibt die Einrichtung von Seafile als Windows Service.</p>
+<!--more-->
+
+
+<h2>Einsatzgebiet</h2>
+<p>Für Linux gibt es den Terminal Client. Ein Pendant dafür für Windows gibt es nicht. Mit der Einrichtung von Seafile als Windows Dienst lässt sich jedoch eine ähnliche Funktion erreichen: Der Seafile Client läuft im Hintergrund ohne graphische Benutzeroberfläche und synchronisiert eine definierte Auswahl von Bibliotheken.</p>
+<p>Diese Funktion ist gerade für Windows Server Administratoren interessant, die Mitarbeitern per Remote Desktop Services (aka Terminalserver) Zugriff auf Unternehmensanwendungen und -daten verschaffen. Mit dem Seafile Sync Client als Windows Dienst lassen sich die Daten auf den Windows Server synchronisieren und dort an die User als Shared Folder durchreichen.</p>
+
+<h2>Voraussetzungen für Seafile als Windows Dienst</h2>
+<p>Die Einrichtung des <a href="/support/benutzer/anleitung/seafile-sync-client/">Seafile Sync Clients</a> als Dienst ist auf aktuellen Windows Desktop und Server Betriebssystemen möglich. Wir haben es für diesen Artikel auf Windows 10 (Version 1803 und 1809) und Windows Server 2016 getestet. Alles, was man braucht, ist ein Seafile Server und ein Windows System bzw. einen installierten Seafile Sync Client auf einem Windows System.</p> 
+<p>Wir verwenden in diesem Beitrag außerdem den <a href="http://nssm.cc/">Non-Sucking Service Manager (NSSM)</a>. Er ist open source, funktioniert gut und bietet viele erweiterte Konfigurationsmöglichkeiten. Es gibt keinen zwingenden Grund für NSSM. Dienste Manager von Microsoft wie z.B. instsrv und srvany oder Third Party Produkte wie FireDeamon tun mehr oder weniger das gleiche wie NSSM. Wer also die Bormittel von Windows bevorzugt, kann dies auch.</p>
+
+<h2>Einrichtung des Seafile Sync Clients als Dienst</h2>
+<p>Für die Einrichtungsanleitung gehen wir davon aus, dass</p>
+<ul>
+	<li>der Sync Client unter dem Standardinstallationspfad installiert wird und</li> 
+	<li>es einen Benutzer  Admin  mit ausreichenden Berechtigungen gibt. </li>
+</ul>
+<p>Wenn Sie von diesen beiden Vorgaben abweichen, dann muss die Dienstekonfiguration entsprechend angepasst werden.</p>
+
+<h3>Installation des Seafile Sync Clients</h3>
+<p>Zunächst muss der <a href="https://www.seafile.com/en/download/">Seafile Sync Client per MSI-Paket</a> installiert und die <a href="/support/benutzer/anleitung/seafile-sync-client/synchronisation-einer-bibliothek-einrichten/">Synchronisation für die gewünschten Bibliotheken eingerichtet</a> werden. Das Sync-Ziel sollte ein Unterordner im Standard-Ordner von Seafile sein.</p>
+<p>Beenden Sie den Seafile Client im Anschluss dran und <a href="/support/benutzer/anleitung/seafile-sync-client/client-einstellungen-verwalten/">deaktivieren Sie die Autostart-Funktion</a> des Clients. Grundsätzlich gilt auch: Sobald der Seafile Client als Windows Dienst aktiviert ist, sollte der Client nicht mehr als Desktop Anwendung gestartet werden. Der Parallelbetrieb von zwei Clients kann Datenbankkorruption führen.</p>
+
+<h3>Vorbereiten von NSSM</h3>
+<p><a href="http://nssm.cc/download">Laden Sie NSSM herunter</a> und entpacken Sie das Archiv. Im entpackten NSSM-Ordner befinden sich drei Ordner. Neben dem Ordner <i>src</i> sind dies die Ordner mit der 32 und 64 Bit nssm.exe, mit der Seafile als Dienst eingerichtet wird.</p>
+<p>NSSM kann vollständig über die Eingabeaufforderung gesteuert werden. Die Dokumentation der Kommandozeilenbefehle finden sich auf der Projektseite von NSSM. Da die Nutzung der graphischen Benutzeroberfläche (GUI) einfacher ist, benutzen wir diese für die Anleitung. Diese rufen Sie über die Eingabeaufforderung mit folgendem Befehl auf:</p>
+<code>nssm install</code>
+<p style="margin-top: 15px;">Hinweis: NSSM lässt sich am bequestem nutzen, wenn Sie den Pfad der nssm.exe der Benutzervariablen Path hinzufügen. Ansonsten müssen Sie bei jedem Aufruf von NSSM in der Eingabeaufforderung in den Ordner navigieren oder den vollständigen Pfad eingeben.</p>
+
+<p>Die Abbildung zeigt die drei für die Einrichtung von Seafile als Dienst zentralen Registerkarten:</p>
+<img decoding="async" src="/wp-content/uploads/2018/12/GUI_NSSM.png" alt="Tabs Application, Details und Log on der NSSM-GUI" />
+<p>Auf der Registerkarte <b>Application</b> wird der Pfad der auszuführenden Binärdatei sowie die Startargumente definiert.</p>
+<p>Auf der Registerkarte <b>Details</b> definiert man den Anzeigenamen des Dienstes. Der Anzeigename ist die Bezeichnung, unter der der Dienst in der Windows Diensteverwaltung angezeigt wird.</p>
+<p>Auf der Registerkarte <b>Log On</b> werden die Zugangsdaten des Benutzers hinterlegt, mit dessen Berechtigungen der Dienst ausgeführt wird.</p>
+
+<h3>Konfiguration von Seafile als Dienst mit NSSM</h3>
+<p>Die Einrichtung von Seafile als Dienst erforderte bis zur Version 6.1 des Sync Clients die Anlage von zwei Programmen als Dienste. Die ccnet.exe und die seaf-deamon.exe waren für die korrekte Funktion des Seafile Clients notwendig. Mit der Version 6.2 wurde die ccnet-Komponente entfernt. In der nachfolgenden Anleitung kann der ccnet-Teil bei neueren Clients daher weg gelassen werden.  (Mehr zur Architektur von Seafile im <a href="https://manual.seafile.com/overview/components.html">Seafile Manual</a>.)</p>
+
+<p><b>ccnet.exe</b></p>
+<p>Unter <i>Path</i> im Tab <i>Application</i> geben Sie den Pfad zur ccnet.exe an. Diese befindet sich im Ordner <i>bin</i> im Standard Installationsorder des Sync Clients (d.h. &#8222;C:\Program Files (x86)\Seafile&#8220; für Seafile Sync Client 6.1). Das Feld <i>Startup directory</i>, das nach Angabe des Pfads automatisch ausgefüllt wird, muss nicht geändert werden, da ccnet nicht in einem bestimmten Verzeichnis gestartet werden muss. Als Argument geben Sie folgendes ein:</p>
+<code>-c C:\Users\Admin\ccnet</code>
+<p style="margin-top: 15px;">Geben Sie nun im Tab <i>Details</i> den gewünschten Anzeigenamen des Dienste (z.B. Seafile ccnet) und ggf. eine Beschreibung ein.</p>
+<p>Im Tab <i>Log On</i> geben Sie nach Klick auf den Radio Button <i>This account</i> den Benutzernamen und das Passwort des Benutzers Admin ein.</p>
+<p>Zum Abschluss geben Sie nun bei <i>Service name</i> den Namen des Dienstes ein, unter dem er intern verwaltet wird und bestätigen Sie die Einrichtung. Sind die Pfade und Zugangsdaten korrekt, folgt eine Erfolgsmeldung.</p>
+
+<p><b>seaf-daemon.exe</b></p>
+<p>Im Tab <i>Application</i> im Feld <i>Path</i> geben Sie den Pfad der seaf-daemon.exe an (d.h.  &#8222;C:\Program Files (x86)\Seafile\bin\seaf-daemon.exe&#8220; für Seafile Sync Client 6.1). Auch hier kann das <i>Startup directory</i> leer bleiben. Als Startargumente geben Sie folgendes an:</p>
+<code>-c C:\Users\Admin\ccnet -d C:\Users\Admin\Seafile\seafile-data -w C:\Users\Seafile\Seafile</code>
+<p style="margin-top: 15px;">Die übrigen Schritte sind identisch mit dem Vorgehen für die ccnet.exe.</p>
+
+<h2>Start der Dienste</h2>
+<p>Die beiden Dienste sind nun angelegt. Der Start erfolgt am einfachsten über die Diensteverwaltung services.msc. Mit einem Rechtsklick auf den Dienstnamen lässt sich der Dienst über das Kontextmenü starten.</p>
+<img decoding="async" src="/wp-content/uploads/2018/12/Diensteverwaltung_Seafile_Dienste.png" alt="Diensteverwaltung services.msc"/>
+<p>Wenn Sie im Tab <i>Details</i> den Starttyp nicht geändert haben, dann starten die beiden Seafile Dienste automatisch bei jedem Systemstart. Sollte der Server, auf der Seafile Sync Client als Windows Service eingerichtet ist, mal neu gestartet werden, dann müssen Sie nicht dran denken, die beiden Dienste manuell neu zu starten.</p>
+<p>Wollen Sie später einmal den Umfang der synchronisierten Bibliotheken ändern, dann stoppen Sie zunächst die Dienste über die Windows Diensteverwaltung. Rufen Sie erst dann den Sync Client als Desktop Anwendung auf und nehmen die Änderungen vor.</p>

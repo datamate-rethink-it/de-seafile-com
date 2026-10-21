@@ -1,0 +1,34 @@
+---
+title: "Zeitreisen in die Vergangenheit mit der Versionierung"
+slug: "versionierung"
+seo_title: "Zeitreisen in die Vergangenheit mit der Versionierung | Seafile"
+description: "Änderungen auf Datei-, Ordner- und Bibliotheksebene lassen sich in Seafile mit wenigen Klicks rückgängig machen und gelöschte Dateien wieder herstellen."
+date: "2018-10-10T22:58:37"
+lastmod: "2025-02-21T09:07:15"
+og_image: "/wp-content/uploads/2018/10/AdobeStock_66977905_1920px_1080px-1.jpg"
+beitragsbild: "/wp-content/uploads/2018/10/AdobeStock_66977905_1920px_1080px-1.jpg"
+lesezeit: "3 Minuten"
+category:
+  - "funktionen"
+autor: "Ralf D."
+wp_id: 1652
+---
+<p>Ein Kollege hat es gut gemeint und in der Gruppenablage &#8222;aufgeräumt&#8220;. Das Ergebnis: Nichts ist mehr da, wo es mal war und niemand findet seine Dokumente. Mit der Versionierung bietet Seafile  eine Zeitmaschine, mit der sich frühere Zustände von Bibliotheken und Dateien mühelos wiederherstellen lassen. Gewollte und ungewollte Änderungen sind damit im Nu rückgängig gemacht.</p>
+
+<!--more-->
+
+<h2>Snapshot-basierte Versionierung</h2>
+<p>Seafile erstellt bei jeder Dateioperation &#8211; sei es eine neue Datei, eine Dateiänderung oder eine Löschung &#8211; einen sogenannten Snapshot (englisch für Momentaufnahme) der geänderten Bibliothek. In dem Snapshot speichert Seafile die vollständige Datei und Ordnerstruktur der betroffenen Bibliothek. Außerdem speichert Seafile den Autor, den Zeitpunkt und die Größe der Änderung.</p>
+
+<h2>Bibliotheks- und Dateichronik</h2>
+<p>Dank der Snapshots lassen sich frühere Zustände einer Bibliothek ganz einfach wiederherstellen. Die Wiederherstellung eines Snapshots macht alle Änderungen rückgängig, die seit Snapshot Erstellung an Dateien und in der Ordnerstruktur erfolgten. Die Bibliothek präsentiert sich nach Rücksetzung so, als ob in der Zwischenzeit gar keine Änderungen vorgenommen worden wären.  Haben Sie irrtümlicherweise den falschen Versionsstand wiederhergestellt, so läßt sich dieser Irrtum leicht beheben. Da bei der Wiederherstellung kein Snapshot gelöscht wird, können Sie einfach den Zustand eines anderen wiederherstellen. Selbst auf den Zustand vor der Wiederherstellung lässt sich zurück springen. Seiner stringenten Snapshot Logik folgend hat Seafile von diesem natürlich auch ein Snapshot gemacht.</p>
+
+<img fetchpriority="high" decoding="async" width="1043" height="608" src="/wp-content/uploads/2018/09/Seahub_FrühereDateiversionenWiederherstellen.png" alt="Dateiversionen anzeigen und wiederherstellen" class="alignnone size-full wp-image-226" srcset="/wp-content/uploads/2018/09/Seahub_FrühereDateiversionenWiederherstellen.png 1043w, /wp-content/uploads/2018/09/Seahub_FrühereDateiversionenWiederherstellen-300x175.png 300w, /wp-content/uploads/2018/09/Seahub_FrühereDateiversionenWiederherstellen-768x448.png 768w, /wp-content/uploads/2018/09/Seahub_FrühereDateiversionenWiederherstellen-1024x597.png 1024w" sizes="(max-width: 1043px) 100vw, 1043px" />
+
+<p>Seafile erstellt Snapshots auf Bibliotheksebene. Selbstverständlich können aber auch einzelne Dateien auf frühere Zustände, d.h. Versionsstände, zurückgesetzt werden. Vorgehen und Technik sind bei Dateien deckungsgleich mit denen bei Bibliotheken. In der Versionshistorie einer Datei werden einfach nur die für die Datei relevanten Snapshots angezeigt.</p>
+<p>Die Tatsache, dass Seafile die Chronik auf Ebene der Bibliotheken führt, hat handfeste Vorteile für die Versionierung von Dateien. Anders als bei anderen Sync &#038; Share Lösungen führen eine Änderung des Dateinamens und ein Verschieben einer Datei innerhalb einer Bibliothek nicht zum Reset der gesamten Chronik: Die Historie ist unabhängig vom Ort der Datei in der Bibliothek. Und die Umbenennung ist eine Dateiänderung, die als solches in einem Snapshot erfasst wird.</p>
+	
+<h2>Individuelle Konfiguration</h2>
+<p>Die Zeitdauer, für die Seafile Snapshots behält, ist durch die Nutzer für jede Bibliothek individuell konfigurierbar. Auch kann jeder Snapshot mit einem oder mehreren Labels versehen werden, so dass sie später leichter auffindbar sind. Diese Funktion ist besonders hilfreich, wenn man große Datenmengen bewegt oder eine Reorganisation der Ordnerstruktur in einer Bibliothek vornimmt.</p>
+
+<p>Die Versionierung von Seafile ist nicht nur als Mittel gegen wohlgemeinte, aber unerwünschte Aufräumarbeiten geeignet, sondern auch um Verschlimmbesserungen an Dateien rückgängig zu machen. Darüber hinaus bietet die Versionierung wirksamen Schutz gegen Ransomware. Verschlüsselte Dateien werden einfach durch einen Snapshot vor dem Angriff überschrieben. Mit aktivierter Versionierung haben die Seafile Benutzer eine einfach zu bedienende Quasi-Backupfunktionalität in der Hand. Die Administratoren haben eine Sorge weniger.</p>

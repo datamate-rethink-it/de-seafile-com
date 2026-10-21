@@ -1,0 +1,22 @@
+---
+title: "Bibliotheken auf früheren Stand zurücksetzen"
+seo_title: "Bibliotheken auf früheren Stand zurücksetzen | Seafile"
+description: ""
+date: "2019-06-02T15:06:09"
+lastmod: "2019-06-02T15:06:09"
+lesezeit: "2 Minuten"
+handbuch: true
+wp_id: 3093
+---
+<p>Seafile erstellt bei jeder Datei- und Ordneroperation einen <a href="https://de.wikipedia.org/wiki/Schnappschuss_(Informationstechnik)">Snapshot</a>, der den Zustand der <a href="/support/benutzer/anleitung/seafile-server/bibliotheken/">Bibliothek</a> nach der Operation abbildet. Operationen, die einen Snapshot erzeugen, sind unter anderem Dateilöschungen, Dateiänderungen und Ordnernamenänderungen. </p>
+
+<p>Die Snapshots ermöglichen es, eine Bibliotek auf jeden früheren Zustand zurück zu setzen und damit alle zwischenzeitlich durchgeführten Änderungen rückgängig zu machen. Bei der Wiederherstellung eines früheren Snapshots wird ein neuer Snapshot angelegt, so dass keine Versionsstände und damit Daten verloren gehen.</p>
+
+<p>Die Snapshots einer Bibliothek können über das Uhr-Icon in der rechten oberen Ecke einer Bibliothek aufgerufen werden. Die Snapshot Liste zeigt alle Änderungen inkl. verursachender Operation und ausführender Person sowie Änderungsdatum und Gerät. (Der Gerätename <i>API</i> steht für die Seafile Weboberfläche Seahub.) Mit einem Klick auf <i>Schnappschuss ansehen</i> in der Spalte <i>Aktion</i> lässt sich der Inhalt einer Bibliothek für jeden Snapshot anzeigen.</p>
+
+<p class="alert alert-warning">Bei Bibliotheken, bei denen die Versionierung deaktiviert ist, wird nur der Snapshot des aktuellen Bibliothekszustands angezeigt. Eine Wiederherstellung eines früheren Zustands ist nicht möglich.</p>
+
+<p>Um eine Bibliothek in der Datei- und Ordneransicht eines Snapshots vollständig auf den früheren Zustand zurück zu setzen, genügt ein Klick auf die Schaltfläche <i>Wiederherstellen</i> in der oberen rechten Ecke. Die Navigation innerhalb der Datei- und Ordneransicht eines Snapshots erfolgt wie sonst auch in <a href="/support/benutzer/anleitung/seahub/">Seahub</a>: Ordner lassen sich per Klick öffnen; Datei lassen sich auf die gleiche Weise aufrufen/herunterladen. So lässt sich prüfen, ob der ausgewählte Snapshot den Bibliothekszustand abbildete, auf den zurückgesetzt werden soll.
+
+</p><p>In der Bibliotheksansicht ist es auch möglich, eine einzelne Datei auf einen früheren Zustand zurück zu setzen. Dafür gibt es in der Spalte <i>Aktion</i> die entsprechende <i>Wiederherstellen</i>-Option. Für die Wiederherstellung einzelner Dateien ist die <a href="/support/benutzer/anleitung/seahub/fruehere-dateiversionen-wiederherstellen/">Dateiversionsfunktion</a> jedoch deutlich praktischer.</p><p>
+</p>

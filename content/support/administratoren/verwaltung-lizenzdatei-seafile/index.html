@@ -1,0 +1,51 @@
+---
+title: "Verwaltung der Lizenzdatei für den Seafile Server Professional Edition"
+seo_title: "Verwaltung der Lizenzdatei für den Seafile Server Professional Edition"
+description: "Der Seafile Server Professional Edition ist proprietäre Software. Der Beitrag erklärt, wie der Seafile Server diese Lizenz verwaltet."
+date: "2018-10-05T10:58:59"
+lastmod: "2019-06-19T11:30:52"
+og_image: "/wp-content/uploads/2018/10/Lizenzdatei_Upload.png"
+lesezeit: "3 Minuten"
+wp_id: 1441
+---
+<div class="container">
+<h2>Seafile Professional Lizenz und Lizenzdatei</h2>
+<p>Der Seafile Server Professional Edition unterliegt einer proprietären Lizenz. Diese Lizenz ist bis drei Benutzer kostenlos, bei mehr Nutzern kostenpflichtig. Lizenzen für bis zu neun Benutzer können in einem automatisierten Prozess über das <a href="https://customer.seafile.com">Customer Center</a> erworben werden. Die Zahlung erfolgt per Kreditkarte. Lizenzen für mehr Benutzer erhalten Sie bei unserem <a href="/support/individueller-support/">Vertriebspartner datamate</a>.</p>
+<p>Die Freischaltung des Seafile Servers erfolgt über eine Lizenzdatei. Diese Text Datei enthält neben zwei Hashwerten für die Prüfung der Authentizität der Lizenzdatei auch  menschenlesbare Informationen wie die lizenzierten Benutzer und die Lizenzlaufzeit.</p>
+
+<h2>Verwendung der Lizenzdatei</h2>
+<h3>Linux Installation</h3>
+<p>Es gibt zwei Wege, dem Seafile Server die Lizenzdatei zur Verfügung zu stellen &#8211; über die Weboberfläche und über SSH bzw. FTP.</p>
+	
+<p>Der Weg über das <b>Seafile Webinterface Seahub</b> ist bei Linux Installationen der bequemere Weg. Loggen Sie sich als Administrator in Seahub ein und wechseln Sie in die System Administration. Dort können Sie im Bereich <i>Info</i> die Lizenzdatei hochladen. Im Installationsverzeichnis von Seafile wird daraufhin eine seafile-license.txt angelegt. Die lizenzierten Benutzer stehen sofort ohne weitere Maßnahmen zur Verfügung.</p>
+<p class="alert alert-warning">Der Name der Lizenzdatei ist beim Upload über das Webinterface ohne Bedeutung. Von Bedeutung ist aber, dass die Lizenzdatei eine ANSI oder UTF-8 kodierte Text Datei ist.</p>
+
+<img decoding="async" src="/wp-content/uploads/2018/10/Lizenzdatei_Upload.png" alt="Upload einer Seafile Lizenzdatei über das Webinterface Seahub" width="948" class="alignnone size-full wp-image-1493" srcset="/wp-content/uploads/2018/10/Lizenzdatei_Upload.png 948w, /wp-content/uploads/2018/10/Lizenzdatei_Upload-300x139.png 300w, /wp-content/uploads/2018/10/Lizenzdatei_Upload-768x355.png 768w" sizes="(max-width: 948px) 100vw, 948px" />
+
+<p>Kommen Sie nicht mehr auf die Weboberfläche, bietet sich der Weg über <b>SSH bzw. FTP</b> an. Öffnen Sie die Verbindung und legen Sie die Lizenzdatei im Installationsverzeichnis von Seafile ab. Starten Sie nun den Seafile Server neu. Die Lizenzdatei ist nun im Server registriert und die Benutzer stehen zur Verfügung.</p>
+
+<p class="alert alert-warning">Beim Neustart sucht der Seafile Server nach der seafile-license.txt. Hat die Datei einen anderen Namen, wird der Start mit einer Fehlermeldung abbrechen.</p>
+
+<h3>Docker Installation</h3>
+<p>Auch bei Docker Installationen gibt zwei Wege, dem Seafile Server die Lizenzdatei zur Verfügung zu stellen. Während bei Installationen unter Linux beide gleichwertig sind, ist bei Docker Installationen nur der Weg per SSH bzw. FTP für einen Produktivserver empfehlenswert. </p>
+<p>Bauen Sie eine Verbindung zum Server auf und kopieren Sie die Lizenzdatei per <b>SSH bzw. FTP</b> in das beim Start des Containers definierte geteilte Verzeichnis. Hier gelten die oben gemachten Einschränkungen hinsichtlich Dateikodierung und -name. (Mehr zur Installation von Seafile mit einem geteilten Verzeichnis finden Sie im <a href="https://manual.seafile.com/deploy_pro/deploy_with_docker.html">Seafile Manual</a>.</p>
+
+<p>Wenn Sie den Docker Container mit dem Befehl
+<pre>
+docker container run -d --name seafile \
+           -v /opt/seafile-data:/shared \
+           -e [...] \
+           -p [...] \
+           docker.seadrive.org/seafileltd/seafile-pro:6.3.11
+</pre>
+</p><p>gestartet haben, dann ist das Verzeichnis für die Lizenzdatei /opt/seafile-data/seafile.</p>
+<p>Starten Sie danach den Seafile Container neu: 
+<pre>docker container restart seafile</pre>
+
+</p><p>Wenn Sie die Lizenzdatei über das <b>Webinterface Seahub</b> hochladen, dann wird die Lizenzdatei nicht im geteilten Verzeichnis abgespeichert und überlebt aus diesem Grund keinen Austausch des Docker Containers (z.B. bei einem Upgrade). In der Folge wird der Seafile Server nicht mehr starten, wenn mehr als drei aktive Benutzer registriert sind.
+
+<h2>Ablauf der Lizenz</h2>
+</p><p>Aus rechtlicher Perspektive erlischt mit Ablauf der Seafile Lizenz die vertragliche Basis für die Nutzung des Seafile Servers Professional Edition. Die Weiternutzung erfolgt dann widerrechtlich.</p>
+<p>Aus technischer Perspektive ist eine Weiternutzung über das Ende der Lizenzlaufzeit grundsätzlich möglich, da Seafile die rechtliche Perspektive nicht hart umsetzt. Läuft eine Lizenz ab, dann läuft der Seafile Server zunächst weiter. Ein Seafile Server Professional Edition mit einer abgelaufenen Lizenzdatei verweigert aber den Start. Es ist ein Irrglaube, dass ein Seafile Professional Server mit abgelaufener Lizenz als Seafile Community Server mit eingeschränkten Funktionen startet.</p>
+<p>Wenn Sie Ihre Seafile Professional Lizenz nicht rechtzeitig verlängert haben, dann ist das folglich kein unmittelbares Problem (wohl aber ein Risiko im Falle eines ungeplantes Stops des Servers). Zur Sicherstellung des Weiterbetriebs kümmern Sie sich schnellstmöglich um eine Vertragsverlängerung.</p>
+</div>

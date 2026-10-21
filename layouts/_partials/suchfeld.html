@@ -1,0 +1,17 @@
+{{- /* Suchfeld. Gestalt aus searchform.php des alten Themes, damit es
+	aussieht wie bisher; Ziel ist aber /suche/ mit Pagefind statt der
+	WordPress-Suche unter /?s=.
+
+	Im WordPress stand das Feld nur auf /news/ und den Kategoriearchiven -
+	also genau dort, wo man 45 Beitraege auch so ueberblickt, und nicht im
+	47-seitigen Anleitungsbaum. Jetzt steht es an beiden Stellen. */ -}}
+<form action="/suche/" method="get" role="search">
+	<div class="searchfield">
+		<input value="" name="q" id="search" class="form-control form-control-borderless" type="search" placeholder="Suche nach" aria-label="Suchen">
+	</div>
+	<div class="searchbutton">
+		<button class="button blue btn-sf" type="submit" aria-label="Suchen">
+			<img class="svg-icon-30px" src="/wp-content/uploads/2018/10/loupe-1.svg" alt="">
+		</button>
+	</div>
+</form>

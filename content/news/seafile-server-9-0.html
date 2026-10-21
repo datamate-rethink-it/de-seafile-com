@@ -1,0 +1,100 @@
+---
+title: "Seafile Server 9.0 und neues Outlook Add-in"
+slug: "seafile-server-9-0"
+seo_title: "Seafile Server 9.0 und neues Outlook Add-in | Seafile"
+description: ""
+date: "2022-08-30T15:50:40"
+lastmod: "2025-02-21T09:07:12"
+og_image: "/wp-content/uploads/2022/08/Seafile-9.0_Feature.jpg"
+beitragsbild: "/wp-content/uploads/2022/08/Seafile-9.0_Feature.jpg"
+lesezeit: "11 Minuten"
+category:
+  - "release-notes"
+autor: "Ralf D."
+wp_id: 4475
+---
+<p>Seafile Server Community und Professional Edition sind jetzt in Version 9.0 verfügbar. Erweiterte Freigabeoptionen und eine verbesserte Integration der Dokumentenserver machen die Zusammenarbeit an Dateien nun noch komfortabler und skalierbarer. Die neuen benutzerdefinierten Freigabeberechtigungen bieten eine noch nie dagewesene Kontrolle und Flexibilität bei der Verwaltung der Zugriffsrechte der Benutzer. Freigabelinks bieten mehrere Funktionserweiterungen und -verbesserungen. Darüber hinaus beschleunigt ein komplett neuer Dateiserver den Zugriff auf Bibliotheken, insbesondere für solche mit vielen Dateien. <!--more-->Ein Upgrade der PDF-Rendering-Engine ermöglicht nun auch die Vorschau von passwortgeschützten PDFs direkt im Browser.</p>
+
+
+
+
+
+<p>Und es gibt noch mehr gute Nachrichten: Wir freuen uns, ein Seafile Add-In für Outlook für Windows bereitzustellen. Das Add-in macht Seafiles File-Sharing-Funktionen direkt in Microsofts beliebtem E-Mail-Client verfügbar. Auch ist das Speichern von E-Mails und E-Mail-Anhängen in Seafile schneller und bequemer als je zuvor.</p>
+
+<p>Wir freuen uns, Ihnen hier die Highlights von Seafile Server 9.0 und dem Outlook Add-in vorzustellen. Eine vollständige Liste der Änderungen für Seafile Server finden Sie im englischsprachigen <a href="https://manual.seafile.com/changelog/changelog-for-seafile-professional-server/#90">Seafile Handbuch</a>. Der Seafile Server Professional Edition (Seafile PE) kann vom <a href="https://customer.seafile.com">Seafile Customer Center</a> heruntergeladen werden. Die Community Edition (Seafile CE), deren Quellcode auf <a href="https://github.com/haiwen/seafile">GitHub</a> verfügbar ist, kann direkt von der <a href="/downloads/">Seafile Website</a> heruntergeladen werden. Das Gleiche gilt für das Outlook Add-in.</p>
+
+<h2>Eigene, individuelle Freigabeberechtigungen (nur Seafile PE)</h2>
+<p>Seafile Server 8.0 kannte fünf Freigabeberechtigungen: Nur Lesen, Lesen und Schreiben, Online Nur Lesen, Online Lesen und Schreiben und Administration. In Seafile Server 9.0 können Bibliotheksbesitzer und Abteilungsadministratoren zusätzlich zu den fünf voreingestellten Berechtigungen eigene Freigabeberechtigungen definieren. Die unzähligen individuellen Freigabeberechtigungen bieten praktisch unbegrenzte Kontrolle darüber, wie Bibliothekseigentümer ihre Daten mit anderen Benutzern teilen können. </p>
+
+<p>Eine individuelle Freigabeberechtigung besteht aus einer beliebigen Kombination der folgenden sieben Berechtigungen:</p>
+
+<ul>
+  <li>Hochladen (Dateien und Ordner können in Bibliotheken und Ordner hochgeladen werden)</li>
+  <li>Herunterladen (Dateien und Ordner können heruntergeladen werden)</li>
+  <li>Ändern (Dateien und Ordner können erstellt, umbenannt und verschoben sowie Dateien verändert werden)</li>
+  <li>Kopieren (Dateien und Ordner können in andere Bibliotheken kopiert werden &#8211; das Kopieren innerhalb einer Bibliothek erfordert die Berechtigung Ändern)</li>
+  <li>Löschen (Dateien und Ordner können gelöscht werden)</li>
+  <li>Vorschau online (Dateien können in Seahub angezeigt werden)</li>
+  <li>Freigabelink erstellen (Freigabelinks können für Dateien und Ordner erstellt werden)</li>
+</ul>
+ 
+<p>Als Voraussetzung für alle anderen Berechtigungen ist die Berechtigung Ansicht &#8211; die Ordnerstruktur einer Bibliothek (einschließlich Metadaten wie Dateigröße und letzte Aktualisierung) kann angezeigt und durchsucht werden &#8211; Bestandteil aller benutzerdefinierten Freigabeberechtigungen.</p>
+ 
+<p>Jede individuelle Freigabeberechtigung ist durch ihren Namen gekennzeichnet. Eine Beschreibung bietet zusätzlichen Platz für weitere Informationen über Zweck und Spezifikationen der Freigabeberechtigung (siehe unten). </p>
+ 
+<img fetchpriority="high" decoding="async" src="/wp-content/uploads/2022/08/Seafile-9.0-Custom-Sharing-Permissions.png" alt="Eigene Freigabeberechtigungen in Seafile 9.0" width="1140" height="761" class="alignnone size-full wp-image-4488" srcset="/wp-content/uploads/2022/08/Seafile-9.0-Custom-Sharing-Permissions.png 1140w, /wp-content/uploads/2022/08/Seafile-9.0-Custom-Sharing-Permissions-300x200.png 300w, /wp-content/uploads/2022/08/Seafile-9.0-Custom-Sharing-Permissions-1024x684.png 1024w, /wp-content/uploads/2022/08/Seafile-9.0-Custom-Sharing-Permissions-768x513.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" />
+
+<p>Individuelle Freigabeberechtigungen werden auf Bibliotheksebene definiert. Dies hat drei Konsequenzen: Erstens ist eine Berechtigung, die für eine Bibliothek erstellt wurde, nicht automatisch für andere Bibliotheken verfügbar. Zweitens, wenn eine Bibliothek, für die eine individuelle Berechtigung erstellt wurde, an einen  Benutzer mit der Admin-Freigabeberechtigung geteilt wird, dann kann dieser die individuelle Freigabeberechtigung ebenfalls verwenden und bearbeiten. Drittens können Bereichsadministratoren die Freigabeberechtigungen verwenden, die für die Bibliotheken des Bereichs definiert wurden.</p>
+
+<p>Schließlich gibt es noch eine nette kleine neue Funktion, die die neuen Freigabeberechtigungen ergänzt: Beim Löschen einer Bibliothek wird eine Warnung angezeigt, wenn die zu löschende Bibliothek für andere Benutzer freigegeben ist.</p>
+ 
+<h2>Verbesserte Links zum Teilen mit Dritten</h2>
+<p>Seafile Server 9.0 bietet neue Optionen für die Arbeit mit bestehenden Freigabelinks und ergänzt Freigabelinks um weitere Funktionen für die Zusammenarbeit.</p>
+
+<p>Sie erinnern sich nicht mehr an das Passwort des Freigabelinks, den Sie neulich erstellt haben? Kein Grund zur Sorge! Seafile 9.0 kann das Passwort eines passwortgeschützten Freigabelinks nach der Erstellung des Links anzeigen. Ebenso unterstützt Seafile 9.0 jetzt die Änderung der Ablaufzeit eines bestehenden Links. Auch ist die Verlängerung eines abgelaufenen Links möglich. In früheren Seafile Versionen bestand diese Möglichkeit nicht. Stattdessen musste ein bestehender Link gelöscht und ein neuer Link erzeugt werden &#8211; dieser dann mit einer neuen URL.</p>
+
+<p>Neue kollaborative Funktionen machen Freigabelinks noch leistungsfähiger für die Teamarbeit. Die Seite eines Download-Links in Seafile 9.0 zeigt nun die in einem Ordner verwendeten Datei-Tags. Als Träger von Metainformationen (z.B. den Dateistatus) bieten diese relevante Informationen für Ihre externen Partnern. Um die Datei-Tag-Funktion von Seafile weiter zu stärken, wurde auch die Benutzeroberfläche der Datei-Tag-Verwaltung verbessert.</p>
+
+<img decoding="async" src="/wp-content/uploads/2022/08/Seafile-9.0-Tag-Support-Folder-Share-Link.png" alt="Anzeige von Tags auf Download-Seite" width="1128" height="651" class="alignnone size-full wp-image-4489" srcset="/wp-content/uploads/2022/08/Seafile-9.0-Tag-Support-Folder-Share-Link.png 1128w, /wp-content/uploads/2022/08/Seafile-9.0-Tag-Support-Folder-Share-Link-300x173.png 300w, /wp-content/uploads/2022/08/Seafile-9.0-Tag-Support-Folder-Share-Link-1024x591.png 1024w, /wp-content/uploads/2022/08/Seafile-9.0-Tag-Support-Folder-Share-Link-768x443.png 768w" sizes="(max-width: 1128px) 100vw, 1128px" />
+
+<p>In früheren Versionen haben Benutzer, die über einen Freigabelink mit Bearbeitungsberechtigung auf ein Office-Dokument zugriffen, dies als &#8222;anonyme&#8220; Benutzer getan. Die Folge war, dass immer dann, wenn zwei oder mehr Personen über einen solchen Link auf ein Office-Dokument zugriffen, Verwirrung darüber herrschte, wer wer sei. Diese Verwirrung hat in Seafile 9.0 ein Ende. Anonyme Benutzer können sich durch Eingabe Ihres Names identifizieren. Der eingegebene Name wird sowohl bei der Dokumentenbearbeitung als auch im Chat verwendet.</p>
+
+<h2>Neuer Dateiserver</h2>
+<p>Die größte, aber wahrscheinlich am wenigsten sichtbare Neuerung in Seafile 9.0 ist der neue Dateiserver. Der neue Dateiserver stellt dank seiner drei Stärken eine wesentliche Verbesserung im Vergleich zu seinem Vorgänger dar:</p>
+<ul>
+  <li>Bessere Unterstützung großer Bibliotheken</li>
+  <li>ZIP-Streaming</li>
+  <li>Bandbreitenbregrenzung für Up- und Download</li>
+</ul>
+
+<p>Der Dateiserver ist das Arbeitspferd von Seafile. Als Bestandteil des seaf-server Prozesses kümmert er sich um Datei-Uploads und Downloads sowie die Dateisynchronisation. Der neue Dateiserver ist in <a href="https://de.wikipedia.org/wiki/Go_(Programmiersprache)">Go</a> geschrieben. Im Vergleich zu C, der Sprache des alten Dateiservers, bietet Go dank der inhärenten Unterstützung für parallele Programmierung eine wesentlich bessere Leistung in Situationen mit hoher Parallelität.</p>
+
+<p>Der neue Dateiserver ist eine Antwort auf die ständig wachsende Zahl der in Seafile Bibliotheken gespeicherten Dateien. Aufgrund der Eigenheiten des von Seafile verwendeten Datenmodells ist der Abruf einer Dateiliste einer großen Bibliothek von Natur aus langsam. Wenn Seafile mehrere Dateilistenanfragen gleichzeitig verarbeiten muss, dann kann es vorkommen, dass alle Worker-Threads ausgelastet sind. Dies führt dann zu Verzögerungen und damit Frust beim Benutzer. Mit Seafile 8.0 wurde ein (konfigurierbares) Limit für die Dateianzahl in Bibliotheken eingeführt. Bei einem gesetzten Limit wurden sehr große Bibliotheken nicht mehr synchronisiert und so das System von diesen nicht &#8222;verstopft&#8220;. Mit dem neuen Dateiserver werden nun nicht nur Symptome, sondern auch die wahren Ursachen behandelt.</p>
+
+<p>Wie die obige Liste aber zeigt, sind die Vorteile des neuen Dateiservers nicht auf den Bereich Performance beschränkt. Er verbessert auch die Benutzerfreundlichkeit von Seafile und erhöht seine Skalierbarkeit. In allen bisherigen Versionen musste ein Ordner vor dem Download zunächst gezippt und in seiner Gesamtheit auf dem Server zwischengespeichert werden. Erst nach Abschluss dieses Vorgangs konnte der Download beginnen. Bei größeren Ordnern konnte dies sehr lange dauern und die temporär gespeicherte ZIP-Datei verbrauchte viel Speicherplatz. Die Unterstützung von ZIP-Streaming, also das gleichzeitige Zippen und Herunterladen, durch den neuen Dateiservers löst beide Probleme: Sofortiger Download und kein Ballast mehr auf der Festplatte. Nicht zuletzt erlaubt der neue Dateiserver auch die aktive Verwaltung der verfügbaren Bandbreite.</p>
+
+<p>Seafile 9.0 verwendet aus Stabilitätsgründen weiterhin den alten Dateiserver als Standard-Dateiserver.  Der Parameter &#8218;use_go_fileserver = True&#8216; in der Seafile-Konfigurationsdatei seafile.conf aktiviert den neuen Dateiserver. Sobald der neue Dateiserver die gleiche Zuverlässigkeit bietet wie sein Vorgänger, wird er der Standarddateiserver werden und damit seinen Vorgänger vollständig ersetzen.</p>
+
+<h2>Komponentenupdate</h2>
+<p>Zusätzlich zu dem völlig neuen Dateiserver aktualisiert Seafile Server 9.0 auch drei wichtige Komponenten: Der Indexierungsserver ElasticSearch wird von Version 5.6 auf 7.x aktualisiert. PDFjs Version 2.1 arbeitet nun unter der Haube von Seafile CE und Seafile PE. Außerdem wird das Python Framework Django auf Version 3.2 aktualisiert.</p>
+
+<p>Mit dem Update von Elasticsearch von Version 5.6 auf 7.x greifen neue Lizenzbedingungen des Indexierungsservers. Die vom Hersteller mit der Version 6.2 eingeführten Bedingungen machen Schluss mit der die Bündelung der Software mit anderen kommerziellen Softwarelösungen. So darf ElasticSearch in Seafile PE 9.0 nicht mehr Teil des Installationspakets sein &#8211; mit entsprechenden Konsequenzen für Installation und Betrieb. Die <a href="https://manual.seafile.com/deploy_pro/download_and_setup_seafile_professional_server/">Installationsanweisungen</a> wurden entsprechend aktualisiert. Die <a href="https://manual.seafile.com/upgrade/upgrade_notes_for_9.0.x/#update-elasticsearch-pro-edition-only">speziellen Upgrade-Hinweise</a> erläutern das Vorgehen beim Update von Seafile 8.0 auf Seafile 9.0. Kurzfristig bedeutet die Ausgliederung von ElasticSeach einen gewissen Mehraufwand. Andererseits erleichtert sie die Konfiguration von ElasticSearch in der Zukunft (z.B. bei Verwendung eines externen ElasticSearch Servers).</p>
+
+<p>Dank des Upgrades von PDFjs, der von Seafile verwendeten PDF-Rendering-Engine, geht ein wiederholt geäußerter Wunsch  der Seafile Community in Erfüllung: Die Unterstützung passwortgeschützter PDFs. Wenn Sie bei Seafile 9.0 ein geschütztes PDF-Dokument in der Weboberfläche öffnen, dann erscheint in einem neuen Tab eine Passwortabfrage. Nach Eingabe des Passworts erscheint das PDF im Browser-Tab.</p>
+
+<img decoding="async" src="/wp-content/uploads/2022/08/Seafile-9.0-Encrypted-PDF-Support.png" alt="SeaTable 9.0 zeigt auch passwortgeschützte PDFs an" width="1337" height="504" class="alignnone size-full wp-image-4490" srcset="/wp-content/uploads/2022/08/Seafile-9.0-Encrypted-PDF-Support.png 1337w, /wp-content/uploads/2022/08/Seafile-9.0-Encrypted-PDF-Support-300x113.png 300w, /wp-content/uploads/2022/08/Seafile-9.0-Encrypted-PDF-Support-1024x386.png 1024w, /wp-content/uploads/2022/08/Seafile-9.0-Encrypted-PDF-Support-768x290.png 768w" sizes="(max-width: 1337px) 100vw, 1337px" />
+
+<h2>Outlook Add-in</h2>
+<p>Nach langer Beta-Phase freuen wir uns nun, das Seafile Add-In für Microsoft Outlook in den Produktivbetrieb zu entlassen. Es erlaubt die einfache Erstellung und Einbettung von Freigabelinks in Microsofts beliebter Office-Anwendung und es ermöglicht den direkten Upload von E-Mails und E-Mail-Anhängen in Seafile. Der Vorteil für Sie: Schnellere Arbeit und viel weniger Klicks.</p>
+
+<p>Das <a href="/support/benutzer/anleitung/seafile-outlook-addin/">Seafile Add-in fügt dem Outlook Ribbon</a> eine gleichnamige Registerkarte hinzu. Über diese lassen sich die fünf Menüs des Add-ins ansteuern. Die Menüs &#8222;Mein Seafile&#8220;, &#8222;Einstellungen&#8220; und &#8222;Über&#8220; werden immer angezeigt. Über sie kann man in das Seafile Webinterface abspringen, das Add-in konfigurieren und Versionsinformationen abrufen. Zwei weitere Menüs werden kontextbezogen eingeblendet.</p>
+
+<img loading="lazy" decoding="async" src="/wp-content/uploads/2022/05/SeafileAddinOutlook_Ribbon_Fenster.png" alt="Seafile Add-in für Outlook - alle Schaltflächen" width="846" height="162" class="alignnone size-full wp-image-4415" srcset="/wp-content/uploads/2022/05/SeafileAddinOutlook_Ribbon_Fenster.png 846w, /wp-content/uploads/2022/05/SeafileAddinOutlook_Ribbon_Fenster-300x57.png 300w, /wp-content/uploads/2022/05/SeafileAddinOutlook_Ribbon_Fenster-768x147.png 768w" sizes="auto, (max-width: 846px) 100vw, 846px" />
+
+<p>Das &#8222;Hochladen&#8220;-Menü erscheint, wenn eine E-Mail in einem separaten Fenster geöffnet wird. Dies ist der schnellste Weg, um einen oder mehrere Anhänge und/oder den Inhalt der E-Mail zu Seafile hochzuladen. Navigieren Sie zur Zielbibliothek und wählen Sie die Elemente aus, die Sie hochladen möchten. Ein weiterer Klick und das Add-In lädt die Elemente in die gewünschte Seafile Bibliothek bzw. Ordner hoch.</p>
+
+<p>Das Menü &#8222;Teilen&#8220; erscheint, wenn Sie in den Bearbeitungsmodus wechseln (d. h. auf &#8222;Antworten&#8220; oder &#8222;Weiterleiten&#8220; klicken). Verwenden Sie es, um einen Freigabelink zu erstellen &#8211; entweder einen Upload- oder einen Download-Link &#8211; und fügen Sie ihn in den E-Mail-Text ein. Passwortschutz und Verfallsdatum werden unterstützt. Für Download-Links unterstützt das Add-In auch verschiedene Berechtigungen.</p>
+
+<p>Dank der Unterstützung aller von Seafile angebotenen Authentifizierungsmethoden ist das Add-in für kleine und große Organisationen gleichermaßen geeignet. Insbesondere unterstützt es Benutzername/Passwort und Zwei-Faktor-Authentifizierung sowie SAML/Shibboleth und OAuth/OIDC Single Sign-On-Techniken.</p>
+
+<p>Die Installation ist mit einer setup.exe schnell erledigt. Die einzige Voraussetzung ist das .NET Framework 4.7.2. Da es sich bei dem Add-in um eine 32 Bit-Anwendung handelt, ist sie nur mit 32 Bit-Office-Paketen kompatibel. (Die meisten Office-Installationen sind 32 Bit-Installationen.) Wenn SSO für die Authentifizierung verwendet werden soll, ist eine serverseitige Konfiguration erforderlich (weitere Informationen finden Sie im <a href="https://manual.seafile.com/">Seafile Handbuch</a>).</p>

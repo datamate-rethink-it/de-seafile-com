@@ -1,0 +1,65 @@
+---
+title: "WAV-Dateien direkt in Seahub abspielen"
+slug: "wav-dateien-seahub-abspielen"
+seo_title: "WAV-Dateien direkt in Seahub abspielen | Seafile"
+description: "Seafile beietet eine Vorschau für verschiedenste Musikformate. Leider gehört .wav nicht dazu. Dieser Artikel zeigt, wie man .wav Dateien im Browser abspielt."
+date: "2019-10-21T20:41:37"
+lastmod: "2025-02-21T09:07:13"
+og_image: "/wp-content/uploads/2019/10/seafile-wav-abspielen.jpg"
+beitragsbild: "/wp-content/uploads/2019/10/seafile-wav-abspielen.jpg"
+lesezeit: "3 Minuten"
+category:
+  - "anleitungen"
+autor: "Christoph Dyllick-Brenzinger"
+wp_id: 3596
+---
+<p>Seahub, die Weboberfläche von Seafile bietet für diverse Dateiformate eine Vorschau im Browser an. So gibt es eine Bildvorschau für verschiedene Grafikformate und auch Videos und Audio-Dateien können direkt im Browser abgespielt werden. Doch während .mp3, .ogg, .mp4, .ogg, .flv, .wmv und noch viele weitere Formate abgespielt werden, funktioniert dies erstaunlicherweise nicht mit .wav-Dateien. Der folgende Artikel soll zeigen, wie man Seafile auch dazu bringt .wav-Dateien direkt in Seahub abzuspielen.</p>
+
+<!--more-->
+
+<h2>Neues Webfrontend mit Seafile 7 erfordert ein neues Vorgehen</h2>
+
+<p>Die folgende Anleitung bezieht sich nur auf Seafile 7 und nicht auf Seafile 6, weil sich mit Version 7 das Frontend geändert hat und nun auf React basiert und nicht mehr auf Django. Bei Seafile 7 wird das gesamte Frontend mit Hilfe von einzelnen Javascript Dateien erzeugt, was die Bearbeitung etwas fummelig macht. Gleichzeitig sollte man dazu sagen, dass die folgenden Änderungen kein Update überstehen, da die Änderungen direkt in den Javascript Dateien vorgenommen werden und diese mit bei einem Update von der neuen Seafile Server Version überschrieben werden.</p>
+
+<h2 style="padding-top: 30px;">Unterstützung für das Dateiformat .wav</h2>
+
+<p>Grundsätzlich müssen wir nur an zwei Dateien Änderungen vornehmen. Die folgenden Dateinamen beziehen sich auf die Seafile Professional Version 7.0.9. In anderen Seafile Versionen sind die Dateinamen mit großer Wahrscheinlichkeit anders:</p>
+<ul>
+<li>SEAFILE-PFAD/seafile-pro-server-7.0.9/seahub/seahub/utils/__init__.py</li>
+<li>SEAFILE-PFAD/seafile-pro-server-7.0.9/seahub/media/assets/frontend/js/app.faa7ba429394.js</li>
+<li>SEAFILE-PFAD/seafile-pro-server-7.0.9/seahub/media/assets/frontend/js/fileView.98a5e61c18f9.js</li>
+</ul>
+
+<h3 style="padding-top: 30px;">__init__.py</h3>
+
+<p>In dieser Datei muss Seafile mitgeteilt werden, dass ab sofort auch .wav-Dateien eine Dateivorschau besitzen. Die Änderung ist minimal. Man sucht einfach nach &#8222;mp3&#8220; und fügt &#8222;wav&#8220; in die Liste der Dateiformate hinzu.</p>
+
+<pre><code>AUDIO: ('mp3', 'oga', 'ogg', 'wav'),</code></pre>
+
+<h3 style="padding-top: 30px;">app.faa7ba429394.js</h3>
+<p>Wie gesagt, wird die app.js in jeder Seafile Version einen anderen Dateinamen haben. Man findet die Datei aber immer im Ordner seahub/media/assets/frontend/js. Am Besten legt man sich vor der Bearbeitung eine Kopie der Datei an um jederzeit zur Ursprungsversion zurückkehren zu können. Die gewünschte Änderung ist minimal. Es soll lediglich erreicht werden, dass in der Dateivorschau von Seafile eine .wav-Datei mit einem Musik-Icon versehen wird.</p>
+<p>Das Komplizierte an der Bearbeitung dieser Datei ist, dass die der gesamte Inhalt in einer Zeile steht. Doch mit Hilfe der Suchfunktion kann man nach den entsprechenden Stellen suchen und einen Zeilenumbruch einfügen. So wird die Bearbeitung dann doch wieder etwas handlicher. Es genügt ein der Dateiendung .wav das Icon <i>music.png</i> zuzuweisen.</p>
+<pre><code>webpackJsonp([2],{10:function(e,t,n){"use strict";function r(){return o.default.....
+mp3:"music.png",wav:"music.png",
+oga:"music.png",ogg:"music.png",flac:"music.png",aac:"music.png",....</code></pre>
+
+<h3 style="padding-top: 30px;">fileView.98a5e61c18f9.js</h3>
+
+<p>Auch dieser Dateiname wird bei anderen Seafile Versionen anders sein. An dieser Datei müssen wir mehrere Anpassungen vornehmen, da Seafile mitgeteilt werden muss, wie es mit der .wav-Dateiendung umzugehen hat. Auch hier empfiehlt es sich wieder nach den richtigen Stellen mit Hilfe der Suche zu suchen und dann Zeilenumbrüche einzufügen.</p>
+
+<pre><code>webpackJsonp([5],{10:function(e,t,n){"use strict";function i(){return a.default...
+mp3:"audio/mpeg",wav:"audio/wav",
+
+aac:"audio/aac",oga:"audio/ogg",m3u8:"application/x-mpegURL"},mi=function(e){void ...
+"audio/mpegurl","audio/x-wav",
+
+"audio/x-mpegurl","application/x-mpegurl","video/x-mpegurl","video/mpegurl","application...
+mp3:"music.png",wav:"music.png",
+
+oga:"music.png",ogg:"music.png",flac:"music.png",aac:"music.png",ac3:"music.png",...</code></pre>
+
+<h2 style="padding-top: 30px;">Neustarten und Cache leeren</h2>
+
+<img fetchpriority="high" decoding="async" width="910" height="199" src="/wp-content/uploads/2019/10/wav-in-seafile-abspielen.png" alt=".wav-Dateien in Seahub abspielen" class="alignnone size-full wp-image-3597" style="display:block; padding: 20px 0px;" srcset="/wp-content/uploads/2019/10/wav-in-seafile-abspielen.png 910w, /wp-content/uploads/2019/10/wav-in-seafile-abspielen-300x66.png 300w, /wp-content/uploads/2019/10/wav-in-seafile-abspielen-768x168.png 768w" sizes="(max-width: 910px) 100vw, 910px" />
+
+<p>Anschließend genügt es den Seafile Server neu zu starten und den Browser-Cache zu leeren. Es müssen die .js Dateien neu geladen werden, da man sonst die ursprünglichen Versionen aus dem Cache präsentiert kriegt. Sollte man alle Änderungen richtig gemacht haben, wird nun Seafile zukünftig .wav-Dateien im Browser abspielen.</p>

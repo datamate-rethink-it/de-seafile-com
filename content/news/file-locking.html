@@ -1,0 +1,28 @@
+---
+title: "Versionskonflikte adieu dank File Locking"
+slug: "file-locking"
+seo_title: "Versionskonflikte adieu dank File Locking | Seafile"
+description: "Seafiles File Locking Funktion verhindert die gleichzeitige Bearbeitung von Office Dokumenten durch unterschiedliche Benutzer in lokalen Editoren."
+date: "2018-10-10T20:42:15"
+lastmod: "2025-02-21T09:07:15"
+og_image: "/wp-content/uploads/2018/10/AdobeStock_90055036_1920px_1080px.jpg"
+beitragsbild: "/wp-content/uploads/2018/10/AdobeStock_90055036_1920px_1080px.jpg"
+lesezeit: "2 Minuten"
+category:
+  - "funktionen"
+autor: "Ralf D."
+wp_id: 1639
+---
+<p>Wenn Abgabetermine nahen, dann wird die Arbeit häufig hektisch. Mehrere Personen arbeiten an ein und demselben Dokument. Wenn die Abstimmung der Arbeiten fehl schlägt, dann kommt es dabei zu Versionskonflikten, die zeitaufwändige, manuelle Nacharbeiten erfordern. Seafile übernimmt die Koordination im Team, indem es anzeigt, ob und durch wen eine Office Datei in Bearbeitung ist.</p>
+<!--more-->
+<img fetchpriority="high" decoding="async" width="1081" height="526" src="/wp-content/uploads/2018/10/Seahub_FileLocking.png" alt="Gesperrt Office Datei" class="alignnone size-full wp-image-1660" srcset="/wp-content/uploads/2018/10/Seahub_FileLocking.png 1081w, /wp-content/uploads/2018/10/Seahub_FileLocking-300x146.png 300w, /wp-content/uploads/2018/10/Seahub_FileLocking-768x374.png 768w, /wp-content/uploads/2018/10/Seahub_FileLocking-1024x498.png 1024w" sizes="(max-width: 1081px) 100vw, 1081px" />
+<h2>File Locking in Seafile</h2>
+<p>Seafile sperrt Office Dateien automatisch, sobald diese von einem Benutzer geöffnet werden. Anderen Benutzern wird die Dateisperrung durch ein entsprechendes Kein Zutritt-Icon im Webinterface Seahub und in den lokalen Dateimanagern angezeigt. Im Webinterface läßt sich durch Bewegen des Cursors auf das Sperricon der Urheber der Sperrung erfahren.  </p>
+<p>Sobald der bearbeitende Benutzer das Dokument schliesst, wird die Sperrung aufgehoben. Seafile übernimmt die Abstimmung unauffällig im Hintergrund. Der Benutzer muss nichts weiter tun.</p>
+
+<img decoding="async" width="1365" height="767" src="/wp-content/uploads/2018/09/SyncClient_raw_Übersicht2.png" alt="Seafile Sync Client in Action" class="alignnone size-full wp-image-292" srcset="/wp-content/uploads/2018/09/SyncClient_raw_Übersicht2.png 1365w, /wp-content/uploads/2018/09/SyncClient_raw_Übersicht2-300x169.png 300w, /wp-content/uploads/2018/09/SyncClient_raw_Übersicht2-768x432.png 768w, /wp-content/uploads/2018/09/SyncClient_raw_Übersicht2-1024x575.png 1024w" sizes="(max-width: 1365px) 100vw, 1365px" />
+
+<h2>File Locking vs. Online Collaboration</h2>
+<p>Seafiles automatische Dateisperrung funktioniert mit den bekannten Online Dokumenteneditoren sowie allen Dokumentenanwendungen der MS Office Suite Word, Excel und PowerPoint. Dateizugriffe mit einem lokalen Editor in einer synchronisierten Bibliothek werden ebenso überwacht wie Bearbeitungen in einem Online Editor aus dem Webinterface Seahub heraus. Seafile sperrt die Datei und kommuniziert diese Information an alle angeschlossenen Geräte und Benutzer. (Die automatische Dateisperrung greift nicht bei Verwendung anderer Desktop-Editoren von z.B. LibreOffice, OpenOffice oder Softmaker Office. Office und andere Dateitypen lassen sich aber manuell sperren.)</p>
+
+<p>Dateisperrung ist jedoch nicht gleich Dateisperrung in Seafile. Eine Dateisperrung hat je nach benutztem Editor unterschiedliche Konsequenzen: Ein lokal geöffnetes Office Dokument kann nicht gleichzeitig auf einem anderen Rechner oder über den Online Editor bearbeitet werden. Die Dateisperrung verhindert dies. Anders bei der Bearbeitung eines Dokuments in einem Online Editor. In diesem Fall ist die Dateisperrung nur partiell. Die Dateisperrung verhindert nur die gleichzeitige lokal Beabeitung. Im Online Editor kann die Datei jedoch weiterhin von anderen Benutzern geöffnet werden. So besteht kein Konflikt zwischen dem File Locking und der Funktion, ein Dokument <a href="/online-file-editing/">gleichzeit mit anderen Benutzern im Online Editor zu bearbeiten</a>.</p>

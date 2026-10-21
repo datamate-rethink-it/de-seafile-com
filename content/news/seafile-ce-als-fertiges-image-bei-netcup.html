@@ -1,0 +1,94 @@
+---
+title: "Seafile CE als fertiges Image bei netcup"
+slug: "seafile-ce-als-fertiges-image-bei-netcup"
+seo_title: "Seafile CE als fertiges Image bei netcup"
+description: "Seafile auf einem VServer? Mit dem fertigen Image von netcup lässt sich innerhalb weniger Minuten ein Seafile Community Server in Betrieb nehmen."
+date: "2019-08-07T13:46:34"
+lastmod: "2025-02-21T09:07:13"
+og_image: "/wp-content/uploads/2019/08/seafile-ce-netcup-image.jpg"
+beitragsbild: "/wp-content/uploads/2019/08/seafile-ce-netcup-image.jpg"
+lesezeit: "5 Minuten"
+category:
+  - "release-notes"
+autor: "Ralf D."
+wp_id: 3363
+---
+<p>Wer Seafile auf einem Root oder VServer in einem TÜV-zertifizierten Rechenzentrum installieren will, hat nun mit netcup eine hochattraktive Option: der Karlsruher Internet Service Provider bietet seit Ende Juni 2019 ein fertiges Image auf Basis von Ubuntu 18.04 LTS an, das Seafile mitinstalliert und vorkonfiguriert. Das Image steht für alle Root, Storage und VServer zur Verfügung und ist in wenigen Minuten einsatzbereit. Mit ein paar weiteren Handgriffen ist das System individuell konfiguriert und für den produktiven Einsatz gerüstet.</p>
+
+<!--more-->
+
+<h2>Neues Seafile Image bei netcup</h2>
+<p>Das <a href="https://www.netcup-news.de/2019/06/21/seafile-direkt-als-fertiges-image-verfuegbar/">Seafile Image ist die jüngste Ergänzung</a> zu dem bereits beeindruckenden Portfolio an fertig konfigurierten Images, die netcup für die Installation auf seinen Servern anbietet. Das Seafile Image trägt die #30 und ist eines von insgesamt sechs Ubuntu 18.04 LTS basierten Images (Stand: 4.8.2019).</p>
+
+<img decoding="async" src="/wp-content/uploads/2019/08/PreiseNetcupVServer.jpg" alt="Preise der VServer bei Netcup (Stand: 4. August 2019)" width="1071" class="alignnone size-full wp-image-3367" srcset="/wp-content/uploads/2019/08/PreiseNetcupVServer.jpg 1071w, /wp-content/uploads/2019/08/PreiseNetcupVServer-300x150.jpg 300w, /wp-content/uploads/2019/08/PreiseNetcupVServer-768x384.jpg 768w, /wp-content/uploads/2019/08/PreiseNetcupVServer-1024x512.jpg 1024w" sizes="(max-width: 1071px) 100vw, 1071px" />
+<p>Das Image installiert die jeweils aktuellste, freigegebene Version des Seafile Community Servers mit MySQL Datenbank und nginx als Reverse Proxy. Ist das Image auf dem Server installiert, kann man unmittelbar über die IP-Adresse des Servers und ein Alias auf Seafile zugreifen. Ein Admin-Benutzer wird im Rahmen der Installation bereits angelegt, so dass der Inbetriebnahme nichts mehr im Weg steht.</p>
+
+<p><a href="https://www.netcup.de/">netcup</a> wurde im Jahr 2008 von Felix Preuß und Oliver Werner gegründet. In 2016 wurde netcup vom österreichischen Branchenkollegen Anexia übernommen, die Geschäfte werden aber als unabhängige Einheit mit der alten Geschäftsführung fortgeführt. In den vergangenen Jahren wurde das Unternehmen wiederholt ausgezeichnet: die Computerzeitschrift CHIP ehrte netcup für seinen hervorragenden Kundensupport und bei den Hosting und Server Provider Awards von IT Business waren die Karlsruher in den vergangenen Jahren Seriengewinner. netcup gehört mit rund 100.000 Kunden zu den größten Anbietern seiner Art in Deutschland.</p>
+
+<h2>Installation des Images</h2>
+<p>Die Installation des Images erfolgt über das <a href="https://www.servercontrolpanel.de">netcup Servercontrolpanel (SCP)</a>, dem zentralen Verwaltungstool der netcup Server. Die  Zugangsdaten für das SCP erhält man nach der Buchung eines netcup Servers per E-Mail zugesendet.</p>
+<img decoding="async" src="/wp-content/uploads/2019/08/servercontrolpanel_image_selection.jpg" alt="Auswahl des Seafile Images im SCP von netcup" width="1343" class="alignnone size-full wp-image-3369" srcset="/wp-content/uploads/2019/08/servercontrolpanel_image_selection.jpg 1343w, /wp-content/uploads/2019/08/servercontrolpanel_image_selection-300x113.jpg 300w, /wp-content/uploads/2019/08/servercontrolpanel_image_selection-768x289.jpg 768w, /wp-content/uploads/2019/08/servercontrolpanel_image_selection-1024x386.jpg 1024w" sizes="(max-width: 1343px) 100vw, 1343px" />
+<p>Die Image Auswahl befindet sich im Menüpunkt <b>Medien</b> und dem Register <b>Images</b>. Bevor man das Seafile Image auswählen kann, muss man die Auswahl auf die Ubuntu 18.04 LTS Images eingrenzen. In einem weiteren Schritt lässt sich die Partitionierungsmethode wählen: eine große Partition, die den gesamten Speicherplatz des Systems belegt, oder eine kleine Partition mit unzugewiesenem Speicherplatz für die freie, spätere Partitionierung. Die Installation des Images startet nach Eingabe des SCP-Passworts in der Zusammenfassung. Die Installation selbst benötigt auch auf kleinen VServern keine 5 Minuten. In einem separaten VNC-Fenster lässt sich die Installation beobachten.</p>
+<img decoding="async" src="/wp-content/uploads/2019/08/servercontrolpanel_after_installation.jpg" alt="Anzeige der Zugangsdaten für das System nach der Installation im SCP" width="1145"  class="alignnone size-full wp-image-3372" srcset="/wp-content/uploads/2019/08/servercontrolpanel_after_installation.jpg 1145w, /wp-content/uploads/2019/08/servercontrolpanel_after_installation-300x249.jpg 300w, /wp-content/uploads/2019/08/servercontrolpanel_after_installation-768x637.jpg 768w, /wp-content/uploads/2019/08/servercontrolpanel_after_installation-1024x850.jpg 1024w" sizes="(max-width: 1145px) 100vw, 1145px" />
+<p>Im Rahmen der Installation wird der Webserver nginx so konfiguriert, dass Seafile über die IP-Adresse des netcup Servers oder dessen Alias erreichbar ist. Die Zugangsdaten für den angelegten Seafile Admin admin@seafile.local werden im SCP angezeigt. Ebenso wird das 15-stellige Root Passwort unter den Informationen zu Seafile im SCP angezeigt.</p>
+
+<h2>Individuelle Konfiguration des Images</h2>
+<p>Seafile ist unmittelbar einsetzbar. Über den Admin User lassen sich in der System Administration des Webinterfaces weitere Benutzer anlegen. An gleicher Stelle lassen sich auch einige graphische Anpassungen machen. Für den Produktiveinsatz ist das aber noch etwas zu wenig.</p>
+
+<p>Die Hinweise im SCP führen detailliert aus, was noch getan werden kann bzw. getan werden sollte:</p>
+<pre>
+Your Seafile server is installed
+  -----------------------------------------------------------------
+
+  Server Address:      http://v2201904335458.hotsrv.de
+
+  Seafile Admin:       admin@seafile.local
+  Admin Password:      iekuuJe2
+
+  Seafile Data Dir:    /opt/seafile/seafile-data
+
+  Seafile DB Credentials:  Check /opt/seafile.my.cnf
+  Root DB Credentials:     Check /root/.my.cnf
+
+  This report is also saved to /opt/seafile/aio_seafile-server.log
+
+  Next you should manually complete the following steps
+  -----------------------------------------------------------------
+
+  1) Log in to Seafile and configure your server domain via the system
+     admin area if applicable.
+  2) If this server is behind a firewall, you need to ensure that
+     tcp port 80 is open.
+  3) Seahub tries to send emails via the local server. Install and
+     configure Postfix for this to work or
+     check https://manual.seafile.com/config/sending_email.html
+     for instructions on how to use an existing email account via SMTP.
+
+  Optional steps
+  -----------------------------------------------------------------
+
+  1) Check seahub_settings.py and customize it to fit your needs. Consult
+     http://manual.seafile.com/config/seahub_settings_py.html for possible switches.
+  2) Setup NGINX with official SSL certificate, we suggest you use Let’s Encrypt. Check
+     https://manual.seafile.com/deploy/https_with_nginx.html
+  3) Secure server with iptables based firewall. For instance: UFW or shorewall
+  4) Harden system with port knocking, fail2ban, etc.
+  5) Enable unattended installation of security updates. Check
+     https://wiki.Ubuntu.org/UnattendedUpgrades for details.
+  6) Implement a backup routine for your Seafile server.
+  7) Update NGINX worker processes to reflect the number of CPU cores.
+
+
+  Seafile support options
+  -----------------------------------------------------------------
+
+  For free community support visit:   https://forum.seafile.com
+  For paid commercial support visit:  https://seafile.com
+
+ You will find this informations in /root/login_informations.txt
+ </pre>
+<p>Die aus unserer Sicht wichtigste Maßnahme &#8211; eine die unter keinen Umständen unterbleiben sollte &#8211; ist die Umstellung des Zugriffs von http auf https mit einem SSL-Zertifikat von Let&#8217;s Encrypt. Das Seafile Manual gibt dazu <a href="https://manual.seafile.com/deploy/https_with_nginx.html">detailliert Auskunft</a>. Ebenfalls wichtig ist aus unserer Sicht die Absicherung des Seafile Logins gegen Brute-Force Angriff mit Fail2ban. Unser Partner datamate hat dazu ein <a href="https://www.youtube.com/watch?v=-YrY2Ps03sE">ausführliches Video</a> gemacht.</p>
+
+
+<h2>Willkommen bei den Seafile Fans</h2>
+<p>Wir freuen uns, mit netcup einen erstklassigen Hoster als Anbieter eines Seafile Images gewinnen zu können. Wir werden mit netcup zusammen arbeiten, um das Image regelmäßig zu aktualisieren und nach Wegen suchen, die erweiterte Konfiguration noch komfortabler zu machen.</p>

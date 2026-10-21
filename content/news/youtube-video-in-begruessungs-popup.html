@@ -1,0 +1,80 @@
+---
+title: "YouTube Video in Begrüßungs-Popup"
+slug: "youtube-video-in-begruessungs-popup"
+seo_title: "YouTube Video in Begrüßungs-Popup | Seafile"
+description: ""
+date: "2019-05-20T23:24:54"
+lastmod: "2025-02-21T09:07:14"
+og_image: "/wp-content/uploads/2019/05/seafile-begruessungs-popup.jpg"
+beitragsbild: "/wp-content/uploads/2019/05/seafile-begruessungs-popup.jpg"
+lesezeit: "5 Minuten"
+category:
+  - "anleitungen"
+autor: "Christoph Dyllick-Brenzinger"
+wp_id: 3029
+---
+<p>Jeder Anwender, der sich zum ersten Mal in Seafiles Webinterface Seahub einloggt, wird von einem Pop-Up mit einer kurzen Begrüßung willkommen geheissen. Dies ist grundsätzlich eine nette Geste, andererseits auch eine Vergeudung der vollen Aufmerksamkeit der Benutzer! Warum nicht an dieser Stelle dem Neunutzer anstatt eines freundlichen &#8222;Hallos!&#8220; ein paar essentielle Informationen über Seafiles Bedienung und Anwendungsfälle oder Datenschutzaspekte präsentieren? Gerade ein prägnantes Video bietet sich dafür an? In diesem Beitrag zeigen wir, wie einfach die Einbindung eines YouTube Videos ist.</p>
+
+<!--more-->
+<h2>Maximale Aufmerksamkeit für Ihr Begrüßungs-Video</h2>
+<a href="/wp-content/uploads/2019/05/seafile-demo-welcome-screen1.png" data-slb-active="1" data-slb-asset="1451809128" data-slb-internal="0" data-slb-group="3029"><img fetchpriority="high" decoding="async" width="1182" height="645" src="/wp-content/uploads/2019/05/seafile-demo-welcome-screen1.png" alt="Seafile Welcome Popup ohne Video" class="wp-image-3030" style="padding: 20px 20px 0 0;" srcset="/wp-content/uploads/2019/05/seafile-demo-welcome-screen1.png 1182w, /wp-content/uploads/2019/05/seafile-demo-welcome-screen1-300x164.png 300w, /wp-content/uploads/2019/05/seafile-demo-welcome-screen1-768x419.png 768w, /wp-content/uploads/2019/05/seafile-demo-welcome-screen1-1024x559.png 1024w" sizes="(max-width: 1182px) 100vw, 1182px" /></a>
+
+<p>Das Bild zeigt das Begrüßungs-Popup von Seafile, welches standardmäßig beim ersten Login eingeblendet wird. Dieses gilt es anzupassen, um eine individuelle und &#8211; vor allem &#8211; relevantere Message zu übermitteln. Wenn Seafile z.B. gerade neu in Ihrem Unternehmen eingeführt wurde, lässt sich an dieser Stelle der geplante Einsatzzweck erläutern. Alternativ kann man eine Einführung in die Weboberfläche und die Möglichkeiten von Seafile geben. Die Möglichkeiten sind vielfältig und unbestimmt. Sicher ist aber, dass die Interaktionsrate bei einem gut gemachten Video um ein Vielfaches größer ist als bei einem einfachen Textblock.</p>
+
+<a href="/wp-content/uploads/2019/05/seafile-welcome-popup2.png" data-slb-active="1" data-slb-asset="1894985035" data-slb-internal="0" data-slb-group="3029"><img decoding="async" width="1189" height="644" src="/wp-content/uploads/2019/05/seafile-welcome-popup2.png" alt="Seafile Begrüßungs-Popup mit YouTube Video" class="wp-image-3037" srcset="/wp-content/uploads/2019/05/seafile-welcome-popup2.png 1189w, /wp-content/uploads/2019/05/seafile-welcome-popup2-300x162.png 300w, /wp-content/uploads/2019/05/seafile-welcome-popup2-768x416.png 768w, /wp-content/uploads/2019/05/seafile-welcome-popup2-1024x555.png 1024w" sizes="(max-width: 1189px) 100vw, 1189px" /></a>
+<p>So sieht es zum Beispiel aus, wenn man das YouTube Video <a href="https://www.youtube.com/watch?v=jsSbhjO-2Sg" target="_blank" rel="noopener noreferrer">Was ist Seafile</a> in das Begrüßungs-Popup von Seafile einbaut. Ein einfaches iframe-Element genügt, um das Popup auf einen Schlag ansprechender zu machen. Finden Sie nicht?</p>
+
+<h2>Einrichtung und Inbetriebnahme</h2>
+<p>Wir erklären anhand des oben verwendeten Beispielvideos die Schritte zur Einbindung des Videos. Vier Schritte sind es konkret. Bei der Erklärung gehen wir davon aus, dass Ihr Seafile Server eingerichtet ist und Sie per SSH Zugriff auf ihn Zugriff haben.</p>
+
+<h3 style="padding-top: 20px;">Schritt 1: Identifikation der Template Datei</h3>
+<p>Seafile arbeitet mit einem HTML-Framework, welches es dem Administrator erlaubt, beliebige Anpassungen am HTML-Code vorzunehmen. Damit vorgenommene Änderungen an den Template Dateien nicht bei einem Update des Seafile Serves überschrieben werden, müssen diese in einem separaten Ordner gespeichert und &#8222;versymlinkt&#8220; werden. Die Details dieses Vorgehen sollen nicht Teil dieses Artikels sein. Sie werden aber detailliert im <a href="https://manual.seafile.com/config/seahub_customization.html" target="_blank" rel="noopener noreferrer">englischen Seafile Manual</a> beschrieben.</p>
+
+<p>Wir starten damit, dass wir die relevante HTML-Datei in das Template Verzeichnis kopieren. Dort bearbeiten wir Sie dann. In unsrem Beispiel ist Seafile im Verzeichnis <i>/home/seafile/</i> installiert:</p>
+<pre>
+$ cd /home/seafile/seafile-server-latest/seahub/seahub/templates/
+$ cp ./base_for_backbone.html /home/seafile/seahub-data/custom/templates
+</pre>
+
+<h3 style="padding-top: 20px;">Schritt 2: Ermittlung des YouTube Shortcodes</h3>
+<p>Die URLs von YouTube Videos folgen einer einfachen Struktur: Auf das führende <i>www.youtube.com/watch?v=</i> folgt der sogenannte Shortcode. Der Shortcode ist eine elfstellige Zeichenfolge, die das Video eindeutig identifiziert. Das Beispielvideo hat die URL <i>https://www.youtube.com/watch?v=jsSbhjO-2Sg</i> und damit den Shortcode <i>jsSbhjO-2Sg</i>.</p>
+<p>Finden Sie den Shortcode für das gewünschte Video heraus. Diesen benötigen wir im nächsten Abschnitt, um das Video per iframe im Begrüßungs-Popup einzufügen.</p>
+
+<h3 style="padding-top: 20px;">Schritt 3: Integration des Videos ins Template</h3>
+<p>Als Nächstes öffnen Sie die Template Datei mit dem Texteditor der Wahl und suchen nach dem folgenden Abschnitt:</p>
+<code>
+<pre>&lt;div id="guide-for-new" class="hide">
+    &lt;span class="icon-lightbulb fleft" aria-hidden="true">&lt;/span>
+    &lt;div class="txt">
+        &lt;h3 id="dialogTitle">{% blocktrans with site_name=site_name %}Welcome to {{site_name}}{% endblocktrans %}&lt;/h3>
+        {% if user.permissions.can_add_repo %}
+        &lt;p>{% blocktrans with site_name=site_name %}{{site_name}} organizes files into libraries. Each library can be synced and shared separately. We have created a personal library for you. You can create more libraries later.{% endblocktrans %}&lt;/p>
+        {% else %}
+        &lt;p>{% blocktrans with site_name=site_name %}{{site_name}} organizes files into libraries. Each library can be synced and shared separately. Howerver, since you are a guest user now, you can not create libraries.{% endblocktrans %}&lt;/p>
+        {% endif %}
+        &lt;button class="simplemodal-close" style="margin:8px 0 0 0;">{% trans "Close" %}&lt;/button>
+    &lt;/div>
+&lt;/div></pre>
+</code>
+<p>Um das Video einzufügen, genügt es, nach dem h3-Tag ein iframe einzubauen. Für das Beispielvideo sieht der vollständige Abschnitt dann so aus (eingefügter Teil in rot):</p>
+<code>
+<pre>&lt;div id="guide-for-new" class="hide">
+    &lt;span class="icon-lightbulb fleft" aria-hidden="true">&lt;/span>
+    &lt;div class="txt">
+        &lt;h3 id="dialogTitle">{% blocktrans with site_name=site_name %}Welcome to {{site_name}}{% endblocktrans %}&lt;/h3>
+        <span style='color: red;'>&lt;iframe src="https://www.youtube.com/embed/jsSbhjO-2Sg?rel=0" width="640" height="360" frameborder="0" allowfullscreen>&lt;/iframe></span>
+        {% if user.permissions.can_add_repo %}
+        &lt;p>{% blocktrans with site_name=site_name %}{{site_name}} organizes files into libraries. Each library can be synced and shared separately. We have created a personal library for you. You can create more libraries later.{% endblocktrans %}&lt;/p>
+        {% else %}
+        &lt;p>{% blocktrans with site_name=site_name %}{{site_name}} organizes files into libraries. Each library can be synced and shared separately. Howerver, since you are a guest user now, you can not create libraries.{% endblocktrans %}&lt;/p>
+        {% endif %}
+        &lt;button class="simplemodal-close" style="margin:8px 0 0 0;">{% trans "Close" %}&lt;/button>
+    &lt;/div>
+&lt;/div></pre>
+</code>
+
+<h3 style="padding-top: 20px;">Schritt 4: Neustart von Seahub</h3>
+<p>Damit dieses Video nun auch jedem neuen Seafile Benutzer gezeigt wird, muss das Webinterface Seahub neu gestartet werden. Damit es keine Probleme beim Laden der Template Datei gibt, achten Sie darauf, dass die Datei dem User gehört, der den Seafile Server und Seahub startet.</p>
+
+<h2>Individuelle Videos für Ihr Seafile System</h2>
+<p>Sie haben eine Video Idee und brauchen einen Partner bei der Umsetzung? Gerne erstellt Ihnen unser deutscher Vertriebspartner datamate individuelle Schulungsvideos zu unterschiedlichen Seafile Themen. Sprechen Sie das <a href="/support/individueller-support">datamate Team</a> einfach an.</p>

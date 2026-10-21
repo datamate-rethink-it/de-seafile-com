@@ -1,0 +1,55 @@
+---
+title: "Schriftarten in ONLYOFFICE hinzufügen & entfernen"
+slug: "schriftarten-onlyoffice-hinzufuegen"
+seo_title: "Schriftarten in ONLYOFFICE hinzufügen & entfernen | Seafile"
+description: "Seafile + OnlyOffice macht die Online Bearbeitung von Dokumenten richtig Spaß. Die verfügbaren Schriftarten aka Fonts lassen sich leicht anpassen."
+date: "2019-02-05T13:04:49"
+lastmod: "2025-02-21T09:07:15"
+og_image: "/wp-content/uploads/2019/02/schriftarten-in-onlyoffice.jpg"
+beitragsbild: "/wp-content/uploads/2019/02/schriftarten-in-onlyoffice.jpg"
+lesezeit: "2 Minuten"
+category:
+  - "anleitungen"
+autor: "Christoph Dyllick-Brenzinger"
+wp_id: 2651
+---
+<p>Die ONLYOFFICE Integration in Seafile erweitert die Sync &#038; Share Lösung um leistungsfähige Collaboration Funktionen. Der Wunsch nach reibungslosen Wechseln zwischen der Online-Bearbeitung in ONLYOFFICE und der offline Bearbeitung z.B. in MS Office kann jedoch die Installation zusätzlicher Fonts auf dem Dokumentenserver notwendig machen. Glücklicherweise ist es ohne großen Aufwand möglich, Schriftarten in ONLYOFFICE hinzuzufügen und zu entfernen. Wir erklären, wie sich Schriftarten (z.B. Fonts für das Corporate Design) ergänzen und solche, die unnötige sind (z.B. Comic Sans, Wingdings), entfernen lassen.</p>
+
+<!--more-->
+
+<h2>Identifikation der aktuell installierten Schriftarten</h2>
+
+<img fetchpriority="high" decoding="async" src="/wp-content/uploads/2019/02/onlyoffice-schriftarten-300x232.png" alt="" width="300" height="232" class="alignnone size-medium wp-image-2656" style="float: right; padding-left: 20px;" srcset="/wp-content/uploads/2019/02/onlyoffice-schriftarten-300x232.png 300w, /wp-content/uploads/2019/02/onlyoffice-schriftarten.png 611w" sizes="(max-width: 300px) 100vw, 300px" />
+
+<p>ONLYOFFICE nutzt sämtliche die im Betriebssystem installierten Schriftarten, bringt darüber hinaus aber auch noch eine Auswahl eigener Schriftarten mit.</p>
+
+<p>Unter einem typischen Linux Betriebsysstem wie Ubuntu sind somit die folgenden zwei Ordner relevant, wenn es darum geht, die installierten Fonts zu ermitteln:</p>
+
+<ul>
+	<li>/usr/share/fonts/&#8230;</li>
+	<li>/var/www/onlyoffice/documentserver/core-fonts/</li>
+</ul>
+
+<p>Die in diesen beiden Ordnern aufgeführten Schriftarten können, müssen aber nicht alle in ONLYOFFICE verfügbaren Fonts sein. Mit Hilfe des Befehls <strong>fc-list</strong> lassen sich weitere Speicherorte installierter Schriftarten identifizieren.</p>
+
+<h2>Installation und Deinstallation von Schriftarten in ONLYOFFICE</h2>
+
+<p>Das grundsätzliche Vorgehen zum Installieren und Entfernen von Schriftarten in ONLYOFFICE ist dreistufig: Im ersten Schritt müssen die gewünschten TTF-Dateien zum System hinzugefügt/aus dem System entfernt werden. Im zweiten Schritt muss man ONLYOFFICE dazu bringen, die geänderten Schriftartenauswahl zu aktualisieren. Im dritten Schritt müssen lokale Zwischenspeicher gelöst werden, um die serverseitigen Änderungen auch lokal ankommen zu lassen. </p>
+
+<p>Zunächst besorgt man sich also die gewünschte Schriftart. Ganz einfach ist das z.B. über <a href="https://fonts.google.com/" target="_blank" rel="noopener noreferrer">Google Fonts</a>. Die gewünschte Schriftart lässt sich dort als ZIP-Datei herunterladen. Entpacken sollte man die ZIPs &#8211; der Übersichtlichkeit halber &#8211; in einen separaten Unterordner (z.B. /usr/share/fonts/NewFont). Will man Fonts entfernen, dann sind die dazugehörigen TTF-Dateien zu löschen.</p>
+
+<p>Die Aktualisierung der Schriftauswahl in ONLYOFFICE erfolgt per Befehl. Dadurch werden die vorgenommenen Änderungen in ONLYOFFICE aktiv. Der ONLYOFFICE Server muss dafür nicht gestoppt werden. Dies erledigt der ONLYOFFICE Documentserver automatisch.</p>
+<pre><code>
+root@...:~# cd /usr/bin
+root@...:/usr/bin# ./documentserver-generate-allfonts.sh 
+Generating AllFonts.js, please wait...Done
+onlyoffice-documentserver:docservice: stopped
+onlyoffice-documentserver:docservice: started
+onlyoffice-documentserver:converter: stopped
+onlyoffice-documentserver:converter: started
+</code></pre>
+
+<p>Der abschliessende Schritt erfolgt nicht mehr auf dem Server, sondern am Arbeitsplatz. Damit die neuen Schriftarten im Browser auch angezeigt werden, muss der Browsercache geleert werden. Tut man das nicht, wird weiterhin die alte Auswahl an Schriftarten angeboten. Wichtig ist, dass dieser Schritt an jedem einzelnen Arbeitsplatz ausgeführt wird.</p>
+
+<h2>Fonts in ONLYOFFICE hinzufügen</h2>
+<p><a href="/online-file-editing/">Die Online Bearbeitung von Dokumenten</a>, wie es Seafile in Kombination mit ONLYOFFICE möglicht macht, ergänzt die lokale Bearbeitung von Office Dokumenten am eigenen Rechner und wird für die Zusammenarbeit im Team zunehmend wichtiger. Durch die Ergänzung individueller Schriftarten, die das Betriebssystem und ONLYOFFICE nicht standardmäßig zur Verfügung stellen, können Darstellungsprobleme beim Wechsel von online zu offline Bearbeitung vermieden werden.</p>

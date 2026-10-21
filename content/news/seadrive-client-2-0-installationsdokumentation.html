@@ -1,0 +1,169 @@
+---
+title: "SeaDrive Client 2.0: Windows Installationsdokumentation"
+slug: "seadrive-client-2-0-installationsdokumentation"
+seo_title: "SeaDrive Client 2.0: Windows Installationsdokumentation"
+description: "SeaDrive 2.0 kann auf allen Windows 10 ab Version 1709 installiert werden. Diese Dokumentation erklärt die dabei vorgenommenen Änderungen am System."
+date: "2021-01-13T00:20:11"
+lastmod: "2025-02-21T09:07:13"
+og_image: "/wp-content/uploads/2021/01/SeaDrive_installation_DefaultInstallPath.png"
+lesezeit: "9 Minuten"
+category:
+  - "anleitungen"
+autor: "Ralf D."
+wp_id: 4182
+---
+<p>Der Seafile Drive Client (SeaDrive) vereint die einfache Bedienung traditioneller Netzlaufwerke mit den leistungsfähigen Funktionen von Sync &#038; Share Lösungen. Dies macht SeaDrive den Client der Wahl für viele Anwendungsfälle, wenn es um die gemeinsame Arbeit an Dateien geht. Diese Installationsdokumentation stellt die Änderungen dar, die der Client im Laufe des Normalbetriebs an Windows vornimmt. Sie dient damit dem besseren Verständnis des Clients und der Unterstützung bei der Fehlersuche und -behebung.
+
+<!--more-->
+
+<h2>Installationsvoraussetzungen</h2>
+</p><p>Die Installation von SeaDrive 2.0 erfolgt mit einem Windows Installer Paket (MSI), das von der <a href="/downloads/">Download-Seite</a> heruntergeladen werden kann. Die aktuelle Version (Stand 2.2.2021) ist die Version 2.0.12 und das Paket hat eine Größe von 91.640KB.</p>
+<p>SeaDrive 2.0 lässt sich auf Windows 10 Version 1709 und neuer sowie Windows Server 2019 installieren. In älteren Windows Versionen fehlt die von SeaDrive 2.0 genutzte <a href="https://docs.microsoft.com/en-us/windows/win32/cfapi/cloud-files-api-portal">Windows Cloud Files API</a>. Für die Installation von SeaDrive unter Windows 7, Windows 8 und Windows 10 1507, 1511, 1607 und 1703 kann die Version 1.0 von SeaDrive verwendet werden. SeaDrive 1.0 benötigt nicht die Windows Cloud Files API, sondern verwendet den quelloffenen Dateisystemtreiber Dokany.</p>
+<p>SeaDrive ist eine reine 64 Bit Anwendung. Eine Unterstützung von Windows 10 mit 32 Bit Architektur gibt es nicht.</p>
+<p>Dieser Artikel bezieht sich ausschließlich auf SeaDrive 2.0. Im Rest des Artikels wird aus diesem Grund ausschließlich die Kurzform SeaDrive für SeaDrive 2.0 verwendet. Alle Screenshots und Registry-Einträge beziehen sich auf SeaDrive 2.0.12. Bei anderen SeaDrive Versionen können diese abweichen.</p>
+
+
+<h2>Änderungen in Dateisystem</h2>
+
+<h3>Installation</h3>
+<img decoding="async" src="/wp-content/uploads/2021/01/SeaDrive_installation_DefaultInstallPath.png" alt="SeaDrive hat einen graphischen Installationsassistenten" width="500" style="float:right; padding-left: 3%"  />
+
+<p>Die lokale Installation von SeaDrive startet mit einem Doppelklick auf die MSI-Datei. Für den automatisierten Rollout im Unternehmen stehen <a href="https://help.seafile.com/faq/#preconfigure-options-for-seadrive">diverse Konfigurationsoptionen</a> zur Verfügung.</p>
+<p>Ein graphischer Assistent leitet bei der lokalen Installation durch den Installationsvorgang. Der Default-Installationspfad ist  C:\Program Files\SeaDrive. (Dieser Ordner wird in einem deutschsprachigen Windows im Datei-Explorer unter C:\Programme\SeaDrive angezeigt.) Dieser Standardpfad sollte grundsätzlich nicht ohne guten Grund geändert werden.</p><p>
+</p><p>Der Installer legt im Installationspfad den Ordner bin an. In diesem werden alle Binaries von SeaDrive abgelegt. Dazu gehören die seadrive.exe und die seadrive-gui.exe sowie zahlreiche Programmbibliotheken (DLLs) und kompilierte Übersetzungsdateien.</p>
+<p>SeaDrive verwendet die versteckten AppData Ordner nicht.</p>
+
+<h3>Erste Programmausführung</h3>
+<p>Nach Abschluss des Installationsassistenten startet SeaDrive automatisch, legt im Benutzerprofilordner (%userprofile%) den Ordner seadrive an und ruft dann den Einrichtungsassistenten auf.</p>
+
+<img decoding="async" src="/wp-content/uploads/2021/01/Benutzerprofilorder_SeaDrive_schmal.png" alt="SeaDrive legt zwei Ordner im Benutzerprofilordner an" width="500" style="float:right; padding-left: 3%;" />
+
+<p>Der Einrichtungsassistent fragt zunächst nach dem Pfad des lokalen Cache Ordners (englisch: Local Cache Folder). Der Default-Pfad für den Cache Ordner ist %userprofile%\seadrive_root (z.B. &#8218;C:\Users\datamate\seadrive_root&#8216; für den Benutzer datamate). Ohne gute Gründe sollte auch von diesem Pfad nicht abgewichen werden. Mit Bestätigung des Pfads legt der Einrichtungsassistent den Cache Ordner an. Eine weitere Konfiguration ist nicht nötig. Die Abbildung rechts zeigt die beiden Ordner seadrive und seadrive_root, die  bei der Einrichtung des SeaDrive Clients im Benutzerprofilordner angelegt werden.</p>
+
+<p>In %userprofile%\seadrive speichert SeaDrive Datenbank- und Logdateien sowie Informationen über die Synchronisation (siehe Screenshot unten). Die Datenbankdatei accounts.db enthält insbesondere die Anmeldeinformationen der im Client registrierten Seafile Benutzer. An Stelle des Passworts wird dort jedoch ein Token gespeichert. Die Datei config.db enthält Programmeinstellungen des SeaDrive Clients. Die anderen Datenbanken werden für die Sychronisation der Dateien zwischen Client und Seafile Server und die Dateisperrung verwendet. (Für die Betrachtung der Datenbankdateien wird ein Programm benötigt, das SQLite-kompatible Datenbankdateien anzeigen kann. Der quelloffene <a href="https://sqlitebrowser.org/">DB-Browser for SQLite</a> ist dafür eine gute Wahl.) Im Ordner logs befinden sich die beiden Log-Dateien seadrive.log und seadrive-gui.log. Beides sind einfach Textdateien, die bei Programmfehlern als erstes für die Ursachenforschung konsultiert werden sollten. Außerdem befinden sich im Ordner logs auch Crash-Dumps im DMP-Format.</p> 
+
+<img decoding="async" src="/wp-content/uploads/2021/01/Ordner_seadrive.png" alt="Inhalt des Ordners seadrive im Benutzerprofilordner" width="1734" />
+
+<p>Der lokale Cache Ordner in %userprofile%\seadrive_root ist nach der Einrichtung des SeaDrive Clients bis zur Anlage des ersten Benutzerkontos leer. Für jedes eingerichtete Benutzerkonto legt SeaDrive dort einen Benutzerordner an. Die Ordnernamen folgen der Syntax &#8222;Vorname Nachname&#8220;, werden aber auf acht Stellen gekürzt (z.B. &#8218;Max Must&#8216; für den Benutzer Max Mustermann). In die Benutzerordner synchronisiert SeaDrive die Datei- und Ordnerstruktur der Bibliotheken, auf die der Benutzer Zugriff hat, und der Client legt dort die offline Kopien der heruntergeladenen Dateien ab. (Die Funktionsweise von SeaDrive wird im <a href="/support/benutzer/anleitung/seafile-drive-client/">Benutzerhandbuch</a> erläutert.)</p>
+
+<p>Der SeaDrive Knoten im Navigationsbereich des Windows Explorers bzw. dessen Unterordner sind Verknüpfungen auf die gleichnamigen Ordner in %userprofile%\seadrive_root\USERNAME\.</p>
+
+
+<h2>Änderungen an Registrierungsdatenbank</h2>
+<p>SeaDrive benötigt für die korrekte Funktion zahlreiche Schlüssel in der Windows Registrierungsdatenbank. Die von SeaDrive in den beiden Hauptschlüsseln HKEY_CURRENT_USER und HKEY_LOCAL_MACHINE angelegten Schlüssel und Einträge werden nachfolgend dargestellt. (Die Schlüssel in HKEY_CLASSES_ROOT sind Links auf die Schlüssel in HKEY_CURRENT_USER\SOFTWARE\Classes und HKEY_LOCAL_MACHINE\Software\Classes.)</p>
+
+<h3>HKEY_CURRENT_USER (HKCU)</h3>
+<p><b>Bei der Installation</b> werden vom Installer 5 neue Schlüssel in HKCU angelegt:</p>
+<ul>
+<li>\SOFTWARE\HaiWenHuZhi ltd.\</li>
+<li>\SOFTWARE\HaiWenHuZhi ltd.\SeaDrive 2.0.12</li>
+<li>\SOFTWARE\SeaDrive</li>
+</ul>
+<p>HaiWen ist der offizielle chinesische Name gemäß Handelsregister der Seafile Ltd.</p>
+
+<p>Ebenfalls legt der Installer zwei Zeichenfolgen unter \SOFTWARE\Microsoft\Windows\CurrentVersion\UFH\SHC an. Diese sind für die Anzeige von Symbolen im Starmenü älterer Windows Versionen verantwortlich.
+
+<img decoding="async" src="/wp-content/uploads/2021/01/Registry_HKEY_CURRENT_USER_Run.png" alt="" width="506" style="float:right; padding-left: 3%"/>
+
+</p><p>Hat man bei der Installation die Option &#8222;Start SeaDrive on startup&#8220; (siehe erster Screenshot) ausgewählt, dann wird im Schlüssel \SOFTWARE\Microsoft\Windows\CurrentVersion\Run die folgende Zeichenfolge eingetragen. Dieser Schlüssel sorgt dafür, dass SeaDrive dem Windows Autostart im Windows Task-Manager hinzugefügt wird.</p>
+
+
+<p><b>Im Rahmen der Einrichtung</b> (ohne Anlage eines Benutzerkontos) legt SeaDrive die folgenden Schlüssel in HKCU an:</p>
+<ul>
+<li>\SOFTWARE\SeaDrive\Seafile Drive Client</li>
+<li>\SOFTWARE\SeaDrive\Seafile Drive Client\Misc</li>
+<li>\SOFTWARE\SeaDrive\Seafile Drive Client\Settings</li>
+<li>\SOFTWARE\Seafile</li>
+<li>\SOFTWARE\Seafile\Seafile Drive Client</li>
+<li>\SOFTWARE\Seafile\Seafile Drive Client\WinSparkle</li>
+</ul>
+
+<p><a href="https://winsparkle.org/">WinSparkle</a> ist eine quelloffene Software Update Bibliothek für Windows Entwickler.</p>
+
+<p>Für <b>jedes Benutzerkonto</b> werden die folgenden acht Schlüssel angelegt, die die Anzeige des SeaDrive Knoten im Navigationsbereich des Windows Explorer steuern:</p>
+<ul>
+<li>\SOFTWARE\Classes\CLSID\{5F91D182-AEF9-47F0-9DBE-89C359877DA5}</li>
+<li>\SOFTWARE\Classes\CLSID\{5F91D182-AEF9-47F0-9DBE-89C359877DA5}\DefaultIcon</li>
+<li>\SOFTWARE\Classes\CLSID\{5F91D182-AEF9-47F0-9DBE-89C359877DA5}\InProcServer32</li>
+<li>\SOFTWARE\Classes\CLSID\{5F91D182-AEF9-47F0-9DBE-89C359877DA5}\Instance</li>
+<li>\SOFTWARE\Classes\CLSID\{5F91D182-AEF9-47F0-9DBE-89C359877DA5}\ShellFolder</li>
+<li>\SOFTWARE\Classes\WOW6432Node\CLSID\{5F91D182-AEF9-47F0-9DBE-89C359877DA5}</li>
+<li>\SOFTWARE\Classes\WOW6432Node\CLSID\{5F91D182-AEF9-47F0-9DBE-89C359877DA5}\DefaultIcon</li>
+<li>\SOFTWARE\Classes\WOW6432Node\CLSID\{5F91D182-AEF9-47F0-9DBE-89C359877DA5}\InProcServer32</li>
+<li>\SOFTWARE\Classes\WOW6432Node\CLSID\{5F91D182-AEF9-47F0-9DBE-89C359877DA5}\Instance</li>
+<li>\SOFTWARE\Classes\WOW6432Node\CLSID\{5F91D182-AEF9-47F0-9DBE-89C359877DA5}\ShellFolder</li>
+<li>\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\{5F91D182-AEF9-47F0-9DBE-89C359877DA5}</li><!--Use this one to remove node in Explorer sidebar-->
+</ul>
+
+<p>Die oben angeführte CLSID wird bei der Installation identifiziert eine Komponente eindeutig. Diese 32-stellige Hexdezimalzahl wird randomisiert erzeugt und ist daher auf jedem System anders.</p>
+
+<img decoding="async" src="/wp-content/uploads/2021/01/Registry_HKCU_UsedServerAddresses.png" alt="Im Schlüssel UsedServerURL in HKCU werden Serveradressen gespeichert." width="350" style="float:right; padding-left: 3%;" />
+
+<p>Jede verwendete Seafile Serveradresse &#8211; auch für nicht erfolgreiche Anmeldeversuche &#8211; wird im Schlüssel \SOFTWARE\SeaDrive\Seafile Drive Client\UsedServerAddresses in der mehrzeiligen Zeichenfolge ergänzt. Diese Werte stehen im SeaDrive Client bei der Einrichtung eines neuen Benutzers im Dropdownfeld der Serveradresse zur Verfügung. Für eine Bereinigung der Auswahlliste in SeaDrive müssen die entsprechenden Adressen aus dieser Zeichenfolge entfernt werden. Über die Benutzeroberfläche von SeaDrive ist das nicht möglich.</p>
+
+
+<h3>HKEY_LOCAL_MACHINE (HKLM)</h3>
+<p><b>Bei der Installation</b> legt der SeaDrive Installer diese neuen Schlüssel in HKLM an:</p> 
+<ul>
+<li>\SOFTWARE\Classes\Installer\Products\D31C24F17FBD52247859290DD63F37C9</li>
+<li>\SOFTWARE\Classes\Installer\Products\D31C24F17FBD52247859290DD63F37C9\SourceList</li>
+<li>\SOFTWARE\Classes\Installer\Products\D31C24F17FBD52247859290DD63F37C9\SourceList\Media</li>
+<li>\SOFTWARE\Classes\Installer\Products\D31C24F17FBD52247859290DD63F37C9\SourceList\Net</li>
+<li>\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{1F42C13D-DBF7-4225-8795-92D06DF3739C}</li>
+</ul>
+<p>Mit diesem Eintrag wird die Anwendung durch den MSI-Installer in Windows registriert. Der Name des Unterschlüssels D31C24F17FBD52247859290DD63F37C9 ist der Product Key des installierten Drive Clients, in dem Fall von SeaDrive 2.0.12. Dieser ist auf allen Windows Systemen identisch.
+
+
+</p><p>In \SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\Folders legt SeaDrive 15 Zeichenfolgen mit Wert 1 an.</p>
+<img decoding="async" src="/wp-content/uploads/2021/01/Registry_HKEY_LOCAL_MACHINE_Folders.png" alt="SeaDrives Registry Einträge in HKEY_LOCAL_MACHINE unter Installer\Folders" width="1363" />
+
+<p>Außerdem werden einige Komponenten für die SID S-1-5-18, die SID des Kontos des Lokalen Systems, registriert. Auf eine abschliessende Auflistung wird aufgrund der großen Zahl verzichtet:</p>
+<ul>
+<li>\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UserData\S-1-5-18\Components\0098CC019B8F1E1138DF00C0920595BF</li>
+<li> \SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UserData\S-1-5-18\Components\030FCE68C443CAE41BA3EAB09ACCB0B0</li>
+<li>\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UserData\S-1-5-18\Components\040A65967B820B548BFC98CE6934B057</li>
+<li>&#8230;</li>
+</ul>
+
+<p>Im Schlüssel \HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UserData\S-1-5-18\Products\D31C24F17FBD52247859290DD63F37C9 legt SeaDrive die Unterschlüssel Features, InstallProperties, Patches und Usage an.</p>
+
+<p>In \SYSTEM\ControlSet001\Services\bam\State\UserSettings\S-1-5-21-1769227728-2338679624-744173226-1001 wird der folgende Eintrag angelegt:</p>
+<img decoding="async" src="/wp-content/uploads/2021/01/Registry_HKLM_BAM-STATE-USERSETTINGS-S-1-5-21.png" alt="" width="1704"  />
+
+<p>Im Schlüssel \SYSTEM\CurrentControlSet\Services\bam\State\UserSettings\S-1-5-21-1769227728-2338679624-744173226-1001 wird ein identischer Wert angelegt.
+
+</p><p><b>Für jedes Benutzerkonto</b> legt SeaDrive im Schlüssel \SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\SyncRootManager einen Unterschlüssel mit Namen &#8217;seadrive!SERVER_URL!EMAIL_ADDRESS&#8216; an, wobei SERVER_URL und EMAIL_ADDRESS für die verwendete Anmelde-URL und den verwendeten Anmeldenamen stehen.
+
+
+
+<!--<h2>Löschung eines Benutzerkonto</h2>
+Benutzerkonto wird aus der Accounts-Tabelle der accounts.db entfernt (dort liegt der Token), in den Tabellen ServerInfo und SyncRootInfo bleiben die Einträge erhalten. In den Datenbanken branch.db, cache.db und repo.db wird ebenfalls alle zu dem Benutzerkonto gehörigen Einträge gelöscht. <br />
+Registry Einträge werden nicht entfernt.<br />
+Daten werden aus /seadrive_root entfernt<br />-->
+
+
+
+<h2>Deinstallation</h2>
+</p><p>Die Deinstallation von SeaDrive kann über die Windows Systemsteuerung oder das Kommandozeilenprogramm msiexec erfolgen. Der Uninstaller erfordert eine Entscheidung, ob die Kontoinformationen gelöscht oder behalten werden sollen. Über den Parameter <a href="https://help.seafile.com/faq/#preconfigure-options-for-seadrive">PreconfigureKeepConfigWhenUninstall</a> kann diese Entscheidung vorkonfiguriert werden.</p>
+
+Bei der <b>Deinstallation ohne Kontolöschung</b> wird der SeaDrive Ordner in C:\Programme gelöscht. Ebenfalls gelöscht werden alle Platzhalterdateien im Benutzerordner %userprofile%\seadrive_root\BENUTZERNAME, d.h. alle Dateien, die vor der Deinstallation in der Status Spalte mit einem Wolken-Icon gekennzeichnet waren. Die Ordnerstruktur im Benutzerordner sowie alle lokalen Kopien bleiben erhalten. (Die Dateien in %userprofile%\seadrive werden nicht gelöscht.)
+
+<p>Die im Rahmen der Installation in der Registrierungsdatenbank angelegten Schlüssel und Werte werden entfernt. Diese Schlüssel befinden sich auch nach der Installation noch in der Registry:
+<ul>
+<li>HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\UFH </li>
+<li>HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\UFH\SHC</li>
+<li>HKCU\SOFTWARE\SeaDrive (inkl. Unterschlüssel)</li>
+<li>HKCU\SOFTWARE\Seafile (inkl. Unterschlüssel)</li>
+<li>HKLM\SYSTEM\ControlSet001\Services\bam\State\UserSettings\S-1-5-21-1769227728-2338679624-744173226-1001</li>
+<li>HKLM\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings\S-1-5-21-1769227728-2338679624-744173226-1001</li>
+</ul>
+
+<!--Die Schlüssel in HKCU\SOFTWARE\Classes\CLSID werden gelöscht. Die in HKCU\SOFTWARE\Classes\WOW6432Node\CLSID inkl. Unterschlüssel jedoch nicht.--> 
+
+Bei der <b>Deinstallation mit Kontolöschung</b> werden darüber hinaus im Ordner seadrive die Benutzerdatenbankdatei accounts.db und der Ordner data gelöscht. (Der Ordner logs in %userprofile%\seadrive und die darin enthaltenen Dateien werden bei der Deinstallation nicht entfernt.)
+
+Bei der Deinstallation mit Kontolöschung werden auch noch diese Registry Schlüssel entfernt.
+<ul>
+<li>HKCU\SOFTWARE\SeaDrive (inkl. Unterschlüssel)</li>
+<li>HKCU\SOFTWARE\Seafile (inkl. Unterschlüssel)</li>
+</ul></p>

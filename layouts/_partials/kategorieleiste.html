@@ -1,0 +1,13 @@
+<div id="categories" class="container">
+	<div class="row">
+		<div class="col-md-9">
+			<a href="/news/"> Alle Kategorien</a>
+			{{- range $slug, $k := site.Data.kategorien }}
+			<a href="/category/{{ $slug }}/">{{ $k.name }}</a>
+			{{- end }}
+		</div>
+		<div class="col-md-3">
+			{{ partial "suchfeld.html" . }}
+		</div>
+	</div>
+</div>

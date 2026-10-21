@@ -1,0 +1,41 @@
+---
+title: "Zentrale Benutzerverwaltung – AD/LDAP Integration mit Seafile"
+slug: "ad-ldap"
+seo_title: "Zentrale Benutzerverwaltung - AD/LDAP Integration mit Seafile"
+description: ""
+date: "2018-09-17T09:00:53"
+lastmod: "2025-02-21T09:07:16"
+og_image: "/wp-content/uploads/2018/09/rawpixel-652547-unsplash_1920px_1080px.jpg"
+beitragsbild: "/wp-content/uploads/2018/09/rawpixel-652547-unsplash_1920px_1080px.jpg"
+lesezeit: "3 Minuten"
+category:
+  - "funktionen"
+autor: "Christoph Dyllick-Brenzinger"
+wp_id: 557
+---
+<p>Eine zentrale Benutzerverwaltung in Form eines Active Directories oder eines LDAP-Servers ist aus den meisten Organisationen zur Vereinfachung des User Managements nicht weg zu denken. Seafile fügt sich ideal mit diesen Diensten zusammen und bietet IT-Administratoren umfangreiche Möglichkeien für die einfache Pflege und Verwaltung der Seafile Benutzer. 
+
+<!--more--></p>
+<h2>Active Directory und LDAP Implementierung in Seafile</h2>
+<p>Seafile verwendet eigene Datenbanktabellen zur Verwaltung von Benutzern und Gruppen sowie für das Lizenzmanagement. Im Falle einer Integration mit einem Authentifizierungsdienst managt Seafile die Abstimmung der lokalen Benutzertabellen mit externen Diensten.</p>
+<p>Seafile bietet sowohl die reine Authentifizierung über als auch die Synchronisation mit existierenden benutzerverwaltenden Verzeichnisdiensten. Seafile unterstützt neben dem proprietären <a href="https://de.wikipedia.org/wiki/Active_Directory">Active Directory von Microsoft (AD)</a> auch das populäre <a href="https://de.wikipedia.org/wiki/Lightweight_Directory_Access_Protocol">Lightweight Directory Access Protocol (LDAP)</a> in seinen unterschiedlichen Implementierungen (z.B. OpenLDAP, ApacheDS, OpenDJ). </p>
+
+<h2>AD/LDAP Synchronisation für minimalen Verwaltungsaufwand</h2>
+<p>Bei der von der Seafile Professional Edition unterstützten AD/LDAP Synchronisation prüft Seafile in regelmäßigen Abständen den Benutzerbestand im AD/LDAP Verzeichnis und nimmt Änderungen in der Seafile Benutzerdatenbank vor: Neue Benutzer im AD/LDAP Verzeichnis werden in der Seafile Datenbank angelegt, Änderungen wie z.B. Namensänderungen nach einer Heirat werden übernommen und ausscheidende Mitarbeiter werden deaktiviert.</p>
+
+<p>Und das ist noch bei weitem noch nicht alles: Der AD/LDAP Sync von Seafile kann existierende Organisationsstrukturen der Benutzerverzeichnisse übernehmen und in Seafile <a href="/admin-delegation/">Gruppen und Bereiche</a> abbilden. Mitarbeiter können so direkt den richtigen Bereichen zugeordnet werden und erhalten direkten Zugriff auf die für sie relevanten Seafile Ressourcen. Außerdem können mittels AD/LDAP Sync auch Seafile-Rollen importiert werden. Dies gilt für die in Seafile vordefinierten wie für alle individuell angelegten Benutzerrollen.</p>
+
+<p>Weiterhin bietet Seafile die Möglichkeit mehrere Authentifizierungsserver hintereinander abzufragen, um entweder absolute Zuverlässigkeit oder verteilte Authentifizierungsmechanismen zu implementieren. Mit eigene Filterregeln können IT-Administratoren auch anspruchsvolle Anforderungen abbilden. Einmal richtig eingerichtet, freuen sich die IT-Administratoren darüber, dass sie an keiner Stelle direkt mit der internen Benutzerverwaltung von Seafile in Berührung kommen. Die gesamte Verwaltung der Benutzer erfolgt zentral und unkompliziert in der zentralen Benutzerverwaltung.</p>
+
+<p>Eine umfangreiche Dokumentation der Synchronisation von interner Benutzerdatenbank und AD/LDAP finden Sie im englischsprachigen <a href="https://manual.seafile.com/deploy_pro/using_ldap_pro.html">Seafile Manual</a>.</p>
+
+<h2>AD, LDAP und weitere Authentifizierungsmethoden</h2>
+<p>Die meisten Organisationen nutzen entweder ein AD oder einen LDAP-Dienst für die zentrale Benutzerverwaltung. Seafile unterstützt darüber hinaus noch weitere Authentifizierungsmethoden, die auch beliebig kombiniert werden können: </p>
+	<ul>
+		<li><a href="https://de.wikipedia.org/wiki/Shibboleth_(Internet)">Shibboleth</a> ist ein verteiltes Authentifizierungsverfahren basierend auf dem SAML-Standard. Shibboleth unterstützt Single Sign On und ist im Hochschulumfeld verbreitet.</li>
+		<li><a href="https://de.wikipedia.org/wiki/Central_Authentication_Service">CAS</a>, kurz für Central Authentication Service, ist ein ursprünglich von der Universität Yale entwickelter Authentifizierungsstandard, der funktional mit Shibboleth vergleichbar ist.</li>
+		<li><a href="https://de.wikipedia.org/wiki/OAuth">OAuth</a> ist ein weit verbreiteter Authentifizierungsdienst, den die meisten Menschen durch die Funktion &#8222;Login with Facebook&#8220; oder &#8222;Login with Google&#8220; kennen. Hinter dieser Art der Authentifizierung steckt ein OAuth Server.</li>
+	</ul>
+
+<h2>Leistungsfähige Benutzerverwaltung in Seafile </h2>
+<p>Die Integration von Seafile mit existierenden Benutzerverwaltungen bietet viele Freiheitsgrade und ist sehr leistungsfähig. Seafile fügt sich nahtlos in bestehende Verwaltungsinfrastrukturen ein und ermöglicht die Abbildung komplizierter Organisationsstrukturen. IT-Administratoren wissen es zu schätzen, dass Benutzer und Berechtigungen zentral gepflegt werden können.</p>

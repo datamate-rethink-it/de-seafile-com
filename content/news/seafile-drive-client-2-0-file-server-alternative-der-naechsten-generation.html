@@ -1,0 +1,45 @@
+---
+title: "Seafile Drive Client 2.0: File Server-Alternative der nächsten Generation"
+slug: "seafile-drive-client-2-0-file-server-alternative-der-naechsten-generation"
+seo_title: "Seafile Drive Client 2.0: File Server-Alternative der nächsten Generation | Seafile"
+description: "Die Version 2.0 des Seafile Drive Clients ist nun verfügbar. Mit SeaDrive ist Seafile die moderne, leistungsfähige Alternative zu klassischen File Servern."
+date: "2020-08-23T10:50:03"
+lastmod: "2025-02-21T09:07:13"
+lesezeit: "4 Minuten"
+category:
+  - "release-notes"
+autor: "Ralf D."
+wp_id: 4015
+---
+<p>Der neue Seafile Drive Client 2.0 ist ein Quantensprung in Bezug auf Stabilität, Funktionalität und Integration. Er unterstützt jetzt verschlüsselte Bibliotheken auf allen Plattformen und bringt damit eine bequeme Ende-zu-Ende-Dateiverschlüsselung auf Windows-, Mac- und Linux-Desktops. Vor allem der neue Windows Client ist eine Wucht! Durch den Technologiewechsel auf die Cloud-API von Microsoft ist die Integration in das Windows Dateisystem naht- und reibungslos. Das Ergebnis: SeaDrive 2.0 bietet eine beispiellose Benutzererfahrung.</p>
+
+<!--more-->
+
+<h2>Verschlüsselte Bibliotheken</h2>
+<p>Der Seafile Drive Client (SeaDrive) 2.0 führt die Ende-zu-Ende-Verschlüsselung auf allen Desktop-Plattformen ein. War dies bisher ein Privileg des Seafile Sync Clients, so kann man nun auch direkt aus dem Datei-Explorers bei Bedarf (on-demand) Dateien aus verschlüsselten Bibliotheken abrufen und öffnen. Die vorherige Synchronisierung verschlüsselter Bibliotheken ist nicht erforderlich. Die Arbeit mit Dateien, die sicher auf dem Seafile Server gespeichert sind, war noch nie so einfach.</p>
+
+<img decoding="async" src="/wp-content/uploads/2020/08/SeaDrive2.0_für_Windows_Verschlüsselte_Bibliotheken.png" alt="SeaDrive 2.0 unterstützt verschlüsselte Bibliotheken" width="1282" />
+
+<p>Beim ersten Start bindet SeaDrive nur unverschlüsselte Bibliotheken in das lokale Dateisystem ein und fragt nicht nach den Schlüsseln für die verschlüsselten Bibliotheken. Für den on-demand Zugriff auf verschlüsselte Dateien über SeaDrive muß der Nutzer einmal den Schlüssel der Bibliothek eingeben. Der Schlüssel wird dann &#8211; natürlich verschlüsselt &#8211; in der lokalen SQLite-Datenbank von SeaDrive gespeichert. Auf diese Weise kann SeaDrive, insofern gewünscht, verschlüsselte Bibliotheken nach einem Neustart automatisch wieder in den Windows Explorer einbinden.</p>
+
+<h2>Umstellung auf Microsofts Cloud API</h2>
+<p>Die Windows Version von SeaDrive 2.0 ist weit mehr als eine inkrementelle Verbesserung des Vorgängers. Ein großer Teil des Codes wurde neu geschrieben. Das Ergebnis dieser Anstrengung kann sich mehr als sehen lassen: Das neue SeaDrive für Windows ist die Kombination des Besten aus zwei Welten. Es kombiniert die Benutzerfreundlichkeit von Netzlaufwerken mit der Funktionsvielfalt und Flexibilität von Sync &#038; Share Lösungen. Wer will bei diesem Angebot eigentlich noch Fileserver nutzen?</p>
+
+<img decoding="async" src="/wp-content/uploads/2020/08/SeaDrive2.0_für_Windows.png" alt="SeaDrive verwendet Windows Cloud API" width="1783"  />
+
+<p>SeaDrive 2.0 nutzt die Cloud-API von Microsoft. Die Verwendung dieser nativen Windows 10 Technologie gewährleistet eine nahtlose Integration der Seafile Bibliotheken in das Windows Dateisystem und erhöht die Geschwindigkeit, Stabilität und Kompatibilität mit Programmen von Drittanbietern. Dokany, ein Open Source Kerneltreiber, der die Datensystemintegration in SeaDrive 1.0 übernahm, ist im neuen SeaDrive nicht mehr an Bord.</p>
+
+<h2>Selektiver Sync in Windows 10</h2>
+<p>Genau wie sein Vorgänger verwendet SeaDrive 2.0 einen lokalen Cache, um eine Offline-Unterstützung für zuvor heruntergeladene Dateien zu ermöglichen. Der neue Windows Client macht den Offline-Zugriff nun noch leistungsfähiger und komfortabler. Ein Klick auf die Kontextmenü-Option &#8222;Immer auf diesem Gerät behalten&#8220; lädt einzelne Bibliotheken bzw. Ordner auf die lokale Festplatte herunter und hält sie permanent synchron. Jede Änderung &#8211; server- oder clientseitig &#8211; wird sofort mit der anderen Seite synchronisiert. Über &#8222;Speicherplatz freigeben&#8220; im Kontextmenü werden die lokalen Kopien der Dateien wieder gelöscht. Das Icon in der Spalte Status im Windows Explorer zeigt an, ob eine lokale Kopie verfügbar ist.</p>
+
+<img decoding="async" src="/wp-content/uploads/2020/08/SeaDrive2.0_für_Windows_Selektive_Synchronisation.png" alt="SeaDrive für Windows unterstützt selektive Synchronisation" />
+
+<p>Eine bestimmte Bibliothek wird häufig benutzt und muss unabhängig vom Internetzugang verfügbar sein? Aktivieren Sie einfach die Option im Kontextmenü des Windows Explorers und Sie haben immer und überall Zugriff auf diese wichtigen Dateien. Gleiches gilt, wenn der Zugriff  mit voller Festplattengeschwindigkeit erfolgen soll, z.B. bei großen Dateien. Mit der selektiven Synchronisation arbeiten Sie unabhängiger und schneller! (Die Funktion steht nicht in der Mac und Linux Version zur Verfügung.)</p>
+
+<h2>Bereit für den Unternehmenseinsatz</h2>
+<p>SeaDrive 2.0 ist als MSI-Paket erhältlich. Systemadministratoren können den Windows Installer verwenden, um SeaDrive mithilfe der Windows-eigenen Bereitstellungstechnologie im gesamten Unternehmen auszurollen. Windows Installer Funktionen wie das Rollback erfolgloser Installationen, die Reparatur defekter Installationen und die Reparaturinstallation stehen damit zur Verfügung. In Kombination mit den verfügbaren Vorkonfigurationsoptionen kann SeaDrive auf Arbeitsstationen ohne Endbenutzerinteraktion in Betrieb genommen werden.</p>
+
+<h2>Installation und Upgrade</h2>
+<p>SeaDrive 2.0 für Windows, Mac und Linux kann im <a href="/downloads/">Download-Bereich auf der Seafile Website</a> heruntergeladen werden. Eine Gebrauchsanweisungen ist im <a href="/support/benutzer/anleitung/seafile-drive-client/">Benutzer Handbuch</a> verfügbar.</p>
+
+<p>Ein besonderer Hinweis zum Windows-Client: Die Auto-Update-Funktion von SeaDrive 1.0 wird SeaDrive 2.0 nicht herunterladen/installieren. Bitte laden Sie es von der Download-Seite herunter und installieren Sie es manuell. SeaDrive 2.0 importiert Accounts und deren Metadaten aus einer bereits existierenden SeaDrive 1.0-Instanz, verwendet jedoch nicht den lokalen Cache der Version 1.0 unter %userprofile%\seadrive (oder den in den erweiterten Einstellungen des Clients gewählten Pfad).</p>

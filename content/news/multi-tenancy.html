@@ -1,0 +1,35 @@
+---
+title: "Ein System, multiple Benutzergruppen – Multi Tenancy mit Seafile"
+slug: "multi-tenancy"
+seo_title: "Ein System, multiple Benutzergruppen - Multi Tenancy mit Seafile"
+description: "Multi Tenancy in Seafile: Ein Seafile System für mehrere getrennte Benutzergruppen. Erweitern Sie Ihr Produktangebot um die schnellste Sync&Share Lösung."
+date: "2018-09-15T14:23:12"
+lastmod: "2025-02-21T09:07:16"
+og_image: "/wp-content/uploads/2018/09/multi_front_1920px_1080px.jpg"
+beitragsbild: "/wp-content/uploads/2018/09/multi_front_1920px_1080px.jpg"
+lesezeit: "2 Minuten"
+category:
+  - "funktionen"
+autor: "Ralf D."
+wp_id: 543
+---
+<p>Mit Multi Tenancy können mehrere organisatorisch strikt getrennte Benutzerkreise von einem Seafile Server Sync &#038; Share Funktionen beziehen. Als Overhead und Wartungsaufwand minimierende Konfiguration ist Multi Tenancy für Seafile Administratoren mit mehreren unabhängigen Benutzergruppen eine attraktive Option.</p>
+
+<!--more-->
+
+<h2>Multi Tenancy Implementierung in Seafile</h2>
+<p>Im Multi Tenancy Betrieb teilen sich mehrere Tenants (englisch für Mieter) die Ressourcen eines Servers (d.h. Seafile Core, Datenbank, Storage Backend, Online Editor und Caching-Server) und	ermöglichen so eine effiziente Auslastung und einfache Verwaltung. Der Systemadministrator muss sich nur um die Pflege eines Systems und die Überwachung einer Seafile Serverlizenz kümmern. Die Benutzer kriegen von der gemeinsamen Nutzung der Ressourcen nichts mit. Die Benutzer jeder Organisation sind organisatorisch getrennt und unter sich. Bibliotheks- und Dateifreigaben an Mitglieder der eigenen Organisation sind möglich; Freigaben an Angehörige anderer Organisationen sind nicht möglich.</p>
+
+<p>Neben der Separierung von Benutzergruppen (englisch: user group separation) ist mit Seafile auch eine Separierung der Daten möglich (englisch: data separation). Dazu wird für jede Benutzergruppe ein individueller Datenpfad eingerichtet. Dies kann auf dem gleichen Medium oder einem anderen Datenträger sein. Auf diese Weise können auch unterschiedliche Speicher- und Sicherheitsanforderungen der verschiedenen Organisationen erfüllt werden. Möglich macht dies seit Sommer 2018 Seafiles Unterstützung <a href="/multiple-storage-backends/">multipler Storage Backends</a>. </p>
+
+<p>Multi Tenancy ist funktional aber nicht gleichbedeutend mit Systemreplikation: Alle Benutzer eines Multi Tenancy Systems nutzen eine identische Server URL und teilen sich ein SSL-Zertifikat. Der Look des Seafile Webinterfaces Seahub lässt sich weitgehend individualisieren; Logo, Schriftarten, Color Code sowie Hintergrundbild des Logins werden aber auf Systemebene festgelegt und sind daher für alle Tenants einheitlich. </p>
+
+<h2>Attraktiv für Hosting und Webservice Provider</h2>
+<p>Multi Tenancy ist insbesondere für Reseller eine interessant Konfiguration, da es gegenüber dem &#8222;ein Kunde, ein System&#8220;-Betrieb Vorteile bei Installation, Wartung und Lizenzverwaltung bietet.</p>
+
+<p>Insbesondere im Rahmen eines eigenen Sync &#038; Share Angebots spielt Multi Tenancy mit Seafile seine Stärken aus. Die Weboberfläche von Seafile als auch der Clients lassen sich an gesetzte Produkt- oder Corporate Design anpassen. Im gleichen Maße ist durch Nutzung der leistungsfähigen <a href="/api/">APIs</a> eine Integration in bestehende Webangebote und Verwaltungstools möglich.</p>
+
+<p>Erweitern Sie mit Seafile Ihr Angebotsportfolio um die schnellste und zuverlässigste Sync &#038; Share Lösung. Multi Tenancy minimiert den technisch-administrativen Aufwand, die Integration per API die abrechnungstechnische Bürokratie.</p>
+
+<h2>Flexible Benutzergruppenverwaltung in Seafile</h2>
+<p>Neben Multi Tenancy bietet Seafile mit <a href="/admin-delegation/">Einrichtungen, Bereichen und Gruppen drei weitere Sturkturierungselemente zur Abbildung organisatorischer Einheiten</a>. In der Kombination dieser Elemente lassen sich auch anspruchsvolle Anforderungen und Situationen umsetzen. Während bei Multi Tenancy beispielsweise organisationsübergreifende Freigaben nicht erlaubt sind, sind diese bei den anderen möglich.</p>

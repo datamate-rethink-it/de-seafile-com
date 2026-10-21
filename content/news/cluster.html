@@ -1,0 +1,30 @@
+---
+title: "Performance und Zuverlässigkeit mit einem Seafile Cluster"
+slug: "cluster"
+seo_title: "Performance und Zuverlässigkeit mit einem Seafile Cluster"
+description: "Seafile ist die zuverlässigste File Cloud am Markt. Mit einem Seafile Cluster sichern Sie sich gegen Serverausfälle ab und machen das System hochskalierbar."
+date: "2018-09-17T11:03:26"
+lastmod: "2025-02-21T09:07:16"
+og_image: "/wp-content/uploads/2018/09/knoeppe_1920px_1080px.jpg"
+beitragsbild: "/wp-content/uploads/2018/09/knoeppe_1920px_1080px.jpg"
+lesezeit: "2 Minuten"
+category:
+  - "funktionen"
+autor: "Christoph Dyllick-Brenzinger"
+wp_id: 577
+---
+<p>Renommierte Einrichtungen aus Forschung und Lehre vertrauen Ihre Daten Seafile an. Ausfallsicherheit und hohe Performance erreichen sie durch den Einsatz von Seafile Clustern mit verteilten Speichersystemen. Service Unterbrechnungen und Skalierungshindernisse sind damit ein Ding der Vergangenheit.
+
+<!--more--></p>
+<h2>Aufbau eines Seafile Clusters</h2>
+<p>Ein <a href="/seafile-cluster">typischer Seafile Cluster</a> besteht aus einem vorgeschalteten Loadbalancer, zwei Frontend-Servern, einem Background-Server und einem redundanten Speichersystem. Der Loadbalancer sorgt für die Verteilung der Anwenderanfragen auf die verschiedenen Frontend-Knoten (englisch: Nodes) und der Background-Server kümmert sich um die rechenintensiven Hintergrundarbeiten wie <a href="/volltextsuche/">Indexierung</a> und die Bereitstellung von <a href="/online-collaboration">Online Editor Funktionen</a>. Beim Speichersystem vertraut man typischerweise verteilten Speichersystemen wie S3, <a href="https://www.openstack.org/software/releases/rocky/components/swift">Openstack Swift</a> und <a href="https://ceph.com/">Ceph</a>.</p>
+<img fetchpriority="high" decoding="async" width="966" height="481" src="/wp-content/uploads/2018/09/seafile-cluster-arch.png" alt="Architektur eines Seafile Clusters" class="alignnone size-full wp-image-587" srcset="/wp-content/uploads/2018/09/seafile-cluster-arch.png 966w, /wp-content/uploads/2018/09/seafile-cluster-arch-300x149.png 300w, /wp-content/uploads/2018/09/seafile-cluster-arch-768x382.png 768w" sizes="(max-width: 966px) 100vw, 966px" />
+<p>Dieser Aufbau erfüllt gleichermaßen Anforderungen an Performance wie an Hochverfügbarkeit. Beim Ausfall einer einzelnen Komponenten funktioniert das System ohne Unterbrechung der <a href="/file-cloud/">Sync &#038; Share Funktion</a> weiter. Gleichzeitig werden bei steigenden Nutzerzahlen die Anfragen gleichmäßig auf die redundanten Frontend-Server verteilt. Wenn diese an ihre Leistungsgrenzen stossen, kann die Kapazität durch das Hinzufügen von Nodes einfach erhöht werden.</p>
+
+<h2>Anwendungsfälle eines Seafile Clusters</h2>
+<p>Die maschinennahe Programmierung macht Seafile sehr sparsam in Bezug auf die benötigten Systemressourcen. Ein Server mit 8 Kernen und 16 GB Arbeitsspeicher ist in vielen typischen Anwendungsfällen ausreichend für bis zu 2.000 Benutzer. (Bei intensiver Nutzung und in Abhängigkeit der verarbeiteten Daten kann der Ressourcenbedarf auch deutlich höher sein.)</p>
+<p>Reagiert ein solches System träge, dann ist typischerweise die Volltextsuche mit ihrem großem Arbeitsspeicherbedarf der Fuß auf der Bremse. In diesem Fall empfiehlt sich &#8211; sozusagen als Vorstufe zum Cluster &#8211; die Trennung in Frontend- und Background-Server. Diese Trennung verschafft dem Seafile Core wieder ausreichend Luft für schnelle Zugriffe bzw. zusätzliche Benutzer.</p>
+<p>Aus Performance Sicht ist daher in der Regel ein Cluster erst bei deutlich mehr als 1.000 Anwendern notwendig. Zur Sicherstellung von Hochverfügbarkeit kann der Aufbau eines Clusters jedoch schon früher Sinn machen.</p>
+
+<h2>Clusteraufbau einfach gemacht</h2>
+<p>Alle notwendigen Konfigurationsanpassungen und das Vorgehen zum Aufbau eines Seafile Clusters sind detailliert im <a href="https://manual.seafile.com/deploy_pro/deploy_in_a_cluster.html">Seafile Manual</a> beschrieben. Auch die nachträgliche Umstellung auf einen Clusterverbund wird einen Seafile Administrator vor keine großen Herausforderungen stellen. Belohnt werden Administratoren wie Benutzer gleichermaßen mit einem schnellen und ausfallsicheren System, das beliebig skaliert werden kann.</p>

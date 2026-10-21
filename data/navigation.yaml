@@ -1,0 +1,12 @@
+# Hauptmenue. Uebernommen aus dem WordPress-Menue "Hauptmenue".
+punkte:
+  - titel: "Get Seafile"
+    ziel: "/get-seafile/"
+  - titel: "Tour"
+    ziel: "/tour/"
+  - titel: "News"
+    ziel: "/news/"
+  - titel: "Support"
+    ziel: "/support/"
+  - titel: "Trial"
+    ziel: "/trial/"

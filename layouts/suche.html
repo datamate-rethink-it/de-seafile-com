@@ -1,0 +1,40 @@
+{{ define "main" }}
+{{- /* Suchergebnisse. Pagefind baut den Index beim Bauen der Seite; die
+	Oberflaeche laedt erst, wenn jemand hier landet. */ -}}
+<section id="intro-teaser">
+	<div class="block categorie-header animatedParent">
+		<img src="/wp-content/themes/seafileger/img/arch-architectural-design-architecture-673357.jpg" data-speed="-2" class="img-parallax" alt="">
+		<div class="container animated fadeInLeftShort delay-500">
+			<div class="row">
+				<div class="col-md-7 white">
+					<h1>Suche</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<div class="container">
+	<div class="col-md-9 col-sm-12 m-auto">
+		{{ .Content }}
+		<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+		<div id="suche"></div>
+		<script src="/pagefind/pagefind-ui.js"></script>
+		<script>
+			new PagefindUI({
+				element: "#suche",
+				showSubResults: true,
+				translations: {
+					placeholder: "Suche nach",
+					clear_search: "Zurücksetzen",
+					load_more: "Mehr Ergebnisse",
+					search_label: "Diese Seite durchsuchen",
+					zero_results: "Keine Treffer für [SEARCH_TERM]",
+					many_results: "[COUNT] Treffer für [SEARCH_TERM]",
+					one_result: "Ein Treffer für [SEARCH_TERM]",
+					searching: "Suche nach [SEARCH_TERM] …"
+				}
+			});
+		</script>
+	</div>
+</div>
+{{ end }}

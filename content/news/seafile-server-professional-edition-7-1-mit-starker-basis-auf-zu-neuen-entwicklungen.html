@@ -1,0 +1,53 @@
+---
+title: "Seafile Server 7.1: Mit starker Basis auf zu neuen Entwicklungen"
+slug: "seafile-server-professional-edition-7-1-mit-starker-basis-auf-zu-neuen-entwicklungen"
+seo_title: "Seafile Server 7.1: Mit starker Basis auf zu neuen Entwicklungen"
+description: "Die Highlights des Seafile Server Version 7.1 sind eine modernisierte Code-Basis, ein dynamischeres Webinterface und bessere Integrationsfähigkeit."
+date: "2020-04-09T10:01:26"
+lastmod: "2025-02-21T09:07:13"
+og_image: "/wp-content/uploads/2020/04/light-city-road-dawn-227729_mod.jpg"
+beitragsbild: "/wp-content/uploads/2020/04/light-city-road-dawn-227729_mod.jpg"
+lesezeit: "3 Minuten"
+category:
+  - "release-notes"
+autor: "Ralf D."
+wp_id: 3921
+---
+<p>Seafile Server Professional Edition 7.1 ist ab sofort zum Download verfügbar! Die Community Edition von Seafile 7.1 wurde bereits am 26. März veröffentlicht. Highlight der Version 7.1 ist die modernisierte Code-Basis des Seafile Servers und von Seahub, dem Webinterface von Seafile. Daneben bietet Seafile 7.1 auch ein paar spannende funktionale Neuerungen, die die Zusammenabeit an Dateien noch einfacher machen.</p>
+<!--more-->
+
+<p>Seafile 7.1 bringt ein großes Upgrade der Code-Basis zum Abschluss. Das Ziel des Upgrades: die Schaffung einer grundstabilen, aber dennoch hochperformanten Plattform für Seafiles nächste Entwicklungsschritte in den kommenden Jahren. Der erste Schritt dieser Aufgabe wurde vor rund 12 Monaten fertig gestellt. Mit Seafile 7.0 wurde der Nutzerteil des Seafile Frontends in React neugeschrieben. Seafile 7.1 vollendet diesen angefangenen Job. Die System Administration ist nun auch komplett auf React, das sich besonders für dynamische Benutzeroberflächen eignet, umgestellt. Das Recoding des Frontends war aber nur ein Teil des Upgrades der Code-Basis! Unter der Haube wurde Python 2, das Anfang 2020 sein Lebensende erreichte, durch Python 3 Code ersetzt. Kurz gesagt: Ziel erreicht!</p>
+
+<p>Unsere Entwickler waren aber nicht nur mit dem Recoding beschäftigt, sondern wir haben Seafile 7.1 auch noch ein paar neue interessant Features spendiert. Wir stellen die wichtigsten hier vor. Die vollständige Liste findet sich wie immer im <a href="https://download.seafile.com/published/seafile-manual/changelog/changelog-for-seafile-professional-server.md">Changelog</a>.</p>
+
+<h2>Einfache Integration von Seafile in Drittanbieter-Programme (CE + PE)</h2>
+
+<p>Besonders freuen wir uns über die neugeschaffene Möglichkeit, Seafile nun noch einfacher in andere Programme zu integrieren. Mit den neuen API Tokens für Bibliotheken erhält man ganz einfach aus anderen Programmen Zugriff auf einzelne Seafile Bibliotheken.</p>
+
+<img decoding="async" src="/wp-content/uploads/2020/04/API_Token_Bibliothek.png" alt="Erstellung von API Token für Bibliotheken im Seafile Webinterface" width="1627" style="margin-bottom: 10px;"/>
+
+<p>Die Tokens lassen sich am einfachsten direkt im Webinterface erzeugen. Bei der Generierung eines Tokens legt der Benutzer die Zugriffsrechte des Tokens fest. Der Token kann alle Rechte übernehmen, die auch der erstellende Nutzer hat. Neben nur-Lesezugriff ist so auch Lese- und Schreibzugriff per Token möglich. Die vollständige Dokumentation der Library Tokens befindet sich im <a href="https://download.seafile.com/published/web-api/v2.1/library-api-tokens.md">Seafile Manual</a>.</p>
+
+<p>Gegenüber der aktuellen Situation erleichtern Tokens den Zugriff und machen ihn sicherer. Bisher ist bei Nutzung der REST API ein Access Token notwendig, das Benutzername und Passwort voraussetzt. Dieser Token gibt aber nicht nur Zugriff auf eine, sondern auf alle Bibliotheken des Benutzers.</p>
+
+<h2>Gäste einladen noch besser (PE)</h2>
+
+<p>Umso intensiver die Zusammenarbeit mit externen Partnern, desto weniger eignen sich Sharing Links für den fortlaufenden Austausch von Dateien. Die Gast einladen-Funktion schafft hier Abhilfe. Als Gast kann ein organisationsexterner Benutzer sowohl das Seafile Webinterface mit all seinen Features als auch die Desktop Clients und iOS/Android Apps verwenden, hat aber gegenüber internen Benutzern eingeschränkte Rechte.</p>
+
+<p>Durch eine Erweiterung der Gast einladen-Funktion wird der Austausch mit Gästen in Seafile 7.1 nochmals einfacher. Mit der Einladung lassen sich nun auch gleich die Bibliotheksfreigaben für den Gast erstellen. Das heißt schon mit der ersten Anmeldung kann der Gast auf die geteilten Bibliotheken zugreifen. Bisher waren solche Freigaben erst nach der erstmaligen Anmeldung möglich.</p>
+
+<h2>Zusätzliche Funktionen für Dokumentenverwaltung (CE + PE)</h2>
+
+<p>Auch für die Verwaltung und Bearbeitung von Dokumenten haben wir uns einige Neuigkeiten einfallen lassen. Zum einen verfügt die PDF-Vorschau im Webinterface nun über einen Zoom. Zeiten, in denen der Zoomfaktor des Browsers verstellt werden mussten, um ein Dokument zu vergrößeren oder kleinern, gehören damit der Vergangenheit an. </p>
+
+<img decoding="async" src="/wp-content/uploads/2020/04/Druck_Markdown_Dateien.png" alt="Komfortabler Druck von Markdown Dateien per Webinterface" width="1866" style="margin-bottom: 15px;" />
+
+<p>Die neue Version macht auch den Transfer von Markdown Dateien in die analoge, papierne Welt komfortabler. Über den Druck-Dialog des Browsers lassen sich schön formatierte Dokumente ohne unschöne, mitgedruckte Elemente wie Menüleiste und Meta-Daten drucken. </p>
+
+<p>Schliesslich unterstützt Seafile von nun ab auch JSON Web Tokens. Damit lässt sich die Manipulation wichtiger Parameter in einem integrierten ONLYOFFICE Document Server wirksam verhindern.</p>
+
+<h2>Installation und Upgrade</h2>
+
+<p>Die Installation von Seafile 7.1 hat sich gegenüber früheren Versionen nicht verändert. Aufgrund der Umstellung auf Python 3 ist das Upgrade von 7.0 auf 7.1 jedoch etwas komplizierter als sonst. Die <a href="https://download.seafile.com/published/seafile-manual/upgrade/upgrade_notes_for_7.1.x.md">englischen Upgrade Notes</a> erläutern die Schritte und begleiten Sie durch den Prozess.</p>
+
+<p>Die Professional Edition steht im <a href="https://customer.seafile.com">Customer Center</a> zum Download zur Verfügung. Die Installationspakete der Community Edition für Debian/Ubuntu und CentOS können über unsere <a href="/downloads/">Downloadseite</a> heruntergeladen werden. Docker Images für beide Versionen gibt es ebenfalls.</p>

@@ -1,0 +1,64 @@
+---
+title: "Erweiterte Clusterkonfigurationen für den Einsatz in weltweiten Unternehmensnetzwerken"
+slug: "erweiterte-clusterkonfigurationen"
+seo_title: "Erweiterte Clusterkonfigurationen für den Einsatz in weltweiten Unternehmensnetzwerken | Seafile"
+description: ""
+date: "2019-02-18T14:16:34"
+lastmod: "2025-02-21T09:07:15"
+og_image: "/wp-content/uploads/2019/02/erweiterte-seafile-cluster.jpg"
+beitragsbild: "/wp-content/uploads/2019/02/erweiterte-seafile-cluster.jpg"
+lesezeit: "5 Minuten"
+category:
+  - "funktionen"
+autor: "Ralf D."
+wp_id: 2726
+---
+<p>Ein Seafile Cluster bietet gegenüber einer 1-Server-Konfiguration Skalierbarkeit und Ausfallsicherheit. Bei verteilten Zugriffen von weit entfernten Standorten kommt aber auch ein lokaler Cluster an seine Grenzen. Weniger die Performance des Clusters, sondern die Leistungsfähigkeit und Stabilität der Leitung sind dann maßgeblich für die Systemperformance und Nutzererfahrung. Seafile bietet mit seinen erweiterten Cluster-Konfigurationen technische Ansätze, um die Bedeutung der Leitung als Flaschenhals zu reduzieren. </p>
+
+<!--more-->
+
+<h2>Stärken von lokalen Clustern und Ihre Grenzen</h2>
+<p>Das <a href="/seafile-cluster">typische Setup eines Seafile Clusters</a> besteht aus mehreren Frontend-Servern und Load Balancern sowie einem Storage Cluster. Gegenüber einem nicht redundant ausgelegten Seafile Server bietet dieses Setup einige Vorteile:</p>
+	<ul>
+		<li>Verfügbarkeit auch bei Ausfall einzelner Komponenten</li>
+		<li>Zero-Downtime bei Wartungsarbeiten</li>
+		<li>Skalierbarkeit von Server und Backend</li>
+		<li>Gleichmäßige Lastverteilung</li>
+	</ul>
+	
+<p>Ein lokaler Cluster spielt insbesondere bei einem örtlich begrenzten Einsatz sowie dort, wo ein hohes Maß an Kontrolle über die Leitungsinfrastruktur besteht, seine Vorteile aus. Das Zentrum für Datenverarbeitung der Johannes Gutenberg-Universität in Mainz betreibt z.B. einen zentralen Cluster für die <a href="/wp-content/uploads/2019/02/Seafile-Sync-and-Share-Plattform-RLP.pdf">rheinland-pfälzischen Hochschulen</a>. Die Hochschulen sind über einen <a href="https://rarp.rlp.net/services/wissenschaftsnetz-win-rp/">10+GB/s Dark-Fiber-Ring</a> miteinander verbunden. </p>
+
+<p>So ein lokaler Cluster erfüllt aber ggf. nicht die Anforderungen an Performance und Hochverfügbarkeit bei weltweit verteilten Zugriffen. Zugriffe auf den Seafile Server sollen unabhängig vom aktuellen Zugriffsort schnell und zuverlässig ein. Ein Unternehmen mit Niederlassungen auf verschiedenen Kontinenten kann nicht das Risiko eingehen, im Falle eines Leitungsausfalls, vom zentralen Seafile Cluster abgeschnitten zu sein.</p>
+
+<h2>Erweiterte Seafile Cluster und ihre Stärken</h2>
+<p>Die erweiterten Anforderungen von Organisationen mit globalen Aktionsradien adressiert Seafile mit zwei erweiterten Cluster-Konfigurationen. Beide Konfigurationen beschleunigen externe Zugriffe, sind aber funktional nicht ebenbürtig und damit keine direkten Alternativen. Vielmehr stellen sie unterschiedliche Kompromisse im Zielkonflikt von Performance und Komplexität dar. Ihre Bewertung muss daher auf Basis des Gesamtzusammenhangs von Anforderungen, Umständen und verfügbaren Ressourcen erfolgen und nicht nur ihrer (theoretischen) absoluten Leistungsfähigkeit.</p>
+
+<h3>Zentraler Cluster + dezentrale Proxies</h3>
+<p>Bei dieser Variante wird der lokale Cluster durch dezentrale Access Points in verteilten Rechenzentren ergänzt. Die Access Points nutzen <a href="https://www.nginx.com/">nginx</a> als Proxy zum zentralen Seafile Cluster. Die dezentralen Proxies beschleunigen den Zugriff und auch die Dateisynchronisation, wenn die Netzwerkbandbreite und -geschwindigkeit zwischen dem zentralen Seafile Cluster und dem Proxie schneller ist, als die direkte Datenverbindung zwischen dem Anwender und dem Hauptcluster. Insbesondere Mitarbeiter im Home-Office oder mobil arbeitende Kollegen profitieren typischerweise am meisten von den lokalen Proxies, da der Datenaustausch durch den lokalen Proxy optimiert wird.</p>
+
+<p>Die direkten Zusatzkosten dieser Variante sind gering. Die Proxies beanspruchen nur geringe Rechenpower und nginx ist als open source Software kostenfrei. Der Komplexitätszuwachs dieser Variante ist ebenso vergleichsweise gering. Andererseits ist er aber nicht vernachlässigbar, insbesondere wenn zur Beibehaltung von Hochverfügbarkeit die Proxy-Server redundant ausgelegt sein müssen.</p> 
+<p>Eine Quantifizierung des Performancezuwaches ist von vielen Variablen abhängig und so sind konkrete Aussagen über den Performancegewinn schwer. Allgemein lässt sich sagen, dass der Effizienzgewinn durch Caching umso höher ist, desto schwächer und instabiler die direkte Verbindung zwischen dezentralen Benutzern und zentralem Cluster.</p>
+
+<img decoding="async" src="/wp-content/uploads/2019/03/seafile_proxy.png" width="525" style="display: block; margin-left: auto; margin-right: auto;" alt="seafile proxy diagramm" />
+	
+<h3>Multipler Cluster</h3>
+<p>Die zweite Variante ist die Integration mehrerer lokaler Seafile Cluster zu einem verteilten Cluster. Jeder einzelne Cluster in diesem Clusternetz hält durch die Synchronisation der Daten den kompletten Datensatz vor. Benutzer können also ohne Einschränkungen bzgl. Datenverfügbarkeit auf den nächstgelegenen bzw. schnellsten Cluster zugreifen.</p>
+
+<p>Kaspersky Labs als langjähriger Seafile Kunde betreibt für seine mehrere tausend User einen solchen Cluster. Insgesamt drei weltweit verteilte Seafile Cluster formen das Cluster-Netz. Als Backend kommt <a href="https://docs.openstack.org/swift/latest/overview_global_cluster.html" target="_blank" rel="noopener noreferrer">OpenStack Swift </a> zum Einsatz. Dieses repliziert die Daten zwischen den Standorten selbständig. Gleichzeitig wird die Seafile Datenbank über die Standorte hinweg synchron gehalten.</p>
+	
+<p>Den technischen Potenzialen eines solchen multiplen Clusters steht ein beträchtlicher Aufwand bei Aufbau und Betrieb gegenüber. Neben mehreren vollständigen Seafile Clustern wird auch ein geeignetes Backend benötigt. Monitoring und Maintenance eines solches System brauchen spezialisierte Ressourcen. Abgesehen von der technischen Komplexität ist auch die rechtliche Komponente nicht zu vernachlässigen: Befinden sich die lokalen Cluster in unterschiedlichen Jurisdiktionen, dann unterliegen die Daten ggf. unterschiedlichen Datenschutzbestimmungen und Gerichtsbarkeiten. Die Gesamtkomplexität eines solchen Systems steigt nicht linear mit zusätzlichen Clustern sondern vervielfacht sich.</p>
+
+
+<h2>Ausblick: Lokale Caching Server</h2>
+<p>Mit den beiden beschriebenen erweiterten Cluster-Varianten ist Seafile bereits heute fit für den Einsatz in geographisch verteilten Organisationen. Mit Seafile Caching Servern, die sich in aktueller Entwicklung befinden, wird in absehbarer Zukunft eine dritte Variante hinzukommen, die sich von der technischen Komplexität und dem Performancegewinn zwischen den beiden bisher existierenden Varianten positioniert.</p>
+
+<!--Wenn wir wissen, wann die Caching Server kommen, dann sollten wir hier das Seafile Logo mit einer Versionsnummer einfügen-->
+
+<p>Die lokal installierten Caching Server arbeiten als Proxy zwischen einem zentralen Seafile Cluster und den dezentralen Benutzern. Sie halten einmal abgerufene Datenblöcke für einen bestimmten Zeitraum vor, so dass wiederholt abgerufene Dateien direkt vom Caching Server und damit lokal ausgeliefert werden können. Gleichermaßen speichern sie Dateiänderungen temporär zwischen und übertragen sie nach definierten Regeln zum Seafile Cluster. Insoweit ist diese zukünftige Variante eine Erweiterung des bereits existierenden Proxy-Ansatzes mit nginx.</p>
+
+<p>Die Seafile Caching Server werden einfache Single-Node Seafile Systeme sein, die per Konfiguration zu Caching Servern werden. Die Verwendung von nicht-Cluster-Systemen für das Caching widerspricht auch nicht unmittelbar dem Ziel der Hochverfügbarkeit. Beim Ausfall eines lokalen Caches können die Benutzer durch einen Wechsel des Zugriffspunktes zwar langsamer, aber funktional uneingeschränkt weiterarbeiten.</p>
+
+<img decoding="async" src="/wp-content/uploads/2019/03/seafile_caching-1.png" style="display: block; margin-left: auto; margin-right: auto;" alt="seafile proxy diagramm" />
+
+<h2>Deutscher Support</h2>
+<p>Ein erweiterter Cluster kann die Leistungsfähigkeit einer Sync &#038; Share und Collaborationsplattform auf Basis von Seafile auf die nächste Ebene heben und für den Einsatz in einem weltweiten Netzwerk vorbereiten. Unser deutscher Support Partner datamate berät Sie gerne bei Planung und Umsetzung eines Seafile Clusters.</p>

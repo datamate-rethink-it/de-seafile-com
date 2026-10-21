@@ -1,0 +1,53 @@
+---
+title: "Wechselnder Login-Hintergrund"
+slug: "wechselnder-login-hintergrund"
+seo_title: "Wechselnder Login-Hintergrund | Seafile"
+description: ""
+date: "2019-06-21T10:21:43"
+lastmod: "2025-02-21T09:07:13"
+og_image: "/wp-content/uploads/2019/06/seafile-changing-login-screens.jpg"
+beitragsbild: "/wp-content/uploads/2019/06/seafile-changing-login-screens.jpg"
+lesezeit: "3 Minuten"
+category:
+  - "anleitungen"
+autor: "Christoph Dyllick-Brenzinger"
+wp_id: 3322
+---
+<p>Seit der Einführung von Windows 10 hören wir vielfach, wie schön doch die Hintergrundbilder bei der Anmeldung sind. Dem Urteil stimmen wir zu! Mit einem schönen Bild kann man mächtig Eindruck machen. In diesem Artikel verraten wir, wie man etwas ganz ähnliches auch für das Hintergrundbild der Seafile Anmeldung erfolgreich hinbekommt.</p>
+
+<!--more-->
+
+<h2>Bilddatenbank als Motivlieferant für den Seafile Login</h2>
+
+<p>Manuell lässt sich das Hintergrundbild der Anmeldung in der System Administration des Seafile Webinterfaces ändern. Dies ist aber mühsam und nicht dynamisch. Der einfachere Weg ist die Einbindung einer Bilderwebseite in die HTML-Templates von Seafile. Wir demonstrieren das Vorgehen anhand des Dienst <a href="https://source.unsplash.com/" target="_blank" rel="noopener noreferrer">Unsplash Source</a> der Bilddatenbank <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Unsplash</a>, die für ihr umfangreiches freies und hochwertiges Bildmaterial bekannt ist. Das Vorgehen ist grundsätzlich auch mit anderen Bildanbietern wie z.B. Pixabay möglich. </p>
+<p>Die Wahl fällt aber nicht ohne Grund auf Unsplash Source. Der Dienst macht das Einbinden von Bildern in Webapplikationen denkbar einfach. Keine Registrierung oder ein API-Key ist notwendig. Welches Bild bzw. welche Bilder man als Hintergrundbild einbindet, lässt sich ganz einfach über die aufgerufene URL steuern. Mit der URL <a href="https://source.unsplash.com/random" target="_blank" rel="noopener noreferrer">https://source.unsplash.com/random</a> erhält man beispielsweise ein zufällig ausgewähltes Bild. Doch das ist noch nicht alles. Unsplash Source bietet auch die Möglichkeit, die randomisierte Bilderauswahl individuell einzugrenzen. So kann man auswählen, nur Bilder von bestimmten Usern oder in einer bestimmten Auflösung zu bekommen. (Mehr dazu auf der Seite von Unsplash Source.) Für den Seafile Login ist letzteres ideal, da das Login-Hintergrundbild idealerweise 2.400 x 1.600 Pixel groß ist. Der passende Link ist dann <a href="https://source.unsplash.com/random/2400x1600" target="_blank" rel="noopener noreferrer">https://source.unsplash.com/random/2400&#215;1600</a>. Diesen gilt es nun an der richtigen Stelle in dem HTML-Template von Seafile einzubauen.</p>
+
+<a href="/wp-content/uploads/2019/06/unsplash-source-seafile-login.png" data-slb-active="1" data-slb-asset="1482208967" data-slb-internal="0" data-slb-group="3322"><img fetchpriority="high" decoding="async" width="1038" height="797" src="/wp-content/uploads/2019/06/unsplash-source-seafile-login.png" alt="Unsplash Source für wechselnde Seafile Login-Hintergründe" class="alignnone size-full wp-image-3325" srcset="/wp-content/uploads/2019/06/unsplash-source-seafile-login.png 1038w, /wp-content/uploads/2019/06/unsplash-source-seafile-login-300x230.png 300w, /wp-content/uploads/2019/06/unsplash-source-seafile-login-768x590.png 768w, /wp-content/uploads/2019/06/unsplash-source-seafile-login-1024x786.png 1024w" sizes="(max-width: 1038px) 100vw, 1038px" /></a>
+
+<h3 style="margin-top: 2em;">Unsplash Source einbinden</h3>
+
+<p>Der Aufruf des Login-Hintergrundbildes von Seafile erfolgt in der Datei <i>login.html</i>, welche im Ordner <i>seafile-server-latest/seahub/seahub/templates/registration/</i> liegt. Ein einfacher Texteditor genügt, um in dieser Datei den entsprechenden Unsplash Source Link einzubauen. Alles was dazu nötig ist, ist der Austausch des bisherigen Aufrufs im CSS-Block <i>#wrapper</i> durch den Unsplash Source Link. Hier ein Beispiel:</p>
+
+<pre><code>
+#wrapper {
+	/* original */
+	background: url('{{ MEDIA_URL }}{{login_bg_image_path}}') center top no-repeat scroll;
+    
+	/* neu */
+	background: url('https://source.unsplash.com/random/2400x1600') center top no-repeat scroll;
+   	...
+}
+</code></pre>
+
+<p>Nach einem Neustart von Seahub sollte die Änderung auch schon aktiv sein: Bei jedem Aufruf der Seafile Login-Seite wird nun ein neues Bild von Unsplash Source in den für Seafile optimalen Abmessungen geladen. Drücke einfach mehrfach die F5-Taste und siehe zu, wie sich bei jedem Refresh das Bild verändert.</p>
+
+<h3 style="margin-top: 2em;">Änderung updatesicher machen</h3>
+
+<p>Die vorgenommene Änderung ist noch nicht updatesicher, wie man schon am Speicherort der <i>login.html</i> sehen kann. Beim Update des Seafile Servers geht die Unsplash Konfiguration verloren. Um die Änderung updatesicher zu machen, muss die login.html an einen Ort verschoben werden, der auch zukünftige Updates übersteht. Wie das funktioniert, wird <a href="https://manual.seafile.com/config/seahub_customization.html" target="_blank" rel="noopener noreferrer">hier im englischsprachigen Seafile Manual</a> beschrieben.</p>
+
+<a href="/wp-content/uploads/2019/06/wechselnderLogin.png" data-slb-active="1" data-slb-asset="1001906066" data-slb-internal="0" data-slb-group="3322"><img decoding="async" width="1202" height="864" src="/wp-content/uploads/2019/06/wechselnderLogin.png" alt="Beispiel für wechselnde Login-Bilder" class="alignnone size-full wp-image-3330" srcset="/wp-content/uploads/2019/06/wechselnderLogin.png 1202w, /wp-content/uploads/2019/06/wechselnderLogin-300x216.png 300w, /wp-content/uploads/2019/06/wechselnderLogin-768x552.png 768w, /wp-content/uploads/2019/06/wechselnderLogin-1024x736.png 1024w" sizes="(max-width: 1202px) 100vw, 1202px" /></a>
+
+<h3 style="margin-top: 2em;">Angezeigte Bilder steuern</h3>
+
+<p>Damit sind bei weitem noch nicht die Möglichkeiten von Unsplash Source ausgeschöpft. Wer z.B. wechselnde, aber dafür ausgewählte Bilder verwenden möchte, der sollte sich eine eigene <i>Collection</i> bei Unsplash anlegen. So kann man sicher sein, dass nur ausgewählte Bilder angezeigt werden. Im Unternehmenseinsatz ist dies fast schon ein Muss: So universell und passend die Landschafts- und Architekturbilder von Unsplash sind, ein Strand- oder Bikinimotiv ist das nicht in allen Fällen.</p>
+<p>Die Erstellung einer eigenen Collection macht auch noch aus einem anderen Grund Sinn: Gute Fotographen zentrieren das zentrale Motiv. Unsere Entwickler haben just dort die Box für den Login platziert. Ein schönes Foto leidet ganz deutlich, wenn über dem zentralen Element des Fotos der Anmeldekasten sitzt.  Durch die Auswahl von Bildern, deren Charme  weniger aus der Mitte heraus entspringt, kann man den Gesamteindruck verbessern.</p>

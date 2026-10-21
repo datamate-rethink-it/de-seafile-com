@@ -1,0 +1,52 @@
+{{- /* Der Feed unter /feed/, nachgebaut nach dem von WordPress.
+
+	Wichtig ist die guid: WordPress hat dort https://de.seafile.com/?p=<id>
+	ausgegeben, nicht die Adresse des Beitrags. Feedreader erkennen
+	Beitraege daran wieder. Mit einer anderen guid wuerden alle 45 alten
+	Beitraege als neu gemeldet - darum steht die WordPress-Kennung als
+	wp_id in der Frontmatter.
+
+	Zehn Eintraege wie bisher (posts_per_rss).
+
+	isPlainText = true schaltet Gos HTML-Maskierung ab - was man fuer XML
+	will, sonst wuerden die spitzen Klammern doppelt maskiert. Dafuer muss
+	jeder Titel von Hand durch htmlEscape: "Knowledge Management und Sync
+	& Share" hat den Kategorie-Feed sonst ungueltig gemacht. */ -}}
+{{- $beitraege := .Pages.ByDate.Reverse -}}
+{{- printf "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" | safeHTML }}
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	>
+<channel>
+	<title>Seafile &#187; {{ .Title | htmlEscape }} Feed</title>
+	<atom:link href="{{ .Permalink }}" rel="self" type="application/rss+xml" />
+	<link>{{ .Page.Permalink }}</link>
+	<description>{{ site.Params.beschreibung }}</description>
+	{{- with index $beitraege 0 }}
+	<lastBuildDate>{{ .Lastmod.UTC.Format "Mon, 02 Jan 2006 15:04:05 +0000" }}</lastBuildDate>
+	{{- end }}
+	<language>de</language>
+	<image>
+		<url>{{ "/wp-content/uploads/2018/12/cropped-favicon-32x32.png" | absURL }}</url>
+		<title>Seafile</title>
+		<link>{{ site.Home.Permalink }}</link>
+		<width>32</width>
+		<height>32</height>
+	</image>
+	{{- range first 10 $beitraege }}
+	<item>
+		<title>{{ .Title | htmlEscape }}</title>
+		<link>{{ .Permalink }}</link>
+		<dc:creator><![CDATA[{{ .Params.autor }}]]></dc:creator>
+		<pubDate>{{ .Date.UTC.Format "Mon, 02 Jan 2006 15:04:05 +0000" }}</pubDate>
+		{{- range .GetTerms "category" }}
+		<category><![CDATA[{{ .Title }}]]></category>
+		{{- end }}
+		<guid isPermaLink="false">{{ printf "%s?p=%v" site.Home.Permalink .Params.wp_id }}</guid>
+		<description><![CDATA[{{ replace .Summary "]]>" "]]]]><![CDATA[>" | safeHTML }}]]></description>
+	</item>
+	{{- end }}
+</channel>
+</rss>

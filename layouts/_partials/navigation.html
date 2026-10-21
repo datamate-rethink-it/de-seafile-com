@@ -1,0 +1,17 @@
+{{- /* Hauptmenue. Punkte aus data/navigation.yaml, Aufbau wie im alten
+	Theme (Description_Walker in functions.php). */ -}}
+<nav id="navbar" class="navbar navbar-expand-lg sticky-top navbar-light">
+	<div class="container">
+		<a class="navbar-brand" href="/"><img width="130" alt="Seafile Menu Logo" src="/wp-content/themes/seafileger/img/svg/seafile_logo_proposed.svg"/></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse ml-auto" id="navbarNavDropdown">
+			<div class="ml-auto"><ul id="primary-menu" class="navbar-nav nav">
+				{{- range site.Data.navigation.punkte }}
+				<li class="nav-item menu-item{{ if eq $.RelPermalink .ziel }} current-menu-item{{ else if and (ne .ziel "/") (hasPrefix $.RelPermalink .ziel) }} current-page-ancestor{{ end }}"><a class="nav-link hvr-underline-reveal" href="{{ .ziel }}">{{ .titel }}</a> </li>
+				{{- end }}
+			</ul></div>
+		</div>
+	</div>
+</nav>
