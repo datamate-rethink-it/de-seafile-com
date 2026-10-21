@@ -208,8 +208,13 @@ Das Aufraeumen nach Ablauf macht unveraendert ein n8n-Flow auf
 `n8n.seatable.com`: alle 12 Stunden die Organisationen ueber die
 Admin-API holen, `ctime + 8 Tage`, loeschen was drueber ist.
 
-**Offen:** der Endpunkt auf dem Trial-Server ist noch nicht gebaut.
-Solange antwortet `/api/trial` mit dem, was der alte Server sagt.
+Der Endpunkt selbst liegt in
+[seafile-trial](https://github.com/datamate-rethink-it/seafile-trial) und
+laeuft seit dem 21.10.2026 - ein Go-Dienst ohne Datenbank, neben Seafile im
+selben Compose-Stack. Die Wiederanmeldesperre liest er aus Brevo.
+
+Hier in diesem Repo steckt davon nur zweierlei: das Formular auf `/trial/`
+und die eine `handle`-Regel in `deploy/Caddyfile.container`.
 
 ## Was sich geaendert hat
 
@@ -324,10 +329,10 @@ Mal schneller geht.
 
 ## Noch offen
 
-- Der Trial-Endpunkt auf `trial.seafile-demo.de`.
 - Beim Abschalten des WordPress: Brevo-Key, MySQL-root-Passwort des
   Trial-Servers, Seafile-Admin-Zugang und reCAPTCHA-Secret wechseln. Alle
-  vier stehen im Klartext im Quellarchiv.
+  vier stehen im Klartext im Quellarchiv. Beim Seafile-Admin mitbedenken,
+  dass `trial-service` denselben Zugang benutzt (siehe seafile-trial).
 - `/downloads/` nennt Client 9.0.18, SeaDrive 3.0.21 und Server 12.0.14.
   Inhaltspflege, keine Migration.
 - Alle `release-notes`-Beitraege enden bei Server 9.0 (2022).
