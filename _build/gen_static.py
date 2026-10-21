@@ -59,8 +59,8 @@ THEME_DATEIEN = [
 SCHRIFTEN = 'https://fonts.googleapis.com/css?family=Raleway:400,600,800|Roboto+Slab:300'
 # Zwei url() im Theme-CSS zeigen absolut auf de.seafile.com. Relativ
 # gemacht laedt die oertliche Vorschau sie nicht aus der Produktion.
-EIGEN = re.compile(r'(?:https?:)?//de\.seafile\.com(?=/)')
-IMPORT = re.compile(r"@import url\('https://fonts\.googleapis\.com/[^']*'\);")
+EIGEN = re.compile(rb'(?:https?:)?//de\.seafile\.com(?=/)')
+IMPORT = re.compile(rb"@import url\('https://fonts\.googleapis\.com/[^']*'\);")
 URL = re.compile(r"""url\(\s*['"]?([^)'"]+?)['"]?\s*\)""")
 
 
@@ -142,10 +142,12 @@ def theme():
         if not quelle.exists():
             raise SystemExit(f'Theme-Datei fehlt: {quelle}')
         if rel.endswith('.css'):
-            (WEBROOT / THEME / rel).parent.mkdir(parents=True, exist_ok=True)
-            (WEBROOT / THEME / rel).write_text(
-                EIGEN.sub('', quelle.read_text(encoding='utf-8', errors='replace')),
-                encoding='utf-8')
+            # Bytes, nicht Text: bootstrap.min.css hat CRLF-Zeilenenden,
+            # und read_text() macht daraus stillschweigend LF. Das aendert
+            # die Datei, ohne dass es jemand wollte.
+            ziel = WEBROOT / THEME / rel
+            ziel.parent.mkdir(parents=True, exist_ok=True)
+            ziel.write_bytes(EIGEN.sub(b'', quelle.read_bytes()))
         else:
             kopieren(quelle, f'{THEME}/{rel}')
             continue
@@ -195,10 +197,10 @@ def schriften():
         encoding='utf-8')
     for datei in ('css/template.min.css', 'css/print.min.css'):
         p = WEBROOT / THEME / datei
-        s = p.read_text(encoding='utf-8', errors='replace')
-        if not IMPORT.search(s):
+        roh = p.read_bytes()
+        if not IMPORT.search(roh):
             raise SystemExit(f'@import auf Google Fonts nicht gefunden in {datei}')
-        p.write_text(IMPORT.sub("@import url('fonts.css');", s), encoding='utf-8')
+        p.write_bytes(IMPORT.sub(b"@import url('fonts.css');", roh))
     return len(neu)
 
 
