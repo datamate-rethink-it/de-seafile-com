@@ -57,6 +57,9 @@ THEME_DATEIEN = [
 #                                        template.min.css
 
 SCHRIFTEN = 'https://fonts.googleapis.com/css?family=Raleway:400,600,800|Roboto+Slab:300'
+# Zwei url() im Theme-CSS zeigen absolut auf de.seafile.com. Relativ
+# gemacht laedt die oertliche Vorschau sie nicht aus der Produktion.
+EIGEN = re.compile(r'(?:https?:)?//de\.seafile\.com(?=/)')
 IMPORT = re.compile(r"@import url\('https://fonts\.googleapis\.com/[^']*'\);")
 URL = re.compile(r"""url\(\s*['"]?([^)'"]+?)['"]?\s*\)""")
 
@@ -138,8 +141,13 @@ def theme():
         quelle = WP / THEME / rel
         if not quelle.exists():
             raise SystemExit(f'Theme-Datei fehlt: {quelle}')
-        kopieren(quelle, f'{THEME}/{rel}')
-        if not rel.endswith('.css'):
+        if rel.endswith('.css'):
+            (WEBROOT / THEME / rel).parent.mkdir(parents=True, exist_ok=True)
+            (WEBROOT / THEME / rel).write_text(
+                EIGEN.sub('', quelle.read_text(encoding='utf-8', errors='replace')),
+                encoding='utf-8')
+        else:
+            kopieren(quelle, f'{THEME}/{rel}')
             continue
         # url() in CSS ist die Falle: ohne diesen Durchlauf fehlen
         # Schriften, Aufzaehlungszeichen und Lightbox-Pfeile.
