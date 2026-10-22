@@ -344,8 +344,10 @@ Mal schneller geht.
 
 - Beim Abschalten des WordPress: Brevo-Key, MySQL-root-Passwort des
   Trial-Servers, Seafile-Admin-Zugang und reCAPTCHA-Secret wechseln. Alle
-  vier stehen im Klartext im Quellarchiv. Beim Seafile-Admin mitbedenken,
-  dass `trial-service` denselben Zugang benutzt (siehe seafile-trial).
+  vier standen im Klartext im WordPress und sind auf den Systemen weiter
+  gueltig — geloescht ist nur das Archiv, nicht das Passwort. Beim
+  Seafile-Admin mitbedenken, dass `trial-service` denselben Zugang
+  benutzt (siehe seafile-trial).
 - `/downloads/` nennt Client 9.0.18, SeaDrive 3.0.21 und Server 12.0.14.
   Inhaltspflege, keine Migration.
 - Alle `release-notes`-Beitraege enden bei Server 9.0 (2022).
