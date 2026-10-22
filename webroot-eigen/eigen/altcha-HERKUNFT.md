@@ -23,3 +23,25 @@ PBKDF2/SHA-256).
 
 Aktualisieren: neue Fassung ziehen, Pruefsumme vergleichen, diese Datei
 anpassen — und danach eine echte Anmeldung durchspielen.
+
+## Zweite Datei: altcha-de.js
+
+`dist/i18n/de.js` aus demselben Paket, unveraendert. Sie traegt sich
+selbst in `globalThis.$altcha.i18n` ein und muss deshalb **nach**
+`altcha.min.js` geladen werden. Ohne sie zeigt das Widget englische
+Texte — `language="de"` allein reicht nicht.
+
+## Fallstrick: die Attributnamen haben sich zwischen 2.x und 3.x geaendert
+
+Beim Umbau zuerst falsch gemacht, mit den Namen aus der v2-Doku:
+
+| v2 | v3 |
+|---|---|
+| `challengeurl="…"` | `challenge="…"` |
+| `strings='{…}'` | `language="de"` plus Sprachdatei |
+| `hidelogo hidefooter` | `configuration='{"hideLogo":true,"hideFooter":true}'` |
+
+`challengeurl` ist dabei der boesartige: ein unbekanntes Attribut wird
+stillschweigend ignoriert, das Widget hat dann gar keine Adresse fuer die
+Aufgabe und zeigt nur "Verification failed. Try again later." — ohne
+Hinweis darauf, dass die Konfiguration nie angekommen ist.

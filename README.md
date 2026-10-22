@@ -314,6 +314,31 @@ Mal schneller geht.
   datamate.org waren drei Sitemaps drei Stunden lang ungueltig online,
   waehrend der Bau gruen durchlief.
 
+- **Die Attributnamen des Altcha-Widgets haben sich zwischen 2.x und 3.x
+  geaendert**, und ein unbekanntes Attribut wird stillschweigend
+  ignoriert. Mit `challengeurl=` statt `challenge=` hat das Widget gar
+  keine Adresse fuer die Aufgabe und zeigt nur "Verification failed. Try
+  again later." - kein Hinweis darauf, dass die Konfiguration nie
+  angekommen ist. Ebenso `strings=` (v2) statt `language=` plus
+  Sprachdatei. Einzelheiten in `webroot-eigen/eigen/altcha-HERKUNFT.md`.
+
+- **Das Widget laesst sich ohne Playwright pruefen.** Eine Seite mit
+  `auto="onload"` in `webroot-eigen/eigen/` ablegen, Image bauen, und:
+
+  ```bash
+  google-chrome --headless=new --disable-gpu --no-sandbox \
+    --remote-debugging-port=9222 --user-data-dir=/tmp/profil \
+    http://127.0.0.1:8083/eigen/pruefseite.html
+  ```
+
+  Wichtig: **kein** `--virtual-time-budget` und **kein** `--dump-dom`.
+  Beides schneidet ab, bevor der Rechen-Worker fertig ist; man sieht dann
+  nur `verifying` und haelt es faelschlich fuer einen Fehler. Die Seite
+  meldet ihr Ergebnis ueber `new Image().src = "http://127.0.0.1:8085/..."`
+  an einen kleinen Horchposten aus der Standardbibliothek - damit braucht
+  es kein DevTools-Protokoll. Die Pruefseite danach wieder loeschen,
+  webroot-eigen/ wird mit ausgeliefert.
+
 - **Hugo balanciert `.Summary` nicht.** Bei fuenf Beitraegen sitzt die
   `<!--more-->`-Marke mitten im Absatz; das `</p>` fehlt dann im Teaser.
   Der Browser schliesst es am Kartenrand - sichtbar ist nichts, aber der

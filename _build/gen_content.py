@@ -178,13 +178,17 @@ def trial_formular(inhalt):
     if neu == inhalt:
         raise SystemExit('Trial: das <form>-Element sieht anders aus als erwartet')
 
+    # Achtung bei den Attributnamen: das Widget 3.x hat gegenueber 2.x
+    # umbenannt. Es heisst challenge, nicht challengeurl - mit dem alten
+    # Namen bekommt das Widget gar keine Adresse und zeigt stumm
+    # "Verification failed". Und strings gibt es nicht mehr; Sprache laeuft
+    # ueber language= plus die Sprachdatei altcha-de.js.
+    #
     # auto="onfocus": gerechnet wird, sobald jemand das Formular anfasst -
     # nicht beim Oeffnen der Seite und nicht erst beim Absenden.
-    widget = ('<altcha-widget style="margin-bottom: 12px;" '
-              'challengeurl="/api/trial/challenge" auto="onfocus" hidelogo hidefooter '
-              'strings=\'{"label":"Ich bin ein Mensch","verifying":"Pr\u00fcfe \u2026",'
-              '"verified":"Gepr\u00fcft","error":"Pr\u00fcfung fehlgeschlagen",'
-              '"expired":"Abgelaufen, bitte erneut versuchen"}\'></altcha-widget>')
+    widget = ('<altcha-widget style="margin-bottom: 24px; display: block;" '
+              'challenge="/api/trial/challenge" auto="onfocus" language="de">'
+              '</altcha-widget>')
     neu, n = re.subn(
         r'<div style="margin-bottom: 12px;" class="g-recaptcha" data-sitekey="[^"]*"></div>',
         widget.replace('\\', '\\\\'), neu)
@@ -197,7 +201,11 @@ def trial_formular(inhalt):
                   '<script src="https://www.google.com/recaptcha/api.js" async defer></script>')
     if alt_skript not in neu:
         raise SystemExit('Trial: das reCAPTCHA-Skript sieht anders aus als erwartet')
-    return neu.replace(alt_skript, '<script src="/eigen/altcha.min.js" type="module" defer></script>')
+    # Die Sprachdatei traegt sich in globalThis.$altcha ein und muss
+    # deshalb nach dem Widget geladen werden.
+    return neu.replace(alt_skript,
+                       '<script src="/eigen/altcha.min.js" type="module" defer></script>\r\n'
+                       '<script src="/eigen/altcha-de.js" type="module" defer></script>')
 
 
 def schnappschuss(pfad):
