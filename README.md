@@ -237,10 +237,14 @@ Gegenueber dem WordPress-Stand mit Absicht anders:
   `print.min.css` holten Raleway und Roboto Slab per `@import` von
   `fonts.googleapis.com` - also bei jedem Aufruf eine Anfrage an Google,
   auf einer Seite, die mit Kontrolle ueber die eigenen Daten wirbt.
-- **Kein Cookie-Banner.** Es gab nichts mehr zu melden: WP Statistics ist
-  weg, und das Banner stand ohnehin nur wegen reCAPTCHA auf `/trial/`.
-  Das reCAPTCHA selbst ist noch da und laedt Google unbedingt - sein
-  Austausch ist offen.
+- **Kein Cookie-Banner und keine einzige Anfrage an Dritte.** WP Statistics
+  ist weg, und reCAPTCHA auf `/trial/` ist durch selbst gehostetes Altcha
+  ersetzt (22.10.2026). `/trial/` war die einzige Seite, die ueberhaupt
+  etwas von einem Fremden holte - unbedingt, beim Oeffnen, ausgerechnet
+  unter der Zeile "Uebernehmen Sie die Kontrolle ueber Ihre Daten".
+  Das Widget liegt in `webroot-eigen/eigen/altcha.min.js`, die Aufgabe
+  kommt von `/api/trial/challenge` und wird im `trial-service` erzeugt und
+  geprueft. Einzelheiten in der README von seafile-trial.
 - **Eine Lightbox statt zweier.** Das Theme brachte eine mit, das Plugin
   *Simple Lightbox* eine zweite; beide wurden geladen.
 - **Ein jQuery statt zweier.** Das Theme lud ein eigenes, WordPress ein
@@ -351,7 +355,6 @@ Mal schneller geht.
 - `/downloads/` nennt Client 9.0.18, SeaDrive 3.0.21 und Server 12.0.14.
   Inhaltspflege, keine Migration.
 - Alle `release-notes`-Beitraege enden bei Server 9.0 (2022).
-- reCAPTCHA v2 auf `/trial/` laedt Google unbedingt.
 - Der Client-Zertifikat-Riegel im alten nginx-vhost schuetzte
   `/wissen/wp-login.php` - den Pfad von ionas.com, den es hier nie gab.
   `/wp-login.php` war damit offen. Erledigt sich mit dem Abschalten.

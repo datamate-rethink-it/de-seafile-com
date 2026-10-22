@@ -157,24 +157,47 @@ def absatz_ergaenzen(koerper):
 
 
 def trial_formular(inhalt):
-    """Das Trial-Formular auf den neuen Endpunkt richten.
+    """Das Trial-Formular auf den neuen Endpunkt und auf Altcha umstellen.
 
     Bisher ein gewoehnlicher POST auf /trial/ selbst, den
-    content-trail-page.php beantwortet hat. Jetzt postet
-    webroot-eigen/eigen/seite.js nach /api/trial; Caddy im Image reicht
-    das an trial.seafile-demo.de weiter, wo der Code laeuft und wo
-    Seafile-API und Datenbank oertlich liegen.
+    content-trail-page.php beantwortet hat, mit reCAPTCHA von Google. Jetzt
+    postet webroot-eigen/eigen/seite.js nach /api/trial; Caddy im Image
+    reicht das an trial.seafile-demo.de weiter, wo der Code laeuft und wo
+    Seafile-API und Brevo-Schluessel oertlich liegen.
 
-    reCAPTCHA bleibt vorerst, wie es war - der Austausch ist noch nicht
-    entschieden (siehe BESTANDSAUFNAHME.md). Das Skript von Google steht
-    im Text und wird hier nicht angefasst.
+    reCAPTCHA ist raus. Es lud Google unbedingt beim Oeffnen der Seite -
+    auf der einzigen Seite der Website, die ueberhaupt etwas von einem
+    Fremden holte, und ausgerechnet unter der Zeile "Uebernehmen Sie die
+    Kontrolle ueber Ihre Daten". An seine Stelle tritt Altcha: das Widget
+    liegt unter /eigen/, die Aufgabe kommt von /api/trial/challenge, und
+    gerechnet wird im Browser.
     """
     neu = inhalt.replace(
         '<form class="well form-horizontal" method="POST">',
         '<form class="well form-horizontal" id="trial-formular" method="post" action="/api/trial">')
     if neu == inhalt:
         raise SystemExit('Trial: das <form>-Element sieht anders aus als erwartet')
-    return neu
+
+    # auto="onfocus": gerechnet wird, sobald jemand das Formular anfasst -
+    # nicht beim Oeffnen der Seite und nicht erst beim Absenden.
+    widget = ('<altcha-widget style="margin-bottom: 12px;" '
+              'challengeurl="/api/trial/challenge" auto="onfocus" hidelogo hidefooter '
+              'strings=\'{"label":"Ich bin ein Mensch","verifying":"Pr\u00fcfe \u2026",'
+              '"verified":"Gepr\u00fcft","error":"Pr\u00fcfung fehlgeschlagen",'
+              '"expired":"Abgelaufen, bitte erneut versuchen"}\'></altcha-widget>')
+    neu, n = re.subn(
+        r'<div style="margin-bottom: 12px;" class="g-recaptcha" data-sitekey="[^"]*"></div>',
+        widget.replace('\\', '\\\\'), neu)
+    if n != 1:
+        raise SystemExit(f'Trial: {n} reCAPTCHA-Kaestchen gefunden statt einem')
+
+    # Zeilenenden sind hier \r\n - der Text kommt aus einem Editor unter
+    # Windows durch die WordPress-Datenbank.
+    alt_skript = ('<!-- eingebaut am 27.08.2025 um 01:30 Uhr -->\r\n'
+                  '<script src="https://www.google.com/recaptcha/api.js" async defer></script>')
+    if alt_skript not in neu:
+        raise SystemExit('Trial: das reCAPTCHA-Skript sieht anders aus als erwartet')
+    return neu.replace(alt_skript, '<script src="/eigen/altcha.min.js" type="module" defer></script>')
 
 
 def schnappschuss(pfad):

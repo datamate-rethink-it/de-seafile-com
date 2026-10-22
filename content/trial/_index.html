@@ -57,7 +57,7 @@ wp_id: 1110
         					<label class="customcheck">Ich habe die <a href="/trial/nutzungsbedingungen">Nutzungsbedingungen</a> gelesen und akzeptiere sie.<input type="checkbox" required="true" name="terms"/><span class="checkmark"></span> 
         					</label>
         				</div>
-						<div style="margin-bottom: 12px;" class="g-recaptcha" data-sitekey="6LdrnrMrAAAAANjBkxmCY48BUxWldVq7KzXYpmHR"></div>
+						<altcha-widget style="margin-bottom: 12px;" challengeurl="/api/trial/challenge" auto="onfocus" hidelogo hidefooter strings='{"label":"Ich bin ein Mensch","verifying":"Prüfe …","verified":"Geprüft","error":"Prüfung fehlgeschlagen","expired":"Abgelaufen, bitte erneut versuchen"}'></altcha-widget>
 						<div class="form-group">
 						  <input type="submit" name="trial" value="Jetzt Seafile testen" class="btn btn-warning btn-sfcolor button blue" />
 						</div>
@@ -68,5 +68,4 @@ wp_id: 1110
  	</div>
 </section>
 
-<!-- eingebaut am 27.08.2025 um 01:30 Uhr -->
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="/eigen/altcha.min.js" type="module" defer></script>

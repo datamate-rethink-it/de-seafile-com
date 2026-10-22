@@ -57,8 +57,12 @@
 					zeigen('danger', (ergebnis.daten.fehler || []).join('<br/>') ||
 						'Es ist ein Fehler aufgetreten. Bitte wenden Sie sich an den Support.');
 					knopf.disabled = false;
-					if (window.grecaptcha) {
-						window.grecaptcha.reset();
+					/* Die Aufgabe ist verbraucht - der Dienst nimmt jede nur
+					   einmal an. Ohne das Zuruecksetzen koennte der Besucher
+					   es nie wieder versuchen. */
+					var widget = document.querySelector('altcha-widget');
+					if (widget && typeof widget.reset === 'function') {
+						widget.reset();
 					}
 				}
 			})

@@ -27,14 +27,23 @@
 
 	# --- Trial ------------------------------------------------------
 	# Die einzige Stelle, an der etwas gerechnet wird. Angelegt wird der
-	# Mandant auf dem Trial-Server selbst, wo Seafile-API und Datenbank
-	# oertlich liegen; auf diesem Rechner bleibt kein Zugangsdatum.
+	# Mandant auf dem Trial-Server selbst, wo die Seafile-Admin-API
+	# oertlich erreichbar ist; auf diesem Rechner bleibt kein Zugangsdatum.
+	#
+	# Darunter faellt auch /api/trial/challenge: die Altcha-Aufgabe wird
+	# dort signiert und dort wieder geprueft. Laege der Aufgaben-Endpunkt
+	# hier, muesste dasselbe HMAC-Geheimnis auf zwei Maschinen liegen.
 	#
 	# Weitergereicht statt direkt angesprochen, damit der Browser bei
 	# gleicher Herkunft bleibt - kein CORS, kein Preflight, keine
 	# Drittanbieter-Diskussion auf einer Seite, die mit Kontrolle ueber
 	# die eigenen Daten wirbt.
-	handle /api/trial {
+	# Der Stern muss sein: Caddys Pfadabgleich ist sonst exakt, und
+	# /api/trial/challenge fiele in die statische Auslieferung - das Widget
+	# bekaeme keine Aufgabe und das Formular liesse sich nicht abschicken.
+	# (handle nimmt nur ein Muster; /api/trialxyz wird dadurch mitgefangen
+	# und vom Dienst mit 404 beantwortet, das stoert nicht.)
+	handle /api/trial* {
 		reverse_proxy https://trial.seafile-demo.de {
 			header_up Host trial.seafile-demo.de
 			transport http {
