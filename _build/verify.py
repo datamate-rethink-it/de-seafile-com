@@ -57,6 +57,14 @@ GEWOLLT = {
     'Das Add-in kann von dieser Webseite kostenfrei heruntergeladen',
     # Fusszeilenpunkt
     'Seafile Drive Client 1.0 ',
+    # Drei Abschnitte der Datenschutzerklaerung, die eine Einbindung
+    # beschrieben, die es nicht mehr gibt: Schriften werden selbst
+    # ausgeliefert, reCAPTCHA ist durch Altcha ersetzt, und Google Maps
+    # war nie eingebunden. Eine Erklaerung, die eine Uebermittlung an
+    # Google behauptet, die nicht stattfindet, ist schlechter als keine.
+    'Wir binden die Schriftarten',
+    'Wir binden die Funktion zur Erkennung von Bots',
+    'Wir binden die Landkarten des Dienstes',
     # index.php schrieb auf /news/ ein zweites <p> statt eines </p>. Der
     # Absatz blieb dadurch offen und zog die Kategorieleiste und das
     # Suchfeld in denselben Block. Hier ist er geschlossen - der Text

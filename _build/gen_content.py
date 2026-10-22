@@ -118,7 +118,67 @@ KACHELN_WEG = {
 KACHEL = r'<div class="col-sm-12 col-md-3">\s*<a href="{}".*?</a>\s*</div>'
 
 
+# Abschnitte der Datenschutzerklaerung, die eine Einbindung beschreiben,
+# die es nicht mehr gibt. Eine Erklaerung, die eine Uebermittlung an
+# Google behauptet, die nicht stattfindet, ist schlechter als keine.
+ABSCHNITTE_WEG = {
+    '/datenschutz/': [
+        # Schriften werden seit dem 21.10.2026 selbst ausgeliefert
+        'dsg-thirdparty-googlefonts',
+        # durch selbst gehostetes Altcha ersetzt, 22.10.2026
+        'dsg-thirdparty-googlerecaptcha',
+        # war nie eingebunden - auf der ganzen Seite kein einziger Verweis
+        'dsg-thirdparty-googlemaps',
+    ],
+}
+
+# YouTube bleibt: zwei Beitraege betten Videos ein. Aber in der Fassung
+# ohne Cookies - gleiche Darstellung, YouTube setzt erst beim Klick auf
+# Abspielen etwas. Das ist YouTubes eigener Modus, kein Trick.
+#
+# Nur in echten <iframe>-Elementen ersetzen. /youtube-video-in-
+# begruessungs-popup/ ist eine Anleitung und zeigt dieselbe Adresse als
+# maskierten Beispielcode (&lt;iframe src="..."), den der Leser bei sich
+# einfuegen soll. Das ist der Text des Beitrags, nicht unsere Einbindung.
+# Betroffen sind zwei Stellen: das <iframe> selbst, und auf
+# /support/benutzer/ elf onClick-Handler, die seine Adresse beim Klick
+# austauschen. Letztere laden zwar erst auf Tastendruck, aber sie sollen
+# dieselbe Adresse benutzen wie das iframe daneben.
+IFRAME = re.compile(r'<iframe\b[^>]*>')
+ONCLICK = re.compile(r"onClick=\"[^\"]*\"")
+YOUTUBE_ALT = re.compile(r'https?://(?:www\.)?youtube\.com/embed/')
+YOUTUBE_NEU = 'https://www.youtube-nocookie.com/embed/'
+
+
+def youtube_ohne_cookies(koerper):
+    def tausche(m):
+        return YOUTUBE_ALT.sub(YOUTUBE_NEU, m.group(0))
+    return ONCLICK.sub(tausche, IFRAME.sub(tausche, koerper))
+
+
+def abschnitt_entfernen(koerper, kennung):
+    """Eine <h3 id="..."> samt ihrem Text bis zur naechsten Ueberschrift.
+
+    Der letzte Abschnitt der Seite endet nicht an einer Ueberschrift,
+    sondern am schliessenden </div> - das muss stehen bleiben.
+    """
+    anfang = koerper.find(f'<h3 id="{kennung}"')
+    if anfang < 0:
+        raise SystemExit(f'Abschnitt {kennung} nicht gefunden')
+    # fuehrende Leerzeile und Einrueckung mitnehmen
+    while anfang > 0 and koerper[anfang - 1] in ' \t\n\r':
+        anfang -= 1
+    naechste = koerper.find('<h3 ', anfang + 4)
+    ende = naechste if naechste > 0 else koerper.rindex('</div>')
+    while ende > anfang and koerper[ende - 1] in ' \t':
+        ende -= 1
+    return koerper[:anfang] + '\n' + koerper[ende:]
+
+
 def korrigieren(pfad, koerper):
+    koerper = youtube_ohne_cookies(koerper)
+    for kennung in ABSCHNITTE_WEG.get(pfad, []):
+        koerper = abschnitt_entfernen(koerper, kennung)
     for alt, neu in KORREKTUREN.get(pfad, []):
         if koerper.count(alt) != 1:
             raise SystemExit(
