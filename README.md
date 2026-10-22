@@ -176,8 +176,21 @@ im Repo: 503 MB, und `wp-config.php` enthaelt den Brevo-Schluessel,
 `template-parts/content-trail-page.php` das MySQL-root-Passwort des
 Trial-Servers.
 
+**Das Quellarchiv `de-seafile-com.tar.gz` ist am 21.10.2026 geloescht
+worden.** Es war eine Dublette des entpackten Baums, der nur noch oertlich
+auf Christophs Rechner liegt. Geht auch der weg, sind `gen_content.py` und
+`gen_static.py` nur noch Dokumentation — gebaut werden kann die Seite
+trotzdem jederzeit, `content/` und `webroot/` liegen im Repo.
+
+Verloren ist dabei nichts vom Inhalt: alle 824 Original-Mediendateien
+stecken in `webroot/`, es fehlen nur die 1 375 von WordPress erzeugten
+Zuschnitte. Was es sonst nirgends mehr gibt, ist der *Produktionsstand*
+von `content-trial-page.php` — die Fassung in der Historie von
+[seafile-trial](https://github.com/datamate-rethink-it/seafile-trial) ist
+von Mai 2024 und hat weder Honigtopf noch reCAPTCHA noch den
+Brevo-Event. Abgeloest ist alles drei vom Go-Dienst dort.
+
 ```bash
-mkdir -p _build/wporig && tar -C _build/wporig -xzf de-seafile-com.tar.gz
 python3 -E -s _build/gen_content.py
 python3 -E -s _build/gen_static.py     # braucht einmal Netz fuer die Schriften
 python3 -E -s _build/gen_redirects.py
