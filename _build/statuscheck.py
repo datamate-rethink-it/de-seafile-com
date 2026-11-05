@@ -1,8 +1,15 @@
 #!/usr/bin/env python3
-"""Status + Location jeder Adresse, ohne Weiterleitungen zu folgen."""
+"""Status + Location jeder Adresse, ohne Weiterleitungen zu folgen.
+
+Aufruf: statuscheck.py [BASIS-URL] [AUSGABEDATEI]
+
+ACHTUNG: status-live.json enthaelt den Stand der frueheren WordPress-Seite und
+ist die Vergleichsbasis von verify_status.py. de.seafile.com laeuft inzwischen
+auf Hugo, deshalb immer eine eigene AUSGABEDATEI angeben.
+"""
 import json, pathlib, sys, time, urllib.request, urllib.error
 
-B = pathlib.Path('/home/christoph/Dokumente/de-seafile-hugo/_build')
+B = pathlib.Path(__file__).resolve().parent
 base = sys.argv[1] if len(sys.argv) > 1 else 'https://de.seafile.com'
 out = pathlib.Path(sys.argv[2]) if len(sys.argv) > 2 else B / 'status-live.json'
 

@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
-"""Referenz-Schnappschuss der laufenden WordPress-Seite de.seafile.com."""
+"""Referenz-Schnappschuss von de.seafile.com, damals noch WordPress.
+
+ACHTUNG: de.seafile.com laeuft inzwischen auf Hugo. Ein neuer Lauf ersetzt die
+WordPress-Referenz in reference/ und reference-index.json durch den Hugo-Stand.
+Nicht erneut ausfuehren, das Skript dokumentiert nur, wie die Referenz entstand.
+"""
 import json, os, pathlib, sys, time, urllib.request, urllib.error
 
 BASE = 'https://de.seafile.com'
-B = pathlib.Path('/home/christoph/Dokumente/de-seafile-hugo/_build')
+B = pathlib.Path(__file__).resolve().parent
 OUT = B / 'reference'
 routes = [l.strip() for l in (B / 'wp' / 'all-routes.txt').read_text().splitlines() if l.strip()]
 
